@@ -1,7 +1,11 @@
 require "spec_helper"
+require "flex_commerce/product"
 RSpec.describe FlexCommerce::Product do
   let(:quantity) { 0 }
   let(:product_list) { build(:product_list, quantity: quantity) }
+  let(:subject_class) { subject.class }
+  let(:api_root) { "http://something.com/matalan/v1" }
+  let(:default_headers) {  {"Content-Type": "application/json"} }
   context "with a small data set" do
     let(:quantity) { 10 }
     before :each do
