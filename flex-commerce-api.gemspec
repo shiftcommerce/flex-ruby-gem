@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "factory_girl", "~> 4.5"
   spec.add_development_dependency "faker", "~> 1.4"
 
+  spec.add_runtime_dependency "json_api_client", "1.0.0.beta2"
 end

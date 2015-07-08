@@ -2,6 +2,7 @@ require "flex_commerce/api/version"
 
 module FlexCommerce
   module Api
-    # Your code goes here...
+    FLEX_ROOT_URL = ENV["FLEX_ROOT_URL"]
+    API_BASE_URL = "#{FLEX_ROOT_URL}/#{API_VERSION}"
   end
 end
