@@ -2,6 +2,7 @@ require "spec_helper"
 require "flex_commerce_api"
 require "flex_commerce_api/product"
 require "uri"
+
 RSpec.describe FlexCommerceApi::Product do
   include_context "global context"
   let(:quantity) { 0 }

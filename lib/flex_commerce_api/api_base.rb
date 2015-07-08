@@ -4,13 +4,13 @@ require "uri"
 module FlexCommerceApi
   class ApiBase < JsonApiClient::Resource
     # set the api base url in an abstract base class
-    self.site = API_BASE_URL
+    self.site = FlexCommerceApi.config.api_base_url
     class << self
       def username
         URI.parse(site).path.split("/").reject(&:empty?).first
       end
       def password
-        ENV["FLEX_API_KEY"]
+        FlexCommerceApi.config.flex_api_key
       end
     end
   end
