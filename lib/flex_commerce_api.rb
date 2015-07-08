@@ -6,6 +6,11 @@ module FlexCommerceApi
       yield config if block_given?
     end
   end
+  def self.gem_root
+    File.expand_path("../", __dir__)
+  end
+
+  autoload :Product, File.join(gem_root, "app", "models", "product")
 end
 
 # @TODO Setup auto load for models
