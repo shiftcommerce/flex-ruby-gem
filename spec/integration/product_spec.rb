@@ -1,8 +1,8 @@
 require "spec_helper"
-require "flex_commerce/api"
-require "flex_commerce/product"
+require "flex_commerce_api"
+require "flex_commerce_api/product"
 require "uri"
-RSpec.describe FlexCommerce::Product do
+RSpec.describe FlexCommerceApi::Product do
   include_context "global context"
   let(:quantity) { 0 }
   let(:product_list) { build(:product_list, quantity: quantity) }

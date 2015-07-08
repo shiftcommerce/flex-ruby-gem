@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'flex_commerce/api/version'
+require 'flex_commerce_api/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "flex-commerce-api"
-  spec.version       = FlexCommerce::Api::VERSION
+  spec.name          = "flex_commerce_api"
+  spec.version       = FlexCommerceApi::VERSION
   spec.authors       = ["Gary Taylor"]
   spec.email         = ["gary.taylor@flexcommerce.com"]
 

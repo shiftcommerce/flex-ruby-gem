@@ -1,10 +1,10 @@
 require "json_api_client"
 require "faraday/request/basic_authentication"
 require "uri"
-module FlexCommerce
+module FlexCommerceApi
   class ApiBase < JsonApiClient::Resource
     # set the api base url in an abstract base class
-    self.site = Api::API_BASE_URL
+    self.site = API_BASE_URL
     class << self
       def username
         URI.parse(site).path.split("/").reject(&:empty?).first
