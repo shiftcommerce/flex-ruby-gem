@@ -20,7 +20,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The gem provides many models in the FlexCommerce namespace.  The example below is a rails controller
+accessing a list of products.
+
+```ruby
+class ProductsController < ApplicationController
+
+  # GET /products
+  def index
+    @products = FlexCommerce::Product.paginate(params[:page])
+  end
+end
+
+```
+
+To any rails developer this will look familiar.
+
+However, we do not force you to use rails.  We appreciate that there are many frameworks out there
+and whilst rails is an excellent tool, for smaller projects you may want to look at others such
+as sinatra etc...
+
 
 ## Development
 

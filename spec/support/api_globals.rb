@@ -1,4 +1,5 @@
 RSpec.shared_context "global context" do
+  before(:each) { WebMock.reset! }
   let(:flex_root_url) { FlexCommerceApi.config.flex_root_url }
   let(:api_root) do
     URI.parse("#{flex_root_url}/#{FlexCommerceApi::API_VERSION}").tap do |u|
@@ -6,5 +7,6 @@ RSpec.shared_context "global context" do
       u.password = FlexCommerceApi.config.flex_api_key
     end.to_s
   end
-  let(:default_headers) {  {"Content-Type": "application/json"} }
+  let(:default_headers) { { "Content-Type": "application/json" } }
+  let(:page_size) { 25 }
 end
