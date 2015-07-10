@@ -10,7 +10,7 @@ RSpec.describe FlexCommerce::Product do
   # The quantity of items to create - changes in different contexts
   let(:quantity) { 0 }
   # The product list - build 'quantity' of them
-  let(:product_list) { build(:product_list, quantity: quantity, base_path: URI.parse(api_root).path) }
+  let(:resource_list) { build(:product_list, quantity: quantity, base_path: URI.parse(api_root).path) }
   # As a number of specs are testing class methods, subject changes in different contexts
   # so the subject class is defined here for convenience
   let(:subject_class) { FlexCommerce::Product }
@@ -22,7 +22,7 @@ RSpec.describe FlexCommerce::Product do
     it_should_behave_like "a collection of anything"
     it "should return the correct number of instances and the meta data should be correct" do
       subject.each_with_index do |p, idx|
-        product_list.data[idx].tap do |resource_identifier|
+        resource_list.data[idx].tap do |resource_identifier|
           expect(resource_identifier.id).to eql p.id
           expect(resource_identifier.attributes.as_json).to eql(p.attributes.as_json.reject { |k| %w(id type).include?(k) })
         end
@@ -52,7 +52,7 @@ RSpec.describe FlexCommerce::Product do
     # The subject for all examples - using pagination as this is expected normally
     subject { subject_class.paginate(page: current_page).all }
     before :each do
-      stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: product_list.to_json, status: 200, headers: default_headers
+      stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: 200, headers: default_headers
     end
     #
     # Using a small data set (10 records)
@@ -97,7 +97,7 @@ RSpec.describe FlexCommerce::Product do
   #
   context "using a single product" do
     let(:product) { product_resource.data }
-    let(:product_resource) { build(:singular_resource, data: product_list.data.first) }
+    let(:product_resource) { build(:singular_resource, data: resource_list.data.first) }
     before :each do
       stub_request(:get, "#{api_root}/products/#{product.attributes.slug}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: product_resource.to_json, status: 200, headers: default_headers
     end
