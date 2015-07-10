@@ -1,3 +1,4 @@
+require "singleton"
 module FlexCommerceApi
   #
   # Global configuration object

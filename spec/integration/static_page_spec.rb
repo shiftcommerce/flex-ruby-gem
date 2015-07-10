@@ -2,7 +2,7 @@ require "spec_helper"
 require "flex_commerce_api"
 require "uri"
 
-RSpec.describe FlexCommerce::Product do
+RSpec.describe FlexCommerce::StaticPage do
   # Global context for all specs - defines things you dont see defined in here
   # such as flex_root_url, api_root, default_headers and page_size
   # see api_globals.rb in spec/support for the source code
@@ -10,21 +10,21 @@ RSpec.describe FlexCommerce::Product do
   # The quantity of items to create - changes in different contexts
   let(:quantity) { 0 }
   # The product list - build 'quantity' of them
-  let(:resource_list) { build(:product_list, quantity: quantity, base_path: base_path) }
+  let(:resource_list) { build(:static_page_list, quantity: quantity, base_path: URI.parse(api_root).path) }
   # As a number of specs are testing class methods, subject changes in different contexts
   # so the subject class is defined here for convenience
-  let(:subject_class) { FlexCommerce::Product }
+  let(:subject_class) { FlexCommerce::StaticPage }
 
   # As the same examples are used in several different contexts
   # to save repeating ourselves, a shared example is defined here
   # which tests for anything common to a collection of products
-  shared_examples_for("a collection of products") do
+  shared_examples_for("a collection of static pages") do
     it_should_behave_like "a collection of anything"
     it "should return the correct number of instances and the meta data should be correct" do
       subject.each_with_index do |p, idx|
         resource_list.data[idx].tap do |resource_identifier|
-          expect(p.id).to eql(resource_identifier.id)
-          expect(p.attributes.as_json.reject { |k| %w(id type links meta).include?(k) }).to eql(resource_identifier.attributes.as_json)
+          expect(resource_identifier.id).to eql p.id
+          expect(resource_identifier.attributes.as_json).to eql(p.attributes.as_json.reject { |k| %w(id type links meta).include?(k) })
         end
       end
     end
@@ -36,13 +36,13 @@ RSpec.describe FlexCommerce::Product do
   #
   # All collection examples
   #
-  context "using a collection of products" do
+  context "using a collection of static pages" do
     # Convenient access to the expected total pages of data
     let(:total_pages) { (quantity / page_size.to_f).ceil.to_i }
     # The current page - changes in different contexts
     let(:current_page) { nil }
     # Easy access to the collection URL
-    let(:collection_url) { "#{api_root}/products" }
+    let(:collection_url) { "#{api_root}/static_pages" }
     # Calculates the stubbed_url depending on if current_page is nil or not
     #  If current page is nil, then it is expected that the test will fetch its data from the collection_url rather
     #  than the paginated version.
@@ -54,37 +54,25 @@ RSpec.describe FlexCommerce::Product do
     before :each do
       stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: 200, headers: default_headers
     end
-    it_should_behave_like "a collection of resources with various data sets", resource_type: :product
+    it_should_behave_like "a collection of resources with various data sets", resource_type: :static_page
   end
 
   #
   # Member Examples
   #
   context "using a single resource" do
-    let(:variants_count) { 5 }
-    let(:variant_class) { FlexCommerce::Variant }
     let(:resource) { singular_resource.data }
-    let(:resource_identifier) { build(:resource_identifier, build_resource: { product: { variants_count: variants_count } }, base_path: base_path, primary_key: :slug) }
+    let(:resource_identifier) { build(:resource_identifier, build_resource: :static_page, base_path: base_path) }
     let(:singular_resource) { build(:singular_resource, data: resource_identifier) }
     before :each do
-      stub_request(:get, "#{api_root}/products/#{resource.attributes.slug}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
+      stub_request(:get, "#{api_root}/static_pages/#{resource.id}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
     end
     context "finding a single resource" do
       it "should return an object of the correct class when find is called" do
-        subject_class.find(resource.attributes.slug).tap do |result|
-          expect(result.attributes.as_json.reject { |k| %w(id type links meta variants).include?(k) }).to eql(resource.attributes.as_json.reject { |k| %w(variants).include?(k) })
+        subject_class.find(resource.id).tap do |result|
+          expect(result.attributes.as_json.reject { |k| %w(id type links meta).include?(k) }).to eql(resource.attributes.as_json)
           expect(result.id).to eql resource.id
           expect(result).to be_a subject_class
-        end
-      end
-      it "should get the associated variants" do
-        subject_class.find(resource.attributes.slug).tap do |result|
-          result.variants.tap do |variant_list|
-            expect(variant_list.length).to eql variants_count
-            variant_list.each do |v|
-              expect(v).to be_a(variant_class)
-            end
-          end
         end
       end
     end

@@ -44,5 +44,7 @@ module FlexCommerce
     # @param options [Numeric|String] :page The page to fetch
 
     # @TODO Document other popular methods that we will support
+
+    has_many :variants, class_name: "::FlexCommerce::Variant"
   end
 end
