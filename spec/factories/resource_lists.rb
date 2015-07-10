@@ -1,3 +1,17 @@
+#
+# A json-api resource list.  Not used on its own but inherited by
+# any list of resources such as products, static pages etc..
+#
+# This will automatically populate the "data" with a list of factories of type ({#type})
+# as well as populating the "links" section with urls etc..  Saves a lot of manual work
+# and noise in your specs.
+#
+# @param [Numeric] quantity (defaults to 1) The quantity of resources to be reported by the list
+# @param [Numeric] page_size (defaults to 25) The number of resources to be returned at one time
+# @param [Numeric] page (defaults to 1) The page number to return
+# @param [String] base_path (defaults to "/test_account/v1") Used as the base path for urls generated in the result's "links" section
+# @param [String|Symbol] type (defaults to "") The type (factory) of resources this will contain
+# @param [String|Symbol] primary_key (defaults to "id") The primary key used to generate the URL for an individual resource
 FactoryGirl.define do
   klass = Struct.new(:data, :meta, :links, :errors)
   factory :resource_list, class: klass do
@@ -5,9 +19,8 @@ FactoryGirl.define do
     links { {} }
     data { [] }
     errors { [] }
-    ignore do
+    transient do
       quantity 1
-      sequence(:next_id) { |n| n }
       page_size 25
       page 1
       base_path "/test_account/v1"

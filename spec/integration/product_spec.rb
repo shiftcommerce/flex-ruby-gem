@@ -63,22 +63,22 @@ RSpec.describe FlexCommerce::Product do
   context "using a single resource" do
     let(:variants_count) { 5 }
     let(:variant_class) { FlexCommerce::Variant }
-    let(:resource) { singular_resource.data }
     let(:resource_identifier) { build(:resource_identifier, build_resource: { product: { variants_count: variants_count } }, base_path: base_path, primary_key: :slug) }
     let(:singular_resource) { build(:singular_resource, data: resource_identifier) }
+    let(:primary_key) { :slug }
     before :each do
-      stub_request(:get, "#{api_root}/products/#{resource.attributes.slug}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
+      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
     end
     context "finding a single resource" do
-      it "should return an object of the correct class when find is called" do
-        subject_class.find(resource.attributes.slug).tap do |result|
-          expect(result.attributes.as_json.reject { |k| %w(id type links meta variants).include?(k) }).to eql(resource.attributes.as_json.reject { |k| %w(variants).include?(k) })
-          expect(result.id).to eql resource.id
-          expect(result).to be_a subject_class
+      it_should_behave_like "a singular resource"
+      it "should return an object with the correct attributes when find is called" do
+        subject_class.find(resource_identifier.attributes.send(primary_key)).tap do |result|
+          expect(result.attributes.as_json.reject { |k| %w(id type links meta variants).include?(k) }).to eql(resource_identifier.attributes.as_json.reject { |k| %w(variants).include?(k) })
+          expect(result.type).to eql "products"
         end
       end
       it "should get the associated variants" do
-        subject_class.find(resource.attributes.slug).tap do |result|
+        subject_class.find(resource_identifier.attributes.slug).tap do |result|
           result.variants.tap do |variant_list|
             expect(variant_list.length).to eql variants_count
             variant_list.each do |v|

@@ -8,7 +8,7 @@ FactoryGirl.define do
     sequence(:max_price) { |p| p + 0.5 }
     slug { Faker::Internet.slug }
     variants []
-    ignore do
+    transient do
       variants_count 0
     end
     after(:build) do |item, evaluator|

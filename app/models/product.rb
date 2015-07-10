@@ -26,6 +26,10 @@ module FlexCommerce
   #
   #   FlexCommerce::Product.find("my-product-slug") # Finds the product with this unique id
   #
+  #   # Finding nested variants of the product
+  #
+  #   FlexCommerce::Product.find("my-product-slug").variants
+  #
   #
   class Product < FlexCommerceApi::ApiBase
     # @method find
@@ -42,6 +46,10 @@ module FlexCommerce
     # Paginates the list of products by a preset page size
     # @param [Hash] options The options to paginate with
     # @param options [Numeric|String] :page The page to fetch
+
+    # @method variants
+    # Provides a list of associated variants
+    # @return [FlexCommerce::Variant[]]
 
     # @TODO Document other popular methods that we will support
 

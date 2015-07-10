@@ -1,3 +1,8 @@
+#
+# A range of examples for a collection of resources
+#
+# Expects the resource type to be passed as a parameter in singular form (e.g. :product)
+# Then, it expects shared examples to be defined for "a collection of #{resource_type}"
 shared_examples_for("a collection of resources with various data sets") do |resource_type: ""|
   resource_type = resource_type.to_s.humanize.downcase.pluralize
   #

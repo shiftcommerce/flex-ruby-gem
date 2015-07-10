@@ -61,18 +61,16 @@ RSpec.describe FlexCommerce::StaticPage do
   # Member Examples
   #
   context "using a single resource" do
-    let(:resource) { singular_resource.data }
     let(:resource_identifier) { build(:resource_identifier, build_resource: :static_page, base_path: base_path) }
     let(:singular_resource) { build(:singular_resource, data: resource_identifier) }
     before :each do
-      stub_request(:get, "#{api_root}/static_pages/#{resource.id}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
+      stub_request(:get, "#{api_root}/static_pages/#{resource_identifier.id}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
     end
     context "finding a single resource" do
-      it "should return an object of the correct class when find is called" do
-        subject_class.find(resource.id).tap do |result|
-          expect(result.attributes.as_json.reject { |k| %w(id type links meta).include?(k) }).to eql(resource.attributes.as_json)
-          expect(result.id).to eql resource.id
-          expect(result).to be_a subject_class
+      it_should_behave_like "a singular resource"
+      it "should return an object with the correct attributes when find is called" do
+        subject_class.find(resource_identifier.id).tap do |result|
+          expect(result.attributes.as_json.reject { |k| %w(id type links meta).include?(k) }).to eql(resource_identifier.attributes.as_json)
         end
       end
     end
