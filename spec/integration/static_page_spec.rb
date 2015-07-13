@@ -23,8 +23,8 @@ RSpec.describe FlexCommerce::StaticPage do
     it "should return the correct number of instances and the meta data should be correct" do
       subject.each_with_index do |p, idx|
         resource_list.data[idx].tap do |resource_identifier|
-          expect(resource_identifier.id).to eql p.id
-          expect(resource_identifier.attributes.as_json).to eql(p.attributes.as_json.reject { |k| %w(id type links meta).include?(k) })
+          expect(p.id).to eql(resource_identifier.id)
+          expect(p.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(resource_identifier.attributes.as_json)
         end
       end
     end
@@ -70,7 +70,7 @@ RSpec.describe FlexCommerce::StaticPage do
       it_should_behave_like "a singular resource"
       it "should return an object with the correct attributes when find is called" do
         subject_class.find(resource_identifier.id).tap do |result|
-          expect(result.attributes.as_json.reject { |k| %w(id type links meta).include?(k) }).to eql(resource_identifier.attributes.as_json)
+          expect(result.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(resource_identifier.attributes.as_json)
         end
       end
     end

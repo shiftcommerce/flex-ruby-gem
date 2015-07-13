@@ -24,7 +24,7 @@ RSpec.describe FlexCommerce::Product do
       subject.each_with_index do |p, idx|
         resource_list.data[idx].tap do |resource_identifier|
           expect(p.id).to eql(resource_identifier.id)
-          expect(p.attributes.as_json.reject { |k| %w(id type links meta).include?(k) }).to eql(resource_identifier.attributes.as_json)
+          expect(p.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(resource_identifier.attributes.as_json)
         end
       end
     end
@@ -62,9 +62,13 @@ RSpec.describe FlexCommerce::Product do
   #
   context "using a single resource" do
     let(:variants_count) { 5 }
+    let(:variant_resources) { build_list(:json_api_resource, variants_count, build_resource: :variant) }
+    let(:variant_relationship) { { variants: {
+        data: variant_resources.map { |vr| { type: "variants", id: vr.id }}
+    } } }
     let(:variant_class) { FlexCommerce::Variant }
-    let(:resource_identifier) { build(:json_api_resource, build_resource: { product: { variants_count: variants_count } }, base_path: base_path, primary_key: :slug) }
-    let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier) }
+    let(:resource_identifier) { build(:json_api_resource, build_resource: :product, relationships: variant_relationship, base_path: base_path, primary_key: :slug) }
+    let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier, included: variant_resources) }
     let(:primary_key) { :slug }
     before :each do
       stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
@@ -73,7 +77,7 @@ RSpec.describe FlexCommerce::Product do
       it_should_behave_like "a singular resource"
       it "should return an object with the correct attributes when find is called" do
         subject_class.find(resource_identifier.attributes.send(primary_key)).tap do |result|
-          expect(result.attributes.as_json.reject { |k| %w(id type links meta variants).include?(k) }).to eql(resource_identifier.attributes.as_json.reject { |k| %w(variants).include?(k) })
+          expect(result.attributes.as_json.reject { |k| %w(id type links meta variants relationships).include?(k) }).to eql(resource_identifier.attributes.as_json.reject { |k| %w(variants).include?(k) })
           expect(result.type).to eql "products"
         end
       end
@@ -82,10 +86,10 @@ RSpec.describe FlexCommerce::Product do
           result.variants.tap do |variant_list|
             expect(variant_list.length).to eql variants_count
             variant_list.each_with_index do |v, idx|
-              mocked_variant = resource_identifier.attributes.variants[idx]
+              mocked_variant = variant_resources[idx].attributes
               expect(v).to be_a(variant_class)
               expect(v.type).to eql "variants"
-              expect(v.attributes.as_json.reject { |k| %w(id type links meta).include?(k) }).to eql(mocked_variant.as_json)
+              expect(v.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(mocked_variant.as_json)
             end
           end
         end

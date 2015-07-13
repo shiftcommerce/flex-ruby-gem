@@ -5,4 +5,6 @@ module FlexCommerce
   autoload :Product, File.join(gem_root, "app", "models", "product")
   autoload :StaticPage, File.join(gem_root, "app", "models", "static_page")
   autoload :Variant, File.join(gem_root, "app", "models", "variant")
+  autoload :MenuItem, File.join(gem_root, "app", "models", "menu_item")
+  autoload :Menu, File.join(gem_root, "app", "models", "menu")
 end
