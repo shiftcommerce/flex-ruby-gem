@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :static_page_list, parent: :resource_list do
+  factory :static_page_list, parent: :json_api_resource_list do
     type "static_page"
   end
 end

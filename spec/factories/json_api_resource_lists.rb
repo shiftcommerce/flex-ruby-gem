@@ -14,7 +14,7 @@
 # @param [String|Symbol] primary_key (defaults to "id") The primary key used to generate the URL for an individual resource
 FactoryGirl.define do
   klass = Struct.new(:data, :meta, :links, :errors)
-  factory :resource_list, class: klass do
+  factory :json_api_resource_list, class: klass do
     meta { { type: pluralized_type, page_count: page_count, total_entries: quantity } }
     links { {} }
     data { [] }
