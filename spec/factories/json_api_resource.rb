@@ -1,17 +1,17 @@
 #
-# Used to create a "resource identifier" for a json-api response
+# Used to create a "resource" for a json-api response
 #
-# A resource identifier is simply an object containing the attributes of the data
+# A resource is simply an object containing the attributes of the data
 # in "attributes" and then the id, type and links are stored also.
 #
-# As a resource identifier always needs to contain a resource, this factory can generate
+# As a resource always needs to contain a data object, this factory can generate
 # one for you if you add something like :-
 #
-#   build(:resource_identifier, build_resource: :product)
+#   build(:json_api_resource, build_resource: :product)
 #
 #   # Or if you want to specify some attributes for each product :-
 #
-#   build(:resource_identifier, build_resource: {product: { variant_count: 10 }})
+#   build(:json_api_resource, build_resource: {product: { variant_count: 10 }})
 #
 # @param [Hash|Symbol|String] build_resource (Defaults to nil) If specified, the factory will populate the attributes
 #   from the specified factory or if a hash is given, the key specifies the factory and the value the attributes
@@ -23,7 +23,7 @@
 # @param [Hash] links (defaults to {}) If specified and not using {#build_resource}, specifies the links to be returned
 FactoryGirl.define do
   klass = Struct.new(:id, :type, :attributes, :links)
-  factory :resource_identifier, class: klass do
+  factory :json_api_resource, class: klass do
     transient do
       build_resource nil
       base_path "/test_account/v1"

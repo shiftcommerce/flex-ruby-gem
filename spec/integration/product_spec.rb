@@ -63,7 +63,7 @@ RSpec.describe FlexCommerce::Product do
   context "using a single resource" do
     let(:variants_count) { 5 }
     let(:variant_class) { FlexCommerce::Variant }
-    let(:resource_identifier) { build(:resource_identifier, build_resource: { product: { variants_count: variants_count } }, base_path: base_path, primary_key: :slug) }
+    let(:resource_identifier) { build(:json_api_resource, build_resource: { product: { variants_count: variants_count } }, base_path: base_path, primary_key: :slug) }
     let(:singular_resource) { build(:singular_resource, data: resource_identifier) }
     let(:primary_key) { :slug }
     before :each do
@@ -81,8 +81,11 @@ RSpec.describe FlexCommerce::Product do
         subject_class.find(resource_identifier.attributes.slug).tap do |result|
           result.variants.tap do |variant_list|
             expect(variant_list.length).to eql variants_count
-            variant_list.each do |v|
+            variant_list.each_with_index do |v, idx|
+              mocked_variant = resource_identifier.attributes.variants[idx]
               expect(v).to be_a(variant_class)
+              expect(v.type).to eql "variants"
+              expect(v.attributes.as_json.reject { |k| %w(id type links meta).include?(k) }).to eql(mocked_variant.as_json)
             end
           end
         end
