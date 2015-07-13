@@ -64,7 +64,7 @@ RSpec.describe FlexCommerce::Product do
     let(:variants_count) { 5 }
     let(:variant_class) { FlexCommerce::Variant }
     let(:resource_identifier) { build(:json_api_resource, build_resource: { product: { variants_count: variants_count } }, base_path: base_path, primary_key: :slug) }
-    let(:singular_resource) { build(:singular_resource, data: resource_identifier) }
+    let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier) }
     let(:primary_key) { :slug }
     before :each do
       stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers

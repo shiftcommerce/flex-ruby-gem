@@ -62,7 +62,7 @@ RSpec.describe FlexCommerce::StaticPage do
   #
   context "using a single resource" do
     let(:resource_identifier) { build(:json_api_resource, build_resource: :static_page, base_path: base_path) }
-    let(:singular_resource) { build(:singular_resource, data: resource_identifier) }
+    let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier) }
     before :each do
       stub_request(:get, "#{api_root}/static_pages/#{resource_identifier.id}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
     end
