@@ -42,7 +42,7 @@ FactoryGirl.define do
         end
         build_options ||= {}
         ri.attributes = build(build_resource.to_sym, build_options)
-        ri.type = build_resource.to_s.pluralize
+        ri.type = build_resource.to_s.pluralize if ri.type == "Unknown"
         item_id = ri.attributes.to_h.merge(id: ri.id, type: ri.type).with_indifferent_access[evaluator.primary_key]
         ri.links = { "self": "#{evaluator.base_path}/#{build_resource.to_s.pluralize}/#{item_id}.json" }
       end

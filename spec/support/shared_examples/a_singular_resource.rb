@@ -9,7 +9,7 @@
 RSpec.shared_examples_for("a singular resource") do
   it "should return an object of the correct class when find is called" do
     pk = try(:primary_key) || :id
-    id = resource_identifier.attributes.to_h.merge(resource_identifier.to_h.reject { |k| k == :attributes })[pk]
+    id = resource_identifier.attributes.to_h.with_indifferent_access.merge(resource_identifier.to_h.reject { |k| k == :attributes })[pk]
     subject_class.find(id).tap do |result|
       expect(result.id).to eql resource_identifier.id
       expect(result.type).to be_a String

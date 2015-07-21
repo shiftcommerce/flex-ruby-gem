@@ -1,0 +1,179 @@
+{
+  "data": [
+    {
+      "id": "10",
+      "type": "products",
+      "attributes": {
+        "title": "Accusantium quibusdam ut non qui ut explicabo consequatur.",
+        "description": "Non rerum vel omnis unde ipsam illo. Enim molestiae dolores. Non quos rerum rem.",
+        "reference": "986450366-9",
+        "min_price": 50.69,
+        "max_price": 50.69,
+        "slug": "accusantium-quibusdam-ut-non-qui-ut-explicabo-consequatur"
+      },
+      "links": {
+        "self": "/facili/v1/products"
+      }
+    },
+    {
+      "id": "9",
+      "type": "products",
+      "attributes": {
+        "title": "Architecto debitis rerum dignissimos.",
+        "description": "Cum doloribus eum ut ratione dolorem. Eveniet sed consequatur sit beatae qui est molestias. Voluptate qui corporis iure accusantium magni enim. Deleniti quos in doloremque et. Quam nesciunt id voluptatem et.",
+        "reference": "630212656-8",
+        "min_price": 83.13,
+        "max_price": 83.13,
+        "slug": "architecto-debitis-rerum-dignissimos"
+      },
+      "links": {
+        "self": "/facili/v1/products"
+      }
+    },
+    {
+      "id": "2",
+      "type": "products",
+      "attributes": {
+        "title": "Cum ut repudiandae iusto autem et quia.",
+        "description": "Voluptatem tenetur velit est. Dolores nostrum vel perferendis est similique eligendi. Aut doloribus consectetur ex magni dolores. Ullam blanditiis ea dicta modi et. Et placeat maxime ut est.",
+        "reference": "409263292-4",
+        "min_price": 46.1,
+        "max_price": 46.1,
+        "slug": "cum-ut-repudiandae-iusto-autem-et-quia"
+      },
+      "links": {
+        "self": "/facili/v1/products"
+      }
+    },
+    {
+      "id": "7",
+      "type": "products",
+      "attributes": {
+        "title": "Enim nihil accusantium ab.",
+        "description": "Quia atque dolore eligendi. Voluptatum aspernatur dolorum occaecati reiciendis distinctio voluptates voluptatem. Nisi nostrum labore ipsam perspiciatis qui voluptas esse. Eos et porro sed qui maxime voluptas quos.",
+        "reference": "875638498-X",
+        "min_price": 8.2,
+        "max_price": 8.2,
+        "slug": "enim-nihil-accusantium-ab"
+      },
+      "links": {
+        "self": "/facili/v1/products"
+      }
+    },
+    {
+      "id": "5",
+      "type": "products",
+      "attributes": {
+        "title": "Et aut qui tenetur aspernatur eos.",
+        "description": "Aliquam enim aut magnam. Esse placeat rerum nesciunt aperiam sint. Aut eius mollitia accusamus. Dolor consectetur distinctio.",
+        "reference": "738458053-6",
+        "min_price": 27.72,
+        "max_price": 27.72,
+        "slug": "et-aut-qui-tenetur-aspernatur-eos"
+      },
+      "links": {
+        "self": "/facili/v1/products"
+      }
+    },
+    {
+      "id": "11",
+      "type": "products",
+      "attributes": {
+        "title": "Ex quia quidem vel sunt.",
+        "description": "Nihil qui natus. Debitis ad recusandae inventore ut corporis aperiam. Numquam consequatur dolorem voluptatibus eaque.",
+        "reference": "289013591-8",
+        "min_price": 20.67,
+        "max_price": 20.67,
+        "slug": "ex-quia-quidem-vel-sunt"
+      },
+      "links": {
+        "self": "/facili/v1/products"
+      }
+    },
+    {
+      "id": "4",
+      "type": "products",
+      "attributes": {
+        "title": "Laboriosam iure ipsam aut et ut vero nam est.",
+        "description": "Dolorem est adipisci sit molestiae ipsum voluptas. Quia sit molestiae. Quo autem veniam veritatis.",
+        "reference": "233192394-9",
+        "min_price": 19.69,
+        "max_price": 19.69,
+        "slug": "laboriosam-iure-ipsam-aut-et-ut-vero-nam-est"
+      },
+      "links": {
+        "self": "/facili/v1/products"
+      }
+    },
+    {
+      "id": "8",
+      "type": "products",
+      "attributes": {
+        "title": "Quia nostrum sed dolor.",
+        "description": "Cumque sapiente inventore voluptatum id et eos officiis. Mollitia aperiam impedit consequuntur eveniet adipisci voluptatem corporis. Architecto autem tempora accusantium vitae perspiciatis voluptatem molestias. Sit nam nisi.",
+        "reference": "357559192-X",
+        "min_price": 85.71,
+        "max_price": 85.71,
+        "slug": "quia-nostrum-sed-dolor"
+      },
+      "links": {
+        "self": "/facili/v1/products"
+      }
+    },
+    {
+      "id": "6",
+      "type": "products",
+      "attributes": {
+        "title": "Sequi esse expedita qui hic adipisci aut.",
+        "description": "Quasi et ipsum itaque voluptas reprehenderit non. Neque ut accusamus. Voluptate sint at consequatur. Dignissimos laboriosam voluptas quaerat. Voluptas eos et quidem.",
+        "reference": "661905486-2",
+        "min_price": 58.1,
+        "max_price": 58.1,
+        "slug": "sequi-esse-expedita-qui-hic-adipisci-aut"
+      },
+      "links": {
+        "self": "/facili/v1/products"
+      }
+    },
+    {
+      "id": "3",
+      "type": "products",
+      "attributes": {
+        "title": "Voluptate illum vitae molestias magnam.",
+        "description": "Hic ipsa quidem delectus qui nisi. Ut omnis reprehenderit eos minima eum. Aliquam et et.",
+        "reference": "734020742-2",
+        "min_price": 87.26,
+        "max_price": 87.26,
+        "slug": "voluptate-illum-vitae-molestias-magnam"
+      },
+      "links": {
+        "self": "/facili/v1/products"
+      }
+    }
+  ],
+  "meta": {
+    "type": "products",
+    "page_count": 1,
+    "total_entries": 10
+  },
+  "links": {
+    "self": {
+      "href": "/facili/v1/products/pages/1.json",
+      "meta": {
+        "page_number": 1
+      }
+    },
+    "first": {
+      "href": "/facili/v1/products/pages/1.json",
+      "meta": {
+        "page_number": 1
+      }
+    },
+    "last": {
+      "href": "/facili/v1/products/pages/1.json",
+      "meta": {
+        "page_number": 1
+      }
+    }
+  }
+}

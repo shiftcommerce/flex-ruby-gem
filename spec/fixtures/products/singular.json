@@ -1,0 +1,166 @@
+{
+  "data": {
+    "id": "202",
+    "type": "products",
+    "attributes": {
+      "title": "Product attached to a menu item",
+      "description": "Recusandae voluptas ut aut. Ut molestias hic excepturi architecto. Veritatis maiores voluptatem recusandae dolorem qui sint tenetur.",
+      "reference": "596494470-1",
+      "slug": "product-attached-to-a-menu-item",
+      "min_price": 45.29,
+      "max_price": 45.29
+    },
+    "links": {
+      "self": "/praese/v1/products/product-attached-to-a-menu-item.json"
+    },
+    "relationships": {
+      "variants": {
+        "data": [
+          {
+            "id": "1",
+            "type": "variants"
+          }
+        ]
+      },
+      "breadcrumbs": {
+        "data": [
+          {
+            "id": "mollitia_5_146",
+            "type": "menus"
+          },
+          {
+            "id": "doloremque_21_157",
+            "type": "menus"
+          },
+          {
+            "id": "rerum_94_168",
+            "type": "menus"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "variants",
+      "attributes": {
+        "title": "Quis eveniet sunt qui.",
+        "description": "Perferendis nisi nostrum deserunt assumenda consequatur exercitationem. Tenetur qui aperiam dolorem. Facilis minus iste culpa quos quia. Distinctio et qui libero impedit.",
+        "sku": "742207266-0",
+        "price": 45.29,
+        "stock_level": 5,
+        "reference": "885703497-6"
+      }
+    },
+    {
+      "id": "202",
+      "type": "products",
+      "attributes": {
+        "title": "Product attached to a menu item"
+      },
+      "links": {
+        "self": "/praese/v1/products/product-attached-to-a-menu-item.json"
+      }
+    },
+    {
+      "id": "202",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me"
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "202",
+            "type": "products"
+          }
+        }
+      }
+    },
+    {
+      "id": "220",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me"
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "202",
+            "type": "products"
+          }
+        }
+      }
+    },
+    {
+      "id": "238",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me"
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "202",
+            "type": "products"
+          }
+        }
+      }
+    },
+    {
+      "id": "mollitia_5_146",
+      "type": "menus",
+      "attributes": {
+        "reference": "mollitia_5_146",
+        "title": "Qui error impedit ut laudantium ea saepe omnis."
+      },
+      "relationships": {
+        "menu_items": {
+          "data": [
+            {
+              "id": "202",
+              "type": "menu_items"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "doloremque_21_157",
+      "type": "menus",
+      "attributes": {
+        "reference": "doloremque_21_157",
+        "title": "Ut pariatur sapiente nesciunt aperiam molestias culpa."
+      },
+      "relationships": {
+        "menu_items": {
+          "data": [
+            {
+              "id": "220",
+              "type": "menu_items"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "rerum_94_168",
+      "type": "menus",
+      "attributes": {
+        "reference": "rerum_94_168",
+        "title": "Autem quod maiores vitae delectus voluptates."
+      },
+      "relationships": {
+        "menu_items": {
+          "data": [
+            {
+              "id": "238",
+              "type": "menu_items"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

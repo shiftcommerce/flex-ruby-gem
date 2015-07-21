@@ -57,18 +57,47 @@ RSpec.describe FlexCommerce::Product do
     it_should_behave_like "a collection of resources with various data sets", resource_type: :product
   end
 
+  context "using fixture data for a collection of products" do
+    let(:resource_list) { build(:product_list_from_fixture) }
+    let(:quantity) { resource_list.data.count }
+    let(:total_pages) { 1 }
+    let(:expected_list_quantity) { 10 }
+    let(:current_page) { nil }
+    before :each do
+      stub_request(:get, "#{api_root}/products").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: 200, headers: default_headers
+    end
+    subject { subject_class.paginate(page: current_page).all }
+    it_should_behave_like "a collection of anything"
+    it "should have the correct attributes from the fixture" do
+      subject.each_with_index do |product, idx|
+        resource_list.data[idx].tap do |pr|
+          expect(product.id).to eql pr.id
+          pr.attributes.each_pair do |attr, value|
+            expect(product.send(attr)).to eql value
+          end
+        end
+      end
+    end
+  end
+
   #
   # Member Examples
   #
   context "using a single resource" do
     let(:variants_count) { 5 }
+    let(:breadcrumbs_count) { 2 }
     let(:variant_resources) { build_list(:json_api_resource, variants_count, build_resource: :variant) }
+    let(:breadcrumb_resources) { build_list(:json_api_resource, breadcrumbs_count, build_resource: :breadcrumb, type: :menus) }
     let(:variant_relationship) { { variants: {
         data: variant_resources.map { |vr| { type: "variants", id: vr.id }}
     } } }
+    let(:breadcrumb_relationship) { { breadcrumbs: {
+        data: breadcrumb_resources.map { |br| { type: "menus", id: br.id }}
+    } } }
     let(:variant_class) { FlexCommerce::Variant }
-    let(:resource_identifier) { build(:json_api_resource, build_resource: :product, relationships: variant_relationship, base_path: base_path, primary_key: :slug) }
-    let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier, included: variant_resources) }
+    let(:breadcrumb_class) { FlexCommerce::Menu }
+    let(:resource_identifier) { build(:json_api_resource, build_resource: :product, relationships: variant_relationship.merge(breadcrumb_relationship), base_path: base_path, primary_key: :slug) }
+    let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier, included: variant_resources + breadcrumb_resources) }
     let(:primary_key) { :slug }
     before :each do
       stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
@@ -90,6 +119,109 @@ RSpec.describe FlexCommerce::Product do
               expect(v).to be_a(variant_class)
               expect(v.type).to eql "variants"
               expect(v.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(mocked_variant.as_json)
+            end
+          end
+        end
+      end
+      it "should get the associated breadcrumbs" do
+        subject_class.find(resource_identifier.attributes.slug).tap do |result|
+          result.breadcrumbs.tap do |breadcrumb_list|
+            expect(breadcrumb_list.length).to eql breadcrumbs_count
+            breadcrumb_list.each_with_index do |b, idx|
+              mocked_breadcrumb = breadcrumb_resources[idx].attributes
+              expect(b).to be_a(breadcrumb_class)
+              expect(b.type).to eql "menus"
+              expect(b.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(mocked_breadcrumb.as_json)
+            end
+          end
+        end
+
+      end
+    end
+  end
+
+  context "using fixture data for a single resource" do
+    let(:singular_resource) { build(:product_from_fixture) }
+    let(:resource_identifier) { singular_resource.data }
+    let(:primary_key) { :slug }
+    let(:variant_class) { FlexCommerce::Variant }
+    let(:variant_resources) do
+      resource_identifier.relationships.variants.data.map do |ri|
+        singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
+      end
+    end
+    before :each do
+      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: 200, headers: default_headers
+    end
+    it_should_behave_like "a singular resource"
+    context "with subject set" do
+      subject { subject_class.find(resource_identifier.attributes.slug) }
+      it "should return an object with the correct attributes" do
+        resource_identifier.attributes.each_pair do |attr, value|
+          expect(subject.send(attr)).to eql value
+        end
+      end
+      context "variants" do
+        it "should have the correct number of variants" do
+          expect(subject.variants.count).to eql resource_identifier.relationships.variants.data.count
+          subject.variants.each_with_index do |variant, idx|
+            expect(variant).to be_a(variant_class)
+          end
+        end
+        it "should have the correct attributes for the variants" do
+          subject.variants.each_with_index do |variant, idx|
+            expect(variant.id).to eql(variant_resources[idx].id)
+            variant_resources[idx].attributes.each_pair do |attr, value|
+              expect(variant.send(attr)).to eql value
+            end
+          end
+        end
+      end
+      context "breadcrumbs" do
+        let(:breadcrumb_class) { FlexCommerce::Menu }
+        let(:breadcrumb_item_class) { FlexCommerce::MenuItem }
+        let(:breadcrumb_resources) do
+          resource_identifier.relationships.breadcrumbs.data.map do |ri|
+            singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
+          end
+        end
+        it "should have the correct amount of breadcrumbs" do
+          expect(subject.breadcrumbs.count).to eql resource_identifier.relationships.breadcrumbs.data.count
+        end
+        it "should have the correct type for each breadcrumb" do
+          subject.breadcrumbs.each do |breadcrumb|
+            expect(breadcrumb).to be_a(breadcrumb_class)
+          end
+        end
+        it "should have the correct attributes for each breadcrumb" do
+          subject.breadcrumbs.each_with_index do |breadcrumb, idx|
+            expect(breadcrumb.id).to eql(breadcrumb_resources[idx].id)
+            breadcrumb_resources[idx].attributes.each_pair do |attr, value|
+              expect(breadcrumb.send(attr)).to eql value
+            end
+          end
+        end
+        it "should have a single breadcrumb item per breadcrumb which refers to the product" do
+          subject.breadcrumbs.each_with_index do |breadcrumb, idx|
+            expect(breadcrumb.menu_items.count).to eql 1
+            breadcrumb.menu_items.first.tap do |item|
+              expect(item).to be_a breadcrumb_item_class
+              breadcrumb_item_resources = breadcrumb_resources[idx].relationships.menu_items.data.map do |ri|
+                singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
+              end
+              breadcrumb_item_resources.first.attributes.each_pair do |attr, value|
+                expect(item.send(attr)).to eql value
+              end
+              breadcrumb_item_resources.first.tap do |item_resource|
+                expect(item.item).to be_a(subject_class)
+                product_resources = [item_resource.relationships.item.data].map do |ri|
+                  singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
+                end
+                expect(item.item.id).to eql product_resources.first.id
+                product_resources.first.attributes.each_pair do |attr, value|
+                  expect(item.item.send(attr)).to eql value
+                end
+              end
             end
           end
         end
