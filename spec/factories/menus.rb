@@ -16,7 +16,7 @@ FactoryGirl.define do
                     "self": "/garytaylor/v1/products/garys-product.json"
                 }
             },
-            "type": "Menu",
+            "type": "menus",
             "id": 1,
             "links": {
                 "self": "/garytaylor/v1/menus/help.json"
@@ -26,9 +26,7 @@ FactoryGirl.define do
             },
             "relationships": {
                 "menu_items": {
-                    "links": {
-                        "self": "http://test.example.com/menu_items"
-                    },
+
                     "data": [
                         { "type": "menu_items", "id": 100 },
                         { "type": "menu_items", "id": 101 }
@@ -98,5 +96,11 @@ FactoryGirl.define do
                 }
             }
         ]}
+  end
+  factory :menu_from_fixture, class: OpenStruct do
+      obj = RecursiveOpenStruct.new(JSON.parse(File.read("spec/fixtures/menus/singular.json")))
+      obj.each_pair do |key, _|
+        send(key, obj.send(key))
+      end
   end
 end

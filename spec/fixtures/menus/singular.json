@@ -1,0 +1,298 @@
+{
+  "data": {
+    "id": "repellat_90_1",
+    "type": "menus",
+    "attributes": {
+      "title": "Qui omnis labore rerum dolor praesentium nesciunt aliquam."
+    },
+    "links": {
+      "self": "/laborumdelen/v1/menus/repellat_90_1.json?id=1"
+    },
+    "relationships": {
+      "menu_items": {
+        "data": [
+          {
+            "id": "1",
+            "type": "menu_items"
+          },
+          {
+            "id": "4",
+            "type": "menu_items"
+          },
+          {
+            "id": "7",
+            "type": "menu_items"
+          },
+          {
+            "id": "10",
+            "type": "menu_items"
+          },
+          {
+            "id": "13",
+            "type": "menu_items"
+          }
+        ]
+      }
+    },
+    "meta": {
+      "type": "Menu"
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "products",
+      "attributes": {
+        "title": "Aut et impedit rerum."
+      }
+    },
+    {
+      "id": "2",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 2
+      }
+    },
+    {
+      "id": "3",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 3
+      }
+    },
+    {
+      "id": "4",
+      "type": "products",
+      "attributes": {
+        "title": "Est tempore nisi voluptatem quidem asperiores."
+      }
+    },
+    {
+      "id": "5",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 5
+      }
+    },
+    {
+      "id": "6",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 6
+      }
+    },
+    {
+      "id": "7",
+      "type": "products",
+      "attributes": {
+        "title": "Velit occaecati et corrupti asperiores voluptate qui."
+      }
+    },
+    {
+      "id": "8",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 8
+      }
+    },
+    {
+      "id": "9",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 9
+      }
+    },
+    {
+      "id": "10",
+      "type": "products",
+      "attributes": {
+        "title": "Aperiam dicta at doloremque omnis quos excepturi tempore consequatur."
+      }
+    },
+    {
+      "id": "11",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 11
+      }
+    },
+    {
+      "id": "12",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 12
+      }
+    },
+    {
+      "id": "13",
+      "type": "products",
+      "attributes": {
+        "title": "Soluta est labore dolore suscipit aliquam neque architecto necessitatibus."
+      }
+    },
+    {
+      "id": "14",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 14
+      }
+    },
+    {
+      "id": "15",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 15
+      }
+    },
+    {
+      "id": "1",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 1
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "1",
+            "type": "products"
+          }
+        },
+        "menu_items": {
+          "data": [
+            {
+              "id": "2",
+              "type": "menu_items"
+            },
+            {
+              "id": "3",
+              "type": "menu_items"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "4",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 4
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "4",
+            "type": "products"
+          }
+        },
+        "menu_items": {
+          "data": [
+            {
+              "id": "5",
+              "type": "menu_items"
+            },
+            {
+              "id": "6",
+              "type": "menu_items"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "7",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 7
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "7",
+            "type": "products"
+          }
+        },
+        "menu_items": {
+          "data": [
+            {
+              "id": "8",
+              "type": "menu_items"
+            },
+            {
+              "id": "9",
+              "type": "menu_items"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "10",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 10
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "10",
+            "type": "products"
+          }
+        },
+        "menu_items": {
+          "data": [
+            {
+              "id": "11",
+              "type": "menu_items"
+            },
+            {
+              "id": "12",
+              "type": "menu_items"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "13",
+      "type": "menu_items",
+      "attributes": {
+        "title": "There is a product associated with me",
+        "position": 13
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "13",
+            "type": "products"
+          }
+        },
+        "menu_items": {
+          "data": [
+            {
+              "id": "14",
+              "type": "menu_items"
+            },
+            {
+              "id": "15",
+              "type": "menu_items"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
