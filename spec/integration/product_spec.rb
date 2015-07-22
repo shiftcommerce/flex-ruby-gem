@@ -46,7 +46,7 @@ RSpec.describe FlexCommerce::Product do
     # Calculates the stubbed_url depending on if current_page is nil or not
     #  If current page is nil, then it is expected that the test will fetch its data from the collection_url rather
     #  than the paginated version.
-    let(:stubbed_url) { current_page.present? ? "#{collection_url}/pages/#{current_page}" : "#{collection_url}" }
+    let(:stubbed_url) { current_page.present? ? "#{collection_url}/pages/#{current_page}.json" : "#{collection_url}.json" }
     # Calculates the expected list quantity
     let(:expected_list_quantity) { quantity == 0 ? 0 : ((quantity - 1) % page_size) + 1 }
     # The subject for all examples - using pagination as this is expected normally
@@ -64,7 +64,7 @@ RSpec.describe FlexCommerce::Product do
     let(:expected_list_quantity) { 10 }
     let(:current_page) { nil }
     before :each do
-      stub_request(:get, "#{api_root}/products").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: 200, headers: default_headers
+      stub_request(:get, "#{api_root}/products.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: 200, headers: default_headers
     end
     subject { subject_class.paginate(page: current_page).all }
     it_should_behave_like "a collection of anything"
@@ -100,7 +100,7 @@ RSpec.describe FlexCommerce::Product do
     let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier, included: variant_resources + breadcrumb_resources) }
     let(:primary_key) { :slug }
     before :each do
-      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
+      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
     end
     context "finding a single resource" do
       it_should_behave_like "a singular resource"
@@ -151,7 +151,7 @@ RSpec.describe FlexCommerce::Product do
       end
     end
     before :each do
-      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: 200, headers: default_headers
+      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: 200, headers: default_headers
     end
     it_should_behave_like "a singular resource"
     context "with subject set" do

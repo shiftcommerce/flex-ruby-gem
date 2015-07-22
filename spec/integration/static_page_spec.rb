@@ -46,7 +46,7 @@ RSpec.describe FlexCommerce::StaticPage do
     # Calculates the stubbed_url depending on if current_page is nil or not
     #  If current page is nil, then it is expected that the test will fetch its data from the collection_url rather
     #  than the paginated version.
-    let(:stubbed_url) { current_page.present? ? "#{collection_url}/pages/#{current_page}" : "#{collection_url}" }
+    let(:stubbed_url) { current_page.present? ? "#{collection_url}/pages/#{current_page}.json" : "#{collection_url}.json" }
     # Calculates the expected list quantity
     let(:expected_list_quantity) { quantity == 0 ? 0 : ((quantity - 1) % page_size) + 1 }
     # The subject for all examples - using pagination as this is expected normally
@@ -64,7 +64,7 @@ RSpec.describe FlexCommerce::StaticPage do
     let(:resource_identifier) { build(:json_api_resource, build_resource: :static_page, base_path: base_path) }
     let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier) }
     before :each do
-      stub_request(:get, "#{api_root}/static_pages/#{resource_identifier.id}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
+      stub_request(:get, "#{api_root}/static_pages/#{resource_identifier.id}.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
     end
     context "finding a single resource" do
       it_should_behave_like "a singular resource"
