@@ -87,15 +87,15 @@ RSpec.describe FlexCommerce::Product do
     let(:variants_count) { 5 }
     let(:breadcrumbs_count) { 2 }
     let(:variant_resources) { build_list(:json_api_resource, variants_count, build_resource: :variant) }
-    let(:breadcrumb_resources) { build_list(:json_api_resource, breadcrumbs_count, build_resource: :breadcrumb, type: :menus) }
+    let(:breadcrumb_resources) { build_list(:json_api_resource, breadcrumbs_count, build_resource: :breadcrumb, type: :breadcrumbs) }
     let(:variant_relationship) { { variants: {
         data: variant_resources.map { |vr| { type: "variants", id: vr.id }}
     } } }
     let(:breadcrumb_relationship) { { breadcrumbs: {
-        data: breadcrumb_resources.map { |br| { type: "menus", id: br.id }}
+        data: breadcrumb_resources.map { |br| { type: "breadcrumbs", id: br.id }}
     } } }
     let(:variant_class) { FlexCommerce::Variant }
-    let(:breadcrumb_class) { FlexCommerce::Menu }
+    let(:breadcrumb_class) { FlexCommerce::Breadcrumb }
     let(:resource_identifier) { build(:json_api_resource, build_resource: :product, relationships: variant_relationship.merge(breadcrumb_relationship), base_path: base_path, primary_key: :slug) }
     let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier, included: variant_resources + breadcrumb_resources) }
     let(:primary_key) { :slug }
@@ -130,7 +130,7 @@ RSpec.describe FlexCommerce::Product do
             breadcrumb_list.each_with_index do |b, idx|
               mocked_breadcrumb = breadcrumb_resources[idx].attributes
               expect(b).to be_a(breadcrumb_class)
-              expect(b.type).to eql "menus"
+              expect(b.type).to eql "breadcrumbs"
               expect(b.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(mocked_breadcrumb.as_json)
             end
           end
@@ -178,8 +178,8 @@ RSpec.describe FlexCommerce::Product do
         end
       end
       context "breadcrumbs" do
-        let(:breadcrumb_class) { FlexCommerce::Menu }
-        let(:breadcrumb_item_class) { FlexCommerce::MenuItem }
+        let(:breadcrumb_class) { FlexCommerce::Breadcrumb }
+        let(:breadcrumb_item_class) { FlexCommerce::BreadcrumbItem }
         let(:breadcrumb_resources) do
           resource_identifier.relationships.breadcrumbs.data.map do |ri|
             singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
@@ -203,10 +203,10 @@ RSpec.describe FlexCommerce::Product do
         end
         it "should have a single breadcrumb item per breadcrumb which refers to the product" do
           subject.breadcrumbs.each_with_index do |breadcrumb, idx|
-            expect(breadcrumb.menu_items.count).to eql 1
-            breadcrumb.menu_items.first.tap do |item|
+            expect(breadcrumb.breadcrumb_items.count).to eql 1
+            breadcrumb.breadcrumb_items.first.tap do |item|
               expect(item).to be_a breadcrumb_item_class
-              breadcrumb_item_resources = breadcrumb_resources[idx].relationships.menu_items.data.map do |ri|
+              breadcrumb_item_resources = breadcrumb_resources[idx].relationships.breadcrumb_items.data.map do |ri|
                 singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
               end
               breadcrumb_item_resources.first.attributes.each_pair do |attr, value|

@@ -26,15 +26,15 @@
         "data": [
           {
             "id": "mollitia_5_146",
-            "type": "menus"
+            "type": "breadcrumbs"
           },
           {
             "id": "doloremque_21_157",
-            "type": "menus"
+            "type": "breadcrumbs"
           },
           {
             "id": "rerum_94_168",
-            "type": "menus"
+            "type": "breadcrumbs"
           }
         ]
       }
@@ -65,7 +65,7 @@
     },
     {
       "id": "202",
-      "type": "menu_items",
+      "type": "breadcrumb_items",
       "attributes": {
         "title": "There is a product associated with me"
       },
@@ -80,7 +80,7 @@
     },
     {
       "id": "220",
-      "type": "menu_items",
+      "type": "breadcrumb_items",
       "attributes": {
         "title": "There is a product associated with me"
       },
@@ -95,7 +95,7 @@
     },
     {
       "id": "238",
-      "type": "menu_items",
+      "type": "breadcrumb_items",
       "attributes": {
         "title": "There is a product associated with me"
       },
@@ -110,17 +110,17 @@
     },
     {
       "id": "mollitia_5_146",
-      "type": "menus",
+      "type": "breadcrumbs",
       "attributes": {
         "reference": "mollitia_5_146",
         "title": "Qui error impedit ut laudantium ea saepe omnis."
       },
       "relationships": {
-        "menu_items": {
+        "breadcrumb_items": {
           "data": [
             {
               "id": "202",
-              "type": "menu_items"
+              "type": "breadcrumb_items"
             }
           ]
         }
@@ -128,17 +128,17 @@
     },
     {
       "id": "doloremque_21_157",
-      "type": "menus",
+      "type": "breadcrumbs",
       "attributes": {
         "reference": "doloremque_21_157",
         "title": "Ut pariatur sapiente nesciunt aperiam molestias culpa."
       },
       "relationships": {
-        "menu_items": {
+        "breadcrumb_items": {
           "data": [
             {
               "id": "220",
-              "type": "menu_items"
+              "type": "breadcrumb_items"
             }
           ]
         }
@@ -146,17 +146,17 @@
     },
     {
       "id": "rerum_94_168",
-      "type": "menus",
+      "type": "breadcrumbs",
       "attributes": {
         "reference": "rerum_94_168",
         "title": "Autem quod maiores vitae delectus voluptates."
       },
       "relationships": {
-        "menu_items": {
+        "breadcrumb_items": {
           "data": [
             {
               "id": "238",
-              "type": "menu_items"
+              "type": "breadcrumb_items"
             }
           ]
         }
