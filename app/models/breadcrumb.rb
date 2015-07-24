@@ -9,6 +9,7 @@ module FlexCommerce
   # It is used much like an active record model.
   #
   class Breadcrumb < FlexCommerceApi::ApiBase
+    self.primary_key = :reference
     has_many :breadcrumb_items
   end
 end

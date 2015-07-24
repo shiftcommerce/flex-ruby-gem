@@ -137,6 +137,17 @@ RSpec.describe FlexCommerce::Product do
         end
 
       end
+      it "should find a single breadcrumb by using the find method similar to active record" do
+        mocked_breadcrumb = breadcrumb_resources.last
+        subject_class.find(resource_identifier.attributes.slug).tap do |result|
+          result.breadcrumbs.find(mocked_breadcrumb.attributes.reference).tap do |breadcrumb|
+            expect(breadcrumb).to be_a(breadcrumb_class)
+            expect(breadcrumb.type).to eql "breadcrumbs"
+            expect(breadcrumb.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(mocked_breadcrumb.attributes.as_json)
+          end
+        end
+
+      end
     end
   end
 
