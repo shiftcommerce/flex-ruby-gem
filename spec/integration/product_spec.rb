@@ -188,55 +188,7 @@ RSpec.describe FlexCommerce::Product do
           end
         end
       end
-      context "breadcrumbs" do
-        let(:breadcrumb_class) { FlexCommerce::Breadcrumb }
-        let(:breadcrumb_item_class) { FlexCommerce::BreadcrumbItem }
-        let(:breadcrumb_resources) do
-          resource_identifier.relationships.breadcrumbs.data.map do |ri|
-            singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
-          end
-        end
-        it "should have the correct amount of breadcrumbs" do
-          expect(subject.breadcrumbs.count).to eql resource_identifier.relationships.breadcrumbs.data.count
-        end
-        it "should have the correct type for each breadcrumb" do
-          subject.breadcrumbs.each do |breadcrumb|
-            expect(breadcrumb).to be_a(breadcrumb_class)
-          end
-        end
-        it "should have the correct attributes for each breadcrumb" do
-          subject.breadcrumbs.each_with_index do |breadcrumb, idx|
-            expect(breadcrumb.id).to eql(breadcrumb_resources[idx].id)
-            breadcrumb_resources[idx].attributes.each_pair do |attr, value|
-              expect(breadcrumb.send(attr)).to eql value
-            end
-          end
-        end
-        it "should have a single breadcrumb item per breadcrumb which refers to the product" do
-          subject.breadcrumbs.each_with_index do |breadcrumb, idx|
-            expect(breadcrumb.breadcrumb_items.count).to eql 1
-            breadcrumb.breadcrumb_items.first.tap do |item|
-              expect(item).to be_a breadcrumb_item_class
-              breadcrumb_item_resources = breadcrumb_resources[idx].relationships.breadcrumb_items.data.map do |ri|
-                singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
-              end
-              breadcrumb_item_resources.first.attributes.each_pair do |attr, value|
-                expect(item.send(attr)).to eql value
-              end
-              breadcrumb_item_resources.first.tap do |item_resource|
-                expect(item.item).to be_a(subject_class)
-                product_resources = [item_resource.relationships.item.data].map do |ri|
-                  singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
-                end
-                expect(item.item.id).to eql product_resources.first.id
-                product_resources.first.attributes.each_pair do |attr, value|
-                  expect(item.item.send(attr)).to eql value
-                end
-              end
-            end
-          end
-        end
-      end
+      it_should_behave_like "any resource with breadcrumbs"
     end
   end
 end

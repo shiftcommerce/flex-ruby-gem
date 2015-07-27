@@ -46,5 +46,9 @@ RSpec.describe FlexCommerce::Category do
         end
       end
     end
+    context "using the breadcrumbs association" do
+      let(:resource_identifier) { singular_resource.data }
+      it_should_behave_like "any resource with breadcrumbs"
+    end
   end
 end
