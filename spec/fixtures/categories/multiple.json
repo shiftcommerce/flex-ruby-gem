@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "type": "categories",
+    "page_count": 2,
+    "total_entries": 11
+  },
+  "links": {
+    "self": {
+      "href": "/similiq/v1/categories/pages/1.json",
+      "meta": {
+        "page_number": 1
+      }
+    },
+    "next": {
+      "href": "/similiq/v1/categories/pages/2.json",
+      "meta": {
+        "page_number": 2
+      }
+    },
+    "first": {
+      "href": "/similiq/v1/categories/pages/1.json",
+      "meta": {
+        "page_number": 1
+      }
+    },
+    "last": {
+      "href": "/similiq/v1/categories/pages/2.json",
+      "meta": {
+        "page_number": 2
+      }
+    }
+  },
+  "data": [
+    {
+      "type": "categories",
+      "id": "6",
+      "attributes": {
+        "title": "Corporis et inventore quo illum omnis dolorum doloribus et.",
+        "reference": "847565910"
+      },
+      "links": {
+        "self": "/similiq/v1/categories/847565910.json"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "11",
+      "attributes": {
+        "title": "Enim dolor provident earum qui iusto.",
+        "reference": "766693800"
+      },
+      "links": {
+        "self": "/similiq/v1/categories/766693800.json"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "7",
+      "attributes": {
+        "title": "Eum occaecati voluptatem sit rerum a vel voluptate delectus.",
+        "reference": "202036844"
+      },
+      "links": {
+        "self": "/similiq/v1/categories/202036844.json"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "13",
+      "attributes": {
+        "title": "Fugit id sapiente vel.",
+        "reference": "780902696"
+      },
+      "links": {
+        "self": "/similiq/v1/categories/780902696.json"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "12",
+      "attributes": {
+        "title": "Minima voluptas culpa nesciunt.",
+        "reference": "703918953"
+      },
+      "links": {
+        "self": "/similiq/v1/categories/703918953.json"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "14",
+      "attributes": {
+        "title": "Neque non inventore doloremque sed repellat.",
+        "reference": "409877925"
+      },
+      "links": {
+        "self": "/similiq/v1/categories/409877925.json"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "9",
+      "attributes": {
+        "title": "Occaecati ullam sapiente dolores.",
+        "reference": "556481336"
+      },
+      "links": {
+        "self": "/similiq/v1/categories/556481336.json"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "5",
+      "attributes": {
+        "title": "Quae autem enim qui dolores sed neque.",
+        "reference": "650431290"
+      },
+      "links": {
+        "self": "/similiq/v1/categories/650431290.json"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "15",
+      "attributes": {
+        "title": "Repellendus quis repudiandae vero enim voluptatem alias aut.",
+        "reference": "46496589"
+      },
+      "links": {
+        "self": "/similiq/v1/categories/46496589.json"
+      }
+    },
+    {
+      "type": "categories",
+      "id": "8",
+      "attributes": {
+        "title": "Rerum odio doloremque id velit.",
+        "reference": "388659846"
+      },
+      "links": {
+        "self": "/similiq/v1/categories/388659846.json"
+      }
+    }
+  ]
+}

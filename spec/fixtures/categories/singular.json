@@ -1,0 +1,73 @@
+{
+  "data": {
+    "id": "2",
+    "type": "categories",
+    "attributes": {
+      "title": "Et qui in molestiae nesciunt quaerat.",
+      "reference": "459274141"
+    },
+    "relationships": {
+      "breadcrumbs": {
+        "data": [
+          {
+            "id": "ut_57_1",
+            "type": "breadcrumbs"
+          }
+        ]
+      },
+      "products": {
+        "links": {
+          "self": "/quianimieum/v1/categories/459274141/products.json"
+        }
+      }
+    },
+    "links": {
+      "self": "/quianimieum/v1/categories/459274141.json"
+    }
+  },
+  "included": [
+    {
+      "id": "2",
+      "type": "categories",
+      "attributes": {
+        "title": "Et qui in molestiae nesciunt quaerat."
+      },
+      "links": {
+        "self": "/quianimieum/v1/categories/459274141.json"
+      }
+    },
+    {
+      "id": "1",
+      "type": "breadcrumb_items",
+      "attributes": {
+        "title": "There is a category associated with me"
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "2",
+            "type": "categories"
+          }
+        }
+      }
+    },
+    {
+      "id": "ut_57_1",
+      "type": "breadcrumbs",
+      "attributes": {
+        "reference": "ut_57_1",
+        "title": "Est voluptate soluta qui ullam architecto necessitatibus incidunt."
+      },
+      "relationships": {
+        "breadcrumb_items": {
+          "data": [
+            {
+              "id": "1",
+              "type": "breadcrumb_items"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

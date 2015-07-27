@@ -1,9 +1,16 @@
 RSpec.shared_context "global context" do
   before(:each) { WebMock.reset! }
   let(:flex_root_url) { FlexCommerceApi.config.flex_root_url }
+  let(:flex_account) { FlexCommerceApi.config.flex_account }
   let(:api_root) do
-    URI.parse("#{flex_root_url}/#{FlexCommerceApi::API_VERSION}").tap do |u|
-      u.user = "testaccount"
+    URI.parse("#{flex_root_url}/#{flex_account}/#{FlexCommerceApi::API_VERSION}").tap do |u|
+      u.user = flex_account
+      u.password = FlexCommerceApi.config.flex_api_key
+    end.to_s
+  end
+  let(:flex_root) do
+    URI.parse(flex_root_url).tap do |u|
+      u.user = flex_account
       u.password = FlexCommerceApi.config.flex_api_key
     end.to_s
   end

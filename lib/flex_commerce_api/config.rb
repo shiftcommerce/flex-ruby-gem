@@ -7,6 +7,7 @@ module FlexCommerceApi
   #
   #   FlexCommerceApi.config do |config|
   #     config.flex_root_url=ENV["FLEX_ROOT_URL"]
+  #     config.flex_account=ENV["FLEX_ACCOUNT"]
   #     config.flex_api_key=ENV["FLEX_API_KEY"]
   #   end
   #
@@ -14,15 +15,18 @@ module FlexCommerceApi
   class Config
     include Singleton
     # @!attribute flex_root_url
-    #  The root url for the flex server.  Must include the account name at the end
-    #  For example https://api.flexcommerce.com/myaccount
+    #  The root url for the flex server.  Must NOT include the account name at the end
+    #  For example https://api.flexcommerce.com
+    # @!attribute flex_account
+    #  The account to be used on the flex server.
+    #  For example myaccount
     # @!attribute flex_api_key
     #  The API key to access the flex server with.  This comes from the 'Access Keys'
     #  section of the admin panel
     # @!attribute [r] api_version
     #  The API version.  This is tied to the gem version so if you want to access
     #  a later version of the API you must get a later version of the gem.
-    attr_accessor :flex_root_url, :flex_api_key
+    attr_accessor :flex_root_url, :flex_api_key, :flex_account
     attr_reader :api_version
 
     def initialize
@@ -33,7 +37,7 @@ module FlexCommerceApi
     # @return [String] The base URL for the flex system.  Calculated from the
     #  flex_root_url and _api_verision
     def api_base_url
-      "#{flex_root_url}/#{api_version}"
+      "#{flex_root_url}/#{flex_account}/#{api_version}"
     end
   end
 end

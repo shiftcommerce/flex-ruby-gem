@@ -56,6 +56,15 @@ module FlexCommerceApi
       attributes.reject { |k, v| PRIVATE_ATTRIBUTES.include?(k.to_s) }
     end
 
+    def method_missing(method, *args)
+      return super unless relationships and relationships.has_attribute?(method)
+      # We have a relationship that is a link ?
+      definition = relationships[method]
+      return super unless !definition.key?("data") && definition.key?("links") && definition["links"].key?("self")
+      klass = ::JsonApiClient::Utils.compute_type(self.class, method.to_s.singularize.classify)
+      klass.requestor.linked(definition["links"]["self"])
+    end
+
     private
 
     # This is temporary code - eventually this will be in the lower level gem
