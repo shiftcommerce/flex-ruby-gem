@@ -26,7 +26,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "factory_girl", "~> 4.5"
   spec.add_development_dependency "faker", "~> 1.4"
   spec.add_development_dependency "yard", "~> 0.8"
-  spec.add_development_dependency "recursive-open-struct", "~> 0.6"
+  spec.add_development_dependency "json-schema", "~> 2.5"
+  spec.add_runtime_dependency "oj", "~> 2.12"
 
   spec.add_runtime_dependency "json_api_client", "1.0.0.beta5"
+  spec.add_runtime_dependency "activesupport", "~> 4"
 end

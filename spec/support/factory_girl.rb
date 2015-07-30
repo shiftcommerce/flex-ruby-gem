@@ -2,7 +2,7 @@ require "factory_girl"
 require "faker"
 require "ostruct"
 require "json"
-require "recursive-open-struct"
+require "json_struct"
 
 
 RSpec.configure do |config|

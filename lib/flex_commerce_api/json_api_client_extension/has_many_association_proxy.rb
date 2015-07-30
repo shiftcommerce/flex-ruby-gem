@@ -1,10 +1,11 @@
 module FlexCommerceApi
   module JsonApiClientExtension
     class HasManyAssociationProxy
-      def initialize(real_instance, container_instance, association_name)
+      def initialize(real_instance, container_instance, association_name, options)
         self.real_instance = real_instance
         self.container_instance = container_instance
         self.association_name = association_name
+        self.options = options
       end
 
       #
@@ -16,19 +17,32 @@ module FlexCommerceApi
         method = primary_key
         real_instance.detect {|i| i.send(method) == pk}
       end
+
+      # Creates a new associated item - if the option "inverse_of" is specified, then
+      # automatically create a relationship back to the container with the name
+      # specified in "inverse_of"
+      def new(attrs)
+        my_attrs = attrs.dup
+        if options.key?(:inverse_of)
+          my_attrs[:relationships] ||= {}
+          # Dont modify the original relationship if it was present below
+          my_attrs[:relationships] = my_attrs[:relationships].merge(options[:inverse_of] => container_instance)
+        end
+        association.association_class.new(my_attrs)
+      end
       delegate :each, :each_with_index, :length, :count, to: :real_instance
 
       private
 
-      def assocation
+      def association
         container_instance.class.associations.detect {|a| a.attr_name == association_name.to_sym}
       end
 
       def primary_key
-        assocation.association_class.primary_key
+        association.association_class.primary_key
       end
 
-      attr_accessor :real_instance, :container_instance, :association_name
+      attr_accessor :real_instance, :container_instance, :association_name, :options
     end
   end
 end

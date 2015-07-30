@@ -10,4 +10,6 @@ module FlexCommerce
   autoload :BreadcrumbItem, File.join(gem_root, "app", "models", "breadcrumb_item")
   autoload :Breadcrumb, File.join(gem_root, "app", "models", "breadcrumb")
   autoload :Category, File.join(gem_root, "app", "models", "category")
+  autoload :Cart, File.join(gem_root, "app", "models", "cart")
+  autoload :LineItem, File.join(gem_root, "app", "models", "line_item")
 end

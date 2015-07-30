@@ -15,10 +15,10 @@ FactoryGirl.define do
       item.variants = build_list(:variant, evaluator.variants_count)
     end
   end
-  factory :product_from_fixture, class: OpenStruct do
-    obj = RecursiveOpenStruct.new(JSON.parse(File.read("spec/fixtures/products/singular.json")), recurse_over_arrays: true)
-    obj.each_pair do |key, _|
-      send(key, obj.send(key))
+  factory :product_from_fixture, class: JsonStruct do
+    obj = JsonStruct.new(JSON.parse(File.read("spec/fixtures/products/singular.json")))
+    obj.each_pair do |key, value|
+      send(key, value)
     end
   end
 

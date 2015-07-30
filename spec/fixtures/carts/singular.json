@@ -1,0 +1,101 @@
+{
+  "data": {
+    "id": "1",
+    "type": "carts",
+    "links": {
+      "self": "/api/v1/carts/1.json"
+    },
+    "meta": {
+      "type": "Cart"
+    },
+    "relationships": {
+      "line_items": {
+        "data": [
+          {
+            "type": "line_items",
+            "id": "1"
+          },
+          {
+            "type": "line_items",
+            "id": "2"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "line_items",
+      "attributes": {
+        "title": "Rustic Rubber Shoes",
+        "unit_quantity": 3,
+        "unit_price": 63.27,
+        "subtotal": 189.81,
+        "total": 189.81
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "1",
+            "type": "variants"
+          }
+        },
+        "container": {
+          "links": {
+            "self": "/api/v1/carts/1.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "2",
+      "type": "line_items",
+      "attributes": {
+        "title": "Rustic Rubber Shoes",
+        "unit_quantity": 3,
+        "unit_price": 63.27,
+        "subtotal": 189.81,
+        "total": 189.81
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "2",
+            "type": "variants"
+          }
+        },
+        "container": {
+          "links": {
+            "self": "/api/v1/carts/1.json"
+          }
+        }
+      }
+    },
+    {
+      "id": "1",
+      "type": "variants",
+      "attributes": {
+        "title": "Quis eveniet sunt qui. 1",
+        "description": "1 Perferendis nisi nostrum deserunt assumenda consequatur exercitationem. Tenetur qui aperiam dolorem. Facilis minus iste culpa quos quia. Distinctio et qui libero impedit.",
+        "sku": "742207266-0-1",
+        "price": 45.29,
+        "stock_level": 5,
+        "reference": "885703497-6-1"
+      }
+    },
+    {
+      "id": "2",
+      "type": "variants",
+      "attributes": {
+        "title": "Quis eveniet sunt qui. 2",
+        "description": "2 Perferendis nisi nostrum deserunt assumenda consequatur exercitationem. Tenetur qui aperiam dolorem. Facilis minus iste culpa quos quia. Distinctio et qui libero impedit.",
+        "sku": "742207266-0-2",
+        "price": 45.29,
+        "stock_level": 5,
+        "reference": "885703497-6-2"
+      }
+    }
+
+  ]
+}

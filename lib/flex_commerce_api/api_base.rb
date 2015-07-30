@@ -1,6 +1,7 @@
 require "json_api_client"
 require "faraday/request/basic_authentication"
 require "uri"
+require "active_support/core_ext/hash/indifferent_access"
 require "flex_commerce_api/json_api_client_extension/paginator"
 require "flex_commerce_api/json_api_client_extension/pagination_middleware"
 require "flex_commerce_api/json_api_client_extension/json_format_middleware"
@@ -50,6 +51,11 @@ module FlexCommerceApi
       def password
         FlexCommerceApi.config.flex_api_key
       end
+
+    end
+    # Ensures all attributes are with indifferent access
+    def initialize(attrs = {})
+      super attrs.with_indifferent_access
     end
 
     def public_attributes
@@ -68,8 +74,8 @@ module FlexCommerceApi
     private
 
     # This is temporary code - eventually this will be in the lower level gem
-    def has_many_association_proxy(assoc_name, real_instance)
-      JsonApiClientExtension::HasManyAssociationProxy.new(real_instance, self, assoc_name)
+    def has_many_association_proxy(assoc_name, real_instance, options = {})
+      JsonApiClientExtension::HasManyAssociationProxy.new(real_instance, self, assoc_name, options)
     end
 
   end
