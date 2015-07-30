@@ -30,6 +30,12 @@ module FlexCommerceApi
         end
         association.association_class.new(my_attrs)
       end
+
+      def create(attrs)
+        new(attrs).tap do |instance|
+          instance.save
+        end
+      end
       delegate :each, :each_with_index, :length, :count, to: :real_instance
 
       private
