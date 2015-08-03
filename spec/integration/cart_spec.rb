@@ -82,12 +82,12 @@ RSpec.describe "Shopping Cart" do
             end
             let(:variant) { variant_class.new id: "1", price: 15.50, title: "A variant"}
             let(:line_item_resource) { build(:line_item_from_fixture) }
-            it "should create a line item when requested using the line_items colelction on the cart - using save" do
+            it "should create a line item when requested using the line_items collection on the cart - using save" do
               line_item = subject.line_items.new(relationships: {item: variant})
               line_item.save
               expect(line_item).to be_a(line_item_class)
             end
-            it "should create a line item when requested using the line_items colelction on the cart - using create" do
+            it "should create a line item when requested using the line_items collection on the cart - using create" do
               line_item = subject.line_items.create(relationships: {item: variant})
               expect(line_item).to be_a(line_item_class)
             end
