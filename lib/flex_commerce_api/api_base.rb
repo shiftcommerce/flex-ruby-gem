@@ -79,6 +79,7 @@ module FlexCommerceApi
     end
 
   end
+  FaradayMiddleware::FollowRedirects::REDIRECT_CODES << 201
   ApiBase.connection do |connection|
     connection.faraday.basic_auth(ApiBase.username, ApiBase.password)
     connection.use FaradayMiddleware::FollowRedirects
