@@ -81,6 +81,7 @@ module FlexCommerceApi
   end
   ApiBase.connection do |connection|
     connection.faraday.basic_auth(ApiBase.username, ApiBase.password)
+    connection.use FaradayMiddleware::FollowRedirects
     connection.use JsonApiClientExtension::PaginationMiddleware
     connection.use JsonApiClientExtension::JsonFormatMiddleware
   end
