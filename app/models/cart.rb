@@ -46,5 +46,9 @@ module FlexCommerce
       has_many_association_proxy :line_items, super, inverse_of: :container
     end
 
+    def total
+      line_items.map(&:unit_price).sum
+    end
+
   end
 end

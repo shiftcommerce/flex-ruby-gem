@@ -36,7 +36,7 @@ module FlexCommerceApi
           instance.save
         end
       end
-      delegate :each, :each_with_index, :length, :count, to: :real_instance
+      delegate :each, :each_with_index, :length, :count, :map, to: :real_instance
 
       private
 
