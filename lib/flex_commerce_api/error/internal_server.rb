@@ -1,6 +1,9 @@
 module FlexCommerceApi
   module Error
-    class InternalServer < JsonApiClient::Errors::ServerError
+    class InternalServer < Base
+      def message
+        "Internal server error"
+      end
 
     end
   end

@@ -1,6 +1,7 @@
 module FlexCommerceApi
   module Error
-    class AccessDenied < ClientError
+    class ClientError < Base
+
     end
   end
 end
