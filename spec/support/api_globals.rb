@@ -17,4 +17,5 @@ RSpec.shared_context "global context" do
   let(:default_headers) { { "Content-Type": "application/json" } }
   let(:page_size) { 25 }
   let(:base_path) { URI.parse(api_root).path }
+  let(:response_status) { 200 }
 end

@@ -14,9 +14,10 @@ RSpec.describe FlexCommerce::Category do
     context "working with a single category" do
       let(:singular_resource) { build(:category_from_fixture) }
       before :each do
-        stub_request(:get, "#{api_root}/categories/test-category.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: 200, headers: default_headers
+        stub_request(:get, "#{api_root}/categories/test-category.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
       end
       subject { subject_class.find("test-category") }
+      it_should_behave_like "a singular resource with an error response"
       it "should return the correct top level object" do
         expect(subject).to be_a(subject_class)
         expect(subject.title).to eql singular_resource.data.attributes.title
@@ -24,7 +25,7 @@ RSpec.describe FlexCommerce::Category do
       end
       context "using the products association" do
         before :each do
-          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.products.links.self}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: multiple_product_resources.to_h.to_json, status: 200, headers: default_headers
+          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.products.links.self}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: multiple_product_resources.to_h.to_json, status: response_status, headers: default_headers
         end
         let(:multiple_product_resources) { build(:product_list_from_fixture) }
         it "should return a list of products" do
@@ -60,9 +61,10 @@ RSpec.describe FlexCommerce::Category do
       let(:expected_list_quantity) { 10 }
       subject { subject_class.all }
       before :each do
-        stub_request(:get, "#{api_root}/categories.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: 200, headers: default_headers
+        stub_request(:get, "#{api_root}/categories.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
       end
       it_should_behave_like "a collection of anything"
+      it_should_behave_like "a collection of resources with an error response"
 
     end
   end

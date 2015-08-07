@@ -52,9 +52,10 @@ RSpec.describe FlexCommerce::StaticPage do
     # The subject for all examples - using pagination as this is expected normally
     subject { subject_class.paginate(page: current_page).all }
     before :each do
-      stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: 200, headers: default_headers
+      stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: response_status, headers: default_headers
     end
     it_should_behave_like "a collection of resources with various data sets", resource_type: :static_page
+    it_should_behave_like "a collection of resources with an error response"
   end
 
   #
@@ -64,14 +65,14 @@ RSpec.describe FlexCommerce::StaticPage do
     let(:resource_identifier) { build(:json_api_resource, build_resource: :static_page, base_path: base_path) }
     let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier) }
     before :each do
-      stub_request(:get, "#{api_root}/static_pages/#{resource_identifier.id}.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
+      stub_request(:get, "#{api_root}/static_pages/#{resource_identifier.id}.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
     end
     context "finding a single resource" do
+      subject { subject_class.find(resource_identifier.id) }
       it_should_behave_like "a singular resource"
+      it_should_behave_like "a singular resource with an error response"
       it "should return an object with the correct attributes when find is called" do
-        subject_class.find(resource_identifier.id).tap do |result|
-          expect(result.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(resource_identifier.attributes.as_json)
-        end
+        expect(subject.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(resource_identifier.attributes.as_json)
       end
     end
   end

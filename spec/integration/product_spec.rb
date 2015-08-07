@@ -52,9 +52,10 @@ RSpec.describe FlexCommerce::Product do
     # The subject for all examples - using pagination as this is expected normally
     subject { subject_class.paginate(page: current_page).all }
     before :each do
-      stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: 200, headers: default_headers
+      stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: response_status, headers: default_headers
     end
     it_should_behave_like "a collection of resources with various data sets", resource_type: :product
+    it_should_behave_like "a collection of resources with an error response"
   end
 
   context "using fixture data for a collection of products" do
@@ -64,7 +65,7 @@ RSpec.describe FlexCommerce::Product do
     let(:expected_list_quantity) { 10 }
     let(:current_page) { nil }
     before :each do
-      stub_request(:get, "#{api_root}/products.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: 200, headers: default_headers
+      stub_request(:get, "#{api_root}/products.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
     end
     subject { subject_class.paginate(page: current_page).all }
     it_should_behave_like "a collection of anything"
@@ -100,19 +101,23 @@ RSpec.describe FlexCommerce::Product do
     let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier, included: variant_resources + breadcrumb_resources) }
     let(:primary_key) { :slug }
     before :each do
-      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: 200, headers: default_headers
+      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
     end
     context "finding a single resource" do
       it_should_behave_like "a singular resource"
-      it "should return an object with the correct attributes when find is called" do
-        subject_class.find(resource_identifier.attributes.send(primary_key)).tap do |result|
-          expect(result.attributes.as_json.reject { |k| %w(id type links meta variants relationships).include?(k) }).to eql(resource_identifier.attributes.as_json.reject { |k| %w(variants).include?(k) })
-          expect(result.type).to eql "products"
+      context "using the primary key" do
+        subject { subject_class.find(resource_identifier.attributes.send(primary_key)) }
+        it_should_behave_like "a singular resource with an error response"
+        it "should return an object with the correct attributes when find is called" do
+          expect(subject.attributes.as_json.reject { |k| %w(id type links meta variants relationships).include?(k) }).to eql(resource_identifier.attributes.as_json.reject { |k| %w(variants).include?(k) })
+          expect(subject.type).to eql "products"
         end
       end
-      it "should get the associated variants" do
-        subject_class.find(resource_identifier.attributes.slug).tap do |result|
-          result.variants.tap do |variant_list|
+      context "using the slug" do
+        subject { subject_class.find(resource_identifier.attributes.slug) }
+        it_should_behave_like "a singular resource with an error response"
+        it "should get the associated variants" do
+          subject.variants.tap do |variant_list|
             expect(variant_list.length).to eql variants_count
             variant_list.each_with_index do |v, idx|
               mocked_variant = variant_resources[idx].attributes
@@ -123,6 +128,7 @@ RSpec.describe FlexCommerce::Product do
           end
         end
       end
+
       it "should get the associated breadcrumbs" do
         subject_class.find(resource_identifier.attributes.slug).tap do |result|
           result.breadcrumbs.tap do |breadcrumb_list|
