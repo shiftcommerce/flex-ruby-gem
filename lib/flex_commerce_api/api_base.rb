@@ -3,6 +3,7 @@ require "faraday/request/basic_authentication"
 require "uri"
 require "active_support/core_ext/hash/indifferent_access"
 require "flex_commerce_api/json_api_client_extension/paginator"
+require "flex_commerce_api/json_api_client_extension/save_request_body_middleware"
 require "flex_commerce_api/json_api_client_extension/status_middleware"
 require "flex_commerce_api/json_api_client_extension/pagination_middleware"
 require "flex_commerce_api/json_api_client_extension/json_format_middleware"
@@ -82,6 +83,7 @@ module FlexCommerceApi
   end
   ApiBase.connection do |connection|
     connection.faraday.basic_auth(ApiBase.username, ApiBase.password)
+    connection.use JsonApiClientExtension::SaveRequestBodyMiddleware
     connection.use JsonApiClientExtension::StatusMiddleware
     connection.use JsonApiClientExtension::PaginationMiddleware
     connection.use JsonApiClientExtension::JsonFormatMiddleware
