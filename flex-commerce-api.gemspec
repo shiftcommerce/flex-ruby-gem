@@ -29,6 +29,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "json-schema", "~> 2.5"
   spec.add_runtime_dependency "oj", "~> 2.12"
 
-  spec.add_runtime_dependency "json_api_client", "1.0.0.beta5"
+  spec.add_runtime_dependency "json_api_client", "1.0.0.beta6"
   spec.add_runtime_dependency "activesupport", "~> 4"
 end

@@ -2,6 +2,9 @@ FactoryGirl.define do
   factory :product_list, parent: :json_api_resource_list do
     type "product"
     primary_key "slug"
+    after(:build) do |instance|
+      debug_me = true
+    end
   end
   factory :product_list_from_fixture, class: JsonStruct do
     obj = JsonStruct.new(JSON.parse(File.read("spec/fixtures/products/multiple.json")))

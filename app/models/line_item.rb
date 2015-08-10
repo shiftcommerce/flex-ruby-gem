@@ -28,16 +28,23 @@ module FlexCommerce
     belongs_to :container
 
     class << self
-      def prefix_path
+      def _prefix_path
         "carts/%{cart_id}"
       end
 
-      def path(params)
-        container = params[:relationships][:container]
-        raise "The container was not a cart or a cart hash - cannot perform this request" unless container.is_a?(FlexCommerce::Cart) || container.is_a?(Hash)
-        cart_id = container.is_a?(FlexCommerce::Cart) ? container.id : container[:id]
-        super params.merge(cart_id: cart_id)
+      def path(params, record)
+        #@TODO Change to suit polymorphic requirement for future
+        new_params = record.nil? ? params : params.merge(path: {cart_id: record.relationships.container["data"]["id"]})
+        super new_params
       end
+    end
+
+    def save(*args)
+      # This is required as at the moment (1.0.0.beta6) only changed relations are saved
+      # it is not ideal as it is changing the state of the resource
+      # @TODO Check this is still required
+      relationships.set_all_attributes_dirty
+      super
     end
   end
 end

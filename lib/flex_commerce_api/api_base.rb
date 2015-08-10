@@ -3,6 +3,7 @@ require "faraday/request/basic_authentication"
 require "uri"
 require "active_support/core_ext/hash/indifferent_access"
 require "flex_commerce_api/json_api_client_extension/paginator"
+require "flex_commerce_api/json_api_client_extension/requestor"
 require "flex_commerce_api/json_api_client_extension/save_request_body_middleware"
 require "flex_commerce_api/json_api_client_extension/status_middleware"
 require "flex_commerce_api/json_api_client_extension/pagination_middleware"
@@ -17,6 +18,8 @@ module FlexCommerceApi
     # set the api base url in an abstract base class
     self.site = FlexCommerceApi.config.api_base_url
     self.paginator = JsonApiClientExtension::Paginator
+    self.requestor_class = JsonApiClientExtension::Requestor
+
     class << self
       # @method all
       # Returns all resources
@@ -52,6 +55,10 @@ module FlexCommerceApi
       # @return [String] The password
       def password
         FlexCommerceApi.config.flex_api_key
+      end
+
+      def path(params = nil, record = nil)
+        super(params)
       end
 
     end
