@@ -3,7 +3,9 @@ FactoryGirl.define do
     type "product"
     primary_key "slug"
     after(:build) do |instance|
-      debug_me = true
+      instance.data.each do |ri|
+        ri.relationships.merge(variants: { data: [] })
+      end
     end
   end
   factory :product_list_from_fixture, class: JsonStruct do
