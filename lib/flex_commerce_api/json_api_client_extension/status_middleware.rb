@@ -13,7 +13,7 @@ module FlexCommerceApi
           end
         end
       rescue Faraday::ConnectionFailed, Faraday::TimeoutError
-        raise Errors::ConnectionError, environment
+        raise ::FlexCommerceApi::Error::ConnectionError, environment
       end
 
       protected
