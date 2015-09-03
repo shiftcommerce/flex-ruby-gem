@@ -158,19 +158,19 @@
   },
   "links": {
     "self": {
-      "href": "/facili/v1/products/pages/1.json",
+      "href": "/facili/v1/products/pages/1.json_api",
       "meta": {
         "page_number": 1
       }
     },
     "first": {
-      "href": "/facili/v1/products/pages/1.json",
+      "href": "/facili/v1/products/pages/1.json_api",
       "meta": {
         "page_number": 1
       }
     },
     "last": {
-      "href": "/facili/v1/products/pages/1.json",
+      "href": "/facili/v1/products/pages/1.json_api",
       "meta": {
         "page_number": 1
       }

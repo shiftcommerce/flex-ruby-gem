@@ -13,13 +13,13 @@ FactoryGirl.define do
                     }
                 },
                 "links": {
-                    "self": "/garytaylor/v1/products/garys-product.json"
+                    "self": "/garytaylor/v1/products/garys-product.json_api"
                 }
             },
             "type": "menus",
             "id": 1,
             "links": {
-                "self": "/garytaylor/v1/menus/help.json"
+                "self": "/garytaylor/v1/menus/help.json_api"
             },
             "meta": {
                 "type": "Menu"
@@ -61,7 +61,7 @@ FactoryGirl.define do
                     }
                 },
                 "links": {
-                    "self": "/garytaylor/v1/products/rreererere.json"
+                    "self": "/garytaylor/v1/products/rreererere.json_api"
                 }
 
             },

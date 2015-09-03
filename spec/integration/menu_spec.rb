@@ -13,7 +13,7 @@ RSpec.describe FlexCommerce::Menu do
   let(:singular_resource) { build(:menu) }
   context "with temporary mocked data" do
     before :each do
-      stub_request(:get, "#{api_root}/menus/test-menu.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
+      stub_request(:get, "#{api_root}/menus/test-menu.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
     end
     it "should return nested stuff" do
       subject_class.find("test-menu").tap do |result|
@@ -29,7 +29,7 @@ RSpec.describe FlexCommerce::Menu do
   context "with fixture files from flex" do
     let(:singular_resource) { build(:menu_from_fixture) }
     before :each do
-      stub_request(:get, "#{api_root}/menus/test-menu.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
+      stub_request(:get, "#{api_root}/menus/test-menu.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
     end
     subject { subject_class.find("test-menu") }
     it_should_behave_like "a singular resource with an error response"

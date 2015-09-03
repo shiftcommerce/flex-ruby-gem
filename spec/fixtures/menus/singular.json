@@ -6,7 +6,7 @@
       "title": "Qui omnis labore rerum dolor praesentium nesciunt aliquam."
     },
     "links": {
-      "self": "/laborumdelen/v1/menus/repellat_90_1.json?id=1"
+      "self": "/laborumdelen/v1/menus/repellat_90_1.json_api?id=1"
     },
     "relationships": {
       "menu_items": {

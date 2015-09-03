@@ -3,7 +3,7 @@
     "id": "1",
     "type": "carts",
     "links": {
-      "self": "/api/v1/carts/1.json"
+      "self": "/api/v1/carts/1.json_api"
     },
     "meta": {
       "type": "Cart"
@@ -43,7 +43,7 @@
         },
         "container": {
           "links": {
-            "self": "/api/v1/carts/1.json"
+            "self": "/api/v1/carts/1.json_api"
           }
         }
       }
@@ -67,7 +67,7 @@
         },
         "container": {
           "links": {
-            "self": "/api/v1/carts/1.json"
+            "self": "/api/v1/carts/1.json_api"
           }
         }
       }

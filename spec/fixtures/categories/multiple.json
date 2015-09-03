@@ -6,25 +6,25 @@
   },
   "links": {
     "self": {
-      "href": "/similiq/v1/categories/pages/1.json",
+      "href": "/similiq/v1/categories/pages/1.json_api",
       "meta": {
         "page_number": 1
       }
     },
     "next": {
-      "href": "/similiq/v1/categories/pages/2.json",
+      "href": "/similiq/v1/categories/pages/2.json_api",
       "meta": {
         "page_number": 2
       }
     },
     "first": {
-      "href": "/similiq/v1/categories/pages/1.json",
+      "href": "/similiq/v1/categories/pages/1.json_api",
       "meta": {
         "page_number": 1
       }
     },
     "last": {
-      "href": "/similiq/v1/categories/pages/2.json",
+      "href": "/similiq/v1/categories/pages/2.json_api",
       "meta": {
         "page_number": 2
       }
@@ -39,7 +39,7 @@
         "reference": "847565910"
       },
       "links": {
-        "self": "/similiq/v1/categories/847565910.json"
+        "self": "/similiq/v1/categories/847565910.json_api"
       }
     },
     {
@@ -50,7 +50,7 @@
         "reference": "766693800"
       },
       "links": {
-        "self": "/similiq/v1/categories/766693800.json"
+        "self": "/similiq/v1/categories/766693800.json_api"
       }
     },
     {
@@ -61,7 +61,7 @@
         "reference": "202036844"
       },
       "links": {
-        "self": "/similiq/v1/categories/202036844.json"
+        "self": "/similiq/v1/categories/202036844.json_api"
       }
     },
     {
@@ -72,7 +72,7 @@
         "reference": "780902696"
       },
       "links": {
-        "self": "/similiq/v1/categories/780902696.json"
+        "self": "/similiq/v1/categories/780902696.json_api"
       }
     },
     {
@@ -83,7 +83,7 @@
         "reference": "703918953"
       },
       "links": {
-        "self": "/similiq/v1/categories/703918953.json"
+        "self": "/similiq/v1/categories/703918953.json_api"
       }
     },
     {
@@ -94,7 +94,7 @@
         "reference": "409877925"
       },
       "links": {
-        "self": "/similiq/v1/categories/409877925.json"
+        "self": "/similiq/v1/categories/409877925.json_api"
       }
     },
     {
@@ -105,7 +105,7 @@
         "reference": "556481336"
       },
       "links": {
-        "self": "/similiq/v1/categories/556481336.json"
+        "self": "/similiq/v1/categories/556481336.json_api"
       }
     },
     {
@@ -116,7 +116,7 @@
         "reference": "650431290"
       },
       "links": {
-        "self": "/similiq/v1/categories/650431290.json"
+        "self": "/similiq/v1/categories/650431290.json_api"
       }
     },
     {
@@ -127,7 +127,7 @@
         "reference": "46496589"
       },
       "links": {
-        "self": "/similiq/v1/categories/46496589.json"
+        "self": "/similiq/v1/categories/46496589.json_api"
       }
     },
     {
@@ -138,7 +138,7 @@
         "reference": "388659846"
       },
       "links": {
-        "self": "/similiq/v1/categories/388659846.json"
+        "self": "/similiq/v1/categories/388659846.json_api"
       }
     }
   ]

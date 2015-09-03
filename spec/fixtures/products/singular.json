@@ -11,7 +11,7 @@
       "max_price": 45.29
     },
     "links": {
-      "self": "/praese/v1/products/product-attached-to-a-menu-item.json"
+      "self": "/praese/v1/products/product-attached-to-a-menu-item.json_api"
     },
     "relationships": {
       "variants": {
@@ -60,7 +60,7 @@
         "title": "Product attached to a menu item"
       },
       "links": {
-        "self": "/praese/v1/products/product-attached-to-a-menu-item.json"
+        "self": "/praese/v1/products/product-attached-to-a-menu-item.json_api"
       }
     },
     {

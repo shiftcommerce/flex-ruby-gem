@@ -21,7 +21,7 @@ RSpec.describe "Shopping Cart" do
       end
       context "creating a new cart" do
         before(:each) do
-          stub_request(:post, "#{api_root}/carts.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
+          stub_request(:post, "#{api_root}/carts.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
         end
         subject { subject_class.create }
         it_should_behave_like "a singular resource with an error response"
@@ -31,7 +31,7 @@ RSpec.describe "Shopping Cart" do
       end
       context "fetching a single cart" do
         before :each do
-          stub_request(:get, "#{api_root}/carts/1.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
+          stub_request(:get, "#{api_root}/carts/1.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
         end
         subject { subject_class.find(1) }
         it_should_behave_like "a singular resource with an error response"
@@ -77,7 +77,7 @@ RSpec.describe "Shopping Cart" do
           end
           context "creating a line item with a prepared variant" do
             before(:each) do
-              stub_request(:post, "#{api_root}/carts/1/line_items.json").with(headers: { "Accept" => "application/vnd.api+json" }).to_return do |request|
+              stub_request(:post, "#{api_root}/carts/1/line_items.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return do |request|
                 expect(request.body).to be_valid_json_for_schema("line_item")
                 {body: line_item_resource.to_json, status: response_status, headers: default_headers}
               end

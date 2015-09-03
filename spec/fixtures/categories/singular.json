@@ -17,12 +17,12 @@
       },
       "products": {
         "links": {
-          "self": "/quianimieum/v1/categories/459274141/products.json"
+          "self": "/quianimieum/v1/categories/459274141/products.json_api"
         }
       }
     },
     "links": {
-      "self": "/quianimieum/v1/categories/459274141.json"
+      "self": "/quianimieum/v1/categories/459274141.json_api"
     }
   },
   "included": [
@@ -33,7 +33,7 @@
         "title": "Et qui in molestiae nesciunt quaerat."
       },
       "links": {
-        "self": "/quianimieum/v1/categories/459274141.json"
+        "self": "/quianimieum/v1/categories/459274141.json_api"
       }
     },
     {
