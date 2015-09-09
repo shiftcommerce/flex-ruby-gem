@@ -47,6 +47,9 @@ RSpec.describe "Shopping Cart" do
               end
             end
           end
+          it "should return non empty line items" do
+            expect(subject.line_items.empty?).to be false
+          end
           it "should return a list of line items with the correct attributes" do
             subject.line_items.tap do |line_items|
               expect(line_items.length).to eql line_item_resources.length

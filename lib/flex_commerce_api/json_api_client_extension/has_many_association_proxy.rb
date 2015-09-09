@@ -8,6 +8,7 @@ module FlexCommerceApi
         self.options = options
       end
 
+      delegate :empty?, to: :real_instance
       #
       # Finds an instance by primary key
       #
