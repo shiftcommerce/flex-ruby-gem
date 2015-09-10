@@ -13,35 +13,6 @@
           "additionalProperties": {
             "unit_quantity": {"type": "integer"}
           }
-        },
-        "relationships": {
-          "type": "object",
-          "properties": {
-            "item": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "object",
-                  "properties": {
-                    "id": {"type": "string"},
-                    "type": {"type": "string", "pattern": "^variants|bundles$"}
-                  }
-                }
-              }
-            },
-            "container": {
-              "type": "object",
-              "properties": {
-                "data": {
-                  "type": "object",
-                  "properties": {
-                    "id": {"type": "string"},
-                    "type": {"type": "string", "pattern": "^carts|orders$"}
-                  }
-                }
-              }
-            }
-          }
         }
       },
       "additionalProperties": {

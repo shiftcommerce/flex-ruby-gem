@@ -89,12 +89,12 @@ RSpec.describe "Shopping Cart" do
             let(:line_item_resource) { build(:line_item_from_fixture) }
             it "should create a line item when requested using the line_items collection on the cart - using save" do
               # @TODO We should not have to specify the cart id
-              line_item = subject.line_items.new(relationships: {item: variant})
+              line_item = subject.line_items.new(item_id: variant.id, item_type: "Variant")
               line_item.save
               expect(line_item).to be_a(line_item_class)
             end
             it "should create a line item when requested using the line_items collection on the cart - using create" do
-              line_item = subject.line_items.create(relationships: {item: variant})
+              line_item = subject.line_items.create(item_id: variant.id, item_type: "Variant")
               expect(line_item).to be_a(line_item_class)
             end
             it "should create a line item when requested using only the cart id" do

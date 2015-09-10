@@ -32,13 +32,5 @@ module FlexCommerce
         ""
       end
     end
-
-    def save(*args)
-      # This is required as at the moment (1.0.0.beta6) only changed relations are saved
-      # it is not ideal as it is changing the state of the resource
-      # @TODO Check this is still required
-      relationships.set_all_attributes_dirty
-      super
-    end
   end
 end
