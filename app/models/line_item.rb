@@ -29,13 +29,7 @@ module FlexCommerce
 
     class << self
       def _prefix_path
-        "carts/%{cart_id}"
-      end
-
-      def path(params, record)
-        #@TODO Change to suit polymorphic requirement for future
-        new_params = record.nil? ? params : params.merge(path: {cart_id: record.relationships.container["data"]["id"]})
-        super new_params
+        ""
       end
     end
 

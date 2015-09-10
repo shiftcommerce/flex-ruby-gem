@@ -80,7 +80,7 @@ RSpec.describe "Shopping Cart" do
           end
           context "creating a line item with a prepared variant" do
             before(:each) do
-              stub_request(:post, "#{api_root}/carts/1/line_items.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return do |request|
+              stub_request(:post, "#{api_root}/line_items.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return do |request|
                 expect(request.body).to be_valid_json_for_schema("line_item")
                 {body: line_item_resource.to_json, status: response_status, headers: default_headers}
               end
