@@ -30,7 +30,7 @@ RSpec.describe FlexCommerce::CustomerAccount do
         subject { subject_class.find(resource_identifier.id) }
         it_should_behave_like "a singular resource with an error response"
         it "should return an object with the correct attributes when find is called" do
-          expect(subject.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }.with_indifferent_access).to eql(resource_identifier.attributes.as_json.with_indifferent_access)
+          expect(subject.attributes.as_json.reject { |k| %w(id type links meta relationships password password_confirmation).include?(k) }.with_indifferent_access).to eql(resource_identifier.attributes.as_json.with_indifferent_access)
           expect(subject.type).to eql "customer_accounts"
         end
       end

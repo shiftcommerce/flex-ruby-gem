@@ -40,5 +40,7 @@ module FlexCommerce
 
     property :email, type: :string
     property :reference, type: :string
+    property :password, type: :string
+    property :password_confirmation, type: :string
   end
 end
