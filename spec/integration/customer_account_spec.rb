@@ -22,7 +22,7 @@ RSpec.describe FlexCommerce::CustomerAccount do
     let(:resource_identifier) { build(:json_api_resource, build_resource: :customer_account, base_path: base_path) }
     let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier) }
     before :each do
-      stub_request(:get, "#{api_root}/customer_accounts/#{resource_identifier.id}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
+      stub_request(:get, "#{api_root}/customer_accounts/#{resource_identifier.id}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
     end
     context "finding a single resource" do
       it_should_behave_like "a singular resource"
@@ -30,7 +30,7 @@ RSpec.describe FlexCommerce::CustomerAccount do
         subject { subject_class.find(resource_identifier.id) }
         it_should_behave_like "a singular resource with an error response"
         it "should return an object with the correct attributes when find is called" do
-          expect(subject.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(resource_identifier.attributes.as_json)
+          expect(subject.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }.with_indifferent_access).to eql(resource_identifier.attributes.as_json.with_indifferent_access)
           expect(subject.type).to eql "customer_accounts"
         end
       end

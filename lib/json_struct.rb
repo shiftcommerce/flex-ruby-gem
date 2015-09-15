@@ -62,6 +62,10 @@ class JsonStruct < OpenStruct
     op
   end
 
+  def as_json(*args)
+   to_h
+  end
+
   def to_json
     JSON.dump(to_h)
   end
