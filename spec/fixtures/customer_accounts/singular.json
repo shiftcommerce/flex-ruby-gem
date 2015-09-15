@@ -1,0 +1,10 @@
+{
+  "data": {
+    "id": "1001",
+    "type": "customer_accounts",
+    "attributes": {
+      "email": "my.name@myemail.com",
+      "reference": "myname"
+    }
+  }
+}

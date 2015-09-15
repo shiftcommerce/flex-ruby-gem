@@ -12,4 +12,5 @@ module FlexCommerce
   autoload :Category, File.join(gem_root, "app", "models", "category")
   autoload :Cart, File.join(gem_root, "app", "models", "cart")
   autoload :LineItem, File.join(gem_root, "app", "models", "line_item")
+  autoload :CustomerAccount, File.join(gem_root, "app", "models", "customer_account")
 end
