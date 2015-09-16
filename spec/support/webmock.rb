@@ -1,0 +1,1 @@
+WebMock::BodyPattern::BODY_FORMATS.merge!("application/vnd.api+json" => :json)

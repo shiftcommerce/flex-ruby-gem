@@ -41,5 +41,10 @@ module FlexCommerce
     property :email, type: :string
     property :reference, type: :string
     property :password, type: :string
+
+
+    def self.authenticate(attributes)
+      requestor.custom("authentications", {request_method: :post}, {data: {type: :customer_accounts, attributes: attributes}})
+    end
   end
 end

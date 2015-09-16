@@ -35,6 +35,28 @@ RSpec.describe FlexCommerce::CustomerAccount do
         end
       end
     end
+    context "authenticating" do
+      let(:expected_body) {
+        {
+            data: {
+                type: "customer_accounts",
+                attributes: {
+                    email: resource_identifier.attributes.email,
+                    password: "correctpassword"
+                }
+            }
+        }.with_indifferent_access
+      }
+      before :each do
+        stub_request(:post, "#{api_root}/customer_accounts/authentications.json_api").with(body: expected_body, headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
+      end
+      subject { subject_class.authenticate(email: resource_identifier.attributes.email, password: "correctpassword").first }
+      it "should return the logged in account" do
+        expect(subject.email).to eql resource_identifier.attributes.email
+        expect(subject.password).to be_nil
+        expect(subject.id).to eql resource_identifier.id
+      end
+    end
   end
 
   context "using fixture data for a single resource" do
