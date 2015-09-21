@@ -47,14 +47,27 @@ RSpec.describe FlexCommerce::CustomerAccount do
             }
         }.with_indifferent_access
       }
-      before :each do
-        stub_request(:post, "#{api_root}/customer_accounts/authentications.json_api").with(body: expected_body, headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
+      context "positive authentication" do
+        before :each do
+          stub_request(:post, "#{api_root}/customer_accounts/authentications.json_api").with(body: expected_body, headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
+        end
+        subject { subject_class.authenticate(email: resource_identifier.attributes.email, password: "correctpassword") }
+        it "should return the logged in account" do
+          expect(subject.email).to eql resource_identifier.attributes.email
+          expect(subject.password).to be_nil
+          expect(subject.id).to eql resource_identifier.id
+        end
       end
-      subject { subject_class.authenticate(email: resource_identifier.attributes.email, password: "correctpassword").first }
-      it "should return the logged in account" do
-        expect(subject.email).to eql resource_identifier.attributes.email
-        expect(subject.password).to be_nil
-        expect(subject.id).to eql resource_identifier.id
+      context "negative authentication" do
+        let(:response_status) { 404 }
+        let(:error_404) { build(:json_api_document, errors: [build(:json_api_error, status: "404", detail: "Not found", title: "Not found")]) }
+        before :each do
+          stub_request(:post, "#{api_root}/customer_accounts/authentications.json_api").with(body: expected_body, headers: { "Accept" => "application/vnd.api+json" }).to_return body: error_404.to_h.to_json, status: response_status, headers: default_headers
+        end
+        subject { subject_class.authenticate(email: resource_identifier.attributes.email, password: "correctpassword") }
+        it "should return nil" do
+          expect(subject).to be_nil
+        end
       end
     end
   end

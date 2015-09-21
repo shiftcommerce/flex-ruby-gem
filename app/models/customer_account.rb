@@ -44,7 +44,9 @@ module FlexCommerce
 
 
     def self.authenticate(attributes)
-      requestor.custom("authentications", {request_method: :post}, {data: {type: :customer_accounts, attributes: attributes}})
+      requestor.custom("authentications", {request_method: :post}, {data: {type: :customer_accounts, attributes: attributes}}).first
+    rescue ::FlexCommerceApi::Error::NotFound
+      nil
     end
   end
 end
