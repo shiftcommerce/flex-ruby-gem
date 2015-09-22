@@ -11,4 +11,7 @@ module FlexCommerceApi
   def self.gem_root
     File.expand_path("../", __dir__)
   end
+  def self.logger
+    FlexCommerceApi::Config.instance.logger
+  end
 end
