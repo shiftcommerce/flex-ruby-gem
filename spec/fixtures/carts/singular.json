@@ -8,6 +8,11 @@
     "meta": {
       "type": "Cart"
     },
+    "attributes": {
+      "sub_total": 379.62,
+      "total": 379.62,
+      "line_items_count": 2
+    },
     "relationships": {
       "line_items": {
         "data": [

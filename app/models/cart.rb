@@ -45,5 +45,9 @@ module FlexCommerce
     def line_items
       has_many_association_proxy :line_items, super, inverse_of: :container
     end
+
+    def empty?
+      line_items_count == 0
+    end
   end
 end

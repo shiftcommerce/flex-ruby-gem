@@ -38,6 +38,11 @@ RSpec.describe "Shopping Cart" do
         it "should return the correct top level object" do
           expect(subject).to be_a(subject_class)
         end
+        context "using the empty? method" do
+          it "should return false with the fixture data" do
+            expect(subject).not_to be_empty
+          end
+        end
         context "using the line items association" do
           it "should return a list of line items" do
             subject.line_items.tap do |line_items|
