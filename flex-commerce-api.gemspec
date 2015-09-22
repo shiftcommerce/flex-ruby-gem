@@ -31,5 +31,4 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "json_api_client", "1.0.0"
   spec.add_runtime_dependency "activesupport", "~> 4"
-  spec.add_runtime_dependency "colorize", "~> 0.7"
 end

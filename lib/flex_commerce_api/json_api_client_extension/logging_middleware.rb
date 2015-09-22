@@ -1,4 +1,3 @@
-require "colorize"
 module FlexCommerceApi
   module JsonApiClientExtension
     #
@@ -15,12 +14,9 @@ module FlexCommerceApi
       def call(env)
         self.request_id += 1
         @app.call(env).on_complete do |response_env|
-          request_header_message = "#{env.method.to_s.upcase} #{env.url}".colorize(color: :magenta, background: :white)
-          request_message = "#{env[:request_body]}"
-          response_message = "#{env.body}".colorize(color: :red, background: :white)
-          logger.debug("FlexApi::Request  id #{request_id} #{request_header_message} started at #{Time.now}")
-          logger.debug("\t >>> #{request_message}")
-          logger.debug("\t <<< #{response_message}")
+          logger.debug("FlexApi::Request  id #{request_id} #{env.method.to_s.upcase} #{env.url} started at #{Time.now}")
+          logger.debug("\t >>> #{env[:request_body]}") unless  env[:request_body].nil? || env[:request_body].empty?
+          logger.debug("\t <<< (#{env[:status]}) #{env.body}")
         end
       end
     end
