@@ -49,5 +49,17 @@ module FlexCommerce
     def empty?
       line_items_count == 0
     end
+
+    # Merges another cart into this one using the API
+    # @param [FlexCommerce::Cart] other_cart The cart to merge from
+    def merge!(other_cart)
+      self.last_result_set = self.class.requestor.custom("merge?#{ { from_cart_id: other_cart.id, to_cart_id: id }.to_query }", { request_method: :patch }, { })
+      mark_as_persisted!
+      if updated = last_result_set.first
+        self.attributes = updated.attributes
+        self.relationships = updated.relationships
+        clear_changes_information
+      end
+    end
   end
 end

@@ -1,0 +1,106 @@
+{
+  "data": {
+    "id": "2",
+    "type": "carts",
+    "links": {
+      "self": "/api/v1/carts/2.json_api"
+    },
+    "meta": {
+      "type": "Cart"
+    },
+    "attributes": {
+      "sub_total": 379.62,
+      "total": 379.62,
+      "line_items_count": 2
+    },
+    "relationships": {
+      "line_items": {
+        "data": [
+          {
+            "type": "line_items",
+            "id": "3"
+          },
+          {
+            "type": "line_items",
+            "id": "4"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "3",
+      "type": "line_items",
+      "attributes": {
+        "title": "Rustic Wooden Shoes",
+        "unit_quantity": 3,
+        "unit_price": 63.27,
+        "subtotal": 189.81,
+        "total": 189.81
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "3",
+            "type": "variants"
+          }
+        },
+        "container": {
+          "links": {
+            "self": "/api/v1/carts/2.json_api"
+          }
+        }
+      }
+    },
+    {
+      "id": "4",
+      "type": "line_items",
+      "attributes": {
+        "title": "Rustic Wooden Socks",
+        "unit_quantity": 3,
+        "unit_price": 63.27,
+        "subtotal": 189.81,
+        "total": 189.81
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "4",
+            "type": "variants"
+          }
+        },
+        "container": {
+          "links": {
+            "self": "/api/v1/carts/2.json_api"
+          }
+        }
+      }
+    },
+    {
+      "id": "3",
+      "type": "variants",
+      "attributes": {
+        "title": "Rustic Wooden Shoes",
+        "description": "1 Perferendis nisi nostrum deserunt assumenda consequatur exercitationem. Tenetur qui aperiam dolorem. Facilis minus iste culpa quos quia. Distinctio et qui libero impedit.",
+        "sku": "742207266-0-1",
+        "price": 45.29,
+        "stock_level": 5,
+        "reference": "885703497-6-1"
+      }
+    },
+    {
+      "id": "4",
+      "type": "variants",
+      "attributes": {
+        "title": "Rustic Wooden Socks",
+        "description": "2 Perferendis nisi nostrum deserunt assumenda consequatur exercitationem. Tenetur qui aperiam dolorem. Facilis minus iste culpa quos quia. Distinctio et qui libero impedit.",
+        "sku": "742207266-0-2",
+        "price": 45.29,
+        "stock_level": 5,
+        "reference": "885703497-6-2"
+      }
+    }
+
+  ]
+}

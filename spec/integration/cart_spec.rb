@@ -43,6 +43,17 @@ RSpec.describe "Shopping Cart" do
             expect(subject).not_to be_empty
           end
         end
+        context "using the merge! method and passing a cart" do
+          let(:other_cart) { build(:cart, id: 2) }
+          let(:merged_result) { build(:cart_merged_from_fixture) }
+          before(:each) do
+            stub_request(:patch, "#{api_root}/carts/merge.json_api").with(query: { to_cart_id: subject.id, from_cart_id: other_cart.id }, headers: { "Accept" => "application/vnd.api+json", "Content-Type" => "application/vnd.api+json" }).to_return(body: merged_result.to_json, status: response_status, headers: default_headers)
+          end
+          it "should request that another cart is merged into this one" do
+            subject.merge!(other_cart)
+            expect(subject.line_items.count).to eql 4
+          end
+        end
         context "using the line items association" do
           it "should return a list of line items" do
             subject.line_items.tap do |line_items|
