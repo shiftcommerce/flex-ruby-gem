@@ -10,12 +10,18 @@ RSpec.describe "Shopping Cart" do
   let(:subject_class) { ::FlexCommerce::Cart }
   let(:variant_class) { ::FlexCommerce::Variant }
   let(:line_item_class) { ::FlexCommerce::LineItem }
+  let(:discount_summary_class) { ::FlexCommerce::DiscountSummary }
 
   context "with fixture files from flex" do
     context "a single cart" do
       let(:singular_resource) { build(:cart_from_fixture) }
       let(:line_item_resources) do
         singular_resource.data.relationships.line_items.data.map do |ri|
+          singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
+        end
+      end
+      let(:discount_summary_resources) do
+        singular_resource.data.relationships.discount_summaries.data.map do |ri|
           singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
         end
       end
@@ -52,6 +58,16 @@ RSpec.describe "Shopping Cart" do
           it "should request that another cart is merged into this one" do
             subject.merge!(other_cart)
             expect(subject.line_items.count).to eql 4
+          end
+        end
+        context "the discount_summaries association" do
+          it "should fetch a list of discount summaries" do
+            subject.discount_summaries.tap do |summaries|
+              expect(summaries.length).to eql discount_summary_resources.length
+              summaries.each_with_index do |summary, idx|
+                expect(summary).to be_a(discount_summary_class)
+              end
+            end
           end
         end
         context "using the line items association" do

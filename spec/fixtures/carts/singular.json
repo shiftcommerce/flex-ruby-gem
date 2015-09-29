@@ -25,10 +25,56 @@
             "id": "2"
           }
         ]
+      },
+      "customer_account": {
+        "data": {
+          "id": "1",
+          "type": "customer_accounts"
+        }
+      },
+      "discount_summaries": {
+        "data": [
+          {
+            "id": "1",
+            "type": "discount_summaries"
+          },
+          {
+            "id": "2",
+            "type": "discount_summaries"
+          }
+
+        ]
       }
     }
   },
   "included": [
+    {
+      "id": "1",
+      "type": "customer_accounts",
+      "attributes": {
+        "email": "myemail@mydomain.com",
+        "reference": "myemail"
+      },
+      "links": {
+        "self": "/api/v1/customer_accounts/1.json_api"
+      }
+    },
+    {
+      "id": "1",
+      "type": "discount_summaries",
+      "attributes": {
+        "name": "10% Off something",
+        "total": 12.50
+      }
+    },
+    {
+      "id": "2",
+      "type": "discount_summaries",
+      "attributes": {
+        "name": "20% Off something",
+        "total": 5.50
+      }
+    },
     {
       "id": "1",
       "type": "line_items",

@@ -39,6 +39,7 @@ module FlexCommerce
     # @TODO Document other popular methods that we will support
 
     has_many :line_items, class_name: "::FlexCommerce::LineItem"
+    has_many :discount_summaries, class_name: "::FlexCommerce::DiscountSummary"
 
     # Here we override line_items to provide a proxy to the array so we can use new and create on it in the normal
     # active record way
