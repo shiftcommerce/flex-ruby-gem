@@ -11,6 +11,7 @@ module FlexCommerce
   autoload :Breadcrumb, File.join(gem_root, "app", "models", "breadcrumb")
   autoload :Category, File.join(gem_root, "app", "models", "category")
   autoload :Cart, File.join(gem_root, "app", "models", "cart")
+  autoload :Coupon, File.join(gem_root, "app", "models", "coupon")
   autoload :DiscountSummary, File.join(gem_root, "app", "models", "discount_summary")
   autoload :LineItem, File.join(gem_root, "app", "models", "line_item")
   autoload :CustomerAccount, File.join(gem_root, "app", "models", "customer_account")

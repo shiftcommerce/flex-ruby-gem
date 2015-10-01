@@ -11,6 +11,7 @@ RSpec.describe "Shopping Cart" do
   let(:variant_class) { ::FlexCommerce::Variant }
   let(:line_item_class) { ::FlexCommerce::LineItem }
   let(:discount_summary_class) { ::FlexCommerce::DiscountSummary }
+  let(:coupon_class) { ::FlexCommerce::Coupon }
 
   context "with fixture files from flex" do
     context "a single cart" do
