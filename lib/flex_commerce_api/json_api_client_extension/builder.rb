@@ -20,10 +20,9 @@ module FlexCommerceApi
         if @temp_search_criteria.nil?
           klass.requestor.get(params)
         else
-          klass.requestor.custom(:search, { request_method: :post }, params.merge(@temp_search_criteria))
+          klass.requestor.custom(:search, { request_method: :get }, params.merge(filter: @temp_search_criteria))
         end
       end
-
     end
   end
 end
