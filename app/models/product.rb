@@ -66,5 +66,9 @@ module FlexCommerce
     def sku
       reference
     end
+    self.query_builder = ::FlexCommerceApi::JsonApiClientExtension::Builder
+    class << self
+      def_delegators :_new_scope, :temp_search
+    end
   end
 end

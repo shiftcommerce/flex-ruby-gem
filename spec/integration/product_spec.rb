@@ -41,21 +41,39 @@ RSpec.describe FlexCommerce::Product do
     let(:total_pages) { (quantity / page_size.to_f).ceil.to_i }
     # The current page - changes in different contexts
     let(:current_page) { nil }
-    # Easy access to the collection URL
-    let(:collection_url) { "#{api_root}/products" }
     # Calculates the stubbed_url depending on if current_page is nil or not
     #  If current page is nil, then it is expected that the test will fetch its data from the collection_url rather
     #  than the paginated version.
     let(:stubbed_url) { current_page.present? ? "#{collection_url}/pages/#{current_page}.json_api" : "#{collection_url}.json_api" }
     # Calculates the expected list quantity
     let(:expected_list_quantity) { quantity == 0 ? 0 : ((quantity - 1) % page_size) + 1 }
-    # The subject for all examples - using pagination as this is expected normally
-    subject { subject_class.paginate(page: current_page).all }
-    before :each do
-      stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: response_status, headers: default_headers
+    context "without search" do
+      # Easy access to the collection URL
+      let(:collection_url) { "#{api_root}/products" }
+      let!(:stub) { stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: response_status, headers: default_headers }
+      # The subject for all examples - using pagination as this is expected normally
+      subject { subject_class.paginate(page: current_page).all }
+      it_should_behave_like "a collection of resources with various data sets", resource_type: :product
+      it_should_behave_like "a collection of resources with an error response"
     end
-    it_should_behave_like "a collection of resources with various data sets", resource_type: :product
-    it_should_behave_like "a collection of resources with an error response"
+    # temp_search is temporary until we defined a standard for searching all collections
+    # when the real search is implemented, this spec must be enhanced - it checks for basics at the moment
+    context "using temp_search" do
+      # The subject for all examples - using pagination as this is expected normally
+      subject do
+        subject_class.temp_search(query: "Shirt", fields: "description,reference,slug").paginate(page: current_page).all
+      end
+      let(:expected_body) { search_criteria }
+      # Easy access to the collection URL
+      let(:collection_url) { "#{api_root}/products/search" }
+      let(:quantity) { 50 }
+      let(:search_criteria) { { query: "Shirt", fields: "description,reference,slug" } }
+      let!(:stub) do
+        stub_request(:post, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }, body: expected_body).to_return body: resource_list.to_json, status: response_status, headers: default_headers
+      end
+
+      it_should_behave_like "a collection of anything"
+    end
   end
 
   context "using fixture data for a collection of products" do

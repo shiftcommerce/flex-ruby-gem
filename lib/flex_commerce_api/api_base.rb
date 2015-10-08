@@ -10,6 +10,7 @@ require "flex_commerce_api/json_api_client_extension/status_middleware"
 require "flex_commerce_api/json_api_client_extension/pagination_middleware"
 require "flex_commerce_api/json_api_client_extension/json_format_middleware"
 require "flex_commerce_api/json_api_client_extension/has_many_association_proxy"
+require "flex_commerce_api/json_api_client_extension/builder"
 module FlexCommerceApi
   #
   # Base class for all flex commerce models
