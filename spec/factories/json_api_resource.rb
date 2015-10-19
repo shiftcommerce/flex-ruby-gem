@@ -30,7 +30,7 @@ FactoryGirl.define do
       primary_key "id"
     end
     relationships { {} }
-    sequence :id
+    sequence(:id) { |idx| idx.to_s }
     type "Unknown"
     links { {} }
     after(:build) do |ri, evaluator|
