@@ -21,6 +21,7 @@ RSpec.describe FlexCommerce::CustomerAccount do
   context "using a single resource" do
     let(:resource_identifier) { build(:json_api_resource, build_resource: :customer_account, base_path: base_path) }
     let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier) }
+    let(:write_headers) { { "Accept" => "application/vnd.api+json", "Content-Type" => "application/vnd.api+json" } }
     before :each do
       stub_request(:get, "#{api_root}/customer_accounts/#{resource_identifier.id}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
     end
@@ -56,6 +57,50 @@ RSpec.describe FlexCommerce::CustomerAccount do
           end
         end
       end
+    end
+    context "password resetting" do
+      subject(:account) { build(:customer_account) }
+      let(:email_to_reset) { account.email }
+      let(:encoded_email) { URI.escape email_to_reset }
+      context "generating token" do
+        let(:reset_link_with_placeholder) { "http://dummy.com/reset_password?email={{ email }}&token={{ token }}" }
+        subject { subject_class.generate_token(email: email_to_reset, reset_link_with_placeholder: reset_link_with_placeholder) }
+        let(:generate_token_body) do
+          {
+            data: {
+              type: "customer_accounts",
+              attributes: {
+                reset_link_with_placeholder: reset_link_with_placeholder
+              }
+            }
+          }
+        end
+        let!(:generate_token_stub) { stub_request(:post, "#{api_root}/customer_accounts/email:#{encoded_email}/resets.json_api").with(headers: write_headers, body: generate_token_body).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
+        it "should return an instance which can then be reset using the token" do
+          expect(subject).to be_a(subject_class)
+        end
+      end
+
+      context "performing the reset" do
+        let(:reset_password_token) { "reset_password_token" }
+        let(:new_password) { "new_password" }
+        subject { subject_class.reset_password(email: email_to_reset, reset_password_token: reset_password_token, password: new_password) }
+        let(:reset_password_body) do
+          {
+            data: {
+              type: "customer_accounts",
+              attributes: {
+                "password": new_password
+              }
+            }
+          }
+        end
+        let!(:reset_password_stub) { stub_request(:patch, "#{api_root}/customer_accounts/email:#{encoded_email}/resets/token:#{reset_password_token}.json_api").with(headers: write_headers, body: reset_password_body).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
+        it "should return an instance" do
+          expect(subject).to be_a(subject_class)
+        end
+      end
+
     end
     context "authenticating" do
       let(:expected_body) {

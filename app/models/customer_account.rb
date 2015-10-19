@@ -48,5 +48,15 @@ module FlexCommerce
     rescue ::FlexCommerceApi::Error::NotFound
       nil
     end
+
+    def self.generate_token(attributes)
+      post_attributes = { reset_link_with_placeholder: attributes[:reset_link_with_placeholder] }
+      requestor.custom("email:#{URI.escape(attributes[:email])}/resets", { request_method: :post }, { data: { type: :customer_accounts, attributes: post_attributes } }).first
+    end
+
+    def self.reset_password(attributes)
+      patch_attributes = { password: attributes[:password] }
+      requestor.custom("email:#{URI.escape(attributes[:email])}/resets/token:#{attributes[:reset_password_token]}", { request_method: :patch }, { data: { type: :customer_accounts, attributes: patch_attributes } }).first
+    end
   end
 end
