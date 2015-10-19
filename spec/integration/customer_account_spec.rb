@@ -61,7 +61,7 @@ RSpec.describe FlexCommerce::CustomerAccount do
     context "password resetting" do
       subject(:account) { build(:customer_account) }
       let(:email_to_reset) { account.email }
-      let(:encoded_email) { URI.escape email_to_reset }
+      let(:encoded_email) { URI.escape(email_to_reset, "@.") }
       context "generating token" do
         let(:reset_link_with_placeholder) { "http://dummy.com/reset_password?email={{ email }}&token={{ token }}" }
         subject { subject_class.generate_token(email: email_to_reset, reset_link_with_placeholder: reset_link_with_placeholder) }
