@@ -59,9 +59,9 @@ RSpec.describe FlexCommerce::CustomerAccount do
       end
     end
     context "password resetting" do
-      subject(:account) { build(:customer_account) }
+      let(:account) { build(:customer_account) }
       let(:email_to_reset) { account.email }
-      let(:encoded_email) { URI.escape(email_to_reset, "@.") }
+      let(:encoded_email) { URI.encode_www_form_component(email_to_reset) }
       context "generating token" do
         let(:reset_link_with_placeholder) { "http://dummy.com/reset_password?email={{ email }}&token={{ token }}" }
         subject { subject_class.generate_token(email: email_to_reset, reset_link_with_placeholder: reset_link_with_placeholder) }
@@ -78,6 +78,12 @@ RSpec.describe FlexCommerce::CustomerAccount do
         let!(:generate_token_stub) { stub_request(:post, "#{api_root}/customer_accounts/email:#{encoded_email}/resets.json_api").with(headers: write_headers, body: generate_token_body).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
         it "should return an instance which can then be reset using the token" do
           expect(subject).to be_a(subject_class)
+        end
+        context "with a more complex email" do
+          let(:account) { build(:customer_account, email: "email+extra@domain.com") }
+          it "should return an instance which can then be reset using the token" do
+            expect(subject).to be_a(subject_class)
+          end
         end
       end
 
