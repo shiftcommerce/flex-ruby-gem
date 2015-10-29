@@ -24,10 +24,6 @@ RSpec.describe FlexCommerce::Address do
       end
       it_should_behave_like "a collection of anything"
       it_should_behave_like "a collection of resources with an error response"
-
-
     end
-
   end
-
 end
