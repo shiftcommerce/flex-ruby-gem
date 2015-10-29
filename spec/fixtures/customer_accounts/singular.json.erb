@@ -1,0 +1,23 @@
+{
+  "data": {
+    "id": "1001",
+    "type": "customer_accounts",
+    "attributes": {
+      "email": "my.name@myemail.com",
+      "reference": "myname"
+    },
+    "relationships": {
+      "cart": {
+        "links": {
+          "related": "<%= api_root %>/customer_accounts/1001/carts/1"
+        }
+      },
+      "addresses": {
+        "links": {
+          "related": "<%= api_root %>/customer_accounts/1001/addresses"
+        }
+      }
+
+    }
+  }
+}

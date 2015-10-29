@@ -1,0 +1,290 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "addresses",
+      "attributes": {
+        "name": "Address1 Name",
+        "address_line_1": "Address1 Line 1",
+        "address_line_2": "Address1 Line 2",
+        "address_line_3": "Address1 Line 3",
+        "city": "Address1 City",
+        "state": "Address1 State",
+        "country": "Address1 Country",
+        "postcode": "Address1 Postcode",
+        "preferred_billing": true,
+        "preferred_shipping": true
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    },
+    {
+      "id": "2",
+      "type": "addresses",
+      "attributes": {
+        "name": "Address2 Name",
+        "address_line_1": "Address2 Line 1",
+        "address_line_2": "Address2 Line 2",
+        "address_line_3": "Address2 Line 3",
+        "city": "Address2 City",
+        "state": "Address2 State",
+        "country": "Address2 Country",
+        "postcode": "Address2 Postcode",
+        "preferred_billing": true,
+        "preferred_shipping": true
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    },
+    {
+      "id": "3",
+      "type": "addresses",
+      "attributes": {
+        "name": "Address3 Name",
+        "address_line_1": "Address3 Line 1",
+        "address_line_2": "Address3 Line 2",
+        "address_line_3": "Address3 Line 3",
+        "city": "Address3 City",
+        "state": "Address3 State",
+        "country": "Address3 Country",
+        "postcode": "Address3 Postcode",
+        "preferred_billing": true,
+        "preferred_shipping": true
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    },
+    {
+      "id": "4",
+      "type": "addresses",
+      "attributes": {
+        "name": "Address4 Name",
+        "address_line_1": "Address4 Line 1",
+        "address_line_2": "Address4 Line 2",
+        "address_line_3": "Address4 Line 3",
+        "city": "Address4 City",
+        "state": "Address4 State",
+        "country": "Address4 Country",
+        "postcode": "Address4 Postcode",
+        "preferred_billing": true,
+        "preferred_shipping": true
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    },
+    {
+      "id": "5",
+      "type": "addresses",
+      "attributes": {
+        "name": "Address5 Name",
+        "address_line_1": "Address5 Line 1",
+        "address_line_2": "Address5 Line 2",
+        "address_line_3": "Address5 Line 3",
+        "city": "Address5 City",
+        "state": "Address5 State",
+        "country": "Address5 Country",
+        "postcode": "Address5 Postcode",
+        "preferred_billing": true,
+        "preferred_shipping": true
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    },
+    {
+      "id": "6",
+      "type": "addresses",
+      "attributes": {
+        "name": "Address6 Name",
+        "address_line_1": "Address6 Line 1",
+        "address_line_2": "Address6 Line 2",
+        "address_line_3": "Address6 Line 3",
+        "city": "Address6 City",
+        "state": "Address6 State",
+        "country": "Address6 Country",
+        "postcode": "Address6 Postcode",
+        "preferred_billing": true,
+        "preferred_shipping": true
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    },
+    {
+      "id": "7",
+      "type": "addresses",
+      "attributes": {
+        "name": "Address7 Name",
+        "address_line_1": "Address7 Line 1",
+        "address_line_2": "Address7 Line 2",
+        "address_line_3": "Address7 Line 3",
+        "city": "Address7 City",
+        "state": "Address7 State",
+        "country": "Address7 Country",
+        "postcode": "Address7 Postcode",
+        "preferred_billing": true,
+        "preferred_shipping": true
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    },
+    {
+      "id": "8",
+      "type": "addresses",
+      "attributes": {
+        "name": "Address5 Name",
+        "address_line_1": "Address8 Line 1",
+        "address_line_2": "Address8 Line 2",
+        "address_line_3": "Address8 Line 3",
+        "city": "Address8 City",
+        "state": "Address8 State",
+        "country": "Address8 Country",
+        "postcode": "Address8 Postcode",
+        "preferred_billing": true,
+        "preferred_shipping": true
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    },
+    {
+      "id": "9",
+      "type": "addresses",
+      "attributes": {
+        "name": "Address9 Name",
+        "address_line_1": "Address9 Line 1",
+        "address_line_2": "Address9 Line 2",
+        "address_line_3": "Address9 Line 3",
+        "city": "Address9 City",
+        "state": "Address9 State",
+        "country": "Address9 Country",
+        "postcode": "Address9 Postcode",
+        "preferred_billing": true,
+        "preferred_shipping": true
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    },
+    {
+      "id": "10",
+      "type": "addresses",
+      "attributes": {
+        "name": "Address10 Name",
+        "address_line_1": "Address10 Line 1",
+        "address_line_2": "Address10 Line 2",
+        "address_line_3": "Address10 Line 3",
+        "city": "Address10 City",
+        "state": "Address10 State",
+        "country": "Address10 Country",
+        "postcode": "Address10 Postcode",
+        "preferred_billing": true,
+        "preferred_shipping": true
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    }
+
+  ],
+  "links": {
+    "first": {
+      "href": "http://www.com/someurl/pages/1.json_api",
+      "meta": {
+        "page_number": 1
+      }
+    },
+    "last": {
+      "href": "http://www.com/someurl/pages/5.json_api",
+      "meta": {
+        "page_number": 5
+      }
+    },
+    "next": {
+      "href": "http://www.com/someurl/pages/2.json_api",
+      "meta": {
+        "page_number": 2
+      }
+    }
+  },
+  "meta": {
+    "type": "addresses",
+    "page_count": 5,
+    "total_entries": 55
+  }
+}

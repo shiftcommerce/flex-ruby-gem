@@ -37,6 +37,7 @@ module FlexCommerce
     # @TODO Document other popular methods that we will support
 
     has_one :cart, class_name: "::FlexCommerce::Cart"
+    has_many :addresses, class_name: "::FlexCommerce::Address"
 
     property :email, type: :string
     property :reference, type: :string

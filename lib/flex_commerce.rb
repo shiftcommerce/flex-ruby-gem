@@ -15,4 +15,5 @@ module FlexCommerce
   autoload :DiscountSummary, File.join(gem_root, "app", "models", "discount_summary")
   autoload :LineItem, File.join(gem_root, "app", "models", "line_item")
   autoload :CustomerAccount, File.join(gem_root, "app", "models", "customer_account")
+  autoload :Address, File.join(gem_root, "app", "models", "address")
 end
