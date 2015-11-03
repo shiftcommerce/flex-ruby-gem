@@ -1,165 +1,106 @@
 {
   "data": {
-    "id": "202",
+    "id": "1",
     "type": "products",
     "attributes": {
-      "title": "Product attached to a menu item",
-      "description": "Recusandae voluptas ut aut. Ut molestias hic excepturi architecto. Veritatis maiores voluptatem recusandae dolorem qui sint tenetur.",
-      "reference": "596494470-1",
-      "slug": "product-attached-to-a-menu-item",
-      "min_price": 45.29,
-      "max_price": 45.29
+      "title": "Product 1 - Heavy Duty Concrete Wallet",
+      "description": "Product 1\\n\\nEa nostrum aliquam aliquid. Incidunt non magni harum odit ea et. Aut eveniet autem vel sit.\\nVelit quibusdam assumenda rem odio delectus reiciendis sunt. Velit deleniti quo ab nesciunt laboriosam amet commodi. Perspiciatis earum repellat quibusdam asperiores quam.\\nEt harum fuga tempore quasi fugiat. Aperiam deleniti in temporibus qui. Facere et ut quas nisi. In ducimus alias eligendi necessitatibus. Impedit dolor consequatur eum rerum maxime.",
+      "reference": "perspiciatis-repellendus-consequatur",
+      "slug": "seed_product_1",
+      "attribute_merchandising": {},
+      "sellable": true,
+      "web_product_name": "Product 1 - Heavy Duty Concrete Wallet",
+      "web_product_description": "Product 1 - Est a qui aut facilis esse omnis impedit.",
+      "seo_meta_title": "Product 1 - Heavy Duty Concrete Wallet",
+      "seo_meta_description": "Product 1 - Incidunt non voluptas illum perferendis quisquam voluptatibus quas tenetur.",
+      "seo_meta_keywords": "ducimus, molestias, itaque, voluptatibus, nostrum",
+      "content_type": "markdown",
+      "min_price": 1.23,
+      "max_price": 82.68,
+      "min_current_price": 1.23,
+      "max_current_price": 82.68,
+      "total_reviews": 0,
+      "total_ratings": 0,
+      "rating_average": 0.0,
+      "merged_attribute_merchandising": {}
     },
     "links": {
-      "self": "/praese/v1/products/product-attached-to-a-menu-item.json_api"
+      "self": "/garytaylortest/v1/products/seed_product_1.json_api"
     },
     "relationships": {
       "variants": {
         "data": [
+          {
+            "id": "2",
+            "type": "variants"
+          },
           {
             "id": "1",
             "type": "variants"
           }
         ]
       },
+      "template_definition": {
+        "data": {
+          "id": "2",
+          "type": "template_definitions"
+        }
+      },
       "breadcrumbs": {
-        "data": [
-          {
-            "id": "mollitia_5_146",
-            "type": "breadcrumbs"
-          },
-          {
-            "id": "doloremque_21_157",
-            "type": "breadcrumbs"
-          },
-          {
-            "id": "rerum_94_168",
-            "type": "breadcrumbs"
-          }
-        ]
+        "data": []
       }
     }
   },
   "included": [
     {
+      "id": "2",
+      "type": "variants",
+      "attributes": {
+        "title": "Variant 2 for Product 1 - Heavy Duty Concrete Wallet",
+        "description": "Product 1 - variant 2\\n\\nEveniet culpa dolores est cumque et. Dolorem reprehenderit laudantium placeat veniam adipisci commodi. Voluptatem facilis recusandae ipsum.\\nMaxime voluptatem odio optio corporis molestiae esse dolorem. Aut molestiae dolores dolor velit. Iste inventore non optio iure at magni tempore. Quia a qui.\\nIure eos deleniti accusamus qui sit. Non vel natus aspernatur ut quaerat velit nam. Incidunt sed velit quis autem voluptatibus illum.",
+        "sku": "0440138669234",
+        "price": 1.23,
+        "stock_level": 100,
+        "reference": "fugit_0_2",
+        "position": null,
+        "sellable": true,
+        "stock_allocated_level": 5,
+        "price_includes_taxes": true,
+        "current_price": 1.23,
+        "stock_available_level": 95,
+        "total_reviews": 0,
+        "total_ratings": 0,
+        "rating_average": 0.0
+      }
+    },
+    {
       "id": "1",
       "type": "variants",
       "attributes": {
-        "title": "Quis eveniet sunt qui.",
-        "description": "Perferendis nisi nostrum deserunt assumenda consequatur exercitationem. Tenetur qui aperiam dolorem. Facilis minus iste culpa quos quia. Distinctio et qui libero impedit.",
-        "sku": "742207266-0",
-        "price": 45.29,
-        "stock_level": 5,
-        "reference": "885703497-6"
+        "title": "Variant 1 for Product 1 - Heavy Duty Concrete Wallet",
+        "description": "Product 1 - variant 1\\n\\nAccusantium aut animi error et. Hic ducimus dolorem quo ut quis itaque voluptate. Numquam voluptas consequatur molestiae accusantium quis. Sapiente sunt blanditiis facilis possimus.\\nSunt dignissimos voluptates. Enim et ullam nostrum. Ut fuga est tempore totam. Repellendus repudiandae qui veritatis est praesentium unde.\\nSimilique officia recusandae aut. Nostrum dolores officia pariatur sit possimus voluptas beatae. Error porro eos omnis.",
+        "sku": "9361505691874",
+        "price": 82.68,
+        "stock_level": 100,
+        "reference": "quos_0_1",
+        "position": null,
+        "sellable": true,
+        "stock_allocated_level": 5,
+        "price_includes_taxes": true,
+        "current_price": 82.68,
+        "stock_available_level": 95,
+        "total_reviews": 0,
+        "total_ratings": 0,
+        "rating_average": 0.0
       }
     },
     {
-      "id": "202",
-      "type": "products",
+      "id": "2",
+      "type": "template_definitions",
       "attributes": {
-        "title": "Product attached to a menu item"
-      },
-      "links": {
-        "self": "/praese/v1/products/product-attached-to-a-menu-item.json_api"
-      }
-    },
-    {
-      "id": "202",
-      "type": "breadcrumb_items",
-      "attributes": {
-        "title": "There is a product associated with me"
-      },
-      "relationships": {
-        "item": {
-          "data": {
-            "id": "202",
-            "type": "products"
-          }
-        }
-      }
-    },
-    {
-      "id": "220",
-      "type": "breadcrumb_items",
-      "attributes": {
-        "title": "There is a product associated with me"
-      },
-      "relationships": {
-        "item": {
-          "data": {
-            "id": "202",
-            "type": "products"
-          }
-        }
-      }
-    },
-    {
-      "id": "238",
-      "type": "breadcrumb_items",
-      "attributes": {
-        "title": "There is a product associated with me"
-      },
-      "relationships": {
-        "item": {
-          "data": {
-            "id": "202",
-            "type": "products"
-          }
-        }
-      }
-    },
-    {
-      "id": "mollitia_5_146",
-      "type": "breadcrumbs",
-      "attributes": {
-        "reference": "mollitia_5_146",
-        "title": "Qui error impedit ut laudantium ea saepe omnis."
-      },
-      "relationships": {
-        "breadcrumb_items": {
-          "data": [
-            {
-              "id": "202",
-              "type": "breadcrumb_items"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": "doloremque_21_157",
-      "type": "breadcrumbs",
-      "attributes": {
-        "reference": "doloremque_21_157",
-        "title": "Ut pariatur sapiente nesciunt aperiam molestias culpa."
-      },
-      "relationships": {
-        "breadcrumb_items": {
-          "data": [
-            {
-              "id": "220",
-              "type": "breadcrumb_items"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": "rerum_94_168",
-      "type": "breadcrumbs",
-      "attributes": {
-        "reference": "rerum_94_168",
-        "title": "Autem quod maiores vitae delectus voluptates."
-      },
-      "relationships": {
-        "breadcrumb_items": {
-          "data": [
-            {
-              "id": "238",
-              "type": "breadcrumb_items"
-            }
-          ]
-        }
+        "label": "Product",
+        "reference": "product",
+        "data_type": "Product"
       }
     }
   ]

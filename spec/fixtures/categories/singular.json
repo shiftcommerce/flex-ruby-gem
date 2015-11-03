@@ -1,72 +1,91 @@
 {
   "data": {
-    "id": "2",
+    "id": "1",
     "type": "categories",
     "attributes": {
-      "title": "Et qui in molestiae nesciunt quaerat.",
-      "reference": "459274141"
+      "title": "Furniture",
+      "reference": "furniture",
+      "slug": "furniture"
     },
     "relationships": {
       "breadcrumbs": {
         "data": [
           {
-            "id": "ut_57_1",
+            "id": "sidebar",
             "type": "breadcrumbs"
           }
         ]
       },
       "products": {
         "links": {
-          "self": "/quianimieum/v1/categories/459274141/products.json_api"
+          "self": "/garytaylortest/v1/categories/furniture/products.json_api"
+        }
+      },
+      "parent_category": {
+        "data": null
+      },
+      "template_definition": {
+        "data": {
+          "id": "1",
+          "type": "template_definitions"
         }
       }
     },
     "links": {
-      "self": "/quianimieum/v1/categories/459274141.json_api"
+      "self": "/garytaylortest/v1/categories/furniture"
     }
   },
   "included": [
     {
-      "id": "2",
+      "id": "1",
       "type": "categories",
       "attributes": {
-        "title": "Et qui in molestiae nesciunt quaerat."
+        "title": "Furniture"
       },
       "links": {
-        "self": "/quianimieum/v1/categories/459274141.json_api"
+        "self": "/garytaylortest/v1/categories/furniture.json_api"
       }
     },
     {
-      "id": "1",
+      "id": "21",
       "type": "breadcrumb_items",
       "attributes": {
-        "title": "There is a category associated with me"
+        "title": "Furniture"
       },
       "relationships": {
         "item": {
           "data": {
-            "id": "2",
+            "id": "1",
             "type": "categories"
           }
         }
       }
     },
     {
-      "id": "ut_57_1",
+      "id": "sidebar",
       "type": "breadcrumbs",
       "attributes": {
-        "reference": "ut_57_1",
-        "title": "Est voluptate soluta qui ullam architecto necessitatibus incidunt."
+        "reference": "sidebar",
+        "title": "Sidebar Menu"
       },
       "relationships": {
         "breadcrumb_items": {
           "data": [
             {
-              "id": "1",
+              "id": "21",
               "type": "breadcrumb_items"
             }
           ]
         }
+      }
+    },
+    {
+      "id": "1",
+      "type": "template_definitions",
+      "attributes": {
+        "label": "Category",
+        "reference": "category",
+        "data_type": "Category"
       }
     }
   ]

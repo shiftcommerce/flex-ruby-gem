@@ -208,7 +208,8 @@ RSpec.describe FlexCommerce::Product do
       subject { subject_class.find(resource_identifier.attributes.slug) }
       it "should return an object with the correct attributes" do
         resource_identifier.attributes.each_pair do |attr, value|
-          expect(subject.send(attr)).to eql value
+          value = value.to_h if value.is_a?(JsonStruct)
+          expect(subject.send(attr)).to eql(value), "Expected #{attr} attribute to be #{value} but it was #{subject.send(attr)}"
         end
       end
       context "variants" do
