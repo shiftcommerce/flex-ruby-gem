@@ -17,5 +17,6 @@ module FlexCommerce
   autoload :CustomerAccount, File.join(gem_root, "app", "models", "customer_account")
   autoload :Address, File.join(gem_root, "app", "models", "address")
   autoload :OrderShippingMethod, File.join(gem_root, "app", "models", "order_shipping_method")
+  autoload :Order, File.join(gem_root, "app", "models", "order")
   autoload :TemplateDefinition, File.join(gem_root, "app", "models", "template_definition")
 end
