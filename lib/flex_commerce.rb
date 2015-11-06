@@ -19,4 +19,5 @@ module FlexCommerce
   autoload :OrderShippingMethod, File.join(gem_root, "app", "models", "order_shipping_method")
   autoload :Order, File.join(gem_root, "app", "models", "order")
   autoload :TemplateDefinition, File.join(gem_root, "app", "models", "template_definition")
+  autoload :SearchSuggestion, File.join(gem_root, "app", "models", "search_suggestion")
 end
