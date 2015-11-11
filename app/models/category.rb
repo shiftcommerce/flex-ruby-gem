@@ -60,8 +60,9 @@ module FlexCommerce
 
     # @TODO Document other popular methods that we will support
 
-    has_many :categories, class_name: "::FlexCommerce::Categories"
+    has_many :categories, class_name: "::FlexCommerce::Category"
     has_many :breadcrumbs, class_name: "::FlexCommerce::Breadcrumb"
+    has_many :products, class_name: "::FlexCommerce::Product"
 
     # Here we override breadcrumbs to provide a proxy to the array so we can use find on it in the normal
     # active record way

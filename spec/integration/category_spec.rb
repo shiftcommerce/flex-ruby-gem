@@ -25,7 +25,7 @@ RSpec.describe FlexCommerce::Category do
       end
       context "using the products association" do
         before :each do
-          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.products.links.self}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: multiple_product_resources.to_h.to_json, status: response_status, headers: default_headers
+          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.products.links.related}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: multiple_product_resources.to_h.to_json, status: response_status, headers: default_headers
         end
         let(:multiple_product_resources) { build(:product_list_from_fixture) }
         it "should return a list of products" do
