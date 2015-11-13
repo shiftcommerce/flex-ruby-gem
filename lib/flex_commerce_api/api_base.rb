@@ -75,11 +75,7 @@ module FlexCommerceApi
 
     def method_missing(method, *args)
       if relationships and relationships.has_attribute?(method)
-        # We have a relationship that is a link ?
-        definition = relationships[method]
-        return super unless !definition.key?("data") && definition.key?("links") && definition["links"].key?("self")
-        klass = ::JsonApiClient::Utils.compute_type(self.class, method.to_s.singularize.classify)
-        klass.requestor.linked(definition["links"]["self"])
+        super
       else
         has_attribute?(method) || method.to_s=~(/=$/) ? super : nil
       end

@@ -17,7 +17,7 @@ module FlexCommerceApi
       #
       def params_for_uri(uri)
         return {} unless uri
-        uri = URI.parse(uri["href"]) unless uri.respond_to?(:scheme)
+        uri = URI.parse(uri["href"] || uri) unless uri.respond_to?(:scheme)
         (Addressable::URI.parse(uri).query_values || {}).merge(params_from_pagination(uri))
       end
 

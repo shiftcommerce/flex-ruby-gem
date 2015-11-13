@@ -18,7 +18,7 @@
       },
       "products": {
         "links": {
-          "self": "/garytaylortest/v1/categories/furniture/products.json_api"
+          "related": "/garytaylortest/v1/categories/furniture/products.json_api"
         }
       },
       "parent_category": {

@@ -263,24 +263,9 @@
 
   ],
   "links": {
-    "first": {
-      "href": "http://www.com/someurl/pages/1.json_api",
-      "meta": {
-        "page_number": 1
-      }
-    },
-    "last": {
-      "href": "http://www.com/someurl/pages/5.json_api",
-      "meta": {
-        "page_number": 5
-      }
-    },
-    "next": {
-      "href": "http://www.com/someurl/pages/2.json_api",
-      "meta": {
-        "page_number": 2
-      }
-    }
+    "first": "http://www.com/someurl/pages/1.json_api",
+    "last": "http://www.com/someurl/pages/5.json_api",
+    "next": "http://www.com/someurl/pages/2.json_api"
   },
   "meta": {
     "type": "addresses",

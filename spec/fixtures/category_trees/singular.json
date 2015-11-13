@@ -1,0 +1,23 @@
+{
+  "data": {
+    "id": "1",
+    "type": "category_trees",
+    "attributes": {
+      "title": "Web",
+      "reference": "web",
+      "slug": "web",
+      "merchandisable": true
+    },
+    "relationships": {
+      "categories": {
+        "links": {
+          "related": "/garytaylor/v1/category_trees/1/categories"
+        }
+      }
+    },
+    "links": {
+      "self": "/garytaylor/v1/category_trees/1"
+    }
+  },
+  "included": []
+}
