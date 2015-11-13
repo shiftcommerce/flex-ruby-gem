@@ -5,30 +5,10 @@
     "total_entries": 11
   },
   "links": {
-    "self": {
-      "href": "/similiq/v1/categories/pages/1.json_api",
-      "meta": {
-        "page_number": 1
-      }
-    },
-    "next": {
-      "href": "/similiq/v1/categories/pages/2.json_api",
-      "meta": {
-        "page_number": 2
-      }
-    },
-    "first": {
-      "href": "/similiq/v1/categories/pages/1.json_api",
-      "meta": {
-        "page_number": 1
-      }
-    },
-    "last": {
-      "href": "/similiq/v1/categories/pages/2.json_api",
-      "meta": {
-        "page_number": 2
-      }
-    }
+    "self": "/similiq/v1/categories/pages/1.json_api",
+    "next": "/similiq/v1/categories/pages/2.json_api",
+    "first": "/similiq/v1/categories/pages/1.json_api",
+    "last": "/similiq/v1/categories/pages/2.json_api"
   },
   "data": [
     {
