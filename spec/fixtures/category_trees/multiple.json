@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "type": "category_trees",
+    "page_count": 1,
+    "total_entries": 2
+  },
+  "links": {
+    "self": "/garytaylor/v1/category_trees.json_api?page=1",
+    "first": "/garytaylor/v1/category_trees.json_api?page=1",
+    "last": "/garytaylor/v1/category_trees.json_api?page=1"
+  },
+  "data": [
+    {
+      "id": "2",
+      "type": "category_trees",
+      "attributes": {
+        "title": "Import",
+        "reference": "import",
+        "slug": "import",
+        "merchandisable": true
+      },
+      "relationships": {
+        "categories": {
+          "links": {
+            "related": "/garytaylor/v1/category_trees/2/categories"
+          }
+        }
+      },
+      "links": {
+        "self": "/garytaylor/v1/category_trees/2"
+      }
+    },
+    {
+      "id": "1",
+      "type": "category_trees",
+      "attributes": {
+        "title": "Web",
+        "reference": "web",
+        "slug": "web",
+        "merchandisable": true
+      },
+      "relationships": {
+        "categories": {
+          "links": {
+            "related": "/garytaylor/v1/category_trees/1/categories"
+          }
+        }
+      },
+      "links": {
+        "self": "/garytaylor/v1/category_trees/1"
+      }
+    }
+  ]
+}
