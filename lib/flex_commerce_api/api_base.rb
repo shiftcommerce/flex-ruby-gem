@@ -11,6 +11,7 @@ require "flex_commerce_api/json_api_client_extension/pagination_middleware"
 require "flex_commerce_api/json_api_client_extension/json_format_middleware"
 require "flex_commerce_api/json_api_client_extension/has_many_association_proxy"
 require "flex_commerce_api/json_api_client_extension/builder"
+require "flex_commerce_api/json_api_client_extension/flexible_connection"
 module FlexCommerceApi
   #
   # Base class for all flex commerce models
@@ -21,6 +22,8 @@ module FlexCommerceApi
     self.site = FlexCommerceApi.config.api_base_url
     self.paginator = JsonApiClientExtension::Paginator
     self.requestor_class = JsonApiClientExtension::Requestor
+    self.connection_class = ::FlexCommerceApi::JsonApiClientExtension::FlexibleConnection
+    self.connection_options.merge! adapter: FlexCommerceApi.config.adapter || :net_http
 
     class << self
       # @method all
@@ -88,14 +91,5 @@ module FlexCommerceApi
       JsonApiClientExtension::HasManyAssociationProxy.new(real_instance, self, assoc_name, options)
     end
 
-  end
-  ApiBase.connection_options.merge! adapter: FlexCommerceApi.config.adapter unless FlexCommerceApi.config.adapter.nil?
-  ApiBase.connection do |connection|
-    connection.faraday.basic_auth(ApiBase.username, ApiBase.password)
-    connection.use JsonApiClientExtension::SaveRequestBodyMiddleware
-    connection.use JsonApiClientExtension::LoggingMiddleware unless FlexCommerceApi.logger.nil?
-    connection.use JsonApiClientExtension::StatusMiddleware
-    connection.use JsonApiClientExtension::PaginationMiddleware
-    connection.use JsonApiClientExtension::JsonFormatMiddleware
   end
 end
