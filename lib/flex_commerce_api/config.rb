@@ -27,7 +27,7 @@ module FlexCommerceApi
     # @!attribute [r] api_version
     #  The API version.  This is tied to the gem version so if you want to access
     #  a later version of the API you must get a later version of the gem.
-    attr_accessor :flex_root_url, :flex_api_key, :flex_account, :logger
+    attr_accessor :flex_root_url, :flex_api_key, :flex_account, :logger, :adapter
     attr_reader :api_version
 
     def initialize

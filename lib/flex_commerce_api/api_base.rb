@@ -89,6 +89,7 @@ module FlexCommerceApi
     end
 
   end
+  ApiBase.connection_options.merge! adapter: FlexCommerceApi.config.adapter unless FlexCommerceApi.config.adapter.nil?
   ApiBase.connection do |connection|
     connection.faraday.basic_auth(ApiBase.username, ApiBase.password)
     connection.use JsonApiClientExtension::SaveRequestBodyMiddleware
