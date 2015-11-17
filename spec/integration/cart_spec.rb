@@ -8,6 +8,8 @@ RSpec.describe "Shopping Cart" do
   # see api_globals.rb in spec/support for the source code
   include_context "global context"
   let(:subject_class) { ::FlexCommerce::Cart }
+  let(:address_class) { ::FlexCommerce::Address }
+  let(:shipping_method_class) { ::FlexCommerce::OrderShippingMethod }
   let(:variant_class) { ::FlexCommerce::Variant }
   let(:line_item_class) { ::FlexCommerce::LineItem }
   let(:discount_summary_class) { ::FlexCommerce::DiscountSummary }
@@ -138,6 +140,36 @@ RSpec.describe "Shopping Cart" do
           end
         end
       end
+    end
+    context "a single cart during checkout with addresses and shipping method" do
+      let(:singular_resource) { build(:cart_from_fixture_with_checkout) }
+      let(:billing_address_resource) { singular_resource.included.detect { |r| r.to_h.slice(:id, :type) == singular_resource.data.relationships.billing_address.data.to_h } }
+      let(:shipping_address_resource) { singular_resource.included.detect { |r| r.to_h.slice(:id, :type) == singular_resource.data.relationships.shipping_address.data.to_h } }
+      let(:shipping_method_resource) { singular_resource.included.detect { |r| r.to_h.slice(:id, :type) == singular_resource.data.relationships.shipping_method.data.to_h } }
+      before :each do
+        stub_request(:get, "#{api_root}/carts/1.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
+      end
+      subject { subject_class.find(1) }
+      it_should_behave_like "a singular resource with an error response"
+      it "should return the correct top level object" do
+        expect(subject).to be_a(subject_class)
+      end
+
+      it "should fetch the billing address" do
+        expect(subject.billing_address).to be_a(address_class)
+        expect(subject.billing_address.attributes.to_h.except("id", "type")).to eql billing_address_resource.attributes.to_h.stringify_keys
+      end
+
+      it "should fetch the shipping address" do
+        expect(subject.shipping_address).to be_a(address_class)
+        expect(subject.shipping_address.attributes.to_h.except("id", "type")).to eql shipping_address_resource.attributes.to_h.stringify_keys
+      end
+
+      it "should fetch the shipping method" do
+        expect(subject.shipping_method).to be_a(shipping_method_class)
+        expect(subject.shipping_method.attributes.to_h.except("id", "type")).to eql shipping_method_resource.attributes.to_h.stringify_keys
+      end
+
     end
   end
 end

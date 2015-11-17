@@ -1,0 +1,230 @@
+{
+  "data": {
+    "id": "1",
+    "type": "carts",
+    "links": {
+      "self": "/api/v1/carts/1.json_api"
+    },
+    "meta": {
+      "type": "Cart"
+    },
+    "attributes": {
+      "sub_total": 379.62,
+      "total": 379.62,
+      "line_items_count": 2
+    },
+    "relationships": {
+      "line_items": {
+        "data": [
+          {
+            "type": "line_items",
+            "id": "1"
+          },
+          {
+            "type": "line_items",
+            "id": "2"
+          }
+        ]
+      },
+      "customer_account": {
+        "data": {
+          "id": "1",
+          "type": "customer_accounts"
+        }
+      },
+      "discount_summaries": {
+        "data": [
+          {
+            "id": "1",
+            "type": "discount_summaries"
+          },
+          {
+            "id": "2",
+            "type": "discount_summaries"
+          }
+
+        ]
+      },
+      "billing_address": {
+        "data": {
+          "id": "1",
+          "type": "addresses"
+        }
+      },
+      "shipping_address": {
+        "data": {
+          "id": "2",
+          "type": "addresses"
+        }
+      },
+      "shipping_method": {
+        "data": {
+          "id": "1",
+          "type": "order_shipping_methods"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "customer_accounts",
+      "attributes": {
+        "email": "myemail@mydomain.com",
+        "reference": "myemail"
+      },
+      "links": {
+        "self": "/api/v1/customer_accounts/1.json_api"
+      }
+    },
+    {
+      "id": "1",
+      "type": "discount_summaries",
+      "attributes": {
+        "name": "10% Off something",
+        "total": 12.50
+      }
+    },
+    {
+      "id": "2",
+      "type": "discount_summaries",
+      "attributes": {
+        "name": "20% Off something",
+        "total": 5.50
+      }
+    },
+    {
+      "id": "1",
+      "type": "line_items",
+      "attributes": {
+        "title": "Rustic Rubber Shoes",
+        "unit_quantity": 3,
+        "unit_price": 63.27,
+        "subtotal": 189.81,
+        "total": 189.81
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "1",
+            "type": "variants"
+          }
+        },
+        "container": {
+          "links": {
+            "self": "/api/v1/carts/1.json_api"
+          }
+        }
+      }
+    },
+    {
+      "id": "2",
+      "type": "line_items",
+      "attributes": {
+        "title": "Rustic Rubber Shoes",
+        "unit_quantity": 3,
+        "unit_price": 63.27,
+        "subtotal": 189.81,
+        "total": 189.81
+      },
+      "relationships": {
+        "item": {
+          "data": {
+            "id": "2",
+            "type": "variants"
+          }
+        },
+        "container": {
+          "links": {
+            "self": "/api/v1/carts/1.json_api"
+          }
+        }
+      }
+    },
+    {
+      "id": "1",
+      "type": "variants",
+      "attributes": {
+        "title": "Quis eveniet sunt qui. 1",
+        "description": "1 Perferendis nisi nostrum deserunt assumenda consequatur exercitationem. Tenetur qui aperiam dolorem. Facilis minus iste culpa quos quia. Distinctio et qui libero impedit.",
+        "sku": "742207266-0-1",
+        "price": 45.29,
+        "stock_level": 5,
+        "reference": "885703497-6-1"
+      }
+    },
+    {
+      "id": "2",
+      "type": "variants",
+      "attributes": {
+        "title": "Quis eveniet sunt qui. 2",
+        "description": "2 Perferendis nisi nostrum deserunt assumenda consequatur exercitationem. Tenetur qui aperiam dolorem. Facilis minus iste culpa quos quia. Distinctio et qui libero impedit.",
+        "sku": "742207266-0-2",
+        "price": 45.29,
+        "stock_level": 5,
+        "reference": "885703497-6-2"
+      }
+    },
+    {
+      "id": "1",
+      "type": "addresses",
+      "attributes": {
+        "name": "Billing Address1 Name",
+        "address_line_1": "Billing Address1 Line 1",
+        "address_line_2": "Billing Address1 Line 2",
+        "address_line_3": "Billing Address1 Line 3",
+        "city": "Billing Address1 City",
+        "state": "Billing Address1 State",
+        "country": "GB",
+        "postcode": "Billing Address1 Postcode",
+        "preferred_billing": true,
+        "preferred_shipping": false
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    },
+    {
+      "id": "2",
+      "type": "addresses",
+      "attributes": {
+        "name": "Shipping Address2 Name",
+        "address_line_1": "Shipping Address2 Line 1",
+        "address_line_2": "Shipping Address2 Line 2",
+        "address_line_3": "Shipping Address2 Line 3",
+        "city": "Shipping Address2 City",
+        "state": "Shipping Address2 State",
+        "country": "Shipping Address2 Country",
+        "postcode": "Shipping Address2 Postcode",
+        "preferred_billing": false,
+        "preferred_shipping": true
+      },
+      "links": {
+        "self": "someurl"
+      },
+      "relationships": {
+        "customer_account": {
+          "links": {
+            "related": "customer account url"
+          }
+        }
+      }
+    },
+    {
+      "id": "1",
+      "type": "order_shipping_methods",
+      "attributes": {
+        "label": "First Class",
+        "price": 1.50,
+        "tax": 0.25
+      }
+    }
+  ]
+}
