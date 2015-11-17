@@ -9,7 +9,7 @@ RSpec.describe "Shopping Cart" do
   include_context "global context"
   let(:subject_class) { ::FlexCommerce::Cart }
   let(:address_class) { ::FlexCommerce::Address }
-  let(:shipping_method_class) { ::FlexCommerce::OrderShippingMethod }
+  let(:shipping_method_class) { ::FlexCommerce::ShippingMethod }
   let(:variant_class) { ::FlexCommerce::Variant }
   let(:line_item_class) { ::FlexCommerce::LineItem }
   let(:discount_summary_class) { ::FlexCommerce::DiscountSummary }

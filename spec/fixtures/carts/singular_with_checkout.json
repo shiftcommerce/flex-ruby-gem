@@ -60,7 +60,7 @@
       "shipping_method": {
         "data": {
           "id": "1",
-          "type": "order_shipping_methods"
+          "type": "shipping_methods"
         }
       }
     }
@@ -219,7 +219,7 @@
     },
     {
       "id": "1",
-      "type": "order_shipping_methods",
+      "type": "shipping_methods",
       "attributes": {
         "label": "First Class",
         "price": 1.50,

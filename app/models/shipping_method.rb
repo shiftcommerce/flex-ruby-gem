@@ -13,10 +13,10 @@ module FlexCommerce
   #
   #   # Fetching all order shipping methods for a customer account
   #
-  #   FlexCommerce::OrderShippingMethod.all #fetches all order shipping methods(actually the first page in case there are thousands)
+  #   FlexCommerce::ShippingMethod.all #fetches all order shipping methods(actually the first page in case there are thousands)
   #
   #
-  class OrderShippingMethod < FlexCommerceApi::ApiBase
+  class ShippingMethod < FlexCommerceApi::ApiBase
 
     # @method all
     # Returns all order shipping methods
