@@ -89,6 +89,15 @@ RSpec.describe FlexCommerce::Product do
 
       it_should_behave_like "a collection of anything"
     end
+    context "fetching from a known category tree and category" do
+      let(:expected_list_quantity) { 25 }
+      let(:stubbed_url) { "#{api_root}/category_trees/slug:tree_slug/categories/slug:category_slug/products.json_api" }
+      let!(:stub) do
+        stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: response_status, headers: default_headers
+      end
+      subject { subject_class.where({category_tree_id: "slug:tree_slug", category_id: "slug:category_slug"}).all }
+      it_should_behave_like "a collection of anything"
+    end
   end
 
   context "using fixture data for a collection of products" do

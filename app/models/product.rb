@@ -69,6 +69,16 @@ module FlexCommerce
     self.query_builder = ::FlexCommerceApi::JsonApiClientExtension::Builder
     class << self
       def_delegators :_new_scope, :temp_search
+      def path(params, *args)
+        if params[:filter] && params[:filter].key?(:category_id) && params[:filter].key?(:category_tree_id)
+          category_tree_id = params[:filter].delete(:category_tree_id)
+          category_id = params[:filter].delete(:category_id)
+          params.delete(:filter) if params[:filter].empty?
+          "category_trees/#{category_tree_id}/categories/#{category_id}/products"
+        else
+          super
+        end
+      end
     end
   end
 end
