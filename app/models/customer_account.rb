@@ -38,6 +38,7 @@ module FlexCommerce
 
     has_one :cart, class_name: "::FlexCommerce::Cart"
     has_many :addresses, class_name: "::FlexCommerce::Address"
+    has_many :orders, class_name: "::FlexCommerce::Order"
 
     property :email, type: :string
     property :reference, type: :string
