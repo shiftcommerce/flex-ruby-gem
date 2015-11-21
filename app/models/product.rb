@@ -55,6 +55,7 @@ module FlexCommerce
 
     has_many :variants, class_name: "::FlexCommerce::Variant"
     has_many :breadcrumbs, class_name: "::FlexCommerce::Breadcrumb"
+    has_many :asset_files, class_name: "::FlexCommerce::AssetFile"
 
     # Here we override breadcrumbs to provide a proxy to the array so we can use find on it in the normal
     # active record way
