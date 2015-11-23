@@ -8,6 +8,7 @@ module FlexCommerce
   #
   #
   class Order < FlexCommerceApi::ApiBase
+    has_many :transactions, class_name: "::FlexCommerce::OrderTransaction"
 
   end
 end
