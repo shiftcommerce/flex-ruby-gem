@@ -8,7 +8,7 @@ module FlexCommerceApi
         self.options = options
       end
 
-      delegate :empty?, :each, :each_with_index, :length, :count, :map, :select, to: :real_instance
+      delegate :empty?, :each, :each_with_index, :length, :count, :map, :select, :first, :last, :[], to: :real_instance
       #
       # Finds an instance by primary key
       #
