@@ -72,6 +72,11 @@ module FlexCommerceApi
       super attrs.with_indifferent_access
     end
 
+    def save!
+      return if save
+      raise_record_invalid
+    end
+
     def public_attributes
       attributes.reject { |k, v| PRIVATE_ATTRIBUTES.include?(k.to_s) }
     end
@@ -85,6 +90,10 @@ module FlexCommerceApi
     end
 
     private
+
+    def raise_record_invalid
+      raise(RecordInvalid.new(self))
+    end
 
     # This is temporary code - eventually this will be in the lower level gem
     def has_many_association_proxy(assoc_name, real_instance, options = {})
