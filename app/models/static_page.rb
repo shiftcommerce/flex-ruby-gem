@@ -45,14 +45,5 @@ module FlexCommerce
 
     # @TODO Document other popular methods that we will support
 
-    # @TODO Once reference and slug are added to static page, remove this
-    def reference
-      title.parameterize
-    end
-
-    # @TODO Once reference and slug are added to static page, remove this
-    def slug
-      reference
-    end
   end
 end
