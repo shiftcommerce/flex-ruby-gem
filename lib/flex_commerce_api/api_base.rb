@@ -92,7 +92,7 @@ module FlexCommerceApi
     private
 
     def raise_record_invalid
-      raise(RecordInvalid.new(self))
+      raise(::FlexCommerceApi::Error::RecordInvalid.new(self))
     end
 
     # This is temporary code - eventually this will be in the lower level gem
