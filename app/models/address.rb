@@ -17,11 +17,21 @@ module FlexCommerce
   #
   #
   class Address < FlexCommerceApi::ApiBase
-    belongs_to :customer_account, class_name: "::FlexCommerce::CustomerAccount"
 
     # @method all
     # Returns all addresses
     # @return [FlexCommerce::Address[]] An array of categories or an empty array
+    class << self
+      def path(params, *args)
+        if params[:filter] && params[:filter].key?(:customer_account_id)
+          customer_account_id = params[:filter].delete(:customer_account_id)
+          params.delete(:filter) if params[:filter].empty?
+          "customer_accounts/#{customer_account_id}/addresses"
+        else
+          super
+        end
+      end
 
+    end
   end
 end
