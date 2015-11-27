@@ -5,4 +5,10 @@ FactoryGirl.define do
       send(key, value)
     end
   end
+  factory :address_from_fixture, class: JsonStruct do
+    obj = JsonStruct.new(JSON.parse(File.read("spec/fixtures/addresses/single.json")))
+    obj.each_pair do |key, value|
+      send(key, value)
+    end
+  end
 end

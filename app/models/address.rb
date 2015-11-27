@@ -22,11 +22,13 @@ module FlexCommerce
     # Returns all addresses
     # @return [FlexCommerce::Address[]] An array of categories or an empty array
     class << self
-      def path(params, *args)
+      def path(params, instance = nil)
         if params[:filter] && params[:filter].key?(:customer_account_id)
           customer_account_id = params[:filter].delete(:customer_account_id)
           params.delete(:filter) if params[:filter].empty?
           "customer_accounts/#{customer_account_id}/addresses"
+        elsif instance && instance.try(:customer_account_id)
+          "customer_accounts/#{instance.customer_account_id}/addresses"
         else
           super
         end

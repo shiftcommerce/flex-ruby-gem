@@ -26,6 +26,16 @@ RSpec.describe FlexCommerce::Address do
         it_should_behave_like "a collection of anything"
         it_should_behave_like "a collection of resources with an error response"
       end
+      context "creating a new address with a customer account id" do
+        let(:resource) { build(:address_from_fixture) }
+        before(:each) do
+          stub_request(:post, "#{api_root}/customer_accounts/#{customer_account.id}/addresses.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource.to_h.to_json, status: response_status, headers: default_headers
+        end
+        subject { subject_class.create({name: "Anything", customer_account_id: customer_account.id}) }
+        it "should return with the resource" do
+          expect(subject).to be_a(subject_class)
+        end
+      end
     end
   end
   context "anonymous" do

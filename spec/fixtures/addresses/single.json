@@ -1,0 +1,28 @@
+{
+  "data": {
+    "id": "1",
+    "type": "addresses",
+    "attributes": {
+      "name": "Address1 Name",
+      "address_line_1": "Address1 Line 1",
+      "address_line_2": "Address1 Line 2",
+      "address_line_3": "Address1 Line 3",
+      "city": "Address1 City",
+      "state": "Address1 State",
+      "country": "Address1 Country",
+      "postcode": "Address1 Postcode",
+      "preferred_billing": true,
+      "preferred_shipping": true
+    },
+    "links": {
+      "self": "someurl"
+    },
+    "relationships": {
+      "customer_account": {
+        "links": {
+          "related": "customer account url"
+        }
+      }
+    }
+  }
+}
