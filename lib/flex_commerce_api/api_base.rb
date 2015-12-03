@@ -85,7 +85,7 @@ module FlexCommerceApi
       if relationships and relationships.has_attribute?(method)
         super
       else
-        has_attribute?(method) || method.to_s=~(/=$/) ? super : nil
+        has_attribute?(method) || method.to_s=~(/=$/) || method.to_s=~/!$/ ? super : nil
       end
     end
 

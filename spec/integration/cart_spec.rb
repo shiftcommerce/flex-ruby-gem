@@ -139,6 +139,60 @@ RSpec.describe "Shopping Cart" do
             end
           end
         end
+        context "using the validate_stock! method" do
+          let!(:stub) { stub_request(:get, "#{api_root}/stock_levels.json_api").with(headers: {"Accept" => "application/vnd.api+json"}, query: {skus: "742207266-0-1,742207266-0-2"}).to_return body: stock_level_list.to_json, status: response_status, headers: default_headers }
+          context "with no stock" do
+            let(:stock_level_list) { {
+              data: [
+                {
+                  id: "742207266-0-1",
+                  type: "stock_levels",
+                  attributes: {
+                    stock_available: 0
+                  }
+                },
+                {
+                  id: "742207266-0-2",
+                  type: "stock_levels",
+                  attributes: {
+                    stock_available: 10
+                  }
+                }
+              ]
+            } }
+            it "should mark any line items that are out of stock" do
+              subject.validate_stock!
+              expect(subject.line_items[0].errors[:unit_quantity]).to include "Out of stock"
+            end
+
+          end
+          context "with not enough stock" do
+            let(:stock_level_list) { {
+              data: [
+                {
+                  id: "742207266-0-1",
+                  type: "stock_levels",
+                  attributes: {
+                    stock_available: 1
+                  }
+                },
+                {
+                  id: "742207266-0-2",
+                  type: "stock_levels",
+                  attributes: {
+                    stock_available: 10
+                  }
+                }
+              ]
+            } }
+            it "should mark any line items that are out of stock" do
+              subject.validate_stock!
+              expect(subject.line_items[0].errors[:unit_quantity]).to include "Only 1 in stock"
+            end
+
+          end
+
+        end
       end
     end
     context "a single cart during checkout with addresses and shipping method" do
