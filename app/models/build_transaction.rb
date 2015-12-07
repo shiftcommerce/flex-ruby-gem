@@ -9,6 +9,9 @@ module FlexCommerce
   #
   #
   class BuildTransaction < FlexCommerceApi::ApiBase
+    def error_meta
+      errors.empty? ? nil : last_result_set.errors.first.meta
+    end
 
   end
 end
