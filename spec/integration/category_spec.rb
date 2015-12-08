@@ -55,7 +55,7 @@ RSpec.describe FlexCommerce::Category do
     end
     context "working with multiple categories" do
       let(:resource_list) { build(:categories_from_fixture) }
-      let(:quantity) { 20 }
+      let(:quantity) { 11 }
       let(:total_pages) { resource_list.meta.page_count }
       let(:current_page) { nil }
       let(:expected_list_quantity) { 10 }

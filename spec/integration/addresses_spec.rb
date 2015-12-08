@@ -14,7 +14,7 @@ RSpec.describe FlexCommerce::Address do
       let(:customer_account) { customer_account_document.data }
       context "working with multiple addresses" do
         let(:resource_list) { build(:addresses_from_fixture) }
-        let(:quantity) { 50 }
+        let(:quantity) { 55 }
         let(:total_pages) { resource_list.meta.page_count }
         let(:current_page) { nil }
         let(:expected_list_quantity) { 10 }
@@ -42,7 +42,7 @@ RSpec.describe FlexCommerce::Address do
     context "with fixture files from flex" do
       context "working with multiple addresses" do
         let(:resource_list) { build(:addresses_from_fixture) }
-        let(:quantity) { 50 }
+        let(:quantity) { 55 }
         let(:total_pages) { resource_list.meta.page_count }
         let(:current_page) { nil }
         let(:expected_list_quantity) { 10 }

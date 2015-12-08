@@ -44,13 +44,19 @@ RSpec.describe FlexCommerce::Product do
     # Calculates the stubbed_url depending on if current_page is nil or not
     #  If current page is nil, then it is expected that the test will fetch its data from the collection_url rather
     #  than the paginated version.
-    let(:stubbed_url) { current_page.present? ? "#{collection_url}/pages/#{current_page}.json_api" : "#{collection_url}.json_api" }
+    let(:stubbed_url) { "#{collection_url}.json_api" }
     # Calculates the expected list quantity
     let(:expected_list_quantity) { quantity == 0 ? 0 : ((quantity - 1) % page_size) + 1 }
     context "without search" do
       # Easy access to the collection URL
       let(:collection_url) { "#{api_root}/products" }
-      let!(:stub) { stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: response_status, headers: default_headers }
+      let!(:stub) do
+        if current_page.present?
+          stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }, query: { page: { number: current_page }}).to_return body: resource_list.to_json, status: response_status, headers: default_headers
+        else
+          stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: response_status, headers: default_headers
+        end
+      end
       # The subject for all examples - using pagination as this is expected normally
       subject { subject_class.paginate(page: current_page).all }
       it_should_behave_like "a collection of resources with various data sets", resource_type: :product

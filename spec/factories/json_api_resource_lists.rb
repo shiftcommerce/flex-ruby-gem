@@ -33,15 +33,15 @@ FactoryGirl.define do
       quantity = evaluator.page_size if quantity == 0
       list.data = build_list(:json_api_resource, quantity, build_resource: evaluator.type.to_sym, base_path: evaluator.base_path, primary_key: evaluator.primary_key)
       list.links.merge! "self": build(:json_api_resource_link,
-                                      href: "#{evaluator.base_path}/#{evaluator.pluralized_type}/pages/#{evaluator.page}.json_api",
+                                      href: "#{evaluator.base_path}/#{evaluator.pluralized_type}.json_api?page[number]=#{evaluator.page}",
                                       meta: { page_number: evaluator.page }
                                      )
       list.links.merge! "first": build(:json_api_resource_link,
-                                       href: "#{evaluator.base_path}/#{evaluator.pluralized_type}/pages/1.json_api",
+                                       href: "#{evaluator.base_path}/#{evaluator.pluralized_type}.json_api?page[number]=1",
                                        meta: { page_number: 1 }
                                       )
       list.links.merge! "last": build(:json_api_resource_link,
-                                      href: "#{evaluator.base_path}/#{evaluator.pluralized_type}/pages/#{evaluator.page_count}.json_api",
+                                      href: "#{evaluator.base_path}/#{evaluator.pluralized_type}.json_api?page[number]=#{evaluator.page_count}",
                                       meta: { page_number: evaluator.page_count }
                                      )
     end

@@ -8,7 +8,6 @@ module FlexCommerceApi
           builder.request :json
           builder.use JsonApiClientExtension::SaveRequestBodyMiddleware
           builder.use JsonApiClientExtension::LoggingMiddleware unless FlexCommerceApi.logger.nil?
-          builder.use JsonApiClientExtension::PaginationMiddleware
           builder.use JsonApiClientExtension::JsonFormatMiddleware
           builder.use JsonApiClient::Middleware::JsonRequest
           builder.use JsonApiClientExtension::StatusMiddleware
