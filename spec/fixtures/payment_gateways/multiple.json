@@ -1,0 +1,76 @@
+{
+  "data": [
+    {
+      "id": "paypal",
+      "type": "payment_gateways",
+      "attributes": {
+        "name": "Paypal",
+        "meta_attributes": {
+          "signature": "exhehfywkehrhejrtkjeht",
+          "login": "login",
+          "password": "password"
+        }
+      },
+      "relationships": {
+        "setup": {
+          "data": {
+            "id": "1",
+            "type": "payment_gateway_setups"
+          }
+        }
+      }
+    },
+    {
+      "id": "spreedly",
+      "type": "payment_gateways",
+      "attributes": {
+        "name": "Spreedly",
+        "meta_attributes": {
+          "environment_key": "jhg5jh34g53j4g534ghj5gjh34g5hj3g4jh5gj3h4g5jk2h"
+        }
+      },
+      "relationships": {
+        "setup": {
+          "data": {
+            "id": "2",
+            "type": "payment_gateway_setups"
+          }
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "1",
+      "type": "payment_gateway_setups",
+      "attributes": {
+        "setup_type": "custom",
+        "meta_attributes": {
+          "signature": "exhehfywkehrhejrtkjeht",
+          "login": "login",
+          "password": "password"
+        }
+      }
+    },
+    {
+      "id": "2",
+      "type": "payment_gateway_setups",
+      "attributes": {
+        "setup_type": "custom",
+        "meta_attributes": {
+          "environment_key": "jhg5jh34g53j4g534ghj5gjh34g5hj3g4jh5gj3h4g5jk2h"
+        }
+      }
+    }
+  ],
+  "links": {
+    "first": "http://www.com/someurl/pages/1.json_api",
+    "last": "http://www.com/someurl/pages/1.json_api"
+  },
+  "meta": {
+    "type": "payment_gateways",
+    "page_count": 1,
+    "total_entries": 2
+  }
+
+}
