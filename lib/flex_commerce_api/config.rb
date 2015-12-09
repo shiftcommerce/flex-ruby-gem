@@ -40,5 +40,12 @@ module FlexCommerceApi
     def api_base_url
       "#{flex_root_url}/#{flex_account}/#{api_version}"
     end
+
+    # Informs all models that the configuration may have changed
+    # but only if ApiBase is defined - else nothing has loaded yet
+    # so they wont need reconfiguring
+    def reconfigure_all!
+      FlexCommerceApi::ApiBase.reconfigure_all if FlexCommerceApi.const_defined? "ApiBase"
+    end
   end
 end

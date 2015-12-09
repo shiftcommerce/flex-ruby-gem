@@ -22,7 +22,12 @@ module FlexCommerceApi
     self.paginator = JsonApiClientExtension::Paginator
     self.requestor_class = JsonApiClientExtension::Requestor
     self.connection_class = ::FlexCommerceApi::JsonApiClientExtension::FlexibleConnection
-    self.connection_options.merge! adapter: FlexCommerceApi.config.adapter || :net_http
+
+    def self.reconfigure
+      self.connection_options.merge! adapter: FlexCommerceApi.config.adapter || :net_http
+    end
+
+    reconfigure
 
     class << self
       # @method all
@@ -65,6 +70,11 @@ module FlexCommerceApi
         super(params)
       end
 
+      def reconfigure_all
+        subclasses.each do |sub|
+          sub.reconfigure
+        end
+      end
     end
     # Ensures all attributes are with indifferent access
     def initialize(attrs = {})

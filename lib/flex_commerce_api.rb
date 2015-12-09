@@ -6,6 +6,7 @@ module FlexCommerceApi
   def self.config
     FlexCommerceApi::Config.instance.tap do |config|
       yield config if block_given?
+      config.reconfigure_all! if block_given?
     end
   end
   def self.gem_root
