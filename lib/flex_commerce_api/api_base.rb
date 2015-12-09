@@ -25,6 +25,7 @@ module FlexCommerceApi
     def self.reconfigure
       self.site = FlexCommerceApi.config.api_base_url
       self.connection_options.merge! adapter: FlexCommerceApi.config.adapter || :net_http
+      connection(true)  # Force reload
     end
 
     reconfigure
@@ -74,6 +75,7 @@ module FlexCommerceApi
         subclasses.each do |sub|
           sub.reconfigure
         end
+        reconfigure
       end
     end
     # Ensures all attributes are with indifferent access
