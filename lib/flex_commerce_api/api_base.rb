@@ -22,14 +22,6 @@ module FlexCommerceApi
     self.requestor_class = JsonApiClientExtension::Requestor
     self.connection_class = ::FlexCommerceApi::JsonApiClientExtension::FlexibleConnection
 
-    def self.reconfigure
-      self.site = FlexCommerceApi.config.api_base_url
-      self.connection_options.merge! adapter: FlexCommerceApi.config.adapter || :net_http
-      connection(true)  # Force reload
-    end
-
-    reconfigure
-
     class << self
       # @method all
       # Returns all resources
@@ -77,7 +69,20 @@ module FlexCommerceApi
         end
         reconfigure
       end
+
+      def reconfigure
+        self.site = FlexCommerceApi.config.api_base_url
+        self.connection_options.merge! adapter: FlexCommerceApi.config.adapter || :net_http
+        reload_connection_if_required
+      end
+
+      def reload_connection_if_required
+        connection(true) if connection_object
+      end
     end
+
+    reconfigure
+
     # Ensures all attributes are with indifferent access
     def initialize(attrs = {})
       super attrs.with_indifferent_access
