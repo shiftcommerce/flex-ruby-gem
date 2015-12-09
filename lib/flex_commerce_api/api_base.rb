@@ -77,7 +77,7 @@ module FlexCommerceApi
       end
 
       def reload_connection_if_required
-        connection(true) if connection_object
+        _build_connection(true) if connection_object
       end
     end
 
