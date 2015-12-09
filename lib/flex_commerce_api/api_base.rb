@@ -18,12 +18,12 @@ module FlexCommerceApi
   class ApiBase < JsonApiClient::Resource
     PRIVATE_ATTRIBUTES = %w(id type relationships links meta)
     # set the api base url in an abstract base class
-    self.site = FlexCommerceApi.config.api_base_url
     self.paginator = JsonApiClientExtension::Paginator
     self.requestor_class = JsonApiClientExtension::Requestor
     self.connection_class = ::FlexCommerceApi::JsonApiClientExtension::FlexibleConnection
 
     def self.reconfigure
+      self.site = FlexCommerceApi.config.api_base_url
       self.connection_options.merge! adapter: FlexCommerceApi.config.adapter || :net_http
     end
 
