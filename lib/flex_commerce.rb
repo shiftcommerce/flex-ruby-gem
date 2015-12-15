@@ -28,4 +28,5 @@ module FlexCommerce
   autoload :Country, File.join(gem_root, "app", "models", "country")
   autoload :Promotion, File.join(gem_root, "app", "models", "promotion")
   autoload :StockLevel, File.join(gem_root, "app", "models", "stock_level")
+  autoload :BundleGroup, File.join(gem_root, "app", "models", "bundle_group")
 end

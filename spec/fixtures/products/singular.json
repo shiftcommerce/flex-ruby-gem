@@ -3,29 +3,30 @@
     "id": "1",
     "type": "products",
     "attributes": {
-      "title": "Product 1 - Heavy Duty Concrete Wallet",
-      "description": "Product 1\\n\\nEa nostrum aliquam aliquid. Incidunt non magni harum odit ea et. Aut eveniet autem vel sit.\\nVelit quibusdam assumenda rem odio delectus reiciendis sunt. Velit deleniti quo ab nesciunt laboriosam amet commodi. Perspiciatis earum repellat quibusdam asperiores quam.\\nEt harum fuga tempore quasi fugiat. Aperiam deleniti in temporibus qui. Facere et ut quas nisi. In ducimus alias eligendi necessitatibus. Impedit dolor consequatur eum rerum maxime.",
-      "reference": "perspiciatis-repellendus-consequatur",
+      "title": "Product 1 - Heavy Duty Wool Watch",
+      "description": "Product 1\n\nNatus quia vel accusantium et. Consectetur tempore aut itaque temporibus culpa repellendus. Velit fuga est illum et. Rem est possimus.\nMolestias consequatur velit. Facilis nihil ullam hic ut. Mollitia nobis eum fugiat. Suscipit et in nobis ratione quasi asperiores laboriosam.\nTempore architecto quia. Adipisci ipsum sunt laudantium et ducimus veniam. Explicabo suscipit cupiditate voluptatem eveniet nobis. Reprehenderit laborum beatae sed. Ipsa ut nam rem.",
+      "reference": "sint-fugit-velit",
       "slug": "seed_product_1",
       "attribute_merchandising": {},
       "sellable": true,
-      "web_product_name": "Product 1 - Heavy Duty Concrete Wallet",
-      "web_product_description": "Product 1 - Est a qui aut facilis esse omnis impedit.",
-      "seo_meta_title": "Product 1 - Heavy Duty Concrete Wallet",
-      "seo_meta_description": "Product 1 - Incidunt non voluptas illum perferendis quisquam voluptatibus quas tenetur.",
-      "seo_meta_keywords": "ducimus, molestias, itaque, voluptatibus, nostrum",
+      "web_product_name": "Product 1 - Heavy Duty Wool Watch",
+      "web_product_description": "Product 1 - Eos non amet sunt.",
+      "seo_meta_title": "Product 1 - Heavy Duty Wool Watch",
+      "seo_meta_description": "Product 1 - Reprehenderit aperiam aut et sit rerum dignissimos illum et.",
+      "seo_meta_keywords": "nostrum, mollitia, pariatur, at, ea",
       "content_type": "markdown",
-      "min_price": 1.23,
-      "max_price": 82.68,
-      "min_current_price": 1.23,
-      "max_current_price": 82.68,
+      "min_price": 35.53,
+      "max_price": 69.89,
+      "min_current_price": 35.53,
+      "max_current_price": 69.89,
       "total_reviews": 0,
       "total_ratings": 0,
       "rating_average": 0.0,
-      "merged_attribute_merchandising": {}
+      "merged_attribute_merchandising": {},
+      "template_attributes": {}
     },
     "links": {
-      "self": "/garytaylortest/v1/products/seed_product_1.json_api"
+      "self": "/testaccount/v1/products/seed_product_1.json_api"
     },
     "relationships": {
       "variants": {
@@ -40,33 +41,195 @@
           }
         ]
       },
-      "template_definition": {
-        "data": {
-          "id": "2",
-          "type": "template_definitions"
-        }
-      },
       "breadcrumbs": {
         "data": []
+      },
+      "asset_files": {
+        "data": [
+          {
+            "id": "1",
+            "type": "asset_files"
+          }
+        ]
+      },
+      "bundle_groups": {
+        "data": [
+          {
+            "id": "1",
+            "type": "bundle_groups"
+          }
+        ]
       }
     }
   },
   "included": [
     {
+      "id": "1",
+      "type": "asset_files",
+      "attributes": {
+        "name": "Product image 0",
+        "created_at": "2015-12-15T10:31:44.557Z",
+        "updated_at": "2015-12-15T10:31:45.209Z",
+        "file_content_filename": "1.jpeg",
+        "file_content_size": 185606,
+        "file_content_content_type": "image/jpeg",
+        "image_width": 1024,
+        "image_height": 724,
+        "asset_file": "1.jpeg",
+        "s3_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/1/1.jpeg",
+        "reference": "ca6e414e-10aa-492f-9b3e-1445a93ef725"
+      },
+      "links": {
+        "self": "/testaccount/v1/products/1.json_api"
+      },
+      "relationships": {
+        "asset_folder": {
+          "links": {
+            "related": "/testaccount/v1/asset_folders/1.json_api"
+          }
+        }
+      }
+    },
+    {
       "id": "2",
       "type": "variants",
       "attributes": {
-        "title": "Variant 2 for Product 1 - Heavy Duty Concrete Wallet",
-        "description": "Product 1 - variant 2\\n\\nEveniet culpa dolores est cumque et. Dolorem reprehenderit laudantium placeat veniam adipisci commodi. Voluptatem facilis recusandae ipsum.\\nMaxime voluptatem odio optio corporis molestiae esse dolorem. Aut molestiae dolores dolor velit. Iste inventore non optio iure at magni tempore. Quia a qui.\\nIure eos deleniti accusamus qui sit. Non vel natus aspernatur ut quaerat velit nam. Incidunt sed velit quis autem voluptatibus illum.",
-        "sku": "0440138669234",
-        "price": 1.23,
+        "title": "Variant 2 for Product 1 - Heavy Duty Wool Watch",
+        "description": "Product 1 - variant 2\n\nCorporis dolorem iste numquam. Quibusdam dolor voluptatem nulla et. Sed omnis optio amet facilis doloribus. Qui laudantium amet ad dolores quia sapiente.\nNesciunt dolores vel rerum quibusdam vel eaque. Architecto rem aliquid expedita a adipisci. Molestiae aut omnis quia atque voluptas deleniti in. Veniam a expedita. Voluptatem qui quis repellat totam facere iusto.\nIste id quis. Dolor natus in consequuntur ipsum fuga eum non. Magnam et dolorem dolores autem dolorem. Eos fugit dolorem sequi ex nam.",
+        "sku": "6784183069743",
+        "price": 69.89,
         "stock_level": 100,
-        "reference": "fugit_0_2",
+        "reference": "esse_0_2",
         "position": null,
         "sellable": true,
         "stock_allocated_level": 5,
         "price_includes_taxes": true,
-        "current_price": 1.23,
+        "current_price": 69.89,
+        "stock_available_level": 95,
+        "total_reviews": 0,
+        "total_ratings": 0,
+        "rating_average": 0.0
+      },
+      "relationships": {
+        "asset_files": {
+          "data": [
+            {
+              "id": "1",
+              "type": "asset_files"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "1",
+      "type": "variants",
+      "attributes": {
+        "title": "Variant 1 for Product 1 - Heavy Duty Wool Watch",
+        "description": "Product 1 - variant 1\n\nVeniam nesciunt quasi autem consequatur culpa provident. Eos voluptas aut et nesciunt nisi. Temporibus dolor libero aliquam quisquam.\nIste est et placeat omnis ut. Ipsam qui a sapiente. Id ut quam sit rem ipsum.\nEst consequatur voluptas maiores asperiores. Quasi occaecati quos quidem ut qui vero. Rem praesentium corporis ullam perferendis dolores tempore delectus. Numquam dolore vero provident est dolores omnis.",
+        "sku": "9219910738434",
+        "price": 35.53,
+        "stock_level": 100,
+        "reference": "occaecati_0_1",
+        "position": null,
+        "sellable": true,
+        "stock_allocated_level": 5,
+        "price_includes_taxes": true,
+        "current_price": 35.53,
+        "stock_available_level": 95,
+        "total_reviews": 0,
+        "total_ratings": 0,
+        "rating_average": 0.0
+      },
+      "relationships": {
+        "asset_files": {
+          "data": [
+            {
+              "id": "1",
+              "type": "asset_files"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "64",
+      "type": "variants",
+      "attributes": {
+        "title": "Variant 2 for Product 32 - Mediocre Bronze Knife",
+        "description": "Product 32 - variant 2\n\nRepudiandae sed asperiores veniam dolorem temporibus quos animi. Animi iure enim ea magni. Porro sed unde aspernatur distinctio esse. Perspiciatis qui eos excepturi ut natus aut.\nQui nulla error in. Eum quibusdam quae et. Molestias voluptas doloribus modi. Nam in quia nulla.\nTemporibus ullam soluta. Facere omnis officia. Non commodi doloribus. Iure quaerat accusamus commodi velit quisquam vel.",
+        "sku": "1389878275208",
+        "price": 7.86,
+        "stock_level": 100,
+        "reference": "ut_31_2",
+        "position": null,
+        "sellable": true,
+        "stock_allocated_level": 5,
+        "price_includes_taxes": true,
+        "current_price": 7.86,
+        "stock_available_level": 95,
+        "total_reviews": 0,
+        "total_ratings": 0,
+        "rating_average": 0.0
+      }
+    },
+    {
+      "id": "63",
+      "type": "variants",
+      "attributes": {
+        "title": "Variant 1 for Product 32 - Mediocre Bronze Knife",
+        "description": "Product 32 - variant 1\n\nSaepe ipsa illo officiis tenetur. Qui inventore aut impedit voluptas non quia. Rerum voluptates ut in optio.\nDucimus in aliquid id eius temporibus enim. Consectetur magni quaerat molestiae voluptatibus et et quo. Qui sapiente incidunt earum dolor.\nMinima incidunt voluptatum. Quis dolorem magnam quisquam. Corporis vel facere eum et minus cupiditate.",
+        "sku": "0526450607748",
+        "price": 19.49,
+        "stock_level": 100,
+        "reference": "quia_31_1",
+        "position": null,
+        "sellable": true,
+        "stock_allocated_level": 5,
+        "price_includes_taxes": true,
+        "current_price": 19.49,
+        "stock_available_level": 95,
+        "total_reviews": 0,
+        "total_ratings": 0,
+        "rating_average": 0.0
+      }
+    },
+    {
+      "id": "66",
+      "type": "variants",
+      "attributes": {
+        "title": "Variant 2 for Product 33 - Mediocre Steel Hat",
+        "description": "Product 33 - variant 2\n\nSapiente eius mollitia eveniet rem dolor. Non qui minus quibusdam sit. Reprehenderit perspiciatis modi. Nisi eaque dolorem voluptas ullam molestiae dolores.\nSed porro aut architecto molestiae. In nam commodi dignissimos quisquam consequatur. Accusantium non voluptatibus expedita. Accusantium maxime possimus ut et veritatis.\nPerferendis qui occaecati et. Minima id voluptatem. Impedit non voluptate.",
+        "sku": "1968579044582",
+        "price": 22.63,
+        "stock_level": 100,
+        "reference": "aut_32_2",
+        "position": null,
+        "sellable": true,
+        "stock_allocated_level": 5,
+        "price_includes_taxes": true,
+        "current_price": 22.63,
+        "stock_available_level": 95,
+        "total_reviews": 0,
+        "total_ratings": 0,
+        "rating_average": 0.0
+      }
+    },
+    {
+      "id": "65",
+      "type": "variants",
+      "attributes": {
+        "title": "Variant 1 for Product 33 - Mediocre Steel Hat",
+        "description": "Product 33 - variant 1\n\nSaepe et et temporibus repellat rerum non alias. Minus distinctio nobis illo. Et adipisci debitis autem amet nulla dolor.\nQui corrupti quidem explicabo voluptatem quod iure cupiditate. A aut mollitia est sit corrupti sint. Quia exercitationem et dolore et ut. Est inventore similique omnis fugit et vel.\nInventore est eum. Debitis consequatur molestiae provident cumque non nostrum. Sit aut rem cum. Iusto similique consequatur.",
+        "sku": "8701090146808",
+        "price": 14.88,
+        "stock_level": 100,
+        "reference": "aut_32_1",
+        "position": null,
+        "sellable": true,
+        "stock_allocated_level": 5,
+        "price_includes_taxes": true,
+        "current_price": 14.88,
         "stock_available_level": 95,
         "total_reviews": 0,
         "total_ratings": 0,
@@ -75,32 +238,148 @@
     },
     {
       "id": "1",
-      "type": "variants",
+      "type": "products",
       "attributes": {
-        "title": "Variant 1 for Product 1 - Heavy Duty Concrete Wallet",
-        "description": "Product 1 - variant 1\\n\\nAccusantium aut animi error et. Hic ducimus dolorem quo ut quis itaque voluptate. Numquam voluptas consequatur molestiae accusantium quis. Sapiente sunt blanditiis facilis possimus.\\nSunt dignissimos voluptates. Enim et ullam nostrum. Ut fuga est tempore totam. Repellendus repudiandae qui veritatis est praesentium unde.\\nSimilique officia recusandae aut. Nostrum dolores officia pariatur sit possimus voluptas beatae. Error porro eos omnis.",
-        "sku": "9361505691874",
-        "price": 82.68,
-        "stock_level": 100,
-        "reference": "quos_0_1",
-        "position": null,
+        "title": "Product 1 - Heavy Duty Wool Watch",
+        "description": "Product 1\n\nNatus quia vel accusantium et. Consectetur tempore aut itaque temporibus culpa repellendus. Velit fuga est illum et. Rem est possimus.\nMolestias consequatur velit. Facilis nihil ullam hic ut. Mollitia nobis eum fugiat. Suscipit et in nobis ratione quasi asperiores laboriosam.\nTempore architecto quia. Adipisci ipsum sunt laudantium et ducimus veniam. Explicabo suscipit cupiditate voluptatem eveniet nobis. Reprehenderit laborum beatae sed. Ipsa ut nam rem.",
+        "reference": "sint-fugit-velit",
+        "slug": "seed_product_1",
+        "attribute_merchandising": {},
         "sellable": true,
-        "stock_allocated_level": 5,
-        "price_includes_taxes": true,
-        "current_price": 82.68,
-        "stock_available_level": 95,
+        "web_product_name": "Product 1 - Heavy Duty Wool Watch",
+        "web_product_description": "Product 1 - Eos non amet sunt.",
+        "seo_meta_title": "Product 1 - Heavy Duty Wool Watch",
+        "seo_meta_description": "Product 1 - Reprehenderit aperiam aut et sit rerum dignissimos illum et.",
+        "seo_meta_keywords": "nostrum, mollitia, pariatur, at, ea",
+        "content_type": "markdown",
+        "min_price": 35.53,
+        "max_price": 69.89,
+        "min_current_price": 35.53,
+        "max_current_price": 69.89,
         "total_reviews": 0,
         "total_ratings": 0,
-        "rating_average": 0.0
+        "rating_average": 0.0,
+        "merged_attribute_merchandising": {}
+      },
+      "relationships": {
+        "variants": {
+          "data": [
+            {
+              "id": "2",
+              "type": "variants"
+            },
+            {
+              "id": "1",
+              "type": "variants"
+            }
+          ]
+        }
       }
     },
     {
-      "id": "2",
-      "type": "template_definitions",
+      "id": "32",
+      "type": "products",
       "attributes": {
-        "label": "Product",
-        "reference": "product",
-        "data_type": "Product"
+        "title": "Product 32 - Mediocre Bronze Knife",
+        "description": "Product 32\n\nDolorem nulla qui laboriosam at libero doloribus accusantium. Et maiores voluptate cupiditate sit. Omnis blanditiis suscipit illum maiores debitis et inventore.\nUt officiis omnis alias. Ut alias numquam mollitia dolor in. Omnis quis repellendus voluptatem iusto. Ex dignissimos atque ut autem.\nSunt optio quidem qui eveniet dolores. Omnis vero quam sed nihil. Ut exercitationem itaque.",
+        "reference": "omnis-rerum-delectus",
+        "slug": "seed_product_32",
+        "attribute_merchandising": {},
+        "sellable": true,
+        "web_product_name": "Product 32 - Mediocre Bronze Knife",
+        "web_product_description": "Product 32 - Dolorum dolores animi impedit.",
+        "seo_meta_title": "Product 32 - Mediocre Bronze Knife",
+        "seo_meta_description": "Product 32 - Est omnis esse aut ullam maiores.",
+        "seo_meta_keywords": "voluptas, numquam, quos, ut, velit",
+        "content_type": "markdown",
+        "min_price": 7.86,
+        "max_price": 19.49,
+        "min_current_price": 7.86,
+        "max_current_price": 19.49,
+        "total_reviews": 0,
+        "total_ratings": 0,
+        "rating_average": 0.0,
+        "merged_attribute_merchandising": {}
+      },
+      "relationships": {
+        "variants": {
+          "data": [
+            {
+              "id": "64",
+              "type": "variants"
+            },
+            {
+              "id": "63",
+              "type": "variants"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "33",
+      "type": "products",
+      "attributes": {
+        "title": "Product 33 - Mediocre Steel Hat",
+        "description": "Product 33\n\nDebitis aut accusantium ut. Vel qui est aut rerum voluptatem dolores exercitationem. Non laboriosam qui et odio sunt cum.\nCum numquam quo. Quis et veritatis ea expedita possimus dignissimos. Dignissimos accusantium illum quos qui mollitia eum.\nUt laborum id illum. Eius animi suscipit cum voluptas aperiam. Nihil expedita temporibus cupiditate nam illo voluptas. Nostrum ducimus quia beatae aut quod cupiditate.",
+        "reference": "tempore-dolores-voluptatibus",
+        "slug": "seed_product_33",
+        "attribute_merchandising": {},
+        "sellable": true,
+        "web_product_name": "Product 33 - Mediocre Steel Hat",
+        "web_product_description": "Product 33 - Rerum dolor sed est.",
+        "seo_meta_title": "Product 33 - Mediocre Steel Hat",
+        "seo_meta_description": "Product 33 - Aut sit praesentium non.",
+        "seo_meta_keywords": "facere, nemo, et, hic, ullam",
+        "content_type": "markdown",
+        "min_price": 14.88,
+        "max_price": 22.63,
+        "min_current_price": 14.88,
+        "max_current_price": 22.63,
+        "total_reviews": 0,
+        "total_ratings": 0,
+        "rating_average": 0.0,
+        "merged_attribute_merchandising": {}
+      },
+      "relationships": {
+        "variants": {
+          "data": [
+            {
+              "id": "66",
+              "type": "variants"
+            },
+            {
+              "id": "65",
+              "type": "variants"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "1",
+      "type": "bundle_groups",
+      "attributes": {
+        "name": "Coats",
+        "sort": 1
+      },
+      "relationships": {
+        "products": {
+          "data": [
+            {
+              "id": "1",
+              "type": "products"
+            },
+            {
+              "id": "32",
+              "type": "products"
+            },
+            {
+              "id": "33",
+              "type": "products"
+            }
+          ]
+        }
       }
     }
   ]
