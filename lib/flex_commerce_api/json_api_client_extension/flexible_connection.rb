@@ -1,6 +1,7 @@
 module FlexCommerceApi
   module JsonApiClientExtension
     class FlexibleConnection < JsonApiClient::Connection
+      attr_accessor :last_response
       def initialize(options = {})
         site = options.fetch(:site)
         adapter_options = Array(options.fetch(:adapter, Faraday.default_adapter))
@@ -17,6 +18,12 @@ module FlexCommerceApi
         faraday.basic_auth(ApiBase.username, ApiBase.password)
 
         yield(self) if block_given?
+      end
+
+      def run(*args)
+        super.tap do |response|
+          self.last_response = response
+        end
       end
     end
   end
