@@ -17,18 +17,5 @@ module FlexCommerce
   #
   #
   class StockLevel < FlexCommerceApi::ApiBase
-
-    class << self
-      def path(params, instance = nil)
-        if params[:filter] && params[:filter].key?(:skus)
-          skus = params[:filter].delete(:skus)
-          params.delete(:filter) if params[:filter].empty?
-          "stock_levels?filter[skus]=#{skus}"
-        else
-          super
-        end
-      end
-
-    end
   end
 end
