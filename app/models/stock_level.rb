@@ -23,7 +23,7 @@ module FlexCommerce
         if params[:filter] && params[:filter].key?(:skus)
           skus = params[:filter].delete(:skus)
           params.delete(:filter) if params[:filter].empty?
-          "stock_levels?skus=#{skus}"
+          "stock_levels?filter[skus]=#{skus}"
         else
           super
         end

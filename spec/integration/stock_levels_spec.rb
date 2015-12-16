@@ -49,7 +49,7 @@ RSpec.describe FlexCommerce::StockLevel do
     # The subject for all examples
     subject { subject_class.where(skus: "1,2,3").all }
     before :each do
-      stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }, query: { skus: "1,2,3"}).to_return body: resource_list.to_json, status: response_status, headers: default_headers
+      stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }, query: "filter[skus]=1,2,3").to_return body: resource_list.to_json, status: response_status, headers: default_headers
     end
     context "with a small data set" do
       let(:quantity) { 10 }
