@@ -29,4 +29,5 @@ module FlexCommerce
   autoload :Promotion, File.join(gem_root, "app", "models", "promotion")
   autoload :StockLevel, File.join(gem_root, "app", "models", "stock_level")
   autoload :BundleGroup, File.join(gem_root, "app", "models", "bundle_group")
+  autoload :Refund, File.join(gem_root, "app", "models", "refund")
 end
