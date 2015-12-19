@@ -21,7 +21,7 @@ module FlexCommerceApi
       def handle_status(code, env, request_environment)
         case code
           when 200..399
-          when 403
+          when 403, 401
             raise ::FlexCommerceApi::Error::AccessDenied.new request_environment, env
           when 404
             raise ::FlexCommerceApi::Error::NotFound, env[:url]
