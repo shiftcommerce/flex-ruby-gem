@@ -8,6 +8,6 @@ module FlexCommerce
   #
   #
   class OrderTransaction < FlexCommerceApi::ApiBase
-
+    belongs_to :order
   end
 end

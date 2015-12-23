@@ -1,0 +1,10 @@
+{
+  "data": {
+    "id": "12345-67890",
+    "type": "order_transaction_auths",
+    "attributes": {
+      "token": "sometoken",
+      "auth_id": "auth_id"
+    }
+  }
+}
