@@ -75,8 +75,19 @@ module FlexCommerce
     # To be used during checkout phases etc..
     # Adds errors to the line items "unit_quantity" attribute if we do not have enough
     def validate_stock!
-      pull_updates!
-      line_items.each(&:validate_stock!)
+      stock_levels.each do |stock_level|
+        line_items.detect { |li| li.item.sku == stock_level.id }.tap do |li|
+          next if li.nil?
+          error_msg = if stock_level.stock_available <= 0
+                        "Out of stock"
+                      elsif stock_level.stock_available < li.unit_quantity
+                        "Only #{stock_level.stock_available} in stock"
+                      else
+                        nil
+                      end
+          li.errors.add(:unit_quantity, error_msg) unless error_msg.nil?
+        end
+      end
     end
 
     private

@@ -101,8 +101,7 @@
         "unit_quantity": 3,
         "unit_price": 63.27,
         "subtotal": 189.81,
-        "total": 189.81,
-        "stock_available_level": 5
+        "total": 189.81
       },
       "relationships": {
         "item": {
@@ -126,8 +125,7 @@
         "unit_quantity": 3,
         "unit_price": 63.27,
         "subtotal": 189.81,
-        "total": 189.81,
-        "stock_available_level": 5
+        "total": 189.81
       },
       "relationships": {
         "item": {

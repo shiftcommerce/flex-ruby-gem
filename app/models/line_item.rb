@@ -32,14 +32,5 @@ module FlexCommerce
         ""
       end
     end
-
-    def validate_stock!
-      error_msg = if stock_available_level <= 0
-                    "Out of stock"
-                  elsif stock_available_level < unit_quantity
-                    "Only #{stock_available_level} in stock"
-                  end
-      errors.add(:unit_quantity, error_msg) unless error_msg.nil?
-    end
   end
 end
