@@ -83,7 +83,8 @@
         "unit_quantity": 3,
         "unit_price": 63.27,
         "subtotal": 189.81,
-        "total": 189.81
+        "total": 189.81,
+        "stock_available_level": 0
       },
       "relationships": {
         "item": {
@@ -104,10 +105,11 @@
       "type": "line_items",
       "attributes": {
         "title": "Rustic Rubber Shoes",
-        "unit_quantity": 3,
+        "unit_quantity": 6,
         "unit_price": 63.27,
         "subtotal": 189.81,
-        "total": 189.81
+        "total": 189.81,
+        "stock_available_level": 5
       },
       "relationships": {
         "item": {
@@ -131,7 +133,7 @@
         "description": "1 Perferendis nisi nostrum deserunt assumenda consequatur exercitationem. Tenetur qui aperiam dolorem. Facilis minus iste culpa quos quia. Distinctio et qui libero impedit.",
         "sku": "742207266-0-1",
         "price": 45.29,
-        "stock_level": 5,
+        "stock_level": 0,
         "reference": "885703497-6-1"
       }
     },

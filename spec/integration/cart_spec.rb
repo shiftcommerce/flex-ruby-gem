@@ -147,26 +147,8 @@ RSpec.describe "Shopping Cart" do
           end
         end
         context "using the validate_stock! method" do
-          let!(:stub) { stub_request(:get, "#{api_root}/stock_levels.json_api").with(headers: {"Accept" => "application/vnd.api+json"}, query: {filter: { skus: "742207266-0-1,742207266-0-2"}}).to_return body: stock_level_list.to_json, status: response_status, headers: default_headers }
+          let!(:pull_updates_stub) { stub_request(:patch, "#{api_root}/carts/1/pull_updates.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
           context "with no stock" do
-            let(:stock_level_list) { {
-              data: [
-                {
-                  id: "742207266-0-1",
-                  type: "stock_levels",
-                  attributes: {
-                    stock_available: 0
-                  }
-                },
-                {
-                  id: "742207266-0-2",
-                  type: "stock_levels",
-                  attributes: {
-                    stock_available: 10
-                  }
-                }
-              ]
-            } }
             it "should mark any line items that are out of stock" do
               subject.validate_stock!
               expect(subject.line_items[0].errors[:unit_quantity]).to include "Out of stock"
@@ -174,31 +156,11 @@ RSpec.describe "Shopping Cart" do
 
           end
           context "with not enough stock" do
-            let(:stock_level_list) { {
-              data: [
-                {
-                  id: "742207266-0-1",
-                  type: "stock_levels",
-                  attributes: {
-                    stock_available: 1
-                  }
-                },
-                {
-                  id: "742207266-0-2",
-                  type: "stock_levels",
-                  attributes: {
-                    stock_available: 10
-                  }
-                }
-              ]
-            } }
             it "should mark any line items that are out of stock" do
               subject.validate_stock!
-              expect(subject.line_items[0].errors[:unit_quantity]).to include "Only 1 in stock"
+              expect(subject.line_items[1].errors[:unit_quantity]).to include "Only 5 in stock"
             end
-
           end
-
         end
       end
     end
