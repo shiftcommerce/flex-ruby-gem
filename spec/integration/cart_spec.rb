@@ -139,6 +139,13 @@ RSpec.describe "Shopping Cart" do
             end
           end
         end
+        context "using the pull_updates! method" do
+          let!(:stub) { stub_request(:patch, "#{api_root}/carts/1/pull_updates.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
+          subject { subject_class.find(1).pull_updates! }
+          it "should return a valid cart" do
+            expect(subject).to be_a(subject_class)
+          end
+        end
         context "using the validate_stock! method" do
           let!(:stub) { stub_request(:get, "#{api_root}/stock_levels.json_api").with(headers: {"Accept" => "application/vnd.api+json"}, query: {filter: { skus: "742207266-0-1,742207266-0-2"}}).to_return body: stock_level_list.to_json, status: response_status, headers: default_headers }
           context "with no stock" do
