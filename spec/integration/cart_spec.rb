@@ -140,7 +140,7 @@ RSpec.describe "Shopping Cart" do
           end
         end
         context "using the pull_updates! method" do
-          let!(:stub) { stub_request(:patch, "#{api_root}/carts/1/pull_updates.json_api").with(headers: { "Accept" => "application/vnd.api+json" }, body: {"data" => {"id" => "1", "type" => "carts", "attributes" => {}}}).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
+          let!(:stub) { stub_request(:patch, "#{api_root}/carts/1/pull_updates.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
           subject { subject_class.find(1).pull_updates! }
           it "should return a valid cart" do
             expect(subject).to be_a(subject_class)

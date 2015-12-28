@@ -69,7 +69,7 @@ module FlexCommerce
     def pull_updates!(*params)
       request_params = params.first || {}
       request_params[self.class.primary_key] = attributes.fetch(self.class.primary_key)
-      self.class.requestor.custom(:pull_updates, { request_method: :patch }, request_params.merge(data: as_json_api)).first
+      self.class.requestor.custom(:pull_updates, { request_method: :patch }, request_params).first
     end
     # This method is used when true stock levels re required - potentially from an external system
     # To be used during checkout phases etc..
