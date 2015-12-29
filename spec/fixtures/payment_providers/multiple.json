@@ -2,7 +2,7 @@
   "data": [
     {
       "id": "paypal",
-      "type": "payment_gateways",
+      "type": "payment_providers",
       "attributes": {
         "name": "Paypal",
         "meta_attributes": {
@@ -15,14 +15,14 @@
         "setup": {
           "data": {
             "id": "1",
-            "type": "payment_gateway_setups"
+            "type": "payment_provider_setups"
           }
         }
       }
     },
     {
       "id": "spreedly",
-      "type": "payment_gateways",
+      "type": "payment_providers",
       "attributes": {
         "name": "Spreedly",
         "meta_attributes": {
@@ -33,7 +33,7 @@
         "setup": {
           "data": {
             "id": "2",
-            "type": "payment_gateway_setups"
+            "type": "payment_provider_setups"
           }
         }
       }
@@ -42,7 +42,7 @@
   "included": [
     {
       "id": "1",
-      "type": "payment_gateway_setups",
+      "type": "payment_provider_setups",
       "attributes": {
         "setup_type": "custom",
         "meta_attributes": {
@@ -54,7 +54,7 @@
     },
     {
       "id": "2",
-      "type": "payment_gateway_setups",
+      "type": "payment_provider_setups",
       "attributes": {
         "setup_type": "custom",
         "meta_attributes": {
@@ -68,7 +68,7 @@
     "last": "http://www.com/someurl/pages/1.json_api"
   },
   "meta": {
-    "type": "payment_gateways",
+    "type": "payment_providers",
     "page_count": 1,
     "total_entries": 2
   }
