@@ -8,10 +8,10 @@ RSpec.describe FlexCommerce::PaymentProvider do
   # see api_globals.rb in spec/support for the source code
   include_context "global context"
   let(:subject_class) { ::FlexCommerce::PaymentProvider }
-  let(:payment_gateway_setup_class) { ::FlexCommerce::PaymentGatewaySetup }
-  let(:singular_resource) { build(:payment_gateway) }
+  let(:payment_provider_setup_class) { ::FlexCommerce::PaymentProviderSetup }
+  let(:singular_resource) { build(:payment_provider) }
   context "with fixture files from flex" do
-    let(:resource_list) { build(:payment_gateway_list_from_fixture) }
+    let(:resource_list) { build(:payment_provider_list_from_fixture) }
     let(:quantity) { resource_list.data.count }
     let(:total_pages) { 1 }
     let(:expected_list_quantity) { 2 }
@@ -39,7 +39,7 @@ RSpec.describe FlexCommerce::PaymentProvider do
       let(:setup_data) { resource_list.included.detect {|r| r.id == setup_relationship_data.id && r.type == setup_relationship_data.type} }
       it "should have the correct setup from the fixture" do
         subject.first.setup.tap do |setup|
-          expect(setup).to be_a(payment_gateway_setup_class)
+          expect(setup).to be_a(payment_provider_setup_class)
           setup_data.attributes.to_h.except(:meta_attributes).each_pair do |attr, value|
             expect(setup.send(attr)).to eql value
           end
