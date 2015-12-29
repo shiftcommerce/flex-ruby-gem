@@ -2,12 +2,12 @@ require "spec_helper"
 require "flex_commerce_api"
 require "uri"
 
-RSpec.describe FlexCommerce::PaymentGateway do
+RSpec.describe FlexCommerce::PaymentProvider do
   # Global context for all specs - defines things you dont see defined in here
   # such as flex_root_url, api_root, default_headers and page_size
   # see api_globals.rb in spec/support for the source code
   include_context "global context"
-  let(:subject_class) { ::FlexCommerce::PaymentGateway }
+  let(:subject_class) { ::FlexCommerce::PaymentProvider }
   let(:payment_gateway_setup_class) { ::FlexCommerce::PaymentGatewaySetup }
   let(:singular_resource) { build(:payment_gateway) }
   context "with fixture files from flex" do
@@ -17,7 +17,7 @@ RSpec.describe FlexCommerce::PaymentGateway do
     let(:expected_list_quantity) { 2 }
     let(:current_page) { nil }
     before :each do
-      stub_request(:get, "#{api_root}/payment_gateways.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
+      stub_request(:get, "#{api_root}/payment_providers.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
     end
     subject { subject_class.all }
     it_should_behave_like "a collection of anything"

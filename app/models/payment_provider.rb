@@ -9,7 +9,7 @@ module FlexCommerce
   #
   #
   #
-  class PaymentGateway < FlexCommerceApi::ApiBase
+  class PaymentProvider < FlexCommerceApi::ApiBase
 
   end
 end

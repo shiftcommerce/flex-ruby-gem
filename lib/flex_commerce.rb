@@ -22,7 +22,7 @@ module FlexCommerce
   autoload :OrderTransaction, File.join(gem_root, "app", "models", "order_transaction")
   autoload :OrderTransactionAuth, File.join(gem_root, "app", "models", "order_transaction_auth")
   autoload :OrderTransactionVoid, File.join(gem_root, "app", "models", "order_transaction_void")
-  autoload :PaymentGateway, File.join(gem_root, "app", "models", "payment_gateway")
+  autoload :PaymentProvider, File.join(gem_root, "app", "models", "payment_provider")
   autoload :PaymentGatewaySetup, File.join(gem_root, "app", "models", "payment_gateway_setup")
   autoload :TemplateDefinition, File.join(gem_root, "app", "models", "template_definition")
   autoload :SearchSuggestion, File.join(gem_root, "app", "models", "search_suggestion")
