@@ -72,7 +72,7 @@ module FlexCommerceApi
 
       def reconfigure
         self.site = FlexCommerceApi.config.api_base_url
-        self.connection_options.merge! adapter: FlexCommerceApi.config.adapter || :net_http
+        self.connection_options = connection_options.merge adapter: FlexCommerceApi.config.adapter || :net_http
         reload_connection_if_required
       end
 
