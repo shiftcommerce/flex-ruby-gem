@@ -133,7 +133,15 @@
         "price": 45.29,
         "stock_level": 5,
         "reference": "885703497-6-1"
+      },
+      "relationships": {
+        "product": {
+          "links": {
+            "related": "/testaccount/v1/products/1.json_api"
+          }
+        }
       }
+
     },
     {
       "id": "2",
@@ -145,6 +153,13 @@
         "price": 45.29,
         "stock_level": 5,
         "reference": "885703497-6-2"
+      },
+      "relationships": {
+        "product": {
+          "links": {
+            "related": "/testaccount/v1/products/2.json_api"
+          }
+        }
       }
     }
 

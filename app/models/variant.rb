@@ -8,5 +8,6 @@ module FlexCommerce
   #
   #
   class Variant < FlexCommerceApi::ApiBase
+    has_one :product
   end
 end

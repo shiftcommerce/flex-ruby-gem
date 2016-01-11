@@ -11,6 +11,7 @@ RSpec.describe "Shopping Cart" do
   let(:address_class) { ::FlexCommerce::Address }
   let(:shipping_method_class) { ::FlexCommerce::ShippingMethod }
   let(:variant_class) { ::FlexCommerce::Variant }
+  let(:product_class) { ::FlexCommerce::Product }
   let(:line_item_class) { ::FlexCommerce::LineItem }
   let(:discount_summary_class) { ::FlexCommerce::DiscountSummary }
   let(:coupon_class) { ::FlexCommerce::Coupon }
@@ -113,6 +114,21 @@ RSpec.describe "Shopping Cart" do
               end
             end
           end
+          it "should allow you to retrieve the product from a line item's item" do
+
+            stub_request(:get, /#{api_root}\/products\/\d+\.json_api/)
+              .with(headers: { "Accept" => "application/vnd.api+json" })
+              .to_return body: build(:product_from_fixture).to_json, status: 200, headers: default_headers
+
+            subject.line_items.each do |line_item|
+              line_item.item.tap do |item|
+                if item.is_a?(variant_class)
+                  expect(item.product).to be_a(product_class)
+                end
+              end
+            end
+          end
+
           context "creating a line item with a prepared variant" do
             before(:each) do
               stub_request(:post, "#{api_root}/line_items.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return do |request|
