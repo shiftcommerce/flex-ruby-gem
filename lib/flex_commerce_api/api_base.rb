@@ -97,6 +97,10 @@ module FlexCommerceApi
       attributes.reject { |k, v| PRIVATE_ATTRIBUTES.include?(k.to_s) }
     end
 
+    def meta_attribute(key)
+      attributes[:meta_attributes][key][:value] rescue nil
+    end
+
     def method_missing(method, *args)
       if relationships and relationships.has_attribute?(method)
         super
