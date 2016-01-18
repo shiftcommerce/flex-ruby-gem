@@ -104,8 +104,6 @@ module FlexCommerceApi
     def method_missing(method, *args)
       if relationships and relationships.has_attribute?(method)
         super
-      elsif meta_attribute(method)
-        meta_attribute(method)
       else
         has_attribute?(method) || method.to_s=~(/=$/) || method.to_s=~/!$/ ? super : nil
       end

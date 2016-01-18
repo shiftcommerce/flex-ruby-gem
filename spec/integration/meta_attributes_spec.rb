@@ -38,8 +38,8 @@ RSpec.describe "url encoding on any model" do
       expect(result.meta_attribute(:foo)).to eq "bar"
     end
 
-    it 'allows get by direct reference to attribute' do
-      expect(result.foo).to eq "bar"
+    it 'does not allow get by direct reference to attribute' do
+      expect(result.foo).to eq nil
     end
   end
 end
