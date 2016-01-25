@@ -32,4 +32,5 @@ module FlexCommerce
   autoload :StockLevel, File.join(gem_root, "app", "models", "stock_level")
   autoload :BundleGroup, File.join(gem_root, "app", "models", "bundle_group")
   autoload :Refund, File.join(gem_root, "app", "models", "refund")
+  autoload :RetailStore, File.join(gem_root, "app", "models", "retail_store")
 end
