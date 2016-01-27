@@ -57,6 +57,75 @@ RSpec.describe FlexCommerce::CustomerAccount do
           end
         end
       end
+
+      context "using the email address" do
+        before :each do
+          stub_request(:get, "#{api_root}/customer_accounts/email:#{resource_identifier.attributes.email}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
+        end
+        subject { subject_class.find_by_email(resource_identifier.attributes.email) }
+        it_should_behave_like "a singular resource"
+        it "should return an object with the correct attributes when find is called" do
+          expect(subject.attributes.as_json.reject { |k| %w(id type links meta relationships password).include?(k) }.with_indifferent_access).to eql(resource_identifier.attributes.as_json.with_indifferent_access)
+          expect(subject.type).to eql "customer_accounts"
+        end
+        it "should return nil if an attribute is fetched that is not defined" do
+          expect(subject.undefined_attribute).to be_nil
+        end
+        context "updating an undefined attribute" do
+          let(:patch_headers) { { "Accept" => "application/vnd.api+json", "Content-Type" => "application/vnd.api+json" } }
+          let(:patch_body) do
+            {
+              data: {
+                id: resource_identifier.id.to_s,
+                type: "customer_accounts",
+                attributes: {
+                  my_new_attr: "my new value"
+                }
+              }
+            }
+          end
+          let!(:update_stub) { stub_request(:patch, "#{api_root}/customer_accounts/#{resource_identifier.id}.json_api").with(headers: patch_headers, body: patch_body).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
+          it "should set an attribute when an undefined setter is called and then the record is saved" do
+            subject.my_new_attr = "my new value"
+            expect(subject.save).to be_truthy
+          end
+        end
+      end
+
+      context "using the reference" do
+        before :each do
+          stub_request(:get, "#{api_root}/customer_accounts/reference:#{resource_identifier.attributes.reference}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
+        end
+        subject { subject_class.find_by_reference(resource_identifier.attributes.reference) }
+        it_should_behave_like "a singular resource"
+        it "should return an object with the correct attributes when find is called" do
+          expect(subject.attributes.as_json.reject { |k| %w(id type links meta relationships password).include?(k) }.with_indifferent_access).to eql(resource_identifier.attributes.as_json.with_indifferent_access)
+          expect(subject.type).to eql "customer_accounts"
+        end
+        it "should return nil if an attribute is fetched that is not defined" do
+          expect(subject.undefined_attribute).to be_nil
+        end
+        context "updating an undefined attribute" do
+          let(:patch_headers) { { "Accept" => "application/vnd.api+json", "Content-Type" => "application/vnd.api+json" } }
+          let(:patch_body) do
+            {
+              data: {
+                id: resource_identifier.id.to_s,
+                type: "customer_accounts",
+                attributes: {
+                  my_new_attr: "my new value"
+                }
+              }
+            }
+          end
+          let!(:update_stub) { stub_request(:patch, "#{api_root}/customer_accounts/#{resource_identifier.id}.json_api").with(headers: patch_headers, body: patch_body).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
+          it "should set an attribute when an undefined setter is called and then the record is saved" do
+            subject.my_new_attr = "my new value"
+            expect(subject.save).to be_truthy
+          end
+        end
+      end
+
     end
     context "password resetting" do
       let(:account) { build(:customer_account) }
