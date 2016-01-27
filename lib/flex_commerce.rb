@@ -33,4 +33,5 @@ module FlexCommerce
   autoload :BundleGroup, File.join(gem_root, "app", "models", "bundle_group")
   autoload :Refund, File.join(gem_root, "app", "models", "refund")
   autoload :RetailStore, File.join(gem_root, "app", "models", "retail_store")
+  autoload :Redirect, File.join(gem_root, "app", "models", "redirect")
 end
