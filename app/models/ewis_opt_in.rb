@@ -1,5 +1,5 @@
 require "flex_commerce_api/api_base"
-module FlexCommerce
+  module FlexCommerce
   #
   # A flex commerce variant model
   #
@@ -7,6 +7,6 @@ module FlexCommerce
   # usable directly on the API as there is no corresponding URL
   #
   #
-  class EwisOptIn < FlexCommerceApi::ApiBase
-  end
+    class EwisOptIn < FlexCommerceApi::ApiBase
+    end
 end
