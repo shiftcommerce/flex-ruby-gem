@@ -8,6 +8,5 @@ module FlexCommerce
   #
   #
   class EwisOptIn < FlexCommerceApi::ApiBase
-    belongs_to :variant
   end
 end
