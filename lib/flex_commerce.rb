@@ -36,4 +36,5 @@ module FlexCommerce
   autoload :RetailStore, File.join(gem_root, "app", "models", "retail_store")
   autoload :Redirect, File.join(gem_root, "app", "models", "redirect")
   autoload :Report, File.join(gem_root, "app", "models", "report")
+  autoload :ReportInvocation, File.join(gem_root, "app", "models", "report_invocation")
 end
