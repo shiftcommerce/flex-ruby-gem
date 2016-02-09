@@ -13,5 +13,6 @@ module FlexCommerce
   #   FlexCommerce::Report.all
   #
   class Report < FlexCommerceApi::ApiBase
+    has_many :invocations, class_name: "::FlexCommerce::ReportInvocation"
   end
 end
