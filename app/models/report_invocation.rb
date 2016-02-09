@@ -13,6 +13,6 @@ module FlexCommerce
   #   FlexCommerce::Report.first.invocations
   #
   class ReportInvocation < FlexCommerceApi::ApiBase
-    belongs_to :report, class_name: "::FlexCommerce::Report"
+    has_one :report, class_name: "::FlexCommerce::Report"
   end
 end
