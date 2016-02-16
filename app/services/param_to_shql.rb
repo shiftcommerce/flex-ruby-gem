@@ -30,16 +30,18 @@ module FlexCommerce
 
       facet_filters = []
       @filter_param.each do |label,facet|
+        facet_filter = []
         if facet.keys.include?("gt") || facet.keys.include?("lt")
           range_filter =  range_param_to_shql(label, facet)
-          facet_filters << range_filter if !(range_filter == "" || range_filter == nil)
+          facet_filter << range_filter if !(range_filter == "" || range_filter == nil)
         else
           facet.keys.each do |value| 
-            facet_filters << { label => { "eq" => value } }
+            facet_filter << { label => { "eq" => value } }
           end
         end
+        facet_filters << { "or" => facet_filter }
       end
-      return { "or" => facet_filters }
+      facet_filters.count == 1 ? facet_filters[0] : { "and" => facet_filters }
     end
 
     private

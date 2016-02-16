@@ -23,23 +23,25 @@ module FlexCommerce
         context 'with two checkboxes checked, same facet' do
           let(:filter_params) { { "meta.colour"=>{"blue"=>"on", "red"=>"on"} } }
         
-          it 'parses it to SHQL' do
+          it 'parses it to SHQL, using OR to seperate the options of the various facets' do
             expect(service.call).to eq(
               { "or" => [{"meta.colour"=>{"eq"=>"blue"}},{"meta.colour"=>{"eq"=>"red"}}] }
             )
           end
         end
 
-        #
-        # I am relatively confident that the logic here is not as we want - one step at
-        # a time though.
-        #
         context 'with two checkboxes checked, different facets' do
           let(:filter_params) { { "meta.colour"=>{"blue"=>"on"}, "meta.size"=>{"12"=>"on"} } }
         
-          it 'parses it to SHQL' do
+          it 'parses it to SHQL, using AND to seperate the differentn facets' do
             expect(service.call).to eq(
-              { "or" => [{"meta.colour"=>{"eq"=>"blue"}},{"meta.size"=>{"eq"=>"12"}}] }
+              { 
+                "and" => 
+                  [
+                    {"or" => [{"meta.colour"=>{"eq"=>"blue"}}]},
+                    {"or" => [{"meta.size"=>{"eq"=>"12"}}]}
+                  ] 
+              }
             )
           end
         end
