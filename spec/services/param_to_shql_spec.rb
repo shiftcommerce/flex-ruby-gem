@@ -33,7 +33,7 @@ module FlexCommerce
         context 'with two checkboxes checked, different facets' do
           let(:filter_params) { { "meta.colour"=>{"blue"=>"on"}, "meta.size"=>{"12"=>"on"} } }
         
-          it 'parses it to SHQL, using AND to seperate the differentn facets' do
+          it 'parses it to SHQL, using AND to seperate the different facets' do
             expect(service.call).to eq(
               { 
                 "and" => 
