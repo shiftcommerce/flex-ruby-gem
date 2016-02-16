@@ -8,6 +8,7 @@ require "flex_commerce_api/json_api_client_extension/save_request_body_middlewar
 require "flex_commerce_api/json_api_client_extension/logging_middleware"
 require "flex_commerce_api/json_api_client_extension/status_middleware"
 require "flex_commerce_api/json_api_client_extension/json_format_middleware"
+require "flex_commerce_api/json_api_client_extension/previewed_request_middleware"
 require "flex_commerce_api/json_api_client_extension/has_many_association_proxy"
 require "flex_commerce_api/json_api_client_extension/builder"
 require "flex_commerce_api/json_api_client_extension/flexible_connection"
@@ -63,16 +64,18 @@ module FlexCommerceApi
         super(params)
       end
 
-      def reconfigure_all
+      def reconfigure_all options = {}
         subclasses.each do |sub|
-          sub.reconfigure
+          sub.reconfigure options
         end
-        reconfigure
+        reconfigure options
       end
 
-      def reconfigure
+      def reconfigure options = {}
         self.site = FlexCommerceApi.config.api_base_url
-        self.connection_options = connection_options.merge adapter: FlexCommerceApi.config.adapter || :net_http
+        adapter_options = { adapter: FlexCommerceApi.config.adapter || :net_http }
+        self.connection_options.delete(:include_previewed)
+        self.connection_options = connection_options.merge(adapter_options).merge(options)
         reload_connection_if_required
       end
 
@@ -95,6 +98,10 @@ module FlexCommerceApi
 
     def public_attributes
       attributes.reject { |k, v| PRIVATE_ATTRIBUTES.include?(k.to_s) }
+    end
+
+    def meta_attribute(key)
+      attributes[:meta_attributes][key][:value] rescue nil
     end
 
     def method_missing(method, *args)

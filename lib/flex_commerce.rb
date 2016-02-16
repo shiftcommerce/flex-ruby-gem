@@ -7,6 +7,7 @@ module FlexCommerce
   autoload :Product, File.join(gem_root, "app", "models", "product")
   autoload :StaticPage, File.join(gem_root, "app", "models", "static_page")
   autoload :Variant, File.join(gem_root, "app", "models", "variant")
+  autoload :EwisOptIn, File.join(gem_root, "app", "models", "ewis_opt_in")
   autoload :MenuItem, File.join(gem_root, "app", "models", "menu_item")
   autoload :Menu, File.join(gem_root, "app", "models", "menu")
   autoload :BreadcrumbItem, File.join(gem_root, "app", "models", "breadcrumb_item")
@@ -34,6 +35,10 @@ module FlexCommerce
   autoload :StockLevel, File.join(gem_root, "app", "models", "stock_level")
   autoload :BundleGroup, File.join(gem_root, "app", "models", "bundle_group")
   autoload :Refund, File.join(gem_root, "app", "models", "refund")
+  autoload :RetailStore, File.join(gem_root, "app", "models", "retail_store")
+  autoload :Redirect, File.join(gem_root, "app", "models", "redirect")
+  autoload :Report, File.join(gem_root, "app", "models", "report")
+  autoload :ReportInvocation, File.join(gem_root, "app", "models", "report_invocation")
   
   # Services
   autoload :ParamToShql, File.join(gem_root, "app", "services", "param_to_shql")

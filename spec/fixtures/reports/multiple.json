@@ -1,0 +1,42 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "redirects",
+      "attributes": {
+        "title": "First product",
+        "query": "SELECT * FROM products LIMIT 1;",
+      },
+      "links": {
+        "self": "/facili/v1/reports/1.json_api"
+      }
+    }
+  ],
+
+  "meta": {
+    "type": "reports",
+    "page_count": 1,
+    "total_entries": 1
+  },
+
+  "links": {
+    "self": {
+      "href": "/facili/v1/reports?page[number]=1",
+      "meta": {
+        "page_number": 1
+      }
+    },
+    "first": {
+      "href": "/facili/v1/reports?page[number]=1",
+      "meta": {
+        "page_number": 1
+      }
+    },
+    "last": {
+      "href": "/facili/v1/reports?page[number]=1",
+      "meta": {
+        "page_number": 1
+      }
+    }
+  }
+}
