@@ -1,7 +1,7 @@
 #
 # ParamToShql
 # 
-# Methods concerning the parsing of filters (using common UI idioms such as 
+# Service for converting UI-based filters (using common UI idioms such as 
 # checkboxes) into SHQL, the SHiftQueryLanguage understandable by the API.
 #
 # e.g. 
