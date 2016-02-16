@@ -41,7 +41,7 @@ module FlexCommerce
         end
         facet_filters << { "or" => facet_filter }
       end
-      facet_filters.count == 1 ? facet_filters[0] : { "and" => facet_filters }
+      facet_filters.count == 1 ? facet_filters.first : { "and" => facet_filters }
     end
 
     private
