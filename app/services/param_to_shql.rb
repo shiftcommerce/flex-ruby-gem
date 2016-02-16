@@ -1,11 +1,15 @@
 #
 # ParamToShql
 # 
-# Methods concerning the parsing of params[:facet_filter], which has the following format:
+# Methods concerning the parsing of filters (using common UI idioms such as 
+# checkboxes) into SHQL, the SHiftQueryLanguage understandable by the API.
 #
-# "facet_filter"=>{"meta.colour"=>{"blue"=>"on", "red"=>"on"},"price"=>{"gt"=>"", "lt"=>""}}
+# e.g. 
+#   {"meta.colour"=>{"blue"=>"on", "red"=>"on"},"price"=>{"gt"=>"", "lt"=>""}}
+# would become
+#   "or" => [{"meta.colour"=>{"eq"=>"blue"}},{"meta.colour"=>{"eq"=>"red"}}...]
 #
-# Converts the filter param into valid SHQL (understandable by the filtering API)
+# TODO: More documentation
 #
 module FlexCommerce
   class ParamToShql
