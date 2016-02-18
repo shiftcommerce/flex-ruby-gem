@@ -39,7 +39,8 @@ module FlexCommerce
   autoload :Redirect, File.join(gem_root, "app", "models", "redirect")
   autoload :Report, File.join(gem_root, "app", "models", "report")
   autoload :ReportInvocation, File.join(gem_root, "app", "models", "report_invocation")
-  
+  autoload :Webhook, File.join(gem_root, "app", "models", "webhook")
+
   # Services
   autoload :ParamToShql, File.join(gem_root, "app", "services", "param_to_shql")
 end

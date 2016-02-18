@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "redirects",
+      "attributes": {
+        "title": "Submit to OMS",
+        "event": "order_created",
+        "request_url": "https://example.com/test",
+        "request_headers": {
+          "X-Token": "AUTHTOKENHERE"
+        }
+      },
+      "links": {
+        "self": "/facili/v1/webhooks/1.json_api"
+      }
+    }
+  ],
+
+  "meta": {
+    "type": "webhooks",
+    "page_count": 1,
+    "total_entries": 1
+  },
+
+  "links": {
+    "self": {
+      "href": "/facili/v1/webhooks?page[number]=1",
+      "meta": {
+        "page_number": 1
+      }
+    },
+    "first": {
+      "href": "/facili/v1/webhooks?page[number]=1",
+      "meta": {
+        "page_number": 1
+      }
+    },
+    "last": {
+      "href": "/facili/v1/webhooks?page[number]=1",
+      "meta": {
+        "page_number": 1
+      }
+    }
+  }
+}
