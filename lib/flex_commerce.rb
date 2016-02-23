@@ -41,6 +41,8 @@ module FlexCommerce
   autoload :ReportInvocation, File.join(gem_root, "app", "models", "report_invocation")
   autoload :Webhook, File.join(gem_root, "app", "models", "webhook")
   autoload :Bundle, File.join(gem_root, "app", "models", "bundle")
+  autoload :User, File.join(gem_root, "app", "models", "user")
+  autoload :Role, File.join(gem_root, "app", "models", "role")
 
   # Services
   autoload :ParamToShql, File.join(gem_root, "app", "services", "param_to_shql")
