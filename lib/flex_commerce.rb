@@ -43,6 +43,7 @@ module FlexCommerce
   autoload :Bundle, File.join(gem_root, "app", "models", "bundle")
   autoload :User, File.join(gem_root, "app", "models", "user")
   autoload :Role, File.join(gem_root, "app", "models", "role")
+  autoload :UserProfile, File.join(gem_root, "app", "models", "user_profile")
 
   # Services
   autoload :ParamToShql, File.join(gem_root, "app", "services", "param_to_shql")
