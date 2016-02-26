@@ -6,14 +6,12 @@ module FlexCommerce
   # This model provides access to the flex commerce redirect
   #
   class Redirect < FlexCommerceApi::ApiBase
-    # we only provide lookup via the gem
-    def self.path(*)
-      "redirects/matches"
-    end
 
     # abstraction to ensure redirects can be loaded easily
+    collection_endpoint :matches, request_method: :get
+
     def self.find_by_resource(source_type: nil, source_slug: nil, source_path: )
-      find({ source_type: source_type, source_slug: source_slug, source_path: source_path })
+      matches(filter: { source_type: source_type, source_slug: source_slug, source_path: source_path }).first
     end
   end
 end
