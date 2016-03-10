@@ -9,5 +9,6 @@ module FlexCommerce
   #
   class Variant < FlexCommerceApi::ApiBase
     has_one :product
+    has_many :asset_files
   end
 end
