@@ -35,5 +35,7 @@ module FlexCommerce
       end
 
     end
+
+    has_one :customer_account
   end
 end

@@ -24,6 +24,11 @@ module FlexCommerceApi
     self.connection_class = ::FlexCommerceApi::JsonApiClientExtension::FlexibleConnection
 
     class << self
+      def create!(*args)
+        create(*args).tap do |resource|
+          raise(::FlexCommerceApi::Error::RecordInvalid.new(self)) unless resource.errors.empty?
+        end
+      end
       # @method all
       # Returns all resources
       # @return [FlexCommerceApi::ApiBase[]] An array of resources or an empty array
