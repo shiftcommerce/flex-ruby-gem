@@ -47,5 +47,11 @@ module FlexCommerceApi
     def reconfigure_all!
       FlexCommerceApi::ApiBase.reconfigure_all if FlexCommerceApi.const_defined? "ApiBase"
     end
+
+    def self.order_test_mode
+      # ENV.fetch("ORDER_TEST_MODE", false) ? true : false
+      true
+    end
+
   end
 end
