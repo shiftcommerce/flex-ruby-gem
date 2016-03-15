@@ -10,6 +10,7 @@ module FlexCommerceApi
   #     config.flex_account=ENV["FLEX_ACCOUNT"]
   #     config.flex_api_key=ENV["FLEX_API_KEY"]
   #     config.logger = Rails.logger
+  #     config.order_test_mode = ENV.key?("ORDER_TEST_MODE")
   #   end
   #
   # The above code would typically be found in a rails initializer as an example.
@@ -27,11 +28,14 @@ module FlexCommerceApi
     # @!attribute [r] api_version
     #  The API version.  This is tied to the gem version so if you want to access
     #  a later version of the API you must get a later version of the gem.
-    attr_accessor :flex_root_url, :flex_api_key, :flex_account, :logger, :adapter
+    # @!attribute order_test_mode
+    #  The order test mode.This config determines if orders are processed as test or real orders
+    attr_accessor :flex_root_url, :flex_api_key, :flex_account, :logger, :adapter, :order_test_mode
     attr_reader :api_version
 
     def initialize
       @api_version = API_VERSION
+      self.order_test_mode = false
     end
 
     # The api base URL
@@ -46,11 +50,6 @@ module FlexCommerceApi
     # so they wont need reconfiguring
     def reconfigure_all!
       FlexCommerceApi::ApiBase.reconfigure_all if FlexCommerceApi.const_defined? "ApiBase"
-    end
-
-    def self.order_test_mode
-      # ENV.fetch("ORDER_TEST_MODE", false) ? true : false
-      true
     end
 
   end
