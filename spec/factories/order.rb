@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :order, class: JsonStruct do
+    test false
+  end
 
   factory :order_from_fixture, class: JsonStruct do
     transient do
