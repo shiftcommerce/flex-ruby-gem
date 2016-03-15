@@ -18,7 +18,7 @@ module FlexCommerce
 
     def self.extra_attributes
       extras = {}
-      extras.merge!(order_test_mode) if FlexCommerceApi::Config.order_test_mode
+      extras.merge!(test: true) if FlexCommerceApi.config.order_test_mode
       extras
     end
 

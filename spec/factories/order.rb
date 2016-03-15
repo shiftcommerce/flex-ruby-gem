@@ -1,16 +1,4 @@
 FactoryGirl.define do
-  factory :order, class: JsonStruct do
-    # email { Faker::Internet.email }
-    # sequence(:reference) { |num| "#{Faker::Name.first_name}#{num}" }
-    # channel "web"
-    # status "pending"
-    # date Time.now.utc
-    # sub_total 10
-    # total 11
-    # tax 15
-    # shipping_total 10
-    # total_discount 10
-  end
 
   factory :order_from_fixture, class: JsonStruct do
     transient do
