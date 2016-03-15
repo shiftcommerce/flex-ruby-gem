@@ -53,10 +53,10 @@ RSpec.describe FlexCommerce::Order, focus: true do
         end
       end
 
-      it "does not include test attribute on create" do
-        order = described_class.create(attributes_for(:order))
+      subject { described_class.create(attributes_for(:order)) }
 
-        expect(order.test).to be false
+      it "does not include test attribute on create" do
+        expect(subject.test).to be false
       end
 
     end
