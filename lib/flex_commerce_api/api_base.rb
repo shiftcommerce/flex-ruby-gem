@@ -26,7 +26,7 @@ module FlexCommerceApi
     class << self
       def create!(*args)
         create(*args).tap do |resource|
-          raise(::FlexCommerceApi::Error::RecordInvalid.new(self)) unless resource.errors.empty?
+          raise(::FlexCommerceApi::Error::RecordInvalid.new(resource)) unless resource.errors.empty?
         end
       end
       # @method all

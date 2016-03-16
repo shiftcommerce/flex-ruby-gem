@@ -65,6 +65,24 @@
   "included": [
     {
       "id": "1",
+      "type": "markdown_prices",
+      "attributes": { 
+        "price": 123.45,
+        "start_at": "12-mar-2015",
+        "end_at": "13-mar-2015"
+      }
+    },    
+    {
+      "id": "2",
+      "type": "markdown_prices",
+      "attributes": { 
+        "price": 123.45,
+        "start_at": "12-mar-2015",
+        "end_at": "13-mar-2015"
+      }
+    },
+    {
+      "id": "1",
       "type": "asset_files",
       "attributes": {
         "name": "Product image 0",
@@ -111,6 +129,14 @@
         "rating_average": 0.0
       },
       "relationships": {
+        "markdown_prices": {
+          "data": [
+            { 
+              "id": "2",
+              "type": "markdown_prices"
+            } 
+          ]
+        },
         "asset_files": {
           "data": [
             {
@@ -142,6 +168,14 @@
         "rating_average": 0.0
       },
       "relationships": {
+        "markdown_prices": {
+          "data": [
+            { 
+              "id": "1", 
+              "type": "markdown_prices" 
+            } 
+          ]
+        },
         "asset_files": {
           "data": [
             {
