@@ -10,5 +10,14 @@ module FlexCommerce
   class Variant < FlexCommerceApi::ApiBase
     has_one :product
     has_many :asset_files
+    has_many :markdown_prices
+
+    def current_price
+      if markdown = markdown_prices.find(&:active?)
+        markdown.price
+      else
+        price
+      end
+    end
   end
 end

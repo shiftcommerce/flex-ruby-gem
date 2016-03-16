@@ -82,5 +82,13 @@ module FlexCommerce
         end
       end
     end
+
+    def current_max_price
+      variants.map(&:current_price).max
+    end
+
+    def current_min_price
+      variants.map(&:current_price).min
+    end
   end
 end
