@@ -48,6 +48,9 @@ module FlexCommerce
     
     class << self
       def_delegators :_new_scope, :temp_search
+      def path(params, *args)
+        super
+      end
     end
   end
 end
