@@ -8,6 +8,7 @@ module FlexCommerce
   # It is used much like an active record model.
   #
   class AssetFile < FlexCommerceApi::ApiBase
+    has_one :asset_folder
     def self.path(params, resource)
       internal_params = params.with_indifferent_access
       if !internal_params.key?("asset_folder_id") && !internal_params.key?("path") && resource
