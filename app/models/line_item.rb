@@ -27,6 +27,9 @@ module FlexCommerce
     has_one :item
     belongs_to :container
 
+    # note: only embedded in order responses, not carts
+    has_many :line_item_discounts, class_name: "::FlexCommerce::LineItemDiscount"
+
     class << self
       def _prefix_path
         ""
