@@ -18,6 +18,7 @@ module FlexCommerce
   autoload :Coupon, File.join(gem_root, "app", "models", "coupon")
   autoload :DiscountSummary, File.join(gem_root, "app", "models", "discount_summary")
   autoload :LineItem, File.join(gem_root, "app", "models", "line_item")
+  autoload :LineItemDiscount, File.join(gem_root, "app", "models", "line_item_discount")
   autoload :CustomerAccount, File.join(gem_root, "app", "models", "customer_account")
   autoload :Address, File.join(gem_root, "app", "models", "address")
   autoload :ShippingMethod, File.join(gem_root, "app", "models", "shipping_method")
@@ -48,7 +49,7 @@ module FlexCommerce
   autoload :Email, File.join(gem_root, "app", "models", "email")
   autoload :MarkdownPrice, File.join(gem_root, "app", "models", "markdown_price")
 
- 
+
   # Services
   autoload :ParamToShql, File.join(gem_root, "app", "services", "param_to_shql")
 end
