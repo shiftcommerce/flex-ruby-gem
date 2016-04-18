@@ -74,6 +74,14 @@
       }
     },
     {
+      "id": "1",
+      "type": "free_shipping_promotion",
+      "shipping_total_discount" : "",
+      "shipping_discount_name" : "",
+      "free_shipping": "",
+      "coupon_code": ""
+    },
+    {
       "id": "2",
       "type": "discount_summaries",
       "attributes": {
