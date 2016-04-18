@@ -81,8 +81,51 @@ RSpec.describe "url encoding on any model" do
       expect(result.template_attribute(:template_related_products).map(&:id)).to eq ["1"]
     end
 
+    it 'does allows get by direct reference to attribute' do
+      expect(result.template_attribute(:template_related_products).map(&:id)).to eq ["1"]
+    end
+  end
+
+  context 'with template data of type related-files' do
+    let!(:example_data) do
+      {
+        data: {
+          id: "1",
+          type: "template_attributable_class",
+          attributes: {
+              template_attributes: { template_related_files: { value: [1], data_type: "related-files" } }
+          },
+          relationships: {
+            template_related_files: {
+              data: [
+                {
+                  id: "1",
+                  type: "template_attributable_class"
+                }
+              ]
+            }
+          }
+        },
+        included: [
+          {
+            id: "1",
+            type: "template_attributable_class",
+            attributes: {
+                name: "asset file 1"
+            }
+          }
+        ]
+      }
+    end
+
+    let(:result) { subject_class.find("slug:my_slug") }
+
+    it 'allows get by template attribute method' do
+      expect(result.template_attribute(:template_related_files).map(&:id)).to eq ["1"]
+    end
+
     it 'does not allow get by direct reference to attribute' do
-      expect(result.template_related_files).to eq nil
+      expect(result.template_attribute(:template_related_files).map(&:id)).to eq ["1"]
     end
   end
 end
