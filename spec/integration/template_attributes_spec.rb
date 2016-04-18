@@ -124,7 +124,7 @@ RSpec.describe "url encoding on any model" do
       expect(result.template_attribute(:template_related_files).map(&:id)).to eq ["1"]
     end
 
-    it 'does not allow get by direct reference to attribute' do
+    it 'does allows get by direct reference to attribute' do
       expect(result.template_attribute(:template_related_files).map(&:id)).to eq ["1"]
     end
   end
