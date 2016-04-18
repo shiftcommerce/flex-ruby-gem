@@ -44,6 +44,12 @@
           }
 
         ]
+      },
+      "free_shipping_promotion": {
+        "data": {
+          "id": "1",
+          "type": "free_shipping_promotion"
+        }
       }
     }
   },
