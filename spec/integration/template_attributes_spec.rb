@@ -50,7 +50,7 @@ RSpec.describe "url encoding on any model" do
           id: "1", 
           type: "template_attributable_class", 
           attributes: {
-            template_attributes: { template_related_products: { value: [1], data_type: "related-products" } }
+            template_attributes: { related_products: { value: [1], data_type: "related-products" } }
           },
           relationships: {
             template_related_products: {
@@ -78,11 +78,11 @@ RSpec.describe "url encoding on any model" do
     let(:result) { subject_class.find("slug:my_slug") }
 
     it 'allows get by template attribute method' do
-      expect(result.template_attribute(:template_related_products).map(&:id)).to eq ["1"]
+      expect(result.template_attribute(:related_products).map(&:id)).to eq ["1"]
     end
 
     it 'does allows get by direct reference to attribute' do
-      expect(result.template_attribute(:template_related_products).map(&:id)).to eq ["1"]
+      expect(result.template_attribute(:related_products).map(&:id)).to eq ["1"]
     end
   end
 
@@ -93,7 +93,7 @@ RSpec.describe "url encoding on any model" do
           id: "1",
           type: "template_attributable_class",
           attributes: {
-              template_attributes: { template_related_files: { value: [1], data_type: "related-files" } }
+              template_attributes: { related_files: { value: [1], data_type: "related-files" } }
           },
           relationships: {
             template_related_files: {
@@ -121,11 +121,11 @@ RSpec.describe "url encoding on any model" do
     let(:result) { subject_class.find("slug:my_slug") }
 
     it 'allows get by template attribute method' do
-      expect(result.template_attribute(:template_related_files).map(&:id)).to eq ["1"]
+      expect(result.template_attribute(:related_files).map(&:id)).to eq ["1"]
     end
 
     it 'does allows get by direct reference to attribute' do
-      expect(result.template_attribute(:template_related_files).map(&:id)).to eq ["1"]
+      expect(result.template_attribute(:related_files).map(&:id)).to eq ["1"]
     end
   end
 end
