@@ -111,7 +111,7 @@ module FlexCommerceApi
 
     def template_attribute(key)
       case attributes[:template_attributes][key][:data_type]
-      when "related-files", "related-products" then (self.send(key) || self.send("template_#{key}"))
+      when "related-files", "related-products" then self.send(key)
       else attributes[:template_attributes][key][:value] rescue nil
       end
     end
