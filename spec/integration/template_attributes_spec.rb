@@ -13,13 +13,13 @@ RSpec.describe "url encoding on any model" do
     end
   end
    
-  before(:each) do 
+  before(:each) do
     stub_request(:get, /\/template_attributable_classes\/slug:my_slug\.json_api$/).to_return do |req|
       { body: example_data.to_json, headers: default_headers, status: 200 }
     end
   end
 
-  context 'with template data' do
+  context 'with template data of type text' do
     let!(:example_data) do
       { 
         data: {
@@ -40,6 +40,49 @@ RSpec.describe "url encoding on any model" do
 
     it 'does not allow get by direct reference to attribute' do
       expect(result.foo).to eq nil
+    end
+  end
+
+  context 'with template data of type related-products' do
+    let!(:example_data) do
+      { 
+        data: {
+          id: "1", 
+          type: "template_attributable_class", 
+          attributes: {
+            template_attributes: { template_related_products: { value: [1], data_type: "related-products" } }
+          },
+          relationships: {
+            template_related_products: {
+              data: [
+                {
+                  id: "1",
+                  type: "template_attributable_class"
+                }
+              ]
+            }
+          }
+        },
+        included: [
+          {
+            id: "1",
+            type: "template_attributable_class",
+            attributes: {
+              name: "Product image 1"
+            }
+          }
+        ]
+      }
+    end
+   
+    let(:result) { subject_class.find("slug:my_slug") }
+
+    it 'allows get by template attribute method' do
+      expect(result.template_attribute(:template_related_products).map(&:id)).to eq ["1"]
+    end
+
+    it 'does not allow get by direct reference to attribute' do
+      expect(result.template_related_files).to eq nil
     end
   end
 end
