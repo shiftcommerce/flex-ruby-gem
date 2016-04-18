@@ -109,6 +109,10 @@ module FlexCommerceApi
       attributes[:meta_attributes][key][:value] rescue nil
     end
 
+    def template_attribute(key)
+      attributes[:template_attributes][key][:value] rescue nil
+    end
+
     def method_missing(method, *args)
       if relationships and relationships.has_attribute?(method)
         super
