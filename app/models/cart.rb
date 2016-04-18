@@ -43,6 +43,7 @@ module FlexCommerce
     has_one :shipping_address, class_name: "::FlexCommerce::Address"
     has_one :billing_address, class_name: "::FlexCommerce::Address"
     has_one :shipping_method, class_name: "::FlexCommerce::ShippingMethod"
+    has_one :free_shipping_promotion, class_name: "::FlexCommerce::FreeShippingPromotion"
 
     # Here we override line_items to provide a proxy to the array so we can use new and create on it in the normal
     # active record way
