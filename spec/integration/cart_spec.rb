@@ -14,6 +14,7 @@ RSpec.describe "Shopping Cart" do
   let(:product_class) { ::FlexCommerce::Product }
   let(:line_item_class) { ::FlexCommerce::LineItem }
   let(:discount_summary_class) { ::FlexCommerce::DiscountSummary }
+  let(:free_shipping_promotion_class) { ::FlexCommerce::FreeShippingPromotion }
   let(:coupon_class) { ::FlexCommerce::Coupon }
 
   context "with fixture files from flex" do
@@ -26,6 +27,11 @@ RSpec.describe "Shopping Cart" do
       end
       let(:discount_summary_resources) do
         singular_resource.data.relationships.discount_summaries.data.map do |ri|
+          singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
+        end
+      end
+      let(:free_shipping_promotion_resources) do
+        singular_resource.data.relationships.free_shipping_promotion.data.map do |ri|
           singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
         end
       end
@@ -72,6 +78,11 @@ RSpec.describe "Shopping Cart" do
                 expect(summary).to be_a(discount_summary_class)
               end
             end
+          end
+        end
+        context "the free_shipping_promotion association" do
+          it "should fetch a list of discount summaries" do
+            expect(subject.free_shipping_promotion).to be_a(free_shipping_promotion_class)
           end
         end
         context "using the line items association" do

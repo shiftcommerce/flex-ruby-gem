@@ -45,6 +45,12 @@
 
         ]
       },
+      "free_shipping_promotion": {
+        "data": {
+          "id": "1",
+          "type": "free_shipping_promotion"
+        }
+      },
       "billing_address": {
         "data": {
           "id": "1",
@@ -92,6 +98,14 @@
         "name": "20% Off something",
         "total": 5.50
       }
+    },
+    {
+      "id": "1",
+      "type": "free_shipping_promotion",
+      "shipping_total_discount" : "",
+      "shipping_discount_name" : "",
+      "free_shipping": "",
+      "coupon_code": ""
     },
     {
       "id": "1",
