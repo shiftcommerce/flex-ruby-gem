@@ -9,13 +9,13 @@ module FlexCommerceApi
         @faraday = Faraday.new(site) do |builder|
           builder.request :json
           builder.use JsonApiClientExtension::SaveRequestBodyMiddleware
-          builder.use JsonApiClientExtension::LoggingMiddleware unless FlexCommerceApi.logger.nil?
           builder.use JsonApiClientExtension::JsonFormatMiddleware
           builder.use JsonApiClientExtension::PreviewedRequestMiddleware if include_previewed
           builder.use JsonApiClient::Middleware::JsonRequest
           builder.use JsonApiClientExtension::StatusMiddleware
           builder.use JsonApiClient::Middleware::ParseJson
           builder.adapter *adapter_options
+          builder.use JsonApiClientExtension::LoggingMiddleware unless FlexCommerceApi.logger.nil?
         end
         faraday.basic_auth(ApiBase.username, ApiBase.password)
 
