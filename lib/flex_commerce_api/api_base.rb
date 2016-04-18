@@ -110,7 +110,10 @@ module FlexCommerceApi
     end
 
     def template_attribute(key)
-      attributes[:template_attributes][key][:value] rescue nil
+      case attributes[:template_attributes][key][:data_type]
+      when "related-files", "related-products" then self.send(key)
+      else attributes[:template_attributes][key][:value] rescue nil
+      end
     end
 
     def method_missing(method, *args)
