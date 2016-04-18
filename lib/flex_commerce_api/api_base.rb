@@ -38,6 +38,10 @@ module FlexCommerceApi
       # @param [Hash] options The options to paginate with
       # @param options [Numeric|String] :page The page to fetch
 
+      # @method find_all
+      # Finds many resources, always returning an array, even if 1 result
+      alias_method :find_all, :find
+
       # @method find
       # @param [String] spec The spec of what to find
       #
