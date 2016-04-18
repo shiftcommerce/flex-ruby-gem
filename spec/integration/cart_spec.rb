@@ -82,10 +82,7 @@ RSpec.describe "Shopping Cart" do
         end
         context "the free_shipping_promotion association" do
           it "should fetch a list of discount summaries" do
-            subject.free_shipping_promotion.tap do |shipping_promotion|
-              expect(shipping_promotion.length).to eql free_shipping_promotion_resources.length
-              expect(shipping_promotion).to be_a(free_shipping_promotion_class)
-            end
+            expect(subject.free_shipping_promotion).to be_a(free_shipping_promotion_class)
           end
         end
         context "using the line items association" do
