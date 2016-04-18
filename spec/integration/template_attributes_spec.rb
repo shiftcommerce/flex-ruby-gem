@@ -9,7 +9,7 @@ RSpec.describe "url encoding on any model" do
   include_context "global context"
 
   let(:subject_class) do
-    MetaAttributableClass = Class.new(FlexCommerceApi::ApiBase) do
+    TemplateAttributableClass = Class.new(FlexCommerceApi::ApiBase) do
     end
   end
    
