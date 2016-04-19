@@ -14,12 +14,12 @@ module FlexCommerce
     has_one :shipping_address, class_name: "::FlexCommerce::Address"
     has_one :billing_address, class_name: "::FlexCommerce::Address"
 
-    def self.find_by_customer_account_id(order_id, customer_account_id)
-      requestor.send(:request, :get, "customer_accounts/%d/orders/%d" % [customer_account_id, order_id], {})
-    end
-
-    def self.all_by_customer_account_id(customer_account_id)
-      requestor.send(:request, :get, "customer_accounts/%d/orders" % customer_account_id, {})
+    def self.path(params = nil, record = nil)
+      if params && params[:filter] && (customer_id = params[:filter].delete(:customer_account_id))
+        File.join("customer_accounts/%d" % customer_id, super)
+      else
+        super
+      end
     end
 
     def self.create(attributes)
