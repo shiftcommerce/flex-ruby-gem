@@ -38,7 +38,6 @@ module FlexCommerce
 
     has_one :cart, class_name: "::FlexCommerce::Cart"
     has_many :addresses, class_name: "::FlexCommerce::Address"
-    has_many :orders, class_name: "::FlexCommerce::Order"
 
     property :email, type: :string
     property :reference, type: :string
@@ -71,6 +70,10 @@ module FlexCommerce
     def self.reset_password(attributes)
       patch_attributes = { password: attributes[:password] }
       requestor.custom("email:#{URI.encode_www_form_component(attributes[:email])}/resets/token:#{attributes[:reset_password_token]}", { request_method: :patch }, { data: { type: :customer_accounts, attributes: patch_attributes } }).first
+    end
+
+    def orders
+      ::FlexCommerce::Order.where(customer_account_id: id)
     end
   end
 end
