@@ -16,7 +16,7 @@ module FlexCommerceApi
         @app.call(env).on_complete do |response_env|
           logger.debug("FlexApi::Request  id #{request_id} #{env.method.to_s.upcase} #{env.url} started at #{Time.now}")
           logger.debug("\t >>> #{env[:request_body].to_json}") unless  env[:request_body].nil? || env[:request_body].empty?
-          logger.debug("\t <<< (#{env[:status]}) #{env.body.to_json}")
+          logger.debug("\t <<< (#{env[:status]}) #{env.body}")
         end
       end
     end
