@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "json_api_client", "1.0.2"
   spec.add_runtime_dependency "activesupport", "~> 4"
   spec.add_runtime_dependency "rack", "~> 1.6"
+  spec.add_runtime_dependency "faraday-http-cache", "1.3.0"
 end
