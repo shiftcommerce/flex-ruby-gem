@@ -11,11 +11,11 @@ module FlexCommerceApi
         include_previewed = options.fetch :include_previewed, false
         @faraday = Faraday.new(site) do |builder|
           builder.request :json
-          builder.use :http_cache, cache_options(options)
           builder.use JsonApiClientExtension::SaveRequestBodyMiddleware
           builder.use JsonApiClientExtension::JsonFormatMiddleware
           builder.use JsonApiClientExtension::PreviewedRequestMiddleware if include_previewed
           builder.use JsonApiClient::Middleware::JsonRequest
+          builder.use :http_cache, cache_options(options)
           builder.use JsonApiClientExtension::StatusMiddleware
           builder.use JsonApiClient::Middleware::ParseJson
           builder.adapter *adapter_options
@@ -39,8 +39,10 @@ module FlexCommerceApi
           shared_cache: false,
           # use the Rails cache, if set, otherwise default to MemoryStore
           store: defined?(Rails) ? Rails.cache : nil,
-          # serialize the data using Oj
-          serializer: Oj
+          # serialize the data using Marshal
+          serializer: Marshal,
+          # use our configured logger
+          logger: FlexCommerceApi.logger
         }.merge(options.fetch(:http_cache, {}))
       end
     end
