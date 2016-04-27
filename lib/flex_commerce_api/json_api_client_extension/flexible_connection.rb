@@ -37,7 +37,7 @@ module FlexCommerceApi
           # treats the cache like a client, not a proxy
           shared_cache: false,
           # use the Rails cache, if set, otherwise default to MemoryStore
-          store: defined?(Rails) ? Rails.cache : nil,
+          store: defined?(::Rails) ? ::Rails.cache : nil,
           # serialize the data using Marshal
           serializer: Marshal,
           # use our configured logger
