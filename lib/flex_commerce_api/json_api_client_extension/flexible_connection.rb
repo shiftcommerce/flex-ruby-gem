@@ -1,3 +1,6 @@
+require 'oj'
+require 'faraday-http-cache'
+
 module FlexCommerceApi
   module JsonApiClientExtension
     class FlexibleConnection < JsonApiClient::Connection
@@ -8,6 +11,7 @@ module FlexCommerceApi
         include_previewed = options.fetch :include_previewed, false
         @faraday = Faraday.new(site) do |builder|
           builder.request :json
+          builder.use :http_cache, cache_options(options)
           builder.use JsonApiClientExtension::SaveRequestBodyMiddleware
           builder.use JsonApiClientExtension::JsonFormatMiddleware
           builder.use JsonApiClientExtension::PreviewedRequestMiddleware if include_previewed
@@ -26,6 +30,18 @@ module FlexCommerceApi
         super.tap do |response|
           self.last_response = response
         end
+      end
+
+      private
+      def cache_options(options)
+        {
+          # treats the cache like a client, not a proxy
+          shared_cache: false,
+          # use the Rails cache, if set, otherwise default to MemoryStore
+          store: defined?(Rails) ? Rails.cache : nil,
+          # serialize the data using Oj
+          serializer: Oj
+        }.merge(options.fetch(:http_cache, {}))
       end
     end
   end
