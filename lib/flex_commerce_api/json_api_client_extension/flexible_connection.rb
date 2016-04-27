@@ -1,4 +1,3 @@
-require 'oj'
 require 'faraday-http-cache'
 
 module FlexCommerceApi
