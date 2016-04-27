@@ -120,6 +120,14 @@ module FlexCommerceApi
       end
     end
 
+    def cache_key
+      if respond_to?(:id) && respond_to?(:updated_at) && id && updated_at
+        [self.class.name, id, updated_at.to_datetime.utc.to_i.to_s].join("/")
+      else
+        raise NotImplementedError, "This model doesn't have an id/updated_at field, so requires custom #cache_key implementation"
+      end
+    end
+
     def method_missing(method, *args)
       if relationships and relationships.has_attribute?(method)
         super
