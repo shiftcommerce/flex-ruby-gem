@@ -31,7 +31,7 @@ module FlexCommerce
       facet_filters = []
       @filter_param.each do |label,facet|
         facet_filter = []
-        if facet.keys.include?("gt") || facet.keys.include?("lt")
+        if (facet.keys & ['lt', 'lte', 'gt', 'gte']).any?
           range_filter =  range_param_to_shql(label, facet)
           facet_filter << range_filter if !(range_filter == "" || range_filter == nil)
         else
