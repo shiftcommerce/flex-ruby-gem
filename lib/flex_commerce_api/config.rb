@@ -30,12 +30,13 @@ module FlexCommerceApi
     #  a later version of the API you must get a later version of the gem.
     # @!attribute order_test_mode
     #  The order test mode.This config determines if orders are processed as test or real orders
-    attr_accessor :flex_root_url, :flex_api_key, :flex_account, :logger, :adapter, :order_test_mode
+    attr_accessor :flex_root_url, :flex_api_key, :flex_account, :logger, :adapter, :order_test_mode, :http_cache
     attr_reader :api_version
 
     def initialize
       @api_version = API_VERSION
       self.order_test_mode = false
+      self.http_cache = {}
     end
 
     # The api base URL

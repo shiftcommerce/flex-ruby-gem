@@ -14,7 +14,10 @@ module FlexCommerceApi
           builder.use JsonApiClientExtension::JsonFormatMiddleware
           builder.use JsonApiClientExtension::PreviewedRequestMiddleware if include_previewed
           builder.use JsonApiClient::Middleware::JsonRequest
-          builder.use :http_cache, cache_options(options)
+          # disable the cache when HTTP cache is set to false
+          unless false == options[:http_cache]
+            builder.use :http_cache, cache_options(options)
+          end
           builder.use JsonApiClientExtension::StatusMiddleware
           builder.use JsonApiClient::Middleware::ParseJson
           builder.adapter *adapter_options
