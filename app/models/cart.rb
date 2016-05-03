@@ -40,6 +40,7 @@ module FlexCommerce
 
     has_many :line_items, class_name: "::FlexCommerce::LineItem"
     has_many :discount_summaries, class_name: "::FlexCommerce::DiscountSummary"
+    has_many :shipping_methods, class_name: "::FlexCommerce::ShippingMethod"
     has_one :shipping_address, class_name: "::FlexCommerce::Address"
     has_one :billing_address, class_name: "::FlexCommerce::Address"
     has_one :shipping_method, class_name: "::FlexCommerce::ShippingMethod"
