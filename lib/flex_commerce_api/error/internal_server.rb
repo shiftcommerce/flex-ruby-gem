@@ -2,13 +2,13 @@ module FlexCommerceApi
   module Error
     class InternalServer < Base
       def message
-        body = response_env.fetch(:body, {errors: []})
-        error = body.is_a?(::String) ? body : body[:errors].first
+        body = response_env.fetch(:body, {"errors" => []})
+        error = body.is_a?(::String) ? body : body["errors"].first
         return "Internal server error" unless error.present?
         if error.is_a?(::Enumerable)
-          title = error.fetch(:title, "")
-          detail = error.fetch(:detail, "")
-          backtrace = error.fetch(:meta, {backtrace: []}).fetch(:backtrace)
+          title = error.fetch("title", "")
+          detail = error.fetch("detail", "")
+          backtrace = error.fetch("meta", {"backtrace" => []}).fetch("backtrace")
           "Internal server error - #{title} #{detail} #{backtrace}"
         else
           "Internal server error - #{error}"
