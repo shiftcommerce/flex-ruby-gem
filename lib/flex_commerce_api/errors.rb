@@ -8,5 +8,6 @@ module FlexCommerceApi
     autoload :NotFound, File.expand_path(File.join("error", "not_found"), __dir__)
     autoload :AccessDenied, File.expand_path(File.join("error", "access_denied"), __dir__)
     autoload :RecordInvalid, File.expand_path(File.join("error", "record_invalid"), __dir__)
+    autoload :BadRequest, File.expand_path(File.join("error", "bad_request"), __dir__)
   end
 end
