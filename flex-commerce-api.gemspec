@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "yard", "~> 0.8"
   spec.add_development_dependency "json-schema", "~> 2.5"
   spec.add_development_dependency "pry", "~> 0.10.0"
+  spec.add_development_dependency "dotenv"
 
   spec.add_runtime_dependency "oj", "~> 2.12"
   spec.add_runtime_dependency "json_api_client", "1.0.2"
