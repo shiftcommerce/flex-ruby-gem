@@ -5,4 +5,17 @@ RSpec.describe "Asset Files API end to end spec" do
     let(:attributes_to_update) { { name: "#{base_attributes[:name]}CHANGED" } }
     let(:model) { FlexCommerce::AssetFile }
   end
+  context "bulk import" do
+
+  end
+  context "bulk delete" do
+
+  end
+  context "versions" do
+
+  end
+  context "restore" do
+
+  end
+
 end
