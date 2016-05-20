@@ -73,6 +73,7 @@ module FlexCommerce
     # To be used during checkout phases etc..
     # Adds errors to the line items "unit_quantity" attribute if we do not have enough
     def validate_stock!
+      return unless line_items
       stock_levels.each do |stock_level|
         line_items.detect { |li| li.item.sku == stock_level.id }.tap do |li|
           next if li.nil?
