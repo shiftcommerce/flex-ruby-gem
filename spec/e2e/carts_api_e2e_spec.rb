@@ -1,5 +1,5 @@
 require "e2e_spec_helper"
-RSpec.describe "Carts API end to end spec" do
+RSpec.describe "Carts API end to end spec", vcr: true do
   let(:model) { FlexCommerce::Cart }
   it_should_behave_like "crud endpoints" do
     let(:base_attributes) { attributes_for(:cart) }
