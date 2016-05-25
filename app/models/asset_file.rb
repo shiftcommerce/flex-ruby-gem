@@ -11,7 +11,7 @@ module FlexCommerce
     has_one :asset_folder
     def self.path(params, resource)
       internal_params = params.with_indifferent_access
-      if !internal_params.key?("asset_folder_id") && !internal_params.key?("path") && resource
+      if !internal_params.key?("asset_folder_id") && !internal_params.key?("path") && resource && resource.relationships["asset_folder"]["links"]["related"]=~/^\/asset_folders/
         resource.relationships["asset_folder"]["links"]["related"].gsub(/\.json_api$/, '') + "/asset_files"
       elsif internal_params.key?("path") && internal_params["path"].key?("asset_folder_id") && internal_params["path"]["asset_folder_id"].is_a?(String)
         # As the asset_folder_id is going into the url, and the developer may sent it anything, then we should escape it
