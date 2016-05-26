@@ -27,7 +27,7 @@ module FlexCommerce
           customer_account_id = params[:filter].delete(:customer_account_id)
           params.delete(:filter) if params[:filter].empty?
           "customer_accounts/#{customer_account_id}/addresses"
-        elsif instance && instance.try(:customer_account_id) && instance.customer_account_id.present?
+        elsif instance && instance.try(:customer_account_id).try(:present?)
           "customer_accounts/#{instance.customer_account_id}/addresses"
         else
           super
