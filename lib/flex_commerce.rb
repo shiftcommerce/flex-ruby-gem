@@ -50,6 +50,7 @@ module FlexCommerce
   autoload :Email, File.join(gem_root, "app", "models", "email")
   autoload :MarkdownPrice, File.join(gem_root, "app", "models", "markdown_price")
   autoload :CustomerSegment, File.join(gem_root, "app", "models", "customer_segment")
+  autoload :Session, File.join(gem_root, "app", "models", "session")
 
 
   # Services
