@@ -9,6 +9,7 @@ module FlexCommerce
   autoload :Variant, File.join(gem_root, "app", "models", "variant")
   autoload :EwisOptIn, File.join(gem_root, "app", "models", "ewis_opt_in")
   autoload :MenuItem, File.join(gem_root, "app", "models", "menu_item")
+  autoload :MenuItemItem, File.join(gem_root, "app", "models", "menu_item_item")
   autoload :Menu, File.join(gem_root, "app", "models", "menu")
   autoload :BreadcrumbItem, File.join(gem_root, "app", "models", "breadcrumb_item")
   autoload :Breadcrumb, File.join(gem_root, "app", "models", "breadcrumb")
