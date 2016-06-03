@@ -17,7 +17,6 @@ module FlexCommerce
   autoload :CategoryTree, File.join(gem_root, "app", "models", "category_tree")
   autoload :Cart, File.join(gem_root, "app", "models", "cart")
   autoload :Coupon, File.join(gem_root, "app", "models", "coupon")
-  autoload :ContainerCoupon, File.join(gem_root, "app", "models", "container_coupon")
   autoload :DiscountSummary, File.join(gem_root, "app", "models", "discount_summary")
   autoload :FreeShippingPromotion, File.join(gem_root, "app", "models", "free_shipping_promotion")
   autoload :LineItem, File.join(gem_root, "app", "models", "line_item")

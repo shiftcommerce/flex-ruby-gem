@@ -11,7 +11,7 @@ module FlexCommerce
   class Order < FlexCommerceApi::ApiBase
     has_many :transactions, class_name: "::FlexCommerce::OrderTransaction"
     has_many :line_items, class_name: "::FlexCommerce::LineItem"
-    has_many :coupons, class_name: "::FlexCommerce::ContainerCoupon"
+    has_many :coupons, class_name: "::FlexCommerce::Coupon"
     has_one :shipping_promotion, class_name: "::FlexCommerce::Promotion"
     has_one :shipping_address, class_name: "::FlexCommerce::Address"
     has_one :billing_address, class_name: "::FlexCommerce::Address"
