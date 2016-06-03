@@ -11,7 +11,7 @@ RSpec.describe FlexCommerce::OrderTransactionVoid do
   let(:singular_resource) { build(:order_transaction_void_from_fixture) }
   context "with fixture files from flex" do
     before :each do
-      stub_request(:post, "#{api_root}/orders/1/transactions/10/voids.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
+      stub_request(:post, "#{api_root}/orders/1/transactions/10/order_transaction_voids.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
     end
     subject { subject_class.create(order_id: 1, transaction_id: 10) }
     it "should have the correct attributes from the fixture" do
