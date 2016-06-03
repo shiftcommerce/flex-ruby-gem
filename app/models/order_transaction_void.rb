@@ -10,10 +10,6 @@ module FlexCommerce
   class OrderTransactionVoid < FlexCommerceApi::ApiBase
     belongs_to :transaction, class_name: "::FlexCommerce::OrderTransaction"
 
-    def self.table_name
-      "voids"
-    end
-
     def self.path(params, *args)
       "orders/#{params[:order_id]}/#{super}"
     end

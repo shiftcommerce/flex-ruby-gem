@@ -10,10 +10,6 @@ module FlexCommerce
   class OrderTransactionAuth < FlexCommerceApi::ApiBase
     belongs_to :transaction, class_name: "::FlexCommerce::OrderTransaction"
 
-    def self.table_name
-      "auths"
-    end
-
     def self.path(params, *args)
       "orders/#{params[:order_id]}/#{super}"
     end
