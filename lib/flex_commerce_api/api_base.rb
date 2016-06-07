@@ -111,7 +111,10 @@ module FlexCommerceApi
     end
 
     def meta_attribute(key)
-      attributes[:meta_attributes][key][:value] rescue nil
+      case attributes[:meta_attributes][key][:data_type]
+      when "related-files", "related-products" then self.send(key)
+      else attributes[:meta_attributes][key][:value] rescue nil
+      end
     end
 
     def template_attribute(key)
