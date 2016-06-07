@@ -18,6 +18,7 @@ module FlexCommerceApi
   #
   class ApiBase < JsonApiClient::Resource
     PRIVATE_ATTRIBUTES = %w(id type relationships links meta)
+    RELATED_META_RESOURCES = %w(related-categories related-static_pages related-resources related-files related-products)
     # set the api base url in an abstract base class
     self.paginator = JsonApiClientExtension::Paginator
     self.requestor_class = JsonApiClientExtension::Requestor
@@ -111,13 +112,18 @@ module FlexCommerceApi
     end
 
     def meta_attribute(key)
-      attributes[:meta_attributes][key][:value] rescue nil
+      if RELATED_META_RESOURCES.include?(attributes[:meta_attributes][key][:data_type])
+        self.send(key) rescue nil
+      else
+        attributes[:meta_attributes][key][:value] rescue nil
+      end
     end
 
     def template_attribute(key)
-      case attributes[:template_attributes][key][:data_type]
-      when "related-files", "related-products" then self.send("template_#{key}")
-      else attributes[:template_attributes][key][:value] rescue nil
+      if RELATED_META_RESOURCES.include?(attributes[:template_attributes][key][:data_type])
+        self.send("template_#{key}") rescue nil
+      else
+        attributes[:template_attributes][key][:value] rescue nil
       end
     end
 
