@@ -115,7 +115,7 @@ module FlexCommerceApi
       begin
         return self.send(key) if RELATED_META_RESOURCES.include?(attributes[:meta_attributes][key][:data_type])
         attributes[:meta_attributes][key][:value]
-      rescue
+      rescue NoMethodError => e
         nil
       end
     end
@@ -124,7 +124,7 @@ module FlexCommerceApi
       begin
         return self.send("template_#{key}") if RELATED_META_RESOURCES.include?(attributes[:template_attributes][key][:data_type])
         attributes[:template_attributes][key][:value]
-      rescue
+      rescue NoMethodError => e
         nil
       end
     end
