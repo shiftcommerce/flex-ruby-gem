@@ -112,20 +112,20 @@ module FlexCommerceApi
     end
 
     def meta_attribute(key)
-      begin
-        return self.send(key) if RELATED_META_RESOURCES.include?(attributes[:meta_attributes][key][:data_type])
+      return nil unless meta = attributes[:meta_attributes][key]
+      if RELATED_META_RESOURCES.include?(meta[:data_type])
+        self.send(key)
+      else
         attributes[:meta_attributes][key][:value]
-      rescue
-        nil
       end
     end
 
     def template_attribute(key)
-      begin
-        return self.send("template_#{key}") if RELATED_META_RESOURCES.include?(attributes[:template_attributes][key][:data_type])
+      return nil unless template_meta = attributes[:template_attributes][key]
+      if RELATED_META_RESOURCES.include?(template_meta[:data_type])
+        self.send("template_#{key}")
+      else
         attributes[:template_attributes][key][:value]
-      rescue
-        nil
       end
     end
 
