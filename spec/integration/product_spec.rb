@@ -70,7 +70,7 @@ RSpec.describe FlexCommerce::Product do
       #  than the paginated version.
       let(:stubbed_url) do
         URI.parse(current_page.present? ? "#{collection_url}/pages/#{current_page}.json_api" : "#{collection_url}.json_api").tap do |u|
-          u.query = { filter: search_criteria }.to_query
+          u.query = { filter: search_criteria.merge( {filter: { "available_to_browse" => { "eq" => true } }} ) }.to_query
         end.to_s
       end
 
