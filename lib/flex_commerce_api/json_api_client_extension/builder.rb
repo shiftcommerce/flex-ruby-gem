@@ -32,7 +32,7 @@ module FlexCommerceApi
       end
 
       def search_filters
-        search_filters = @temp_search_criteria[:filter]
+        search_filters = @temp_search_criteria[:filter] || {}
         search_filters.is_a?(String) ? JSON.parse(search_filters) : search_filters
       end
     end
