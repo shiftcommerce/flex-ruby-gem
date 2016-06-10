@@ -5,8 +5,9 @@ module FlexCommerceApi
         super
         @temp_search_criteria = nil
       end
-      def temp_search(options = {}, available_to_browse_only=true)
-        @temp_search_criteria = options
+      def temp_search(options = {})
+        available_to_browse_only = options.delete(:available_to_browse_only) { true }
+        @temp_search_criteria    = options
         apply_available_to_browse_filter if available_to_browse_only
         self
       end

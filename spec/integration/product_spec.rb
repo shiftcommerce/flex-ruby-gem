@@ -77,7 +77,7 @@ RSpec.describe FlexCommerce::Product do
 
       # The subject for all examples - using pagination as this is expected normally
       subject do
-        subject_class.temp_search({ query: "Shirt", fields: "description,reference,slug" }, available_to_browse_only).paginate(page: current_page).all
+        subject_class.temp_search( query: "Shirt", fields: "description,reference,slug", available_to_browse_only: available_to_browse_only ).paginate(page: current_page).all
       end
       let(:expected_body) do
         {
