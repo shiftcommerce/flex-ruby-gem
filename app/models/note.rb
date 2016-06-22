@@ -18,6 +18,5 @@ require "flex_commerce_api/api_base"
 module FlexCommerce
   class Note < FlexCommerceApi::ApiBase
     # @TODO Document popular methods that we will support
-    property :contents, type: :string
   end
 end
