@@ -8,12 +8,8 @@ require "flex_commerce_api/api_base"
   #
   # Examples:
   #
-  #
-  #
-  #   # Fetching stock levels for a specific customer account
+  #   # Fetching notes for a specific customer account
   #   FlexCommerce::Note.where(customer_account_id: 1).all
-  #
-  #
   #
 module FlexCommerce
   class Note < FlexCommerceApi::ApiBase
