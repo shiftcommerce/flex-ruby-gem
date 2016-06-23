@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": "1",
+    "type": "notes",
+    "links": {
+      "self": "/defaultsubdomain/v1/notes/1.json_api"
+    },
+    "attributes": {
+      "contents": "Nemo aut nobis tempore quaerat quisquam qui suscipit.",
+      "attached_to_id": 1,
+      "attached_to_type": "CustomerAccount"
+    }
+  },
+  "links": {
+    "self": "/defaultsubdomain/v1/notes/1.json_api?filter%5Bcustomer_account_id%5D=1"
+  }
+}
