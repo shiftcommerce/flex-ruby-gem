@@ -1,0 +1,37 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "notes",
+      "links": {
+        "self": "/defaultsubdomain/v1/notes/1.json_api"
+      },
+      "attributes": {
+        "contents": "Et omnis aliquam suscipit ipsum id non quos.",
+        "attached_to_id": 1,
+        "attached_to_type": "CustomerAccount"
+      }
+    },
+    {
+      "id": "2",
+      "type": "notes",
+      "links": {
+        "self": "/defaultsubdomain/v1/notes/2.json_api"
+      },
+      "attributes": {
+        "contents": "Accusamus voluptatem perferendis neque aut debitis quibusdam.",
+        "attached_to_id": 1,
+        "attached_to_type": "CustomerAccount"
+      }
+    }
+  ],
+  "meta": {
+    "total_entries": 2,
+    "page_count": 1
+  },
+  "links": {
+    "self": "/defaultsubdomain/v1/customer_accounts/1/notes.json_api",
+    "first": "/defaultsubdomain/v1/notes.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25",
+    "last": "/defaultsubdomain/v1/notes.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25"
+  }
+}

@@ -39,6 +39,7 @@ module FlexCommerce
     has_one :cart, class_name: "::FlexCommerce::Cart"
     has_many :addresses, class_name: "::FlexCommerce::Address"
     has_many :customer_segments, class_name: "::FlexCommerce::CustomerSegment"
+    has_many :notes, class_name: "::FlexCommerce::Note"
 
     property :email, type: :string
     property :reference, type: :string
@@ -75,6 +76,10 @@ module FlexCommerce
 
     def orders
       ::FlexCommerce::Order.where(customer_account_id: id)
+    end
+
+    def create_note(attributes = {})
+      ::FlexCommerce::Note.create(attributes.merge(attached_to_id: self.id, attached_to_type: self.class.name.demodulize))
     end
   end
 end
