@@ -77,5 +77,9 @@ module FlexCommerce
     def orders
       ::FlexCommerce::Order.where(customer_account_id: id)
     end
+
+    def create_note(contents:)
+      ::FlexCommerce::Note.create(contents: contents, attached_to_id: self.id, attached_to_type: self.class.name.demodulize)
+    end
   end
 end
