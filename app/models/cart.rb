@@ -89,8 +89,12 @@ module FlexCommerce
       end
     end
 
-    def self.create(attributes)
-      super(attributes.merge(extra_attributes))
+    def self.create(*args)
+      if FlexCommerceApi.config.order_test_mode
+        super({test: true})
+      else
+        super
+      end
     end
 
     private
@@ -99,12 +103,6 @@ module FlexCommerce
       StockLevel.where(skus: line_items.map { |li| li.item.sku }.join(",")).all
     end
 
-    def self.extra_attributes
-      extras = {}
-      extras.merge!(test: true) if FlexCommerceApi.config.order_test_mode
-      extras
-    end
 
-
-  end
+  end 
 end
