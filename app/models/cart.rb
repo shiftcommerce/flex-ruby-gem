@@ -89,7 +89,7 @@ module FlexCommerce
       end
     end
 
-    def self.create()
+    def self.create(*args)
       if FlexCommerceApi.config.order_test_mode
         super({test: true})
       else

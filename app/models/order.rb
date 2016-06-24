@@ -26,7 +26,7 @@ module FlexCommerce
 
   end
 
-  def self.create(attributes)
+  def self.create(attributes = {})
     super(attributes.merge(extra_attributes))
   end
 
