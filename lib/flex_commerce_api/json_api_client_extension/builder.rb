@@ -6,9 +6,7 @@ module FlexCommerceApi
         @temp_search_criteria = nil
       end
       def temp_search(options = {})
-        available_to_browse_only = options.delete(:available_to_browse_only) { true }
-        @temp_search_criteria    = options
-        apply_available_to_browse_filter if available_to_browse_only
+        @temp_search_criteria = options
         self
       end
 
@@ -24,17 +22,6 @@ module FlexCommerceApi
         else
           klass.requestor.custom(:search, { request_method: :get }, params.merge(filter: @temp_search_criteria))
         end
-      end
-
-      private
-
-      def apply_available_to_browse_filter
-        @temp_search_criteria[:filter]=search_filters.merge({ "available_to_browse" => { "eq" => true } })
-      end
-
-      def search_filters
-        search_filters = @temp_search_criteria[:filter] || {}
-        search_filters.is_a?(String) ? JSON.parse(search_filters) : search_filters
       end
     end
   end
