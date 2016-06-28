@@ -52,7 +52,8 @@ module FlexCommerce
   autoload :MarkdownPrice, File.join(gem_root, "app", "models", "markdown_price")
   autoload :CustomerSegment, File.join(gem_root, "app", "models", "customer_segment")
   autoload :Session, File.join(gem_root, "app", "models", "session")
-
+  autoload :DataStoreRecord, File.join(gem_root, "app", "models", "data_store_record")
+  autoload :DataStoreType, File.join(gem_root, "app", "models", "data_store_type")
 
   # Services
   autoload :ParamToShql, File.join(gem_root, "app", "services", "param_to_shql")
