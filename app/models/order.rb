@@ -24,16 +24,15 @@ module FlexCommerce
       end
     end
 
-    def self.create(attributes)
-      super(attributes.merge(extra_attributes))
-    end
-
-    def self.extra_attributes
-      extras = {}
-      extras.merge!(test: true) if FlexCommerceApi.config.order_test_mode
-      extras
-    end
-
   end
 
+  def self.create(attributes = {})
+    super(attributes.merge(extra_attributes))
+  end
+
+  def self.extra_attributes
+    extras = {}
+    extras.merge!(test: true) if FlexCommerceApi.config.order_test_mode
+    extras
+  end
 end

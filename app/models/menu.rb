@@ -28,5 +28,9 @@ module FlexCommerce
   #
   class Menu < FlexCommerceApi::ApiBase
     has_many :menu_items
+    # This model has a path attribute so path can no longer be used to modify the path
+    def self.path(params = nil, record = nil)
+      super(params.nil? ? nil : params.except("path"), record)
+    end
   end
 end

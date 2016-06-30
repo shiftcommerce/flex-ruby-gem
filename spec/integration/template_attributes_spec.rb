@@ -127,5 +127,9 @@ RSpec.describe "url encoding on any model" do
     it 'does allows get by direct reference to attribute' do
       expect(result.template_attribute(:related_files).map(&:id)).to eq ["1"]
     end
+
+    it 'returns nil for non-existent  attribute' do
+      expect(result.template_attribute(:related_filesssss)).to be_nil
+    end
   end
 end

@@ -41,5 +41,95 @@ RSpec.describe "url encoding on any model" do
     it 'does not allow get by direct reference to attribute' do
       expect(result.foo).to eq nil
     end
+
+    context 'with meta data of type related-products' do
+      let!(:example_data) do
+        {
+          data: {
+            id: "1",
+            type: "meta_attributable_class",
+            attributes: {
+              meta_attributes: { related_products: { value: [1], data_type: "related-products" } }
+            },
+            relationships: {
+              related_products: {
+                data: [
+                  {
+                    id: "1",
+                    type: "meta_attributable_class"
+                  }
+                ]
+              }
+            }
+          },
+          included: [
+            {
+              id: "1",
+              type: "meta_attributable_class",
+              attributes: {
+                name: "Product image 1"
+              }
+            }
+          ]
+        }
+      end
+
+      let(:result) { subject_class.find("slug:my_slug") }
+
+      it 'allows get by meta attribute method' do
+        expect(result.meta_attribute(:related_products).map(&:id)).to eq ["1"]
+      end
+
+      it 'does allows get by direct reference to attribute' do
+        expect(result.meta_attribute(:related_products).map(&:id)).to eq ["1"]
+      end
+    end
+
+    context 'with meta data of type related-files' do
+      let!(:example_data) do
+        {
+          data: {
+            id: "1",
+            type: "meta_attributable_class",
+            attributes: {
+                meta_attributes: { related_files: { value: [1], data_type: "related-files" } }
+            },
+            relationships: {
+              related_files: {
+                data: [
+                  {
+                    id: "1",
+                    type: "meta_attributable_class"
+                  }
+                ]
+              }
+            }
+          },
+          included: [
+            {
+              id: "1",
+              type: "meta_attributable_class",
+              attributes: {
+                name: "asset file 1"
+              }
+            }
+          ]
+        }
+      end
+
+      let(:result) { subject_class.find("slug:my_slug") }
+
+      it 'allows get by meta attribute method' do
+        expect(result.meta_attribute(:related_files).map(&:id)).to eq ["1"]
+      end
+
+      it 'does allows get by direct reference to attribute' do
+        expect(result.meta_attribute(:related_files).map(&:id)).to eq ["1"]
+      end
+
+      it 'returns nil for non-existent  attribute' do
+        expect(result.meta_attribute(:related_filesssss)).to be_nil
+      end
+    end
   end
 end

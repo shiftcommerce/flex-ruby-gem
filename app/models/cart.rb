@@ -89,10 +89,20 @@ module FlexCommerce
       end
     end
 
+    def self.create(*args)
+      if FlexCommerceApi.config.order_test_mode
+        super({test: true})
+      else
+        super
+      end
+    end
+
     private
 
     def stock_levels
       StockLevel.where(skus: line_items.map { |li| li.item.sku }.join(",")).all
     end
-  end
+
+
+  end 
 end
