@@ -56,11 +56,10 @@ module FlexCommerceApi
         result.length <= 1 ? result.first : result
       end
 
-      # The username to use for authentication.  This is the same as
-      # the account name from the flex platform.
+      # The username to use for authentication.
       # @return [String] The username
       def username
-        URI.parse(site).path.split("/").reject(&:empty?).first
+        FlexCommerceApi.config.flex_account
       end
 
       # The password to use for authentication.  This is the same as
