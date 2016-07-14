@@ -59,7 +59,9 @@ module FlexCommerceApi
       # The username to use for authentication.
       # @return [String] The username
       def username
-        FlexCommerceApi.config.flex_account
+        username = FlexCommerceApi.config.flex_account
+        username = URI.parse(site).path.split("/").reject(&:empty?).first if username.empty?
+        username
       end
 
       # The password to use for authentication.  This is the same as
