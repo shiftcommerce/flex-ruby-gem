@@ -60,7 +60,7 @@ module FlexCommerceApi
       # @return [String] The username
       def username
         username = FlexCommerceApi.config.flex_account
-        username = URI.parse(site).path.split("/").reject(&:empty?).first if username.empty?
+        username = URI.parse(site).path.split("/").reject(&:empty?).first if username.nil? || username.empty?
         username
       end
 
