@@ -174,6 +174,20 @@ RSpec.describe FlexCommerce::CustomerAccount do
         it "should return an instance" do
           expect(subject).to be_a(subject_class)
         end
+
+        context "when invalid/expired token" do
+          let(:response_status) { 422 }
+          let(:error_message) { "Reset password token is invalid" }
+          let(:error_422) { build(:json_api_document, errors: [build(:json_api_error, status: "422", detail: error_message, title: error_message)]) }
+          let(:email_to_reset) { resource_identifier.attributes.email }
+          let!(:reset_password_stub) { stub_request(:patch, "#{api_root}/customer_accounts/email:#{encoded_email}/resets/token:#{reset_password_token}.json_api").with(headers: write_headers, body: reset_password_body).to_return body: error_422.to_h.to_json, status: response_status, headers: default_headers }
+          let!(:find_by_email_stub) { stub_request(:get, "#{api_root}/customer_accounts/email:#{resource_identifier.attributes.email}.json_api").with(headers: { 'Accept'=>'application/vnd.api+json' }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
+          it "should return an instance with error" do
+            expect(subject).to be_a(subject_class)
+            expect(subject.errors).to be_present
+            expect(subject.errors.first).to include(error_message)
+          end
+        end
       end
 
     end
