@@ -71,7 +71,17 @@ module FlexCommerce
 
     def self.reset_password(attributes)
       patch_attributes = { password: attributes[:password] }
-      requestor.custom("email:#{URI.encode_www_form_component(attributes[:email])}/resets/token:#{attributes[:reset_password_token]}", { request_method: :patch }, { data: { type: :customer_accounts, attributes: patch_attributes } }).first
+      result = requestor.custom("email:#{URI.encode_www_form_component(attributes[:email])}/resets/token:#{attributes[:reset_password_token]}", { request_method: :patch }, { data: { type: :customer_accounts, attributes: patch_attributes } }).first
+      # Need to return object with an error in case of 422 status code
+      # @TODO refactor this method and 'generate_token' method to be an instance methods and update api accordingly
+      unless result
+        error_response = connection.last_response
+        result = find_by_email(attributes[:email])
+        if result && error_response.status == 422
+          error_response.body["errors"].each { |e| result.errors.add(:reset_password_token, e["detail"]) }
+        end
+      end
+      result
     end
 
     def orders
