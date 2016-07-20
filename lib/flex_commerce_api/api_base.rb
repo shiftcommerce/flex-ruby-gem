@@ -12,11 +12,12 @@ require "flex_commerce_api/json_api_client_extension/previewed_request_middlewar
 require "flex_commerce_api/json_api_client_extension/has_many_association_proxy"
 require "flex_commerce_api/json_api_client_extension/builder"
 require "flex_commerce_api/json_api_client_extension/flexible_connection"
+require "flex_commerce_api/json_api_client_extension/resource"
 module FlexCommerceApi
   #
   # Base class for all flex commerce models
   #
-  class ApiBase < JsonApiClient::Resource
+  class ApiBase < ::FlexCommerceApi::JsonApiClientExtension::Resource
     PRIVATE_ATTRIBUTES = %w(id type relationships links meta)
     RELATED_META_RESOURCES = %w(related-categories related-static_pages related-resources related-files related-products)
     # set the api base url in an abstract base class
