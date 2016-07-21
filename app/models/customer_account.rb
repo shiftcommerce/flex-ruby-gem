@@ -63,9 +63,10 @@ module FlexCommerce
       nil
     end
 
-    def self.generate_token(attributes)
+    def generate_token(attributes)
       post_attributes = { reset_link_with_placeholder: attributes[:reset_link_with_placeholder] }
-      requestor.custom("email:#{URI.encode_www_form_component(attributes[:email])}/resets", { request_method: :post }, { data: { type: :customer_accounts, attributes: post_attributes } }).first
+      self.last_result_set = self.class.requestor.custom("email:#{URI.encode_www_form_component(email)}/resets", { request_method: :post }, { data: { type: :customer_accounts, attributes: post_attributes } })
+      process_errors
     end
 
     def reset_password(attributes)
