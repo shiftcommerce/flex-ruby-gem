@@ -45,7 +45,6 @@ module FlexCommerce
     property :reference, type: :string
     property :password, type: :string
 
-
     def self.authenticate(attributes)
       requestor.custom("authentications", {request_method: :post}, {data: {type: :customer_accounts, attributes: attributes}}).first
     rescue ::FlexCommerceApi::Error::NotFound
@@ -69,9 +68,10 @@ module FlexCommerce
       requestor.custom("email:#{URI.encode_www_form_component(attributes[:email])}/resets", { request_method: :post }, { data: { type: :customer_accounts, attributes: post_attributes } }).first
     end
 
-    def self.reset_password(attributes)
+    def reset_password(attributes)
       patch_attributes = { password: attributes[:password] }
-      requestor.custom("email:#{URI.encode_www_form_component(attributes[:email])}/resets/token:#{attributes[:reset_password_token]}", { request_method: :patch }, { data: { type: :customer_accounts, attributes: patch_attributes } }).first
+      self.last_result_set = self.class.requestor.custom("email:#{URI.encode_www_form_component(email)}/resets/token:#{attributes[:reset_password_token]}", { request_method: :patch }, { data: { type: :customer_accounts, attributes: patch_attributes } })
+      process_errors
     end
 
     def orders
@@ -80,6 +80,24 @@ module FlexCommerce
 
     def create_note(attributes = {})
       ::FlexCommerce::Note.create(attributes.merge(attached_to_id: self.id, attached_to_type: self.class.name.demodulize))
+    end
+
+    private
+
+    def process_errors
+      if last_result_set.has_errors?
+        last_result_set.errors.each do |error|
+          if error.source_parameter
+            errors.add(error.source_parameter, error.title)
+          else
+            errors.add(:base, error.title)
+          end
+        end
+        false
+      else
+        self.errors.clear if self.errors
+        true
+      end
     end
   end
 end
