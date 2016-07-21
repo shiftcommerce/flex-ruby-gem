@@ -45,6 +45,7 @@ module FlexCommerce
     property :reference, type: :string
     property :password, type: :string
 
+
     def self.authenticate(attributes)
       requestor.custom("authentications", {request_method: :post}, {data: {type: :customer_accounts, attributes: attributes}}).first
     rescue ::FlexCommerceApi::Error::NotFound
@@ -85,6 +86,7 @@ module FlexCommerce
 
     private
 
+    # Logic taken from https://github.com/chingor13/json_api_client/blob/9d882bfb893c6deda87061dfbbd67300ee15e391/lib/json_api_client/resource.rb#L381
     def process_errors
       if last_result_set.has_errors?
         last_result_set.errors.each do |error|
