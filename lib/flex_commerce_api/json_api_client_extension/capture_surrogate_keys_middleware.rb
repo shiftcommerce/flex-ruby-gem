@@ -1,4 +1,4 @@
-# Adds surrogate keys header to all requests to Flex API.
+# Captures surrogate keys headers and collects them for passing to the client.
 module FlexCommerceApi
   module JsonApiClientExtension
     class CaptureSurrogateKeysMiddleware < ::Faraday::Middleware
