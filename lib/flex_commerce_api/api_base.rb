@@ -9,6 +9,7 @@ require "flex_commerce_api/json_api_client_extension/logging_middleware"
 require "flex_commerce_api/json_api_client_extension/status_middleware"
 require "flex_commerce_api/json_api_client_extension/json_format_middleware"
 require "flex_commerce_api/json_api_client_extension/previewed_request_middleware"
+require "flex_commerce_api/json_api_client_extension/capture_surrogate_keys_middleware"
 require "flex_commerce_api/json_api_client_extension/has_many_association_proxy"
 require "flex_commerce_api/json_api_client_extension/builder"
 require "flex_commerce_api/json_api_client_extension/flexible_connection"
@@ -74,6 +75,12 @@ module FlexCommerceApi
 
       def path(params = nil, record = nil)
         super(params)
+      end
+
+      def capture_surrogate_keys
+        Thread.current[:shift_surrogate_keys] = nil
+        yield
+        Thread.current[:shift_surrogate_keys].uniq.join(' ')
       end
 
       def reconfigure_all options = {}

@@ -19,6 +19,7 @@ module FlexCommerceApi
             builder.use :http_cache, cache_options(options)
           end
           builder.use JsonApiClientExtension::StatusMiddleware
+          builder.use JsonApiClientExtension::CaptureSurrogateKeysMiddleware
           builder.use JsonApiClient::Middleware::ParseJson
           builder.adapter *adapter_options
           builder.use JsonApiClientExtension::LoggingMiddleware unless FlexCommerceApi.logger.nil?
