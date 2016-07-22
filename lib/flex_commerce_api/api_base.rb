@@ -80,7 +80,8 @@ module FlexCommerceApi
       def capture_surrogate_keys
         Thread.current[:shift_surrogate_keys] = []
         yield
-        results = Thread.current[:shift_surrogate_keys].uniq.join(' ')
+        Thread.current[:shift_surrogate_keys].uniq!
+        results = Thread.current[:shift_surrogate_keys].join(' ')
         Thread.current[:shift_surrogate_keys] = nil
         results
       end
