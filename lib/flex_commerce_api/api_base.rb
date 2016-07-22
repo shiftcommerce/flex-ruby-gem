@@ -78,9 +78,11 @@ module FlexCommerceApi
       end
 
       def capture_surrogate_keys
-        Thread.current[:shift_surrogate_keys] = nil
+        Thread.current[:shift_surrogate_keys] = []
         yield
-        Thread.current[:shift_surrogate_keys].uniq.join(' ') if Thread.current[:shift_surrogate_keys]
+        results = Thread.current[:shift_surrogate_keys].uniq.join(' ')
+        Thread.current[:shift_surrogate_keys] = nil
+        results
       end
 
       def reconfigure_all options = {}

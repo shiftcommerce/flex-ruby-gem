@@ -86,6 +86,18 @@ RSpec.describe "capturing surrogate keys" do
       subject_class.find('test')
     end
 
-    expect(keys).to eq(nil)
+    expect(keys).to eq('')
+  end
+
+  it "should ensure surrogate keys are cleared between requests" do
+    headers = { "Content-Type": "application/json", "external-surrogate-key": "key1 key2" }
+
+    stub_request(:get, /\/temp_classes\/test\.json_api$/).to_return do |req|
+      { body: empty_data.to_json, headers: headers, status: 200 }
+    end
+
+    Thread.current[:shift_surrogate_keys] = nil
+    subject_class.find('test')
+    expect(Thread.current[:shift_surrogate_keys]).to eq(nil)
   end
 end
