@@ -89,6 +89,10 @@ module FlexCommerce
       end
     end
 
+    def add_payment_transaction(transaction)
+      self.class.requestor.custom("relationships/payment_transactions", {request_method: :post}, {id: id, data: [type: "payment_transactions", id: transaction.id.to_s]})
+    end
+
     def self.create(*args)
       if FlexCommerceApi.config.order_test_mode
         super({test: true})
@@ -104,5 +108,5 @@ module FlexCommerce
     end
 
 
-  end 
+  end
 end
