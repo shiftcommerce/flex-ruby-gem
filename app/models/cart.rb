@@ -67,6 +67,7 @@ module FlexCommerce
         self.relationships = updated.relationships
         clear_changes_information
       end
+      self
     end
 
     # This method is used when true stock levels re required - potentially from an external system
