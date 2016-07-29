@@ -1,7 +1,7 @@
 {
   "data": {
     "id": "12345-67890",
-    "type": "order_transaction_voids",
+    "type": "payment_transaction_voids",
     "attributes": {
       "token": "sometoken",
       "auth_id": "auth_id"

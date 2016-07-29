@@ -7,7 +7,7 @@ module FlexCommerce
   #
   #
   #
-  class OrderTransactionVoid < FlexCommerceApi::ApiBase
+  class PaymentTransactionVoid < FlexCommerceApi::ApiBase
     belongs_to :transaction, class_name: "::FlexCommerce::OrderTransaction"
 
     def self.path(params, *args)

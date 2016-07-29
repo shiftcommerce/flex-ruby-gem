@@ -7,7 +7,7 @@ module FlexCommerce
   #
   #
   #
-  class OrderTransaction < FlexCommerceApi::ApiBase
-    belongs_to :order
+  class PaymentTransaction < FlexCommerceApi::ApiBase
+
   end
 end
