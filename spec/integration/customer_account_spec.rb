@@ -128,68 +128,112 @@ RSpec.describe FlexCommerce::CustomerAccount do
 
     end
     context "password resetting" do
-      let(:account) { build(:customer_account) }
-      let(:email_to_reset) { account.email }
+      let(:email_to_reset) { resource_identifier.attributes.email }
       let(:encoded_email) { URI.encode_www_form_component(email_to_reset) }
+
+      context "getting password recovery status to check if token was used or expired" do
+        let(:password_recovery_relationship) { { password_recovery: {
+            data: { type: "password_recoveries", id: password_recovery_resource.id } }
+        } }
+        let(:resource_identifier) { build(:json_api_resource, build_resource: :customer_account, relationships: password_recovery_relationship, base_path: base_path) }
+        let(:singular_resource_with_password_recovery) { build(:json_api_top_singular_resource, data: resource_identifier, included: [password_recovery_resource]) }
+        let(:password_recovery_resource) { build(:json_api_resource, build_resource: :password_recovery) }
+        let!(:find_by_email_stub) { stub_request(:get, "#{api_root}/customer_accounts/email:#{resource_identifier.attributes.email}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource_with_password_recovery.to_h.to_json, status: response_status, headers: default_headers }
+        let(:resource) { subject_class.find_by_email(resource_identifier.attributes.email) }
+        it "returns password_recovery resource in included section" do
+          expect(resource.password_recovery).to be_kind_of(::FlexCommerce::PasswordRecovery)
+        end
+      end
+
       context "generating token" do
         let(:reset_link_with_placeholder) { "http://dummy.com/reset_password?email={{ email }}&token={{ token }}" }
-        subject { subject_class.generate_token(email: email_to_reset, reset_link_with_placeholder: reset_link_with_placeholder) }
+        let(:response_status) { 201 }
+        let!(:find_by_email_stub) { stub_request(:get, "#{api_root}/customer_accounts/email:#{resource_identifier.attributes.email}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
+        let(:resource) { subject_class.find_by_email(resource_identifier.attributes.email) }
+        subject { resource.generate_token(reset_link_with_placeholder: reset_link_with_placeholder) }
         let(:generate_token_body) do
           {
             data: {
-              type: "customer_accounts",
+              type: "password_recoveries",
               attributes: {
                 reset_link_with_placeholder: reset_link_with_placeholder
               }
             }
           }
         end
-        let!(:generate_token_stub) { stub_request(:post, "#{api_root}/customer_accounts/email:#{encoded_email}/resets.json_api").with(headers: write_headers, body: generate_token_body).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
-        it "should return an instance which can then be reset using the token" do
-          expect(subject).to be_a(subject_class)
-        end
-        context "with a more complex email" do
-          let(:account) { build(:customer_account, email: "email+extra@domain.com") }
-          it "should return an instance which can then be reset using the token" do
-            expect(subject).to be_a(subject_class)
-          end
-        end
-      end
+        let(:password_recovery_resource) { build(:json_api_resource, build_resource: :password_recovery_with_valid_token, base_path: base_path) }
+        let(:password_recovery_singular_resource) { build(:json_api_top_singular_resource, data: password_recovery_resource) }
+        let!(:generate_token_stub) { stub_request(:post, "#{api_root}/customer_accounts/#{resource_identifier.id}/password_recovery.json_api").with(headers: write_headers, body: generate_token_body).to_return body: password_recovery_singular_resource.to_h.to_json, status: response_status, headers: default_headers }
 
-      context "performing the reset" do
-        let(:reset_password_token) { "reset_password_token" }
-        let(:new_password) { "new_password" }
-        subject { subject_class.reset_password(email: email_to_reset, reset_password_token: reset_password_token, password: new_password) }
-        let(:reset_password_body) do
-          {
-            data: {
-              type: "customer_accounts",
-              attributes: {
-                "password": new_password
-              }
-            }
-          }
+        it "should return password_recovery resource if successfull" do
+          expect(subject).to be_kind_of(::FlexCommerce::PasswordRecovery)
+          expect(subject.errors).to be_blank
+          expect(subject.token_present).to be_truthy
+          expect(subject.token_expired).to be_falsey
         end
-        let!(:reset_password_stub) { stub_request(:patch, "#{api_root}/customer_accounts/email:#{encoded_email}/resets/token:#{reset_password_token}.json_api").with(headers: write_headers, body: reset_password_body).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
-        it "should return an instance" do
-          expect(subject).to be_a(subject_class)
-        end
-
-        context "when invalid/expired token" do
+        context "when unsuccessfull" do
           let(:response_status) { 422 }
-          let(:error_message) { "Reset password token is invalid" }
+          let(:error_message) { "token creation failed" }
           let(:error_422) { build(:json_api_document, errors: [build(:json_api_error, status: "422", detail: error_message, title: error_message)]) }
-          let(:email_to_reset) { resource_identifier.attributes.email }
-          let!(:reset_password_stub) { stub_request(:patch, "#{api_root}/customer_accounts/email:#{encoded_email}/resets/token:#{reset_password_token}.json_api").with(headers: write_headers, body: reset_password_body).to_return body: error_422.to_h.to_json, status: response_status, headers: default_headers }
-          let!(:find_by_email_stub) { stub_request(:get, "#{api_root}/customer_accounts/email:#{resource_identifier.attributes.email}.json_api").with(headers: { 'Accept'=>'application/vnd.api+json' }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers }
-          it "should return an instance with error" do
-            expect(subject).to be_a(subject_class)
+          let!(:generate_token_stub) { stub_request(:post, "#{api_root}/customer_accounts/#{resource_identifier.id}/password_recovery.json_api").with(headers: write_headers, body: generate_token_body).to_return body: error_422.to_h.to_json, status: response_status, headers: default_headers }
+
+          it "should return password_recovery resource with errors" do
+            expect(subject).to be_kind_of(::FlexCommerce::PasswordRecovery)
             expect(subject.errors).to be_present
             expect(subject.errors.first).to include(error_message)
           end
         end
       end
 
+      context "performing the reset" do
+        let(:password_recovery_relationship) { { password_recovery: {
+            data: { type: "password_recoveries", id: password_recovery_resource.id } }
+        } }
+        let(:resource_identifier) { build(:json_api_resource, build_resource: :customer_account, relationships: password_recovery_relationship, base_path: base_path) }
+        let(:singular_resource_with_password_recovery) { build(:json_api_top_singular_resource, data: resource_identifier, included: [password_recovery_resource]) }
+        let(:password_recovery_resource) { build(:json_api_resource, build_resource: :password_recovery) }
+        let!(:find_by_email_stub) { stub_request(:get, "#{api_root}/customer_accounts/email:#{resource_identifier.attributes.email}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource_with_password_recovery.to_h.to_json, status: response_status, headers: default_headers }
+        let(:reset_password_token) { "reset_password_token" }
+        let(:new_password) { "new_password" }
+        let(:resource) { subject_class.find_by_email(resource_identifier.attributes.email) }
+        subject { resource.reset_password(token: reset_password_token, password: new_password) }
+        let(:reset_password_body) do
+          {
+            data: {
+              type: "password_recoveries",
+              attributes: {
+                "token": reset_password_token,
+                "password": new_password
+              }
+            }
+          }
+        end
+
+        context "successfull reset_password" do
+          let(:password_recovery_with_used_token_resource) { build(:json_api_resource, build_resource: :password_recovery_with_used_token, base_path: base_path) }
+          let(:password_recovery_singular_resource) { build(:json_api_top_singular_resource, data: password_recovery_with_used_token_resource) }
+
+          let!(:reset_password_stub) { stub_request(:patch, "#{api_root}/customer_accounts/#{resource_identifier.id}/password_recovery.json_api").with(headers: write_headers, body: reset_password_body).to_return body: password_recovery_singular_resource.to_h.to_json, status: response_status, headers: default_headers }
+          it "should return password_recovery resource if successfull" do
+            expect(subject).to be_kind_of(::FlexCommerce::PasswordRecovery)
+            expect(subject.errors).to be_blank
+            expect(subject.token_present).to be_falsey
+            expect(subject.token_expired).to be_truthy
+          end
+        end
+
+        context "failed reset_password due to invalid token" do
+          let(:response_status) { 422 }
+          let(:error_message) { "Reset password token is invalid" }
+          let(:error_422) { build(:json_api_document, errors: [build(:json_api_error, status: "422", detail: error_message, title: error_message)]) }
+          let!(:reset_password_stub) { stub_request(:patch, "#{api_root}/customer_accounts/#{resource_identifier.id}/password_recovery.json_api").with(headers: write_headers, body: reset_password_body).to_return body: error_422.to_h.to_json, status: response_status, headers: default_headers }
+          it "should return password_recovery resource with errors" do
+            expect(subject).to be_kind_of(::FlexCommerce::PasswordRecovery)
+            expect(subject.errors).to be_present
+            expect(subject.errors.first).to include(error_message)
+          end
+        end
+      end
     end
     context "authenticating" do
       let(:expected_body) {
