@@ -11,9 +11,9 @@ module FlexCommerce
 
     def self.path(params, *args)
       # Since it is singletone resource, use singular name in path and remove id
-      params.delete(:id) if params.key?(:id)
+      params.delete(:id)
       path = super.gsub(table_name, resource_name)
-      params.delete(:customer_account_id) if params.key?(:customer_account_id)
+      params.delete(:customer_account_id)
       path
     end
   end
