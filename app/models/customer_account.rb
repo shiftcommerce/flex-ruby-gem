@@ -40,6 +40,7 @@ module FlexCommerce
     has_many :addresses, class_name: "::FlexCommerce::Address"
     has_many :customer_segments, class_name: "::FlexCommerce::CustomerSegment"
     has_many :notes, class_name: "::FlexCommerce::Note"
+    has_one :password_recovery, class_name: "::FlexCommerce::PasswordRecovery"
 
     property :email, type: :string
     property :reference, type: :string
@@ -64,24 +65,14 @@ module FlexCommerce
       nil
     end
 
-    def self.generate_token(attributes)
-      post_attributes = { reset_link_with_placeholder: attributes[:reset_link_with_placeholder] }
-      requestor.custom("email:#{URI.encode_www_form_component(attributes[:email])}/resets", { request_method: :post }, { data: { type: :customer_accounts, attributes: post_attributes } }).first
+    def generate_token(attributes)
+      ::FlexCommerce::PasswordRecovery.create(attributes.merge(customer_account_id: id))
     end
 
-    def self.reset_password(attributes)
-      patch_attributes = { password: attributes[:password] }
-      result = requestor.custom("email:#{URI.encode_www_form_component(attributes[:email])}/resets/token:#{attributes[:reset_password_token]}", { request_method: :patch }, { data: { type: :customer_accounts, attributes: patch_attributes } }).first
-      # Need to return object with an error in case of 422 status code
-      # @TODO refactor this method and 'generate_token' method to be an instance methods and update api accordingly
-      unless result
-        error_response = connection.last_response
-        result = find_by_email(attributes[:email])
-        if result && error_response.status == 422
-          error_response.body["errors"].each { |e| result.errors.add(:reset_password_token, e["detail"]) }
-        end
-      end
-      result
+    def reset_password(attributes)
+      password_recovery.id = nil # because it is singletone resource, otherwise id is injected into path
+      password_recovery.update(attributes.merge(customer_account_id: id))
+      password_recovery
     end
 
     def orders
