@@ -65,6 +65,14 @@ module FlexCommerce
       nil
     end
 
+    # Find customer account by password reset token provided in email's link
+    # Used in reset password scenario
+    def self.find_by_token(token)
+      requestor.custom("token:#{token}", {request_method: :get}, {}).first
+    rescue ::FlexCommerceApi::Error::NotFound
+      nil
+    end
+
     def generate_token(attributes)
       ::FlexCommerce::PasswordRecovery.create(attributes.merge(customer_account_id: id))
     end
