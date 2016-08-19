@@ -43,6 +43,7 @@ module FlexCommerce
     # @param [Hash] options The options to paginate with
     # @param options [Numeric|String] :page The page to fetch
 
+    has_many :slugs, class_name: "::FlexCommerce::Slug"
     # @TODO Document other popular methods that we will support
     self.query_builder = ::FlexCommerceApi::JsonApiClientExtension::Builder
     
