@@ -15,5 +15,6 @@ module FlexCommerce
   #
   class Bundle < FlexCommerceApi::ApiBase
     has_many :bundle_groups, class_name: "::FlexCommerce::BundleGroup"
+    has_many :slugs, class_name: "::FlexCommerce::Slug"
   end
 end

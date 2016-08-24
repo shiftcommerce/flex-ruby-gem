@@ -5,6 +5,7 @@ module FlexCommerce
   #
   # This model provides access to the flex commerce category tree and associated categories.
   class CategoryTree < FlexCommerceApi::ApiBase
+    has_many :slugs, class_name: "::FlexCommerce::Slug"
     has_many :categories, class_name: "::FlexCommerce::Category"
   end
 end

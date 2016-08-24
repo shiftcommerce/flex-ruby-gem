@@ -37,8 +37,6 @@ module FlexCommerceApi
       def encoded(part)
         Addressable::URI.encode_component(part, Addressable::URI::CharacterClasses::UNRESERVED + "\\:")
       end
-
-
     end
   end
 end
