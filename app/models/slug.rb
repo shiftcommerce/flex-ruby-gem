@@ -1,4 +1,5 @@
 require "flex_commerce_api/api_base"
+
 module FlexCommerce
   #
   # A flex commerce Slug model
@@ -9,8 +10,8 @@ module FlexCommerce
   #
   # Examples:
   #
-  #   # Fetching slugs for a specific customer account
-  #   FlexCommerce::Slug.where(computed_slug: 'some-slug').first
+  #   # Fetching a slug
+  #   FlexCommerce::Slug.find(computed_slug:'some-computed-slug')
   #
   class Slug < FlexCommerceApi::ApiBase
     has_one :resource
