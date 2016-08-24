@@ -35,10 +35,9 @@ module FlexCommerceApi
       end
 
       def encoded(part)
+        # Do not encode the slug
         Addressable::URI.encode_component(part, Addressable::URI::CharacterClasses::UNRESERVED + "\\:")
       end
-
-
     end
   end
 end

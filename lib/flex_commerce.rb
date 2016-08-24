@@ -57,6 +57,7 @@ module FlexCommerce
   autoload :DataStoreType, File.join(gem_root, "app", "models", "data_store_type")
   autoload :Note, File.join(gem_root, "app", "models", "note")
   autoload :PasswordRecovery, File.join(gem_root, "app", "models", "password_recovery")
+  autoload :Slug, File.join(gem_root, "app", "models", "slug")
 
   # Services
   autoload :ParamToShql, File.join(gem_root, "app", "services", "param_to_shql")

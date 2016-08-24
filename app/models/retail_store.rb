@@ -13,5 +13,6 @@ module FlexCommerce
   #   FlexCommerce::RetailStore.all
   #
   class RetailStore < FlexCommerceApi::ApiBase
+    has_many :slugs, class_name: "::FlexCommerce::Slug"
   end
 end
