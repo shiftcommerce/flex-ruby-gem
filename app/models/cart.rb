@@ -54,7 +54,7 @@ module FlexCommerce
     # Here we override line_items to provide a proxy to the array so we can use new and create on it in the normal
     # active record way
     def line_items
-      has_many_association_proxy :line_items, super, inverse_of: :container
+      has_many_association_proxy :line_items, (super || []), inverse_of: :container
     end
 
     def empty?
