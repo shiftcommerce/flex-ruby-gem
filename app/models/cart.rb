@@ -46,11 +46,15 @@ module FlexCommerce
     has_one :billing_address, class_name: "::FlexCommerce::Address"
     has_one :shipping_method, class_name: "::FlexCommerce::ShippingMethod"
     has_one :free_shipping_promotion, class_name: "::FlexCommerce::FreeShippingPromotion"
+    
+    # properties
+    property :line_items_count, type: :integer, default: 0
+    property :total_discount, default: 0
 
     # Here we override line_items to provide a proxy to the array so we can use new and create on it in the normal
     # active record way
     def line_items
-      has_many_association_proxy :line_items, super, inverse_of: :container
+      has_many_association_proxy :line_items, (super || []), inverse_of: :container
     end
 
     def empty?
@@ -74,7 +78,7 @@ module FlexCommerce
     # To be used during checkout phases etc..
     # Adds errors to the line items "unit_quantity" attribute if we do not have enough
     def validate_stock!
-      return unless line_items
+      return if empty?
       stock_levels.each do |stock_level|
         line_items.detect { |li| li.item.sku == stock_level.id }.tap do |li|
           next if li.nil?
