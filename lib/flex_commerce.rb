@@ -55,6 +55,7 @@ module FlexCommerce
   autoload :Session, File.join(gem_root, "app", "models", "session")
   autoload :DataStoreRecord, File.join(gem_root, "app", "models", "data_store_record")
   autoload :DataStoreType, File.join(gem_root, "app", "models", "data_store_type")
+  autoload :DataAttribute, File.join(gem_root, "app", "models", "data_attribute")
   autoload :Note, File.join(gem_root, "app", "models", "note")
   autoload :PasswordRecovery, File.join(gem_root, "app", "models", "password_recovery")
   autoload :Slug, File.join(gem_root, "app", "models", "slug")
