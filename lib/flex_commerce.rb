@@ -5,6 +5,7 @@ module FlexCommerce
 
   # Models
   autoload :Product, File.join(gem_root, "app", "models", "product")
+  autoload :ProductAssetFile, File.join(gem_root, "app", "models", "product_asset_file")
   autoload :StaticPage, File.join(gem_root, "app", "models", "static_page")
   autoload :Variant, File.join(gem_root, "app", "models", "variant")
   autoload :EwisOptIn, File.join(gem_root, "app", "models", "ewis_opt_in")
