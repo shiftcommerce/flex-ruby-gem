@@ -1,110 +1,11 @@
 require "json"
-require "active_support/core_ext/string"
 class JsonSchema < Thor
   desc "generate_from_vcr", "Given a json encoded vcr file, produces a json schema compatible schema."
   def generate_from_vcr(output_file, input_file, thing = output_file)
-    interaction = JSON.parse(File.read(input_file))["http_interactions"].first
-    data = interaction.dig("response", "body", "decoded")
+    o = JSON.parse(File.read(input_file))
+    i = o["http_interactions"].first
+    data = i.dig("response", "body", "decoded")
     node = data["data"] # This will be different for a collection
-    version = get_version_from_uri(interaction.dig("request", "uri"))
-    base_dir = File.expand_path("../schemas/shift/#{version}", File.dirname(__FILE__))
-
-    generate_resource_schema(node, File.join(base_dir, "resources", output_file), thing)
-    generate_collection_document_schema(data, File.join(base_dir, "documents", "collection", output_file), thing)
-    generate_member_document_schema(data, File.join(base_dir, "documents", "member", output_file), thing)
-  end
-
-  private
-
-  def generate_collection_document_schema(data, full_filename, thing)
-    schema = {
-        "$schema": "http://json-schema.org/draft-04/schema#",
-        "type": "object",
-        properties: {
-            data: {
-                type: "array",
-                items: {
-                    "$ref": "#/definitions/resource"
-                }
-            },
-            meta: {
-                type: "object",
-                additionalProperties: true
-            },
-            jsonapi: {
-                type: "object"
-            },
-            links: {
-                type: "object"
-            },
-            included: {
-                type: "array",
-                items: {
-                    "$ref": "#/definitions/includedItems"
-                }
-            }
-        },
-        required: ["data", "meta"],
-        additionalProperties: false,
-        definitions: {
-            resource: {"$ref": "../../resources/#{File.basename(full_filename)}"},
-            includedItems: {
-                oneOf: detect_used_items_in_included_data(data)
-            }
-        }
-    }
-    FileUtils.mkdir_p(File.dirname(full_filename))
-    File.open(full_filename, "w") {|file| file.write("#{JSON.pretty_generate(schema)}")}
-  end
-
-  def detect_used_items_in_included_data(data)
-    return [] unless data.key?("included")
-    data["included"].map do |node|
-      {
-          "$ref": "../../resources/#{node['type'].singularize}.json"
-      }
-    end
-  end
-
-  def generate_member_document_schema(data, full_filename, thing)
-    schema = {
-        "$schema": "http://json-schema.org/draft-04/schema#",
-        "type": "object",
-        properties: {
-            data: {
-                type: "object",
-                "$ref": "#/definitions/resource"
-            },
-            meta: {
-                type: "object",
-                additionalProperties: true
-            },
-            jsonapi: {
-                type: "object"
-            },
-            links: {
-                type: "object"
-            },
-            included: {
-                type: "array",
-                items: {
-                    "$ref": "#/definitions/includedItems"
-                }
-            }
-        },
-        additionalProperties: false,
-        definitions: {
-            resource: {"$ref": "../../resources/#{File.basename(full_filename)}"},
-            includedItems: {
-                oneOf: detect_used_items_in_included_data(data)
-            }
-        }
-    }
-    FileUtils.mkdir_p(File.dirname(full_filename))
-    File.open(full_filename, "w") {|file| file.write("#{JSON.pretty_generate(schema)}")}
-  end
-
-  def generate_resource_schema(node, full_filename, thing)
     schema = {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
@@ -145,9 +46,14 @@ class JsonSchema < Thor
         }
     }
 
+    version = get_version_from_uri(i.dig("request", "uri"))
+    base_dir = File.expand_path("../schemas/shift/#{version}/resources", File.dirname(__FILE__))
+    full_filename = File.join(base_dir, output_file)
     FileUtils.mkdir_p(File.dirname(full_filename))
     File.open(full_filename, "w") {|file| file.write("#{JSON.pretty_generate(schema)}")}
   end
+
+  private
 
   def get_version_from_uri(uri)
     URI.parse(uri).path.split("/").reject {|node| node==""}[1]
