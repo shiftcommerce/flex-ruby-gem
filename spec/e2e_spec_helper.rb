@@ -3,6 +3,7 @@ Dotenv.load
 require "spec_helper"
 require "flex_commerce_api"
 require "active_support/tagged_logging"
+require "json_matchers/rspec"
 root = File.expand_path("../", __dir__)
 Dir[File.join root, "spec/support_e2e/**/*.rb"].sort.each { |f| require f }
 raise "API_URL, API_ACCOUNT and API_KEY must be set in your environment" unless ENV.key?("API_URL") && ENV.key?("API_ACCOUNT") && ENV.key?("API_KEY")
