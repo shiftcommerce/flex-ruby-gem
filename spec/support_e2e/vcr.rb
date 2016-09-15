@@ -31,7 +31,7 @@ module OjSerializer
   end
 end
 VCR.configure do |c|
-  c.allow_http_connections_when_no_cassette = false
+  c.allow_http_connections_when_no_cassette = true
   c.default_cassette_options = { :record => :all, :erb => false, :serialize_with => :oj }
   c.cassette_library_dir = 'spec/recordings'
   c.hook_into :webmock
