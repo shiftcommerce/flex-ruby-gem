@@ -31,14 +31,9 @@
     "includedItems": {
       "oneOf": [
         {
-          "$ref": "#/definitions/externalResources/customer_accounts"
+          "$ref": "../../resources/customer_account.json"
         }
       ]
-    },
-    "externalResources": {
-      "customer_accounts": {
-        "$ref": "../../resources/customer_account"
-      }
     }
   }
 }

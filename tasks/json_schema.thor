@@ -50,10 +50,7 @@ class JsonSchema < Thor
             resource: {"$ref": "../../resources/#{File.basename(full_filename)}"},
             includedItems: {
                 oneOf: detect_used_items_in_included_data(data)
-            },
-            externalResources: {
-
-            }.merge(collect_external_definitions_used_in_included_data(data))
+            }
         }
     }
     FileUtils.mkdir_p(File.dirname(full_filename))
@@ -64,19 +61,11 @@ class JsonSchema < Thor
     return [] unless data.key?("included")
     data["included"].map do |node|
       {
-          "$ref": "#/definitions/externalResources/#{node['type']}"
+          "$ref": "../../resources/#{node['type'].singularize}.json"
       }
     end
   end
 
-  def collect_external_definitions_used_in_included_data(data)
-    return {} unless data.key?("included")
-    data["included"].reduce({}) do |acc, node|
-      acc.merge node["type"] => {
-          "$ref": "../../resources/#{node["type"].singularize}"
-      }
-    end
-  end
   def generate_member_document_schema(data, full_filename, thing)
     schema = {
         "$schema": "http://json-schema.org/draft-04/schema#",
@@ -108,10 +97,7 @@ class JsonSchema < Thor
             resource: {"$ref": "../../resources/#{File.basename(full_filename)}"},
             includedItems: {
                 oneOf: detect_used_items_in_included_data(data)
-            },
-            externalResources: {
-
-            }.merge(collect_external_definitions_used_in_included_data(data))
+            }
         }
     }
     FileUtils.mkdir_p(File.dirname(full_filename))
