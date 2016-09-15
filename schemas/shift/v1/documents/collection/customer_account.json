@@ -3,8 +3,10 @@
   "type": "object",
   "properties": {
     "data": {
-      "type": "object",
-      "$ref": "#/definitions/resource"
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/resource"
+      }
     },
     "meta": {
       "type": "object",
@@ -23,17 +25,26 @@
       }
     }
   },
+  "required": [
+    "data",
+    "meta"
+  ],
   "additionalProperties": false,
   "definitions": {
     "resource": {
-      "$ref": "../../resources/address.json"
+      "$ref": "../../resources/customer_account.json"
     },
     "includedItems": {
       "oneOf": [
         {
-          "$ref": "../../resources/customer_account.json"
+          "$ref": "#/definitions/externalResources/carts"
         }
       ]
+    },
+    "externalResources": {
+      "carts": {
+        "$ref": "../../resources/cart"
+      }
     }
   }
 }
