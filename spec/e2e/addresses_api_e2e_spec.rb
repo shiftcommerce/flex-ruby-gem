@@ -7,10 +7,8 @@ RSpec.describe "Addresses API end to end spec", vcr: true do
   let(:created_customer_account_id) { _created_customer_account_id }
   context "#create" do
     before(:context) do
-      VCR.use_cassette "temp" do
-        _created_customer_account_id = FlexCommerce::CustomerAccount.create!(email: "testaccount#{Time.now.to_f}@domain.com", reference: "ref_#{Time.now.to_f}", password: "12345test67890").id
-        http_request_tracker.clear
-      end
+      _created_customer_account_id = FlexCommerce::CustomerAccount.create!(email: "testaccount#{Time.now.to_f}@domain.com", reference: "ref_#{Time.now.to_f}", password: "12345test67890").id
+      http_request_tracker.clear
     end
     it "should persist when valid attributes are used" do |example|
       subject = model.create first_name: "First",
