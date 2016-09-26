@@ -177,6 +177,12 @@
                                                           PATCH  /:account_id/v1/template_definitions/:id(.:format)                                                       api/v1/template_definitions#update
                                                           PUT    /:account_id/v1/template_definitions/:id(.:format)                                                       api/v1/template_definitions#update
                                                           DELETE /:account_id/v1/template_definitions/:id(.:format)                                                       api/v1/template_definitions#destroy
+                                                          api_v1_template_components GET       /:account_id/v1/template_components(.:format)                                                            api/v1/template_components#index
+                                                          POST      /:account_id/v1/template_components(.:format)                                                            api/v1/template_components#create
+                                 api_v1_template_component GET       /:account_id/v1/template_components/:id(.:format)                                                        api/v1/template_components#show
+                                                          PATCH     /:account_id/v1/template_components/:id(.:format)                                                        api/v1/template_components#update
+                                                          PUT       /:account_id/v1/template_components/:id(.:format)                                                        api/v1/template_components#update
+                                                          DELETE    /:account_id/v1/template_components/:id(.:format)                                                        api/v1/template_components#destroy
                                    api_v1_data_attributes GET    /:account_id/v1/data_attributes(.:format)                                                                api/v1/data_attributes#index
                                                           POST   /:account_id/v1/data_attributes(.:format)                                                                api/v1/data_attributes#create
                                 new_api_v1_data_attribute GET    /:account_id/v1/data_attributes/new(.:format)                                                            api/v1/data_attributes#new
