@@ -27,6 +27,7 @@ module FlexCommerce
   autoload :Address, File.join(gem_root, "app", "models", "address")
   autoload :ShippingMethod, File.join(gem_root, "app", "models", "shipping_method")
   autoload :Order, File.join(gem_root, "app", "models", "order")
+  autoload :RemoteOrder, File.join(gem_root, "app", "models", "remote_order")
   autoload :PaymentTransaction, File.join(gem_root, "app", "models", "payment_transaction")
   autoload :PaymentAddressVerification, File.join(gem_root, "app", "models", "payment_address_verification")
   autoload :PaymentTransactionAuth, File.join(gem_root, "app", "models", "payment_transaction_auth")
