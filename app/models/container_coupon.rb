@@ -6,6 +6,7 @@ module FlexCommerce
   #
   class ContainerCoupon < FlexCommerceApi::ApiBase
     has_one :promotion, class_name: "FlexCommerce::Promotion"
+    belongs_to :cart, class_name: "FlexCommerce::Cart"
 
   end
 end
