@@ -5,11 +5,15 @@ RSpec.describe "Addresses API end to end spec", vcr: true do
   let(:model) { FlexCommerce::Address }
   let(:created_id) { _created_id }
   let(:created_customer_account_id) { _created_customer_account_id }
+  before(:context) do
+    _created_customer_account_id = FlexCommerce::CustomerAccount.create!(email: "testaccount#{Time.now.to_f}@domain.com", reference: "ref_#{Time.now.to_f}", password: "12345test67890").id
+    http_request_tracker.clear
+  end
+  after(:context) do
+    FlexCommerce::Address.includes("").find(_created_id).first.destroy unless _created_id.nil?
+    FlexCommerce::CustomerAccount.includes("").find(_created_customer_account_id).first.destroy unless _created_customer_account_id.nil?
+  end
   context "#create" do
-    before(:context) do
-      _created_customer_account_id = FlexCommerce::CustomerAccount.create!(email: "testaccount#{Time.now.to_f}@domain.com", reference: "ref_#{Time.now.to_f}", password: "12345test67890").id
-      http_request_tracker.clear
-    end
     it "should persist when valid attributes are used" do |example|
       subject = model.create first_name: "First",
                    middle_names: "middle",
