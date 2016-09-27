@@ -1,17 +1,16 @@
 require "e2e_spec_helper"
 RSpec.describe "Addresses API end to end spec", vcr: true do
-  _created_id = nil
-  _created_customer_account_id = nil
+  include_context "context store"
   let(:model) { FlexCommerce::Address }
-  let(:created_id) { _created_id }
-  let(:created_customer_account_id) { _created_customer_account_id }
+  let(:created_id) { context_store[:created_id] }
+  let(:created_customer_account_id) { context_store[:created_customer_account_id] }
   before(:context) do
-    _created_customer_account_id = FlexCommerce::CustomerAccount.create!(email: "testaccount#{Time.now.to_f}@domain.com", reference: "ref_#{Time.now.to_f}", password: "12345test67890").id
+    context_store.created_customer_account_id = FlexCommerce::CustomerAccount.create!(email: "testaccount#{Time.now.to_f}@domain.com", reference: "ref_#{Time.now.to_f}", password: "12345test67890").id
     http_request_tracker.clear
   end
   after(:context) do
-    FlexCommerce::Address.includes("").find(_created_id).first.destroy unless _created_id.nil?
-    FlexCommerce::CustomerAccount.includes("").find(_created_customer_account_id).first.destroy unless _created_customer_account_id.nil?
+    FlexCommerce::Address.includes("").find(context_store.created_id).first.destroy unless context_store.created_id.nil?
+    FlexCommerce::CustomerAccount.includes("").find(context_store.created_customer_account_id).first.destroy unless context_store.created_customer_account_id.nil?
   end
   context "#create" do
     it "should persist when valid attributes are used" do |example|
@@ -27,7 +26,7 @@ RSpec.describe "Addresses API end to end spec", vcr: true do
                    country: "UK",
                    customer_account_id: created_customer_account_id
       expect(subject).to be_persisted
-      _created_id = subject.id
+      context_store.created_id = subject.id
       expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
       expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/address")
 
