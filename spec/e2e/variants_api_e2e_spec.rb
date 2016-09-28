@@ -35,6 +35,9 @@ RSpec.describe "Variants API end to end spec", vcr: true do
   end
 
   context "#create" do
+    it "should not persist and have errors when invalid attributes are used" do
+
+    end
     it "should persist when valid attributes are used" do
       context_store.created_resource = subject = model.create title: "Title for Test Variant #{uuid}",
                                                               description: "Description for Test Variant #{uuid}",
@@ -52,6 +55,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
     context "collection" do
     end
     context "member" do
+
       it "should have the correct default relationships included" do
         subject = model.find(context_store.created_resource.id)
         http_request_tracker.clear
@@ -79,6 +83,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
           expect(http_request_tracker.length).to eql 2
         end
       end
+
       context "asset_files relationship" do
         before(:context) do
           # Create an asset file for use by the test
@@ -107,6 +112,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
           expect(http_request_tracker.length).to eql 2
         end
       end
+
       context "markdown prices relationship" do
         before(:context) do
           # Create a markdown price for use by the test
@@ -132,6 +138,40 @@ RSpec.describe "Variants API end to end spec", vcr: true do
 
       end
     end
+  end
+
+  context "#update" do
+    it "should not persist changes and have errors when invalid attributes are used" do
+
+    end
+
+    it "should persist changes to core attributes with valid values" do
+
+    end
+    context "product relationship" do
+      it "should persist additions to the relationship"
+      it "should not persist an addition to the relationship if it already exists"
+      it "should replace entire relationship"
+      it "should remove from the existing relationship"
+    end
+
+    context "asset_files relationship" do
+      it "should persist additions to the relationship"
+      it "should not persist an addition to the relationship if it already exists"
+      it "should replace entire relationship"
+      it "should remove from the existing relationship"
+    end
+
+    context "markdown_prices relationship" do
+      it "should persist additions to the relationship"
+      it "should not persist an addition to the relationship if it already exists"
+      it "should replace entire relationship"
+      it "should remove from the existing relationship"
+    end
+  end
+
+  context "#delete" do
+    it "should delete"
   end
 
 end
