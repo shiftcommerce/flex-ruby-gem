@@ -70,6 +70,8 @@ RSpec.describe "Variants API end to end spec", vcr: true do
           subject = model.includes("product").find(created_resource.id).first
           expect(subject.product).to have_attributes created_product.attributes.slice(:id, :title, :reference, :content_type)
           expect(http_request_tracker.length).to eql 1
+          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
+          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
         end
         it "should be loadable using links" do
           subject = model.includes("").find(created_resource.id).first
@@ -83,7 +85,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
           asset_file_fixture_file = File.expand_path("../support_e2e/fixtures/asset_file.png", File.dirname(__FILE__))
           uuid = context_store.uuid
           context_store.foreign_resources.asset_folder = FlexCommerce::AssetFolder.create! name: "asset folder for Test Variant #{uuid}",
-                                                                                     reference: "reference_for_asset_folder_1_for_variant_#{uuid}"
+                                                                                           reference: "reference_for_asset_folder_1_for_variant_#{uuid}"
           context_store.foreign_resources.asset_file = FlexCommerce::AssetFile.create! name: "name for Asset file 1 for Test Variant #{uuid}",
                                                                                        reference: "reference_for_asset_file_1_for_variant_#{uuid}",
                                                                                        asset_file: "data:image/png;base64,#{Base64.encode64(File.read(asset_file_fixture_file))}",
@@ -104,9 +106,31 @@ RSpec.describe "Variants API end to end spec", vcr: true do
           expect(subject.asset_files).to contain_exactly an_object_having_attributes context_store.foreign_resources.asset_file.attributes.slice(:id, :title, :reference, :content_type)
           expect(http_request_tracker.length).to eql 2
         end
+      end
+      context "markdown prices relationship" do
+        before(:context) do
+          # Create a markdown price for use by the test
+          context_store.foreign_resources.markdown_price = ::FlexCommerce::MarkdownPrice.create price: 99.0,
+                                                                                                start_at: 1.day.since,
+                                                                                                end_at: 11.days.since,
+                                                                                                variant_id: context_store.created_resource.id
+        end
+        it "should exist" do
+          subject = model.find(created_resource.id)
+          expect(subject.relationships.markdown_prices).to be_present
+        end
+        it "should be loadable using compound documents" do
+          subject = model.includes("markdown_prices").find(created_resource.id).first
+          expect(subject.markdown_prices).to contain_exactly an_object_having_attributes context_store.foreign_resources.markdown_price.attributes.slice(:id, :price, :start_at, :end_at)
+          expect(http_request_tracker.length).to eql 1
+        end
+        it "should be loadable using links" do
+          subject = model.includes("").find(created_resource.id).first
+          expect(subject.markdown_prices).to contain_exactly an_object_having_attributes context_store.foreign_resources.markdown_price.attributes.slice(:id, :price, :start_at, :end_at)
+          expect(http_request_tracker.length).to eql 2
+        end
 
       end
-      context "markdown prices relationship"
     end
   end
 
