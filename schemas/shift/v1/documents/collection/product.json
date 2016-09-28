@@ -3,8 +3,10 @@
   "type": "object",
   "properties": {
     "data": {
-      "type": "object",
-      "$ref": "#/definitions/resource"
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/resource"
+      }
     },
     "meta": {
       "type": "object",
@@ -23,16 +25,17 @@
       }
     }
   },
+  "required": [
+    "data",
+    "meta"
+  ],
   "additionalProperties": false,
   "definitions": {
     "resource": {
-      "$ref": "../../resources/variant.json"
+      "$ref": "../../resources/product.json"
     },
     "includedItems": {
       "oneOf": [
-        {
-          "$ref": "../../resources/product.json"
-        }
 
       ]
     }

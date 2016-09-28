@@ -26,13 +26,10 @@
   "additionalProperties": false,
   "definitions": {
     "resource": {
-      "$ref": "../../resources/variant.json"
+      "$ref": "../../resources/product.json"
     },
     "includedItems": {
       "oneOf": [
-        {
-          "$ref": "../../resources/product.json"
-        }
 
       ]
     }
