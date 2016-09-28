@@ -50,6 +50,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
       expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
       expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
     end
+    it "should accept the creation of a new resource with mirrored attributes"
   end
   context "#read" do
     context "collection" do
@@ -141,13 +142,11 @@ RSpec.describe "Variants API end to end spec", vcr: true do
   end
 
   context "#update" do
-    it "should not persist changes and have errors when invalid attributes are used" do
+    it "should not persist changes and have errors when invalid attributes are used"
+    it "should accept updates containing mirrored attributes"
+    it "should not make any changes when updated with mirrored attributes"
+    it "should persist changes to core attributes with valid values"
 
-    end
-
-    it "should persist changes to core attributes with valid values" do
-
-    end
     context "product relationship" do
       it "should persist additions to the relationship"
       it "should not persist an addition to the relationship if it already exists"
