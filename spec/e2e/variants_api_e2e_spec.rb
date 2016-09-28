@@ -82,6 +82,8 @@ RSpec.describe "Variants API end to end spec", vcr: true do
           subject = model.includes("").find(created_resource.id).first
           expect(subject.product).to have_attributes created_product.attributes.slice(:id, :title, :reference, :content_type)
           expect(http_request_tracker.length).to eql 2
+          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
+          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
         end
       end
 
@@ -106,11 +108,15 @@ RSpec.describe "Variants API end to end spec", vcr: true do
           subject = model.includes("asset_files").find(created_resource.id).first
           expect(subject.asset_files).to contain_exactly an_object_having_attributes context_store.foreign_resources.asset_file.attributes.slice(:id, :title, :reference, :content_type)
           expect(http_request_tracker.length).to eql 1
+          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
+          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
         end
         it "should be loadable using links" do
           subject = model.includes("").find(created_resource.id).first
           expect(subject.asset_files).to contain_exactly an_object_having_attributes context_store.foreign_resources.asset_file.attributes.slice(:id, :title, :reference, :content_type)
           expect(http_request_tracker.length).to eql 2
+          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
+          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
         end
       end
 
@@ -130,11 +136,15 @@ RSpec.describe "Variants API end to end spec", vcr: true do
           subject = model.includes("markdown_prices").find(created_resource.id).first
           expect(subject.markdown_prices).to contain_exactly an_object_having_attributes context_store.foreign_resources.markdown_price.attributes.slice(:id, :price, :start_at, :end_at)
           expect(http_request_tracker.length).to eql 1
+          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
+          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
         end
         it "should be loadable using links" do
           subject = model.includes("").find(created_resource.id).first
           expect(subject.markdown_prices).to contain_exactly an_object_having_attributes context_store.foreign_resources.markdown_price.attributes.slice(:id, :price, :start_at, :end_at)
           expect(http_request_tracker.length).to eql 2
+          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
+          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
         end
 
       end

@@ -107,7 +107,7 @@
           "description": "Description for available_to_order"
         },
         "picture_url": {
-          "type": "null",
+          "type": ["null","string"],
           "description": "Description for picture_url"
         }
       }
