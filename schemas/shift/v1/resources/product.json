@@ -9,7 +9,7 @@
     "type": {
       "type": "string",
       "description": "The json_api type for any product.json",
-      "format": "^products$"
+      "pattern": "^products$"
     },
     "attributes": {
       "type": "object",
@@ -148,36 +148,23 @@
       "type": "object",
       "properties": {
         "breadcrumbs": {
-          "links": {
-            "type": "object",
-            "properties": {
-              "self": {
-                "type": "string"
-              },
-              "related": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false
-          },
-          "data": {
-            "oneOf": [
-              {
-                "type": "object",
-                "description": "The id and type form a pointer into the 'included' top level document property",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "string"
-                  }
+          "type": "object",
+          "properties": {
+            "links": {
+              "type": "object",
+              "properties": {
+                "self": {
+                  "type": "string"
                 },
-                "additionalProperties": false
+                "related": {
+                  "type": "string"
+                }
               },
-              {
-                "type": "array",
-                "items": {
+              "additionalProperties": false
+            },
+            "data": {
+              "oneOf": [
+                {
                   "type": "object",
                   "description": "The id and type form a pointer into the 'included' top level document property",
                   "properties": {
@@ -189,46 +176,49 @@
                     }
                   },
                   "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "The id and type form a pointer into the 'included' top level document property",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
                 }
-              }
-            ]
-          },
-          "meta": {
-            "type": "object",
-            "additionalProperties": true
+              ]
+            },
+            "meta": {
+              "type": "object",
+              "additionalProperties": true
+            }
           }
         },
         "variants": {
-          "links": {
-            "type": "object",
-            "properties": {
-              "self": {
-                "type": "string"
-              },
-              "related": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false
-          },
-          "data": {
-            "oneOf": [
-              {
-                "type": "object",
-                "description": "The id and type form a pointer into the 'included' top level document property",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "string"
-                  }
+          "type": "object",
+          "properties": {
+            "links": {
+              "type": "object",
+              "properties": {
+                "self": {
+                  "type": "string"
                 },
-                "additionalProperties": false
+                "related": {
+                  "type": "string"
+                }
               },
-              {
-                "type": "array",
-                "items": {
+              "additionalProperties": false
+            },
+            "data": {
+              "oneOf": [
+                {
                   "type": "object",
                   "description": "The id and type form a pointer into the 'included' top level document property",
                   "properties": {
@@ -240,46 +230,49 @@
                     }
                   },
                   "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "The id and type form a pointer into the 'included' top level document property",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
                 }
-              }
-            ]
-          },
-          "meta": {
-            "type": "object",
-            "additionalProperties": true
+              ]
+            },
+            "meta": {
+              "type": "object",
+              "additionalProperties": true
+            }
           }
         },
         "bundles": {
-          "links": {
-            "type": "object",
-            "properties": {
-              "self": {
-                "type": "string"
-              },
-              "related": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false
-          },
-          "data": {
-            "oneOf": [
-              {
-                "type": "object",
-                "description": "The id and type form a pointer into the 'included' top level document property",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "string"
-                  }
+          "type": "object",
+          "properties": {
+            "links": {
+              "type": "object",
+              "properties": {
+                "self": {
+                  "type": "string"
                 },
-                "additionalProperties": false
+                "related": {
+                  "type": "string"
+                }
               },
-              {
-                "type": "array",
-                "items": {
+              "additionalProperties": false
+            },
+            "data": {
+              "oneOf": [
+                {
                   "type": "object",
                   "description": "The id and type form a pointer into the 'included' top level document property",
                   "properties": {
@@ -291,46 +284,49 @@
                     }
                   },
                   "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "The id and type form a pointer into the 'included' top level document property",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
                 }
-              }
-            ]
-          },
-          "meta": {
-            "type": "object",
-            "additionalProperties": true
+              ]
+            },
+            "meta": {
+              "type": "object",
+              "additionalProperties": true
+            }
           }
         },
         "asset_files": {
-          "links": {
-            "type": "object",
-            "properties": {
-              "self": {
-                "type": "string"
-              },
-              "related": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false
-          },
-          "data": {
-            "oneOf": [
-              {
-                "type": "object",
-                "description": "The id and type form a pointer into the 'included' top level document property",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "string"
-                  }
+          "type": "object",
+          "properties": {
+            "links": {
+              "type": "object",
+              "properties": {
+                "self": {
+                  "type": "string"
                 },
-                "additionalProperties": false
+                "related": {
+                  "type": "string"
+                }
               },
-              {
-                "type": "array",
-                "items": {
+              "additionalProperties": false
+            },
+            "data": {
+              "oneOf": [
+                {
                   "type": "object",
                   "description": "The id and type form a pointer into the 'included' top level document property",
                   "properties": {
@@ -342,46 +338,49 @@
                     }
                   },
                   "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "The id and type form a pointer into the 'included' top level document property",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
                 }
-              }
-            ]
-          },
-          "meta": {
-            "type": "object",
-            "additionalProperties": true
+              ]
+            },
+            "meta": {
+              "type": "object",
+              "additionalProperties": true
+            }
           }
         },
         "template_definition": {
-          "links": {
-            "type": "object",
-            "properties": {
-              "self": {
-                "type": "string"
-              },
-              "related": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false
-          },
-          "data": {
-            "oneOf": [
-              {
-                "type": "object",
-                "description": "The id and type form a pointer into the 'included' top level document property",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "string"
-                  }
+          "type": "object",
+          "properties": {
+            "links": {
+              "type": "object",
+              "properties": {
+                "self": {
+                  "type": "string"
                 },
-                "additionalProperties": false
+                "related": {
+                  "type": "string"
+                }
               },
-              {
-                "type": "array",
-                "items": {
+              "additionalProperties": false
+            },
+            "data": {
+              "oneOf": [
+                {
                   "type": "object",
                   "description": "The id and type form a pointer into the 'included' top level document property",
                   "properties": {
@@ -393,13 +392,29 @@
                     }
                   },
                   "additionalProperties": false
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "The id and type form a pointer into the 'included' top level document property",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
                 }
-              }
-            ]
-          },
-          "meta": {
-            "type": "object",
-            "additionalProperties": true
+              ]
+            },
+            "meta": {
+              "type": "object",
+              "additionalProperties": true
+            }
           }
         }
       }

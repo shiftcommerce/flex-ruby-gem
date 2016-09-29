@@ -9,7 +9,7 @@
     "type": {
       "type": "string",
       "description": "The json_api type for any address.json",
-      "format": "^addresses$"
+      "pattern": "^addresses$"
     },
     "attributes": {
       "type": "object",
@@ -76,34 +76,37 @@
       "type": "object",
       "properties": {
         "customer_account": {
-          "links": {
-            "type": "object",
-            "properties": {
-              "self": {
-                "type": "string"
+          "type": "object",
+          "properties": {
+            "links": {
+              "type": "object",
+              "properties": {
+                "self": {
+                  "type": "string"
+                },
+                "related": {
+                  "type": "string"
+                }
               },
-              "related": {
-                "type": "string"
-              }
+              "additionalProperties": false
             },
-            "additionalProperties": false
-          },
-          "data": {
-            "type": "object",
-            "description": "The id and type form a pointer into the 'included' top level document property",
-            "properties": {
-              "id": {
-                "type": "string"
+            "data": {
+              "type": "object",
+              "description": "The id and type form a pointer into the 'included' top level document property",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
               },
-              "type": {
-                "type": "string"
-              }
+              "additionalProperties": false
             },
-            "additionalProperties": false
-          },
-          "meta": {
-            "type": "object",
-            "additionalProperties": true
+            "meta": {
+              "type": "object",
+              "additionalProperties": true
+            }
           }
         }
       }

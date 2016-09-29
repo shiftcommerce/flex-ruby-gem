@@ -26,19 +26,10 @@
   "additionalProperties": false,
   "definitions": {
     "resource": {
-      "$ref": "../../resources/variant.json"
+      "$ref": "../../resources/asset_file.json"
     },
     "includedItems": {
       "oneOf": [
-        {
-          "$ref": "../../resources/product.json"
-        },
-        {
-          "$ref": "../../resources/asset_file.json"
-        },
-        {
-          "$ref": "../../resources/markdown_price.json"
-        }
 
       ]
     }
