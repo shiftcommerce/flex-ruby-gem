@@ -2,6 +2,7 @@ require "json"
 require "active_support/core_ext/string"
 class JsonSchema < Thor
   desc "generate_from_vcr", "Given a json encoded vcr file, produces a json schema compatible schema."
+
   def generate_from_vcr(output_file, input_file, thing = output_file)
     interaction = JSON.parse(File.read(input_file))["http_interactions"].first
     data = interaction.dig("response", "body", "decoded")
@@ -54,7 +55,7 @@ class JsonSchema < Thor
         }
     }
     FileUtils.mkdir_p(File.dirname(full_filename))
-    File.open(full_filename, "w") {|file| file.write("#{JSON.pretty_generate(schema)}")}
+    File.open(full_filename, "w") { |file| file.write("#{JSON.pretty_generate(schema)}") }
   end
 
   def detect_used_items_in_included_data(data)
@@ -101,7 +102,7 @@ class JsonSchema < Thor
         }
     }
     FileUtils.mkdir_p(File.dirname(full_filename))
-    File.open(full_filename, "w") {|file| file.write("#{JSON.pretty_generate(schema)}")}
+    File.open(full_filename, "w") { |file| file.write("#{JSON.pretty_generate(schema)}") }
   end
 
   def generate_resource_schema(node, full_filename, thing)
@@ -116,7 +117,7 @@ class JsonSchema < Thor
             "type": {
                 "type": "string",
                 "description": "The json_api type for any #{thing}",
-                "format": "^#{node["type"]}$"
+                "pattern": "^#{node["type"]}$"
             },
             "attributes": {
                 "type": "object",
@@ -146,12 +147,13 @@ class JsonSchema < Thor
     }
 
     FileUtils.mkdir_p(File.dirname(full_filename))
-    File.open(full_filename, "w") {|file| file.write("#{JSON.pretty_generate(schema)}")}
+    File.open(full_filename, "w") { |file| file.write("#{JSON.pretty_generate(schema)}") }
   end
 
   def get_version_from_uri(uri)
-    URI.parse(uri).path.split("/").reject {|node| node==""}[1]
+    URI.parse(uri).path.split("/").reject { |node| node=="" }[1]
   end
+
   def properties_for_attributes(node)
     node["attributes"].reduce({}) do |acc, (attribute, value)|
       acc.merge attribute => guess_type_def_for(attribute, value)
@@ -159,24 +161,28 @@ class JsonSchema < Thor
   end
 
   def properties_for_relationships(node)
+    return {} if node["relationships"].nil?
     node["relationships"].reduce({}) do |acc, (relationship, definition)|
       acc.merge relationship => {
-          "links": {
-              "type": "object",
-              "properties": {
-                  "self": {
-                      "type": "string",
+          type: "object",
+          properties: {
+              "links": {
+                  "type": "object",
+                  "properties": {
+                      "self": {
+                          "type": "string",
+                      },
+                      "related": {
+                          "type": "string"
+                      }
                   },
-                  "related": {
-                      "type": "string"
-                  }
+                  "additionalProperties": false
               },
-              "additionalProperties": false
-          },
-          "data": guess_data_type_for_relationship(relationship, definition),
-          "meta": {
-              "type": "object",
-              "additionalProperties": true
+              "data": guess_data_type_for_relationship(relationship, definition),
+              "meta": {
+                  "type": "object",
+                  "additionalProperties": true
+              }
           }
       }
     end

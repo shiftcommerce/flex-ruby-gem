@@ -1,5 +1,5 @@
 require "e2e_spec_helper"
-RSpec.describe "Asset Files API end to end spec", vcr: true do
+RSpec.describe "Markdown Prices API end to end spec", vcr: true do
   # As the "before context" blocks cannot access let vars, the "context store" simply defines a method called "context_store"
   # that stores whatever you want - it is an "OpenStruct" so you can just write anything to it and read it back at any time
   # This is cleared at the start of the context, but the idea is so that you can share stuff between examples.
@@ -10,7 +10,7 @@ RSpec.describe "Asset Files API end to end spec", vcr: true do
 
   # We define the model in advance, mainly allowing the code in the examples to be fairly generic and can be copied / pasted
   # into other tests without changing the model all over the place.
-  let(:model) { FlexCommerce::AssetFile }
+  let(:model) { FlexCommerce::MarkdownPrice }
 
   # A few convenience lets just to avoid writing context_store.uuid for example
   let(:uuid) { context_store.uuid }
@@ -21,8 +21,17 @@ RSpec.describe "Asset Files API end to end spec", vcr: true do
   before(:context) do
     context_store.uuid = uuid = SecureRandom.uuid
     context_store.foreign_resources = OpenStruct.new
-    context_store.foreign_resources.asset_folder = FlexCommerce::AssetFolder.create! name: "asset folder for Test Asset File #{uuid}",
-                                                                                     reference: "reference_for_asset_folder_1_for_asset_file_#{uuid}"
+    context_store.foreign_resources.product = FlexCommerce::Product.create! title: "Title for product 1 for variant 1 for markdown price #{context_store.uuid}",
+                                                                              reference: "reference for product 1 for variant 1 for markdown price #{context_store.uuid}",
+                                                                              content_type: "markdown"
+    context_store.foreign_resources.variant = FlexCommerce::Variant.create title: "Title for Test Variant 1 for markdown price #{uuid}",
+                                                           description: "Description for Test Variant 1 for markdown price #{uuid}",
+                                                           reference: "reference_for_test_variant_1_for_markdown_price_#{uuid}",
+                                                           price: 5.50,
+                                                           price_includes_taxes: false,
+                                                           sku: "sku_for_test_variant_1_for_markdown_price#{uuid}",
+                                                           product_id: context_store.foreign_resources.product.id
+
   end
   # Clean up time - delete stuff in the reverse order to give us more chance of success
   after(:context) do
@@ -33,12 +42,11 @@ RSpec.describe "Asset Files API end to end spec", vcr: true do
   end
 
   context "#create" do
-    let(:asset_file_fixture_file) { File.expand_path("../support_e2e/fixtures/asset_file.png", File.dirname(__FILE__)) }
     it "should persist when valid attributes are used" do
-      context_store.created_resource = subject = model.create! name: "name for Test Asset File #{uuid}",
-                                                                                 reference: "reference_for_test_asset_file_#{uuid}",
-                                                                                 asset_file: "data:image/png;base64,#{Base64.encode64(File.read(asset_file_fixture_file))}",
-                                                                                 asset_folder_id: context_store.foreign_resources.asset_folder.id
+      context_store.created_resource = subject = model.create! price: 99.0,
+                                                               start_at: 1.day.since,
+                                                               end_at: 11.days.since,
+                                                               variant_id: context_store.foreign_resources.variant.id
     end
   end
 
