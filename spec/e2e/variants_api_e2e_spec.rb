@@ -152,10 +152,39 @@ RSpec.describe "Variants API end to end spec", vcr: true do
   end
 
   context "#update" do
-    it "should not persist changes and have errors when invalid attributes are used"
-    it "should accept updates containing mirrored attributes"
+    it "should persist changes to core attributes with valid values" do
+      result = created_resource.update_attributes title: "Title for product 1 for variant #{context_store.uuid} changed",
+                                                  reference: "reference for product 1 for variant #{context_store.uuid} changed",
+                                                  content_type: "html"
+      expect(result).to be true
+      expect(created_resource.errors).to be_empty
+    end
+    it "should not persist changes and have errors when invalid attributes are used" do
+      # Note that we create our own resource here as modifying the created one would leave it in an error state
+      # causing confusion for when other tests begin.
+      aggregate_failures do
+        resource = model.create title: "Temp Variant #{uuid}",
+                                description: "Temp Variant #{uuid}",
+                                reference: "reference_for_temp_variant_#{uuid}",
+                                price: 5.50,
+                                price_includes_taxes: false,
+                                sku: "sku_for_temp_variant_#{uuid}",
+                                product_id: created_product.id
+        result = resource.update_attributes sku: nil
+        expect(result).to be false
+        expect(resource.errors).to be_present
+        resource.destroy
+      end
+    end
+    it "should accept updates containing mirrored attributes" do
+      # Read the created resource again to create a recorded request for us to grab the mirrored attributes from
+      resource = model.includes("").find(created_resource.id).first
+      result = created_resource.update_attributes resource.attributes.except("id", "type")
+      expect(result).to be true
+      expect(result.errors).to be_empty
+
+    end
     it "should not make any changes when updated with mirrored attributes"
-    it "should persist changes to core attributes with valid values"
 
     context "product relationship" do
       it "should persist additions to the relationship"
