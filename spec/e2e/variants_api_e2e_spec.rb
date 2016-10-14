@@ -50,7 +50,13 @@ RSpec.describe "Variants API end to end spec", vcr: true do
       expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
       expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
     end
-    it "should accept the creation of a new resource with mirrored attributes"
+    it "should accept the creation of a new resource with mirrored attributes" do
+      found = model.find(context_store.created_resource.id) # Load it so we can grab the raw json
+      data = Oj.load(http_request_tracker.first[:response].body)["data"].except("relationships", "links", "meta")
+      url = "#{model.site}/#{found.links.self}"
+      result = model.connection.run(:patch, found.links.self, data.to_json)
+      tmp = 1
+    end
   end
   context "#read" do
     context "collection" do
@@ -181,7 +187,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
       resource = model.includes("").find(created_resource.id).first
       result = created_resource.update_attributes resource.attributes.except("id", "type")
       expect(result).to be true
-      expect(result.errors).to be_empty
+      expect(created_resource.errors).to be_empty
 
     end
     it "should not make any changes when updated with mirrored attributes"
