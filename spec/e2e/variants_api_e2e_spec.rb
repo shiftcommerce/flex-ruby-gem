@@ -50,13 +50,6 @@ RSpec.describe "Variants API end to end spec", vcr: true do
       expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
       expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
     end
-    it "should accept the creation of a new resource with mirrored attributes" do
-      found = model.find(context_store.created_resource.id) # Load it so we can grab the raw json
-      data = Oj.load(http_request_tracker.first[:response].body)["data"].except("relationships", "links", "meta")
-      url = "#{model.site}/#{found.links.self}"
-      result = model.connection.run(:patch, found.links.self, data.to_json)
-      tmp = 1
-    end
   end
   context "#read" do
     context "collection" do
@@ -190,7 +183,13 @@ RSpec.describe "Variants API end to end spec", vcr: true do
       expect(created_resource.errors).to be_empty
 
     end
-    it "should not make any changes when updated with mirrored attributes"
+    it "should not make any changes when updated with mirrored attributes" do
+      found = model.find(context_store.created_resource.id) # Load it so we can grab the raw json
+      data = Oj.load(http_request_tracker.first[:response].body)["data"].except("relationships", "links", "meta")
+      url = "#{model.site}/#{found.links.self}"
+      result = model.connection.run(:patch, found.links.self, data.to_json)
+      expect(true).to eql false #TODO Test the status code and re fetch to ensure no changes
+    end
 
     context "product relationship" do
       it "should persist additions to the relationship"
@@ -207,8 +206,21 @@ RSpec.describe "Variants API end to end spec", vcr: true do
     end
 
     context "markdown_prices relationship" do
-      it "should persist additions to the relationship"
-      it "should not persist an addition to the relationship if it already exists"
+      it "should be able to add a new markdown price" do
+        result = created_resource.update_attributes(markdown_prices_resources: [FlexCommerce::MarkdownPrice.new(price: 1.10, start_at: 2.days.ago, end_at: 10.days.since)])
+        expect(result).to be_truthy
+        resource = model.includes("markdown_prices").find(created_resource.id).first
+        expect(resource.markdown_prices).to include(an_object_having_attributes price: 1.10)
+      end
+      it "should persist additions to the relationship" do
+        # This is not possible as the markdown price cannot exist without a variant id
+        # but I am leaving it in here to keep the structure in place for now.
+      end
+      it "should not persist an addition to the relationship if it already exists" do
+        context_store.foreign_resources[:markdown_price] = FlexCommerce::MarkdownPrice.create!(variant_id: created_resource.id, price: 1.10, start_at: 2.days.ago, end_at: 10.days.since)
+        operation = -> { created_resource.add_markdown_prices([context_store.foreign_resources[:markdown_price]]) }
+        expect(operation).to raise_error(FlexCommerceApi::Error::BadRequest)
+      end
       it "should replace entire relationship"
       it "should remove from the existing relationship"
     end
