@@ -3,7 +3,7 @@ module FlexCommerce
   #
   # A flex commerce template section model
   #
-  # This model provides access to the flex commerce section component
+  # This model provides access to the flex commerce template section
   #
   #
   class TemplateSection < FlexCommerceApi::ApiBase
