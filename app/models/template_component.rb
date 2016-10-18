@@ -7,6 +7,6 @@ module FlexCommerce
   #
   #
   class TemplateComponent < FlexCommerceApi::ApiBase
-    belongs_to template_section, class_name: "::FlexCommerce::TemplateSection"
+    has_many template_sections, class_name: "::FlexCommerce::TemplateSection"
   end
 end
