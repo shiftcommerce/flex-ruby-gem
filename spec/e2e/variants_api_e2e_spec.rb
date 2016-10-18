@@ -28,33 +28,84 @@ RSpec.describe "Variants API end to end spec", vcr: true do
   end
   # Clean up time - delete stuff in the reverse order to give us more chance of success
   after(:context) do
-    context_store.created_resource.destroy unless context_store.created_resource.nil? || !context_store.created_resource.persisted?
     context_store.foreign_resources.values.reverse.each do |resource|
       resource.destroy if resource.persisted?
     end
   end
 
   context "#create" do
-    it "should not persist and have errors when invalid attributes are used" do
-
+    subject! { model.create attributes_for_examples }
+    after(:each) { subject.destroy if subject.persisted? }
+    context "with invalid attributes" do
+      let(:attributes_for_examples) do
+        {
+            sku: ""
+        }
+      end
+      it "should not persist and should have errors" do
+        expect(subject.persisted?).to be_falsey
+        expect(subject.errors).not_to be_empty
+      end
     end
-    it "should persist when valid attributes are used" do
-      context_store.created_resource = subject = model.create title: "Title for Test Variant #{uuid}",
-                                                              description: "Description for Test Variant #{uuid}",
-                                                              reference: "reference_for_test_variant_#{uuid}",
-                                                              price: 5.50,
-                                                              price_includes_taxes: false,
-                                                              sku: "sku_for_test_variant_#{uuid}",
-                                                              product_id: created_product.id
-      expect(subject.errors).to be_empty
-      expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
-      expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
+
+    context "valid basic attributes" do
+      let(:attributes_for_examples) do
+        {
+            title: "Title for Test Variant #{uuid}",
+            description: "Description for Test Variant #{uuid}",
+            reference: "reference_for_test_variant_#{uuid}",
+            price: 5.50,
+            price_includes_taxes: false,
+            sku: "sku_for_test_variant_#{uuid}",
+            product_id: created_product.id
+        }
+      end
+      it "should persist" do
+        expect(subject.errors).to be_empty
+        expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
+        expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
+      end
+    end
+    context "valid attributes with valid markdown prices to be created" do
+      let(:attributes_for_examples) do
+        {
+            title: "Title for Test Variant #{uuid} temp 1",
+            description: "Description for Test Variant #{uuid}",
+            reference: "reference_for_test_variant_#{uuid}_temp_1",
+            price: 5.50,
+            price_includes_taxes: false,
+            sku: "sku_for_test_variant_#{uuid}_temp_1",
+            product_id: created_product.id,
+
+            markdown_prices_resources: [FlexCommerce::MarkdownPrice.new(price: 1.10, start_at: 2.days.ago, end_at: 10.days.since)]
+        }
+      end
+      it "should be able to add a new markdown price" do
+        resource = model.includes("markdown_prices").find(subject.id).first
+        expect(resource.markdown_prices).to include(an_object_having_attributes price: 1.10)
+      end
     end
   end
   context "#read" do
     context "collection" do
     end
     context "member" do
+      before(:context) do
+        created_product = context_store.foreign_resources[:product]
+        uuid = context_store.uuid
+        context_store.created_resource = FlexCommerce::Variant.create title: "Title for Test Variant #{uuid}",
+                                                       description: "Description for Test Variant #{uuid}",
+                                                       reference: "reference_for_test_variant_#{uuid}",
+                                                       price: 5.50,
+                                                       price_includes_taxes: false,
+                                                       sku: "sku_for_test_variant_#{uuid}",
+                                                       product_id: created_product.id
+
+      end
+      after(:context) do
+        context_store.created_resource.destroy unless context_store.created_resource.nil? || !context_store.created_resource.persisted?
+        context_store.delete_field(:created_resource)
+      end
 
       it "should have the correct default relationships included" do
         subject = model.find(context_store.created_resource.id)
@@ -127,6 +178,9 @@ RSpec.describe "Variants API end to end spec", vcr: true do
                                                                                                 end_at: 11.days.since,
                                                                                                 variant_id: context_store.created_resource.id
         end
+        after(:context) do
+          context_store.foreign_resources.markdown_price.destroy if context_store.foreign_resources.markdown_price.persisted?
+        end
         it "should exist" do
           subject = model.find(created_resource.id)
           expect(subject.relationships.markdown_prices).to be_present
@@ -151,40 +205,37 @@ RSpec.describe "Variants API end to end spec", vcr: true do
   end
 
   context "#update" do
+    let!(:created_resource) do
+      model.create title: "Title for Test Variant #{uuid}",
+                   description: "Description for Test Variant #{uuid}",
+                   reference: "reference_for_test_variant_#{uuid}",
+                   price: 5.50,
+                   price_includes_taxes: false,
+                   sku: "sku_for_test_variant_#{uuid}",
+                   product_id: created_product.id
+    end
+    subject {model.includes("").find(created_resource.id).first}
+    after(:each) { created_resource.destroy if created_resource.persisted? }
     it "should persist changes to core attributes with valid values" do
-      result = created_resource.update_attributes title: "Title for product 1 for variant #{context_store.uuid} changed",
+      result = subject.update_attributes title: "Title for product 1 for variant #{context_store.uuid} changed",
                                                   reference: "reference for product 1 for variant #{context_store.uuid} changed",
                                                   content_type: "html"
       expect(result).to be true
-      expect(created_resource.errors).to be_empty
+      expect(subject.errors).to be_empty
     end
     it "should not persist changes and have errors when invalid attributes are used" do
-      # Note that we create our own resource here as modifying the created one would leave it in an error state
-      # causing confusion for when other tests begin.
       aggregate_failures do
-        resource = model.create title: "Temp Variant #{uuid}",
-                                description: "Temp Variant #{uuid}",
-                                reference: "reference_for_temp_variant_#{uuid}",
-                                price: 5.50,
-                                price_includes_taxes: false,
-                                sku: "sku_for_temp_variant_#{uuid}",
-                                product_id: created_product.id
-        result = resource.update_attributes sku: nil
-        expect(result).to be false
-        expect(resource.errors).to be_present
-        resource.destroy
+        expect(subject.update_attributes sku: nil).to be false
+        expect(subject.errors).to be_present
       end
     end
     it "should accept updates containing mirrored attributes" do
-      # Read the created resource again to create a recorded request for us to grab the mirrored attributes from
-      resource = model.includes("").find(created_resource.id).first
-      result = created_resource.update_attributes resource.attributes.except("id", "type")
+      result = subject.update_attributes subject.attributes.except("id", "type")
       expect(result).to be true
-      expect(created_resource.errors).to be_empty
+      expect(subject.errors).to be_empty
 
     end
     it "should not make any changes when updated with mirrored attributes" do
-      found = model.find(context_store.created_resource.id) # Load it so we can grab the raw json
       data = Oj.load(http_request_tracker.first[:response].body)["data"].except("relationships", "links", "meta")
       url = "#{model.site}/#{found.links.self}"
       result = model.connection.run(:patch, found.links.self, data.to_json)
@@ -207,7 +258,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
 
     context "markdown_prices relationship" do
       it "should be able to add a new markdown price" do
-        result = created_resource.update_attributes(markdown_prices_resources: [FlexCommerce::MarkdownPrice.new(price: 1.10, start_at: 2.days.ago, end_at: 10.days.since)])
+        result = subject.update_attributes(title: "Something really different", markdown_prices_resources: [FlexCommerce::MarkdownPrice.new(price: 1.10, start_at: 2.days.ago, end_at: 10.days.since)])
         expect(result).to be_truthy
         resource = model.includes("markdown_prices").find(created_resource.id).first
         expect(resource.markdown_prices).to include(an_object_having_attributes price: 1.10)
@@ -217,7 +268,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
         # but I am leaving it in here to keep the structure in place for now.
       end
       it "should not persist an addition to the relationship if it already exists" do
-        context_store.foreign_resources[:markdown_price] = FlexCommerce::MarkdownPrice.create!(variant_id: created_resource.id, price: 1.10, start_at: 2.days.ago, end_at: 10.days.since)
+        context_store.foreign_resources[:markdown_price] = FlexCommerce::MarkdownPrice.create!(variant_id: subject.id, price: 1.10, start_at: 2.days.ago, end_at: 10.days.since)
         operation = -> { created_resource.add_markdown_prices([context_store.foreign_resources[:markdown_price]]) }
         expect(operation).to raise_error(FlexCommerceApi::Error::BadRequest)
       end

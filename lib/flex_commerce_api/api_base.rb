@@ -164,7 +164,7 @@ module FlexCommerceApi
     end
 
     def relationship_attributes
-      relationships.attributes.keys.map {|r| "#{r}_resources"}
+      @relationship_attributes ||= self.class.associations.map {|a| "#{a.attr_name}_resources"}
     end
 
     def convert_relationship_attribute(data)
