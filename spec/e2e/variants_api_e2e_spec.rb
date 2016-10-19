@@ -111,8 +111,8 @@ RSpec.describe "Variants API end to end spec", vcr: true do
 
     context "valid attributes with valid asset files to be created" do
       let(:asset_file) do
-        FlexCommerce::AssetFile.new(name: "name for Asset file 1 for Test Variant #{uuid}",
-                      reference: "reference_for_asset_file_1_for_variant_#{uuid}",
+        FlexCommerce::AssetFile.new(name: "name for Asset file 1 for Test Variant #{uuid} temp",
+                      reference: "reference_for_asset_file_1_for_variant_#{uuid} temp",
                       asset_file: "data:image/png;base64,#{Base64.encode64(File.read(asset_file_fixture_file))}",
                       asset_folder_id: context_store.foreign_resources.asset_folder.id)
       end
@@ -133,7 +133,8 @@ RSpec.describe "Variants API end to end spec", vcr: true do
         aggregate_failures "validating resource has the asset file added" do
           resource = model.includes("asset_files").find(subject.id).first
           expect(resource.asset_files).to include(an_object_having_attributes reference: asset_file.reference)
-          resource.asset_files.first.destroy if resource.asset_files.first.present?
+          # If we assign the created asset file to foreign resources, it will get tidied up automatically at the end
+          context.foreign_resources[:auto_created_asset_file] = resource.asset_files.first if resource.asset_files.first.present?
         end
       end
     end

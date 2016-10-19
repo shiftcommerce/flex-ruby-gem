@@ -95,7 +95,7 @@
           "description": "Description for web_product_name"
         },
         "picture_url": {
-          "type": "null",
+          "type": ["null", "string"],
           "description": "Description for picture_url"
         },
         "average_rating": {
