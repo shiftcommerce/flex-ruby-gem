@@ -149,7 +149,36 @@ module FlexCommerceApi
       end
     end
 
+    def as_json_api(*args)
+      convert_relationship_attributes! super(*args)
+    end
+
     private
+
+    def convert_relationship_attributes!(h)
+      valid_relationships = relationship_attributes
+      (h["attributes"].keys & valid_relationships).each do |attr|
+        h["attributes"][attr] = convert_relationship_attribute(h["attributes"][attr])
+      end
+      h
+    end
+
+    def relationship_attributes
+      @relationship_attributes ||= self.class.associations.map {|a| "#{a.attr_name}_resources"}
+    end
+
+    def convert_relationship_attribute(data)
+      case data
+        when Array
+          data.map do |d|
+            convert_relationship_attribute(d)
+          end
+        when FlexCommerceApi::ApiBase
+          data.as_json_api
+        else
+          data
+      end
+    end
 
     def raise_record_invalid
       raise(::FlexCommerceApi::Error::RecordInvalid.new(self))
