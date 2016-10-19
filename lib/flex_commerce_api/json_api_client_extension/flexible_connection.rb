@@ -14,12 +14,14 @@ module FlexCommerceApi
           builder.use JsonApiClientExtension::JsonFormatMiddleware
           builder.use JsonApiClientExtension::PreviewedRequestMiddleware if include_previewed
           builder.use JsonApiClient::Middleware::JsonRequest
+          # Surrogate Key middleware should always be above HTTP caching to ensure we're reading headers
+          # from the original response not the 304 responses
+          builder.use JsonApiClientExtension::CaptureSurrogateKeysMiddleware
           # disable the cache when HTTP cache is set to false
           unless false == options[:http_cache]
             builder.use :http_cache, cache_options(options)
           end
           builder.use JsonApiClientExtension::StatusMiddleware
-          builder.use JsonApiClientExtension::CaptureSurrogateKeysMiddleware
           builder.use JsonApiClient::Middleware::ParseJson
           builder.adapter *adapter_options
           builder.use JsonApiClientExtension::LoggingMiddleware unless FlexCommerceApi.logger.nil?
