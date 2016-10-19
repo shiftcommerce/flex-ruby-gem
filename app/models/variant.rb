@@ -11,6 +11,8 @@ module FlexCommerce
     has_one :product
     has_many :asset_files
     has_many :markdown_prices
-
+    def add_markdown_prices(markdown_prices)
+      self.class.requestor.custom("relationships/markdown_prices", {request_method: :post}, {id: id, data: markdown_prices.map(&:as_relation)})
+    end
   end
 end

@@ -92,5 +92,13 @@ module FlexCommerce
     def current_min_price
       variants.map(&:current_price).min
     end
+
+    # Relationship accessors
+    def add_asset_files(asset_files)
+      self.class.requestor.custom("relationships/asset_files", {request_method: :post}, {id: id, data: asset_files.map(&:as_relation)})
+    end
+
+
+    # End of relationship accessors
   end
 end
