@@ -164,7 +164,7 @@ module FlexCommerceApi
     end
 
     def relationship_attributes
-      @relationship_attributes ||= self.class.associations.map {|a| a.is_a?(JsonApiClient::Associations::HasMany::Association) ? "#{a.attr_name}_resource" : "#{a.attr_name}_resource"}
+      @relationship_attributes ||= self.class.associations.map {|a| a.is_a?(JsonApiClient::Associations::HasMany::Association) ? "#{a.attr_name}_resources" : "#{a.attr_name}_resource"}
     end
 
     def convert_relationship_attribute(data)
