@@ -12,6 +12,13 @@ RSpec.describe "Products API end to end spec", vcr: true do
     context_store.to_clean
   end
 
+  def keep_tidy
+    yield.tap do |o|
+      to_clean.dumping_ground ||= []
+      to_clean.dumping_ground << o
+    end
+  end
+
   def asset_file_fixture_file
     # Create an asset file for use by the test
     File.expand_path("../support_e2e/fixtures/asset_file.png", File.dirname(__FILE__))
@@ -20,9 +27,10 @@ RSpec.describe "Products API end to end spec", vcr: true do
   # As setting up for testing can be very expensive, we do it only at the start of then context
   # it is then our responsibility to tidy up at the end of the context.
   before(:context) do
+    uuid = SecureRandom.uuid
     context_store.to_clean = OpenStruct.new
-    context_store.foreign_resources.asset_folder = FlexCommerce::AssetFolder.create! name: "asset folder for Test Variant #{context_store.uuid}",
-                                                                                     reference: "reference_for_asset_folder_1_for_variant_#{context_store.uuid}"
+    context_store.to_clean.asset_folder = FlexCommerce::AssetFolder.create! name: "asset folder for Test Variant #{uuid}",
+                                                                                     reference: "reference_for_asset_folder_1_for_variant_#{uuid}"
   end
   # Clean up time - delete stuff in the reverse order to give us more chance of success
   after(:context) do
@@ -64,32 +72,11 @@ RSpec.describe "Products API end to end spec", vcr: true do
 
       end
       aggregate_failures "validating created resource and fetching back" do
-        subject = FlexCommerce::Product.find(created_resource.id)
+        subject = FlexCommerce::Product.includes("variants").find(created_resource.id).first
         expect(created_resource.errors).to be_empty
         expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
         expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/product")
         expect(subject.variants).to contain_exactly an_object_having_attributes title: "Title for variant for product #{uuid}"
-      end
-    end
-
-    it "should persist when valid attributes with nested bundles are used" do
-      created_resource = keep_tidy do
-        FlexCommerce::Product.create! title: "Title for product #{uuid}",
-                                      reference: "reference for for product #{uuid}",
-                                      content_type: "markdown",
-                                      bundles_resources: [
-                                        FlexCommerce::Bundle.new name: "Name for bundle for product #{uuid}",
-                                                                 reference: "reference_for_bundle_for_product_#{uuid}",
-                                                                 slug: "slug_for_bundle_for_product_#{uuid}",
-                                                                 description: "Description for bundle for product #{uuid}"
-                                      ]
-      end
-      aggregate_failures "validating created resource and fetching back" do
-        subject = FlexCommerce::Product.find(created_resource.id)
-        expect(created_resource.errors).to be_empty
-        expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
-        expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/product")
-        expect(subject.bundles).to contain_exactly an_object_having_attributes name: "Name for bundle for product #{uuid}"
       end
     end
 
@@ -99,18 +86,18 @@ RSpec.describe "Products API end to end spec", vcr: true do
                                       reference: "reference for for product #{uuid}",
                                       content_type: "markdown",
                                       asset_files_resources: [
-                                        FlexCommerce::AssetFile.new name: "name for asset file for product #{uuid}",
+                                        FlexCommerce::AssetFile.new(name: "name for asset file for product #{uuid}",
                                                                     reference: "reference_for_asset_file_for_product_#{uuid}",
                                                                     asset_file: "data:image/png;base64,#{Base64.encode64(File.read(asset_file_fixture_file))}",
-                                                                    asset_folder_id: context_store.foreign_resources.asset_folder.id)
+                                                                    asset_folder_id: context_store.to_clean.asset_folder.id)
         ]
       end
       aggregate_failures "validating created resource and fetching back" do
-        subject = FlexCommerce::Product.find(created_resource.id)
+        subject = FlexCommerce::Product.includes("asset_files").find(created_resource.id).first
         expect(created_resource.errors).to be_empty
         expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
         expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/product")
-        expect(subject.asset_files).to contain_exactly an_object_having_attributes name: "Name for asset file for product #{uuid}"
+        expect(subject.asset_files).to contain_exactly an_object_having_attributes name: "name for asset file for product #{uuid}"
       end
     end
 
@@ -121,7 +108,7 @@ RSpec.describe "Products API end to end spec", vcr: true do
                                       content_type: "markdown",
                                       template_definition_resource: FlexCommerce::TemplateDefinition.new(reference: "reference_for_template_definition_for_product_#{uuid}",
                                                                                                          label: "Label for template definition for product #{uuid}",
-                                                                                                         data_type: "text")
+                                                                                                         data_type: "Product")
       end
       aggregate_failures "validating created resource and fetching back" do
         subject = FlexCommerce::Product.find(created_resource.id)
