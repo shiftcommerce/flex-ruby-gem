@@ -394,20 +394,7 @@
                   "additionalProperties": false
                 },
                 {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "description": "The id and type form a pointer into the 'included' top level document property",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "additionalProperties": false
-                  }
+                  "type": "null"
                 }
               ]
             },
