@@ -1,7 +1,9 @@
 require "json_api_client/resource"
+require_relative "./parsers/parser"
 module FlexCommerceApi
   module JsonApiClientExtension
     class Resource < JsonApiClient::Resource
+      self.parser = Parsers::Parser
       def method_missing(method, *args)
         association = association_for(method)
 
