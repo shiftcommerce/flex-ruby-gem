@@ -13,18 +13,21 @@ require "flex_commerce_api/json_api_client_extension/capture_surrogate_keys_midd
 require "flex_commerce_api/json_api_client_extension/has_many_association_proxy"
 require "flex_commerce_api/json_api_client_extension/builder"
 require "flex_commerce_api/json_api_client_extension/flexible_connection"
-require "flex_commerce_api/json_api_client_extension/resource"
+require "flex_commerce_api/json_api_client_extension/parsers/parser"
+
 module FlexCommerceApi
   #
   # Base class for all flex commerce models
   #
-  class ApiBase < ::FlexCommerceApi::JsonApiClientExtension::Resource
+  class ApiBase < JsonApiClient::Resource
     PRIVATE_ATTRIBUTES = %w(id type relationships links meta)
     RELATED_META_RESOURCES = %w(related-categories related-static_pages related-resources related-files related-products)
+
     # set the api base url in an abstract base class
     self.paginator = JsonApiClientExtension::Paginator
     self.requestor_class = JsonApiClientExtension::Requestor
     self.connection_class = ::FlexCommerceApi::JsonApiClientExtension::FlexibleConnection
+    self.parser = ::FlexCommerceApi::JsonApiClientExtension::Parsers::Parser
 
     class << self
       def create!(*args)
