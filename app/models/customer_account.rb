@@ -40,6 +40,7 @@ module FlexCommerce
     has_many :addresses, class_name: "::FlexCommerce::Address"
     has_many :customer_segments, class_name: "::FlexCommerce::CustomerSegment"
     has_many :notes, class_name: "::FlexCommerce::Note"
+    has_many :orders, class_name: "::FlexCommerce::RemoteOrder"
     has_one :password_recovery, class_name: "::FlexCommerce::PasswordRecovery"
 
     property :email, type: :string
@@ -84,7 +85,34 @@ module FlexCommerce
     end
 
     def orders
-      ::FlexCommerce::Order.where(customer_account_id: id)
+
+      relationship_definitions = relationships[:orders]
+
+      # look in included data
+      if relationship_definitions.key?("data")
+        return last_result_set.included.data_for(:orders, relationship_definitions)
+      end
+
+      if association = association_for(:orders)
+        # look for a defined relationship url
+        if relationship_definitions["links"] && url = relationship_definitions["links"]["related"]
+          url = URI.parse(relationship_definitions["links"]["related"])
+          site = url.clone.tap {|u|
+            u.path = ""
+            u.query = nil
+            u.fragment = nil
+          }.to_s
+          path = url.clone.tap {|u|
+            u.scheme = nil
+            u.host = nil
+            u.port = nil
+            u.userinfo = nil
+          }.to_s
+
+          connection = FlexCommerceApi::JsonApiClientExtension::FlexibleConnection.new(self.class.connection_options.merge(site: site, add_json_api_extension: false, authenticate: false))
+          RemoteOrder.parser.parse(RemoteOrder, connection.run(:get, path, {}, {}))
+        end
+      end
     end
 
     def create_note(attributes = {})
