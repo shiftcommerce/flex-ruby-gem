@@ -14,6 +14,7 @@ require "flex_commerce_api/json_api_client_extension/has_many_association_proxy"
 require "flex_commerce_api/json_api_client_extension/builder"
 require "flex_commerce_api/json_api_client_extension/flexible_connection"
 require "flex_commerce_api/json_api_client_extension/parsers/parser"
+require "flex_commerce_api/json_api_client_extension/remote_builder"
 
 module FlexCommerceApi
   #
@@ -191,6 +192,33 @@ module FlexCommerceApi
     def has_many_association_proxy(assoc_name, real_instance, options = {})
       JsonApiClientExtension::HasManyAssociationProxy.new(real_instance, self, assoc_name, options)
     end
+
+    # Gets a relationship using its related link - but returns a builder allowing for it to be
+    # paginated, searched and more.
+    def get_related(relationship)
+      relationship_definitions = relationships[relationship]
+      association = association_for(relationship)
+      raise "#{relationship} is not defined in #{self.class.name}" unless association
+      if relationship_definitions["links"] && url = relationship_definitions["links"]["related"]
+        url = URI.parse(url)
+        site = url.clone.tap {|u|
+          u.path = ""
+          u.query = nil
+          u.fragment = nil
+        }.to_s
+        path = url.clone.tap {|u|
+          u.scheme = nil
+          u.host = nil
+          u.port = nil
+          u.userinfo = nil
+        }.to_s
+
+        connection = FlexCommerceApi::JsonApiClientExtension::FlexibleConnection.new(self.class.connection_options.merge(site: site, add_json_api_extension: false, authenticate: false))
+        FlexCommerceApi::JsonApiClientExtension::RemoteBuilder.new(association.association_class, path: path, connection: connection)
+      end
+
+    end
+
 
   end
 end
