@@ -7,11 +7,13 @@ module FlexCommerceApi
       def initialize(options = {})
         site = options.fetch(:site)
         adapter_options = Array(options.fetch(:adapter, Faraday.default_adapter))
+        add_json_api_extension = options.fetch(:add_json_api_extension, true)
+        authenticate = options.fetch(:authenticate, true)
         include_previewed = options.fetch :include_previewed, false
         @faraday = Faraday.new(site) do |builder|
           builder.request :json
           builder.use JsonApiClientExtension::SaveRequestBodyMiddleware
-          builder.use JsonApiClientExtension::JsonFormatMiddleware
+          builder.use JsonApiClientExtension::JsonFormatMiddleware if add_json_api_extension
           builder.use JsonApiClientExtension::PreviewedRequestMiddleware if include_previewed
           builder.use JsonApiClient::Middleware::JsonRequest
           # Surrogate Key middleware should always be above HTTP caching to ensure we're reading headers
@@ -26,7 +28,7 @@ module FlexCommerceApi
           builder.adapter *adapter_options
           builder.use JsonApiClientExtension::LoggingMiddleware unless FlexCommerceApi.logger.nil?
         end
-        faraday.basic_auth(ApiBase.username, ApiBase.password)
+        faraday.basic_auth(ApiBase.username, ApiBase.password) if authenticate
 
         yield(self) if block_given?
       end

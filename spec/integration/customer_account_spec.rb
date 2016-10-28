@@ -297,6 +297,15 @@ RSpec.describe FlexCommerce::CustomerAccount do
           expect(subject.send(attr)).to eql value
         end
       end
+      it "should provide a paginatable object for the orders results" do
+        requests = []
+        stub_request(:get, "https://in.elastic.io/hooks/somerandomhook").with(query: hash_including(shopatron_customer_id: "12345", page: {size: "20", number: "2"})).to_return do |request|
+          requests << request
+          {status: 200, body: {data: [{type: :remote_orders, id: "1", attributes: {}}]}.to_json, headers: {"Content-Type" => "application/vnd.api+json"}}
+        end
+        expect(subject.orders.page(2).per(20).to_a).to contain_exactly(instance_of(FlexCommerce::RemoteOrder))
+        expect(requests.length).to eql 1
+      end
     end
   end
 end
