@@ -27,8 +27,8 @@ module FlexCommerceApi
           builder.use JsonApiClient::Middleware::ParseJson
           builder.adapter *adapter_options
           builder.use JsonApiClientExtension::LoggingMiddleware unless FlexCommerceApi.logger.nil?
-          builder.options[:open_timeout] = ENV.fetch('SHIFT_OPEN_TIMEOUT', 2).to_i
-          builder.options[:timeout] = ENV.fetch('SHIFT_TIMEOUT', 15).to_i
+          builder.options[:open_timeout] = options.fetch(:open_timeout)
+          builder.options[:timeout] = options.fetch(:timeout)
         end
         faraday.basic_auth(ApiBase.username, ApiBase.password) if authenticate
 
