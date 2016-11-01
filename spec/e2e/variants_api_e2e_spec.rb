@@ -312,7 +312,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
 
     end
     it "should not make any changes when updated with mirrored attributes" do
-      data = Oj.load(http_request_tracker.first[:response].body)["data"].except("relationships", "links", "meta")
+      data = JrJackson::Json.load(http_request_tracker.first[:response].body)["data"].except("relationships", "links", "meta")
       url = "#{model.site}/#{found.links.self}"
       result = model.connection.run(:patch, found.links.self, data.to_json)
       expect(true).to eql false #TODO Test the status code and re fetch to ensure no changes

@@ -6,7 +6,7 @@ RSpec::Matchers.define :be_valid_json_for_schema do |schema_name|
     @body = response.respond_to?(:body) ? response.body : response
     schema_path = File.expand_path(File.join("..", "..", "schemas", "#{schema_name}.schema.json"), __dir__)
     obj = { "$ref" => schema_path.to_s }
-    @errors = JSON::Validator.fully_validate(Oj.dump(obj), @body, strict: true)
+    @errors = JSON::Validator.fully_validate(JrJackson::Json.dump(obj), @body, strict: true)
     @errors.empty?
   end
 

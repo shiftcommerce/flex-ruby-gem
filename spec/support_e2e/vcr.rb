@@ -1,5 +1,5 @@
 require 'vcr'
-require 'oj'
+require 'jrjackson'
 module OjSerializer
   class << self
     # The file extension to use for this serializer.
@@ -15,7 +15,7 @@ module OjSerializer
     # @return [String] the JSON string
     def serialize(hash)
       hash["http_interactions"].map! do |i|
-        i["response"]["body"]["decoded"] = Oj.load(i["response"]["body"]["string"]) rescue Oj::ParseError
+        i["response"]["body"]["decoded"] = JrJackson::Json.load(i["response"]["body"]["string"]) rescue JrJackson::ParseError
         i
       end
       JSON.pretty_generate(hash)
@@ -26,7 +26,7 @@ module OjSerializer
     # @param [String] string the JSON string
     # @return [Hash] the deserialized object
     def deserialize(string)
-      Oj.load(string)
+      JrJackson::Json.load(string)
     end
   end
 end
