@@ -1,0 +1,1 @@
+JsonMatchers.schema_root = File.expand_path("../../schemas", File.dirname(__FILE__))

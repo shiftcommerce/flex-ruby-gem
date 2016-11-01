@@ -40,6 +40,7 @@ module FlexCommerce
     has_many :addresses, class_name: "::FlexCommerce::Address"
     has_many :customer_segments, class_name: "::FlexCommerce::CustomerSegment"
     has_many :notes, class_name: "::FlexCommerce::Note"
+    has_many :orders, class_name: "::FlexCommerce::RemoteOrder"
     has_one :password_recovery, class_name: "::FlexCommerce::PasswordRecovery"
 
     property :email, type: :string
@@ -84,7 +85,8 @@ module FlexCommerce
     end
 
     def orders
-      ::FlexCommerce::Order.where(customer_account_id: id)
+      return super if relationships[:orders].key?("data")
+      get_related(:orders)
     end
 
     def create_note(attributes = {})

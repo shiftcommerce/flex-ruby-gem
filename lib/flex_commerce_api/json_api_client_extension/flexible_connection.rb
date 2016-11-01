@@ -7,24 +7,30 @@ module FlexCommerceApi
       def initialize(options = {})
         site = options.fetch(:site)
         adapter_options = Array(options.fetch(:adapter, Faraday.default_adapter))
+        add_json_api_extension = options.fetch(:add_json_api_extension, true)
+        authenticate = options.fetch(:authenticate, true)
         include_previewed = options.fetch :include_previewed, false
         @faraday = Faraday.new(site) do |builder|
           builder.request :json
           builder.use JsonApiClientExtension::SaveRequestBodyMiddleware
-          builder.use JsonApiClientExtension::JsonFormatMiddleware
+          builder.use JsonApiClientExtension::JsonFormatMiddleware if add_json_api_extension
           builder.use JsonApiClientExtension::PreviewedRequestMiddleware if include_previewed
           builder.use JsonApiClient::Middleware::JsonRequest
+          # Surrogate Key middleware should always be above HTTP caching to ensure we're reading headers
+          # from the original response not the 304 responses
+          builder.use JsonApiClientExtension::CaptureSurrogateKeysMiddleware
           # disable the cache when HTTP cache is set to false
           unless false == options[:http_cache]
             builder.use :http_cache, cache_options(options)
           end
           builder.use JsonApiClientExtension::StatusMiddleware
-          builder.use JsonApiClientExtension::CaptureSurrogateKeysMiddleware
           builder.use JsonApiClient::Middleware::ParseJson
           builder.adapter *adapter_options
           builder.use JsonApiClientExtension::LoggingMiddleware unless FlexCommerceApi.logger.nil?
+          builder.options[:open_timeout] = options.fetch(:open_timeout)
+          builder.options[:timeout] = options.fetch(:timeout)
         end
-        faraday.basic_auth(ApiBase.username, ApiBase.password)
+        faraday.basic_auth(ApiBase.username, ApiBase.password) if authenticate
 
         yield(self) if block_given?
       end
