@@ -1,5 +1,5 @@
 require "json-schema"
-require "oj"
+require "jrjackson"
 
 RSpec::Matchers.define :be_valid_json_for_schema do |schema_name|
   match do |response|

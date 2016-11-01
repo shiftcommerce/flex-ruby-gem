@@ -1,6 +1,6 @@
 require 'vcr'
 require 'jrjackson'
-module OjSerializer
+module JrJacksonSerializer
   class << self
     # The file extension to use for this serializer.
     #
@@ -32,9 +32,9 @@ module OjSerializer
 end
 VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = true
-  c.default_cassette_options = { :record => :all, :erb => false, :serialize_with => :oj }
+  c.default_cassette_options = { record: :all, erb: false, serialize_with: :jrjackson }
   c.cassette_library_dir = 'spec/recordings'
   c.hook_into :webmock
   c.configure_rspec_metadata!
-  c.cassette_serializers[:oj] = OjSerializer
+  c.cassette_serializers[:jrjackson] = JrJacksonSerializer
 end
