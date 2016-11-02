@@ -140,10 +140,10 @@ module FlexCommerceApi
       end
     end
 
-    def template_attribute(key)
+    # template_attribute(key) method removed as it doesn't work with new template format
+    def components_for_template_section(section_ref)
       begin
-        return self.send("template_#{key}") if RELATED_META_RESOURCES.include?(attributes[:template_attributes][key][:data_type])
-        attributes[:template_attributes][key][:value]
+        attributes[:template_attributes][section_ref]
       rescue NoMethodError => e
         nil
       end
