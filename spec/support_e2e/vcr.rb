@@ -1,6 +1,6 @@
 require 'vcr'
-require 'jrjackson'
-module JrJacksonSerializer
+require 'multi_json'
+module MultiJsonSerializer
   class << self
     # The file extension to use for this serializer.
     #
@@ -15,7 +15,7 @@ module JrJacksonSerializer
     # @return [String] the JSON string
     def serialize(hash)
       hash["http_interactions"].map! do |i|
-        i["response"]["body"]["decoded"] = JrJackson::Json.load(i["response"]["body"]["string"]) rescue JrJackson::ParseError
+        i["response"]["body"]["decoded"] = MultiJson.load(i["response"]["body"]["string"]) rescue MultiJson::ParseError
         i
       end
       JSON.pretty_generate(hash)
@@ -26,15 +26,15 @@ module JrJacksonSerializer
     # @param [String] string the JSON string
     # @return [Hash] the deserialized object
     def deserialize(string)
-      JrJackson::Json.load(string)
+      MultiJson.load(string)
     end
   end
 end
 VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = true
-  c.default_cassette_options = { record: :all, erb: false, serialize_with: :jrjackson }
+  c.default_cassette_options = { record: :all, erb: false, serialize_with: :multi_json }
   c.cassette_library_dir = 'spec/recordings'
   c.hook_into :webmock
   c.configure_rspec_metadata!
-  c.cassette_serializers[:jrjackson] = JrJacksonSerializer
+  c.cassette_serializers[:multi_json] = MultiJsonSerializer
 end
