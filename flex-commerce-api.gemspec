@@ -8,6 +8,7 @@ Gem::Specification.new do |spec|
   spec.version = FlexCommerceApi::VERSION
   spec.authors = ["Gary Taylor"]
   spec.email = ["gary.taylor@flexcommerce.com"]
+  spec.platform = "java" if RUBY_PLATFORM =~ /java/
 
   spec.summary = "Access the flex-commerce API"
   spec.description = "Allows any ruby application to access the flex-commerce API"
