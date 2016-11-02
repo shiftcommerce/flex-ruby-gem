@@ -19,7 +19,7 @@ RSpec.describe FlexCommerce::Order, focus: true do
         FlexCommerceApi.config.order_test_mode = false
 
         stub_request(:post, "#{api_root}/orders.json_api").with(headers: write_headers).to_return do |request|
-          expect(JrJackson::Json.load(request.body).with_indifferent_access).not_to include(data: hash_including(attributes: hash_including(test: true)))
+          expect(MultiJson.load(request.body).with_indifferent_access).not_to include(data: hash_including(attributes: hash_including(test: true)))
           {
               body: {data: {attributes: {test: false}}}.to_json,
               status: 201,
