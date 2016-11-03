@@ -85,6 +85,51 @@ RSpec.describe "Shopping Cart" do
             expect(subject.free_shipping_promotion).to be_a(free_shipping_promotion_class)
           end
         end
+        context "the available_shipping_methods association" do
+          let(:available_shipping_methods_relationship) { singular_resource.data.relationships.available_shipping_methods }
+          it "should return the shipping methods untouched if they are not remote" do
+            data = {data: [
+              {
+                type: :shipping_methods,
+                id: "1",
+                attributes: {
+                  reference: "REFERENCE_1"
+                }
+              },
+              {
+                type: :shipping_methods,
+                id: "2",
+                attributes: {
+                  reference: "REFERENCE_2"
+                }
+              }
+            ]}
+            stub_request(:get, "#{api_root}/carts/1/available_shipping_methods.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: data.to_json, status: 200, headers: default_headers
+            expect(subject.available_shipping_methods.to_a).to contain_exactly an_object_having_attributes(type: "shipping_methods", reference: "REFERENCE_1"), an_object_having_attributes(type: "shipping_methods", reference: "REFERENCE_2")
+          end
+          it "should convert the shipping methods from remote to local" do
+            data = {data: [
+              {
+                type: "remote_shipping_methods",
+                id: "remoteid1",
+                attributes: {
+                  reference: "REFERENCE_1"
+                }
+              },
+              {
+                type: "remote_shipping_methods",
+                id: "remoteid2",
+                attributes: {
+                  reference: "REFERENCE_2"
+                }
+              }
+            ]}
+            stub_request(:get, "#{api_root}/carts/1/available_shipping_methods.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: data.to_json, status: 200, headers: default_headers
+            a = subject.available_shipping_methods.to_a
+            expect(a).to contain_exactly an_object_having_attributes(type: "shipping_methods", reference: "REFERENCE_1"), an_object_having_attributes(type: "shipping_methods", reference: "REFERENCE_2")
+
+          end
+        end
         context "using the line items association" do
           it "should return a list of line items" do
             subject.line_items.tap do |line_items|

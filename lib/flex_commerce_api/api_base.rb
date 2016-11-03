@@ -36,6 +36,7 @@ module FlexCommerceApi
           raise(::FlexCommerceApi::Error::RecordInvalid.new(resource)) unless resource.errors.empty?
         end
       end
+
       # @method all
       # Returns all resources
       # @return [FlexCommerceApi::ApiBase[]] An array of resources or an empty array
@@ -172,7 +173,7 @@ module FlexCommerceApi
     end
 
     def relationship_attributes
-      @relationship_attributes ||= self.class.associations.map {|a| "#{a.attr_name}_resources"}
+      @relationship_attributes ||= self.class.associations.map { |a| "#{a.attr_name}_resources" }
     end
 
     def convert_relationship_attribute(data)
@@ -205,19 +206,22 @@ module FlexCommerceApi
       raise "#{relationship} is not defined in #{self.class.name}" unless association
       if relationship_definitions["links"] && url = relationship_definitions["links"]["related"]
         url = URI.parse(url)
-        site = url.clone.tap {|u|
+        site = url.clone.tap { |u|
           u.path = ""
           u.query = nil
           u.fragment = nil
         }.to_s
-        path = url.clone.tap {|u|
+        path = url.clone.tap { |u|
           u.scheme = nil
           u.host = nil
           u.port = nil
           u.userinfo = nil
         }.to_s
-
-        connection = FlexCommerceApi::JsonApiClientExtension::FlexibleConnection.new(self.class.connection_options.merge(site: site, add_json_api_extension: false, authenticate: false))
+        connection = if site.empty?
+                       self.class.connection
+                     else
+                       FlexCommerceApi::JsonApiClientExtension::FlexibleConnection.new(self.class.connection_options.merge(site: site, add_json_api_extension: false, authenticate: false))
+                     end
         FlexCommerceApi::JsonApiClientExtension::RemoteBuilder.new(association.association_class, path: path, connection: connection)
       end
 
