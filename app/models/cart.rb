@@ -111,6 +111,7 @@ module FlexCommerce
       shipping_methods = get_related(:available_shipping_methods).to_a
       if shipping_methods.any? { |sm| sm.is_a?(FlexCommerce::RemoteShippingMethod) }
         shipping_method_references = shipping_methods.map(&:reference)
+        # We are filtering in memory here as there will never be many shipping methods and they will almost certainly be in the cache anyway
         FlexCommerce::ShippingMethod.all.select { |shipping_method| shipping_method_references.include?(shipping_method.reference)}
       else
         shipping_methods
