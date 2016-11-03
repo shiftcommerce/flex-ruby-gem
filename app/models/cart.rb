@@ -108,7 +108,13 @@ module FlexCommerce
 
     def available_shipping_methods
       return super if relationships[:available_shipping_methods].key?("data")
-      get_related(:available_shipping_methods)
+      shipping_methods = get_related(:available_shipping_methods).to_a
+      if shipping_methods.any? { |sm| sm.is_a?(FlexCommerce::RemoteShippingMethod) }
+        shipping_method_references = shipping_methods.map(&:reference)
+        FlexCommerce::ShippingMethod.all.select { |shipping_method| shipping_method_references.include?(shipping_method.reference)}
+      else
+        shipping_methods
+      end
     end
 
 

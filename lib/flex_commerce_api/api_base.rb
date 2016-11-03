@@ -114,6 +114,13 @@ module FlexCommerceApi
       def reload_connection_if_required
         _build_connection(true) if connection_object
       end
+
+      # Allows ApiBase to be used as the class and the real class is then calculated from the type
+      def load(params)
+        return super unless self == FlexCommerceApi::ApiBase
+        klass = JsonApiClient::Utils.compute_type(FlexCommerce, params["type"].singularize.classify)
+        klass.load(params)
+      end
     end
 
     reconfigure
