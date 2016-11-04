@@ -1,4 +1,5 @@
 require "flex_commerce_api/api_base"
+require 'forwardable'
 module FlexCommerce
   #
   # A flex commerce Static Page model
@@ -46,9 +47,12 @@ module FlexCommerce
     has_many :slugs, class_name: "::FlexCommerce::Slug"
     # @TODO Document other popular methods that we will support
     self.query_builder = ::FlexCommerceApi::JsonApiClientExtension::Builder
-    
+
     class << self
+      extend Forwardable
+
       def_delegators :_new_scope, :temp_search
+
       def path(params, *args)
         super
       end

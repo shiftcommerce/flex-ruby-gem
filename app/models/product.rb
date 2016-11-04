@@ -1,4 +1,5 @@
 require "flex_commerce_api/api_base"
+require 'forwardable'
 module FlexCommerce
   #
   # A flex commerce Product model
@@ -72,6 +73,7 @@ module FlexCommerce
     end
     self.query_builder = ::FlexCommerceApi::JsonApiClientExtension::Builder
     class << self
+      extend Forwardable
       def_delegators :_new_scope, :temp_search
       def path(params, *args)
         if params[:filter] && params[:filter].key?(:category_id) && params[:filter].key?(:category_tree_id)

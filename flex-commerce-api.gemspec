@@ -8,6 +8,7 @@ Gem::Specification.new do |spec|
   spec.version = FlexCommerceApi::VERSION
   spec.authors = ["Gary Taylor"]
   spec.email = ["gary.taylor@flexcommerce.com"]
+  spec.platform = "java" if RUBY_PLATFORM =~ /java/
 
   spec.summary = "Access the flex-commerce API"
   spec.description = "Allows any ruby application to access the flex-commerce API"
@@ -33,7 +34,12 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "thor", "~> 0.19"
   spec.add_development_dependency "json_matchers", ["~> 0.5", ">= 0.5.1"]
 
-  spec.add_dependency "oj", "~> 2.12"
+  if RUBY_PLATFORM =~ /java/
+    spec.add_dependency "jrjackson", "~> 0.3.8"
+  else
+    spec.add_dependency "oj", "~> 2.12"
+  end
+  spec.add_dependency "multi_json", "~> 1.11", ">= 1.11.2"
   spec.add_runtime_dependency "json_api_client", "1.1.1"
   spec.add_runtime_dependency "activesupport", ">= 4.0"
   spec.add_runtime_dependency "rack", ">= 1.6"

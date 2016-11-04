@@ -1,6 +1,7 @@
 require "json_api_client"
 require "faraday/request/basic_authentication"
 require "uri"
+
 require "active_support/core_ext/hash/indifferent_access"
 require "flex_commerce_api/json_api_client_extension/paginator"
 require "flex_commerce_api/json_api_client_extension/requestor"
