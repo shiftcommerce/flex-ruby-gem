@@ -1,0 +1,4487 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/202.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"202\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=cnVWVTI5dFVjNDFuWVdwa0lDWThUczA2VU9xdThzV2hubkJjdTVjVVpTM2t1QjBaN1htMDhpL1VwMFhDQ096NVlJamJYMmZRNUxMY2I2d2JKRDVPZkE9PS0tb2JaamJRcHRNQ0I1VFd4dC9aYWlSdz09--581dcfadfbddd472372092aa0e9f25efb4ac72fa; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "42e92cf4-a8d1-44e6-9ee3-86eb78adc29c"
+          ],
+          "X-Runtime": [
+            "0.438354"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/202.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/202.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Sat, 15 Oct 2016 07:18:24 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/202.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=OS9mVHd0N292OUxHL2ZOek5NTDBPZHU5bUY2UFIwYWQ4SERlQXMxZTBPUEwwdnB6MTM2NEVSYk1wMkJaWkdldzF1K0dqQXVuMGhzQUEwSFVDVEx0T3c9PS0tVlFTUy9ZUEdkc2YzQS9wTFhCamFmdz09--66740e11ceee7530fb734a4603a397d6131011c0; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "3b8f9ba2-2d6b-4413-b6cd-98df5d9bce41"
+          ],
+          "X-Runtime": [
+            "0.787772"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Sat, 15 Oct 2016 07:18:25 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/210.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"b42d9d1070b0fa4ab81d455708828d72\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=V2hORHBrY3pRemRzSVIwd2hKY20xWVl3bVJCTzJwUENDU0ppVmJlT0NPMjNndWJDZjBoUnRXYXZ2NTZzeWtaZjhvV3IyTVN6TDU5V0pqeEFBZFBKVkE9PS0tcEF6djJWME8yY285WkxCOXMxQzZHZz09--7f39cdbb3b741cd19a53c9eb49a746259010e7b3; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "5613d6cb-f58d-4b89-8aa4-3806b0084dca"
+          ],
+          "X-Runtime": [
+            "0.360648"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"210\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/210.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-10-19T13:46:36Z\",\"created_at\":\"2016-10-19T13:46:36Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 105b959f-acf5-4704-a0ca-0effce578e5f\",\"description\":\"Description for Test Variant 105b959f-acf5-4704-a0ca-0effce578e5f\",\"reference\":\"reference_for_test_variant_105b959f-acf5-4704-a0ca-0effce578e5f\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":102,\"sku\":\"sku_for_test_variant_105b959f-acf5-4704-a0ca-0effce578e5f\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/210/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/210/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/210/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/210/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/210/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/210/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/210.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "210",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/210.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-10-19T13:46:36Z",
+                "created_at": "2016-10-19T13:46:36Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 105b959f-acf5-4704-a0ca-0effce578e5f",
+                "description": "Description for Test Variant 105b959f-acf5-4704-a0ca-0effce578e5f",
+                "reference": "reference_for_test_variant_105b959f-acf5-4704-a0ca-0effce578e5f",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 102,
+                "sku": "sku_for_test_variant_105b959f-acf5-4704-a0ca-0effce578e5f",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/210/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/210/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/210/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/210/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/210/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/210/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/210.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Wed, 19 Oct 2016 13:46:37 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/210.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"210\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=aVVQVkhodmIxeU1EanN3RUtjamhuT0U4RTdpcW9oM2NCN3lPc2xINHI5Z1FyTnpzTEtMRU1WYmx4NG1ZQ3FsWFlpUFo0UUhFQW8zVlhyU3lSdUJVZ0E9PS0tV2FZV1dtcXRFMHF3OGcxWE1GUG1BQT09--ffd2e30c896b1db87bdd8e221384603af586b870; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "80efca39-9c55-4ce6-823a-77250addb85f"
+          ],
+          "X-Runtime": [
+            "0.287563"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/210.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/210.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Wed, 19 Oct 2016 13:46:37 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/210.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=VTdWNDhpemk5WEVvNmJGaWdPMFNpdDVsYkJIYUF0MkZTUkF6UStvVlZGZkxOcStDMVpYdmV4UEZsWkJyUTBBSlpUR3NwVllLU3VrRFlUNnE4dExzY0E9PS0tdTJ5RnNObGdjYUJsYXplbFgvYnQvUT09--b86b9d8721c88bac59150ab6e3c6baa0684b2e0e; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "97478295-fa85-4c79-b01e-653e9021e49f"
+          ],
+          "X-Runtime": [
+            "1.515998"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Wed, 19 Oct 2016 13:46:39 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/222.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"7de3acdd5dac2170c4746d81ed5db84b\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=bDdhNWNKdlAzcTh1dG9GbDFJbUhzQUhvV2pOSTJzQUlXWGlSME5lTDhWTEhsZkhneEhVWlVxWDk4UnVXamxrNmN0c1JGdDV2RjJ0OVQ1aStvTytlRGc9PS0tbTdwZHF2QVNVb0JRRFBuaGhkZGdMZz09--a1bd2a75e97961291c816177f70f831ac1595a71; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "0e084fd6-8937-4ac9-a324-ae213607b19a"
+          ],
+          "X-Runtime": [
+            "0.398182"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"222\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/222.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-10-19T13:57:09Z\",\"created_at\":\"2016-10-19T13:57:09Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 6ef2e767-856e-4504-ad67-f11cebaccca5\",\"description\":\"Description for Test Variant 6ef2e767-856e-4504-ad67-f11cebaccca5\",\"reference\":\"reference_for_test_variant_6ef2e767-856e-4504-ad67-f11cebaccca5\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":103,\"sku\":\"sku_for_test_variant_6ef2e767-856e-4504-ad67-f11cebaccca5\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/222/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/222/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/222/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/222/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/222/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/222/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/222.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "222",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/222.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-10-19T13:57:09Z",
+                "created_at": "2016-10-19T13:57:09Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 6ef2e767-856e-4504-ad67-f11cebaccca5",
+                "description": "Description for Test Variant 6ef2e767-856e-4504-ad67-f11cebaccca5",
+                "reference": "reference_for_test_variant_6ef2e767-856e-4504-ad67-f11cebaccca5",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 103,
+                "sku": "sku_for_test_variant_6ef2e767-856e-4504-ad67-f11cebaccca5",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/222/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/222/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/222/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/222/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/222/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/222/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/222.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Wed, 19 Oct 2016 13:57:11 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/222.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"222\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=clRRSldlUGhlNEtFeVIvaUVISkx1M01FMG4zcU9IMlppUU9mZWxndGxpY2NySGVQOEl6eEVvTWpEQlcyOEo1SXZwZ1BLR0JqRVNlMSt1endwbHBSblE9PS0tLzdmbEhiNGgxZHdvY0tkVnU2RDBaQT09--f022f02a8bd48f5cd0141e0f36d4d630c82ddb45; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "0d5c48a4-ba37-4b8c-9195-bb0eaa4c3ce2"
+          ],
+          "X-Runtime": [
+            "0.290621"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/222.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/222.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Wed, 19 Oct 2016 13:57:11 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/222.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=dVpFSDhKbmdBMU9Zb0d2dGh0dlBDTGU0Rkw2NUlFTW9yTThZMTd4aC9CU2JSZnBPL2VTQ0lWaFBxdDNvMTVMR21SeFh4d2NrZGVTTnpKNnhKSVBjenc9PS0tZFoyU05HRUVwQ3dvUEtzZmdxM3FVdz09--30c0e030c95332e1d9dbba8d6c2f49b09c730997; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "c4b4a4e4-f0b3-43c4-848e-b11ce3a11f68"
+          ],
+          "X-Runtime": [
+            "0.841966"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Wed, 19 Oct 2016 13:57:12 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/234.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"110f0bc5e8baabab0335d41b401b8a64\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=QzY4bU1FbmhwWEdYNjFVZ295aDdpWEVaemh2cmdkOFlvaFZyNGlSdGJEMkJJWnlDc0Mrd2V5elhPR1poalBnc0dLeHB1ZFIyTmdCdUYySWJiRWZRTUE9PS0tSWpSdVYwRGhMT2o2bUpiUzBKY2lBZz09--bbce56c54abdec25ed24911739e5cd712db7f6fa; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "c4fa10a4-1033-47e9-8843-d19b966fa579"
+          ],
+          "X-Runtime": [
+            "0.347953"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"234\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/234.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-10-19T14:02:05Z\",\"created_at\":\"2016-10-19T14:02:05Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 0700ab3d-d160-4c43-b23c-5abfd7997d7a\",\"description\":\"Description for Test Variant 0700ab3d-d160-4c43-b23c-5abfd7997d7a\",\"reference\":\"reference_for_test_variant_0700ab3d-d160-4c43-b23c-5abfd7997d7a\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":104,\"sku\":\"sku_for_test_variant_0700ab3d-d160-4c43-b23c-5abfd7997d7a\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/234/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/234/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/234/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/234/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/234/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/234/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/234.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "234",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/234.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-10-19T14:02:05Z",
+                "created_at": "2016-10-19T14:02:05Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 0700ab3d-d160-4c43-b23c-5abfd7997d7a",
+                "description": "Description for Test Variant 0700ab3d-d160-4c43-b23c-5abfd7997d7a",
+                "reference": "reference_for_test_variant_0700ab3d-d160-4c43-b23c-5abfd7997d7a",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 104,
+                "sku": "sku_for_test_variant_0700ab3d-d160-4c43-b23c-5abfd7997d7a",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/234/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/234/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/234/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/234/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/234/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/234/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/234.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Wed, 19 Oct 2016 14:02:06 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/234.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"234\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=YjVxVkIzWHVKUkM1Q2RhK3pRN1M4c1N2bmY4MHY0TzQwUUxsRTNQVzRGVUtNMlV0a21CcldLWWZPMEtYUXVzcy8wMmlKUFdUYlJkT1RFTnYxc1hhTWc9PS0tcFRYdkEzV2ZSNnJRNHZUOHptWElhQT09--93d2f39192b33753a1428d232a76ba27ba15a6e5; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "25f9b27d-abf4-40fc-8851-37508c6aa0ce"
+          ],
+          "X-Runtime": [
+            "0.369038"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/234.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/234.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Wed, 19 Oct 2016 14:02:06 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/234.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=TE5uQm5acFZEV1dMNHA3d2xlNUJLeWRNYS9LK0NjeE0vTG9pSldqeUxOb2ZFUlVJZEJqaWEwQ2hXdjIzZXBwUmdlaDZ1UXgzRkRlaUVUMzEyZzZkMkE9PS0tK0wzT0JiR1dSNzc2bE1wREtZVGFVdz09--cfd7b8471a8307ed39c21ea41804835dcd4f582a; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "e0a8476a-cba2-4875-894e-2362e3e9e619"
+          ],
+          "X-Runtime": [
+            "0.893787"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Wed, 19 Oct 2016 14:02:07 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/244.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"8d1475830600caa01354621a5edd5911\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=M1RjWS9LUGUwUnhUOUJoa3JKbzVFMFJXT2ZqaUtrRW54S2ZHNU1Qa0NCM1crbEhZSHN2V2hHMjd5cWZ0dDdsQWorUUZwaHcyU0N2Um1xaDFRak02SHc9PS0tUnl4S2M2RjNlWGhNNDdVNEh1L1B2Zz09--66203af816fab5f9af998f296df2c217fd6c17e9; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "76d408b2-696c-440f-9415-7461da36f372"
+          ],
+          "X-Runtime": [
+            "0.212693"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"244\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/244.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-10-20T17:51:35Z\",\"created_at\":\"2016-10-20T17:51:35Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant e15968ff-0a51-4465-8987-a5d5d741459e\",\"description\":\"Description for Test Variant e15968ff-0a51-4465-8987-a5d5d741459e\",\"reference\":\"reference_for_test_variant_e15968ff-0a51-4465-8987-a5d5d741459e\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":107,\"sku\":\"sku_for_test_variant_e15968ff-0a51-4465-8987-a5d5d741459e\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":false,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":null},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/244/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/244/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/244/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/244/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/244/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/244/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/244.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "244",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/244.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-10-20T17:51:35Z",
+                "created_at": "2016-10-20T17:51:35Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant e15968ff-0a51-4465-8987-a5d5d741459e",
+                "description": "Description for Test Variant e15968ff-0a51-4465-8987-a5d5d741459e",
+                "reference": "reference_for_test_variant_e15968ff-0a51-4465-8987-a5d5d741459e",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 107,
+                "sku": "sku_for_test_variant_e15968ff-0a51-4465-8987-a5d5d741459e",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": false,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": null
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/244/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/244/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/244/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/244/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/244/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/244/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/244.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 20 Oct 2016 17:51:36 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/244.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"244\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=Z25FQno1UUFpVk4xalNLT0FoS1BnTUJQOVF4bkV5QytDdTJpczRKUlNFRmJCVjZ4SkFQa1VtZUlsZ3BUcTBKMVpWMnZNUWp2VG45bnA2TzNEaHpEYWc9PS0tMUhFb0lMcTMxOWdsRE5waDNTQ3FVQT09--7525de61904bb58812206dde4f9ba58e19a284a2; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "493cdb82-6757-4ae2-aa67-f814c08bcb95"
+          ],
+          "X-Runtime": [
+            "0.290123"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/244.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/244.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 20 Oct 2016 17:51:36 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/244.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=REE1dktRVnpxS2JGZ1hRMFlxS1psK3pUaW5waTRia1dVWkZWNFlKbVNsZ0ptZ25HNnVOb0syS3JhOFdnVVR4Ujd5bnJTdWNZNTRrUFkxZWxiTzFUYkE9PS0tS0xOUHBtOCtwaUs3b05LU2xvd0JXZz09--3d91d95f73cc6bb3083d170e3c04083c3dbde815; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "7e26bf16-65ca-4b25-a255-292b19d0f741"
+          ],
+          "X-Runtime": [
+            "0.678868"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 20 Oct 2016 17:51:37 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/258.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"7b38a88c3a4d1154b0df5d3544ec1078\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=bzhKcXhiaUJwRk1tZkhwN1ZWdFdNVkZhY1NRcGNCR3pmb0hRM1hkK25hcG43VDEvdXpuREZqaDZHclJpS01zK2hTejR0cEhjbXpMR2ZuS09oemJpWXc9PS0tSjB5NzBqWmd2UWsxbWlUQzBCalZhZz09--1efca164b188c86a1250c33ef2ec0dc916d9b089; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "8763931d-7778-480e-8304-2a5044d5a3ad"
+          ],
+          "X-Runtime": [
+            "0.306381"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"258\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/258.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-10-20T18:01:18Z\",\"created_at\":\"2016-10-20T18:01:18Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 7a712084-2e56-46d4-b3df-fd2152415edb\",\"description\":\"Description for Test Variant 7a712084-2e56-46d4-b3df-fd2152415edb\",\"reference\":\"reference_for_test_variant_7a712084-2e56-46d4-b3df-fd2152415edb\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":115,\"sku\":\"sku_for_test_variant_7a712084-2e56-46d4-b3df-fd2152415edb\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/108/file.png\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/258/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/258/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/258/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/258/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/258/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/258/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/258.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "258",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/258.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-10-20T18:01:18Z",
+                "created_at": "2016-10-20T18:01:18Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 7a712084-2e56-46d4-b3df-fd2152415edb",
+                "description": "Description for Test Variant 7a712084-2e56-46d4-b3df-fd2152415edb",
+                "reference": "reference_for_test_variant_7a712084-2e56-46d4-b3df-fd2152415edb",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 115,
+                "sku": "sku_for_test_variant_7a712084-2e56-46d4-b3df-fd2152415edb",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/108/file.png"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/258/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/258/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/258/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/258/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/258/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/258/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/258.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 20 Oct 2016 18:01:19 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/258.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"258\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=NVE5OGllTzhOdzhCRmQxeUxDYnVkMVd4NWN2aDBpZ1p6M1ZQb2RFSitvaExCYlFEWW1EclNDYW9KV3hxUTBaZkhHV0UrR283Ny83Z042RGQwcFdiVWc9PS0tc0Q0bmU2UUsxRGx0dEs1SktsVUJ0dz09--955e1331787bc04a1e71b111f8c9dd475f640363; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "a1e72731-4ea4-401c-bb46-8d4ed1c102c3"
+          ],
+          "X-Runtime": [
+            "0.292791"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/258.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/258.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 20 Oct 2016 18:01:20 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/258.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=d3U4ajVrRUJtOUtybEliL3dwQlV5MG1wWHpPNzdTZGJqbGpubWtFVE1XQXJyVlR6Qnd5VEhPOE5qZ1BsdHlaeEJpYVd0Y1V6Q1RwSTVXcVRKd042U2c9PS0tc2lRVEQrWWZqZmRWVzYrOWFvNkFidz09--f3aa73af358e0862c0d4c022145adbdd6847dd16; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "dc62d8f4-b919-44c3-9b17-9057f9428b91"
+          ],
+          "X-Runtime": [
+            "0.739234"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 20 Oct 2016 18:01:20 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/231.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"ab4c118293b8f2a8722c4a612ab37dc3\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=aVRoL25CLyt0ZFJVaVZET0ZrU0oyYnZnMlM3NkNVWmlEQitBR3F1UzhWYXhuTWF2dXhxM0ErVWU2eVYwZFNZV0RxUFJtbGJsaVBHTFNrTnpkOHlzTVE9PS0tdE5rU3l0NlNLQWtLekpqWGlhcElwdz09--4f795502688bf54c51c13913de4f6045840b708c; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "e40d2722-38c7-4554-8102-55bcd8cf1d7d"
+          ],
+          "X-Runtime": [
+            "0.435927"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"231\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/231.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-11-07T11:36:58Z\",\"created_at\":\"2016-11-07T11:36:58Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 663bba77-4362-4a45-af09-ff826a709a4e\",\"description\":\"Description for Test Variant 663bba77-4362-4a45-af09-ff826a709a4e\",\"reference\":\"reference_for_test_variant_663bba77-4362-4a45-af09-ff826a709a4e\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":104,\"sku\":\"sku_for_test_variant_663bba77-4362-4a45-af09-ff826a709a4e\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/103/file.png\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/231/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/231/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/231/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/231/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/231/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/231/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/231.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "231",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/231.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-11-07T11:36:58Z",
+                "created_at": "2016-11-07T11:36:58Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 663bba77-4362-4a45-af09-ff826a709a4e",
+                "description": "Description for Test Variant 663bba77-4362-4a45-af09-ff826a709a4e",
+                "reference": "reference_for_test_variant_663bba77-4362-4a45-af09-ff826a709a4e",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 104,
+                "sku": "sku_for_test_variant_663bba77-4362-4a45-af09-ff826a709a4e",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/103/file.png"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/231/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/231/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/231/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/231/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/231/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/231/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/231.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 11:37:01 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/231.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"231\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=Q29VaXJHRVk0dDVwSDZiWDZ5VS9vRmg4KzJuNENieTJyb045VUcyRWlkbFVjdlUzOEZ1R2VBbFFTQkdKaHBjclhXSnlLd3I0UG5RRHI1NEltQjZ4Y1E9PS0tSlp1YVBJMU5ReUU4RkhGejJ6TStlUT09--4d666be5264cd6fcf6fa41f70d0224afb0b90887; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "b41f8468-6dee-423e-882d-bf56aa6eba35"
+          ],
+          "X-Runtime": [
+            "2.606854"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/231.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/231.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 11:37:04 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/231.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=eWR1eFREYjlaMUJqODUzK0M5Q3VwcGVHU0RaY3ZoVlh3MWxRRnJyVWtuVlRBRnhBUHkzb1I4RXdRZC9JMkhpZERDNFVPcEtBTFZzQWczR0o4RDdQTWc9PS0tRWdIM0RzeE1Iejc0WnZab1pkL0RvZz09--6955a8bb965583a1214c1b1388fd8cdac70ba65d; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "18cc8dee-88c3-45d7-bf81-25f8378a9bfb"
+          ],
+          "X-Runtime": [
+            "3.073012"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 11:37:07 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/242.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"47936209a3a16ba2f38f37bd0c126f26\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=N2JkUWJVWjNhUXpQdG1CZ2Jyajhrdk1vTmNNUWlHTW82bmJYa2tNaEltcTlxMjR2dlNnYWwwY3U5Y2F3MWZQV3RQMDdxZnplZVowbHZOWlR6QkwyNUE9PS0tTFJ0dUxVaXA5N3FTQmw5ekF5eDlTZz09--acd962f66d43ed69466e291734fce45896b26380; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "19722b45-e00c-4b30-a0ed-41e81c853bbd"
+          ],
+          "X-Runtime": [
+            "0.432136"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"242\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/242.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-11-07T11:50:21Z\",\"created_at\":\"2016-11-07T11:50:21Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant a268b366-09a0-48cd-8b2d-bb1b33b52752\",\"description\":\"Description for Test Variant a268b366-09a0-48cd-8b2d-bb1b33b52752\",\"reference\":\"reference_for_test_variant_a268b366-09a0-48cd-8b2d-bb1b33b52752\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":105,\"sku\":\"sku_for_test_variant_a268b366-09a0-48cd-8b2d-bb1b33b52752\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/104/file.png\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/242/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/242/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/242/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/242/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/242/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/242/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/242.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "242",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/242.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-11-07T11:50:21Z",
+                "created_at": "2016-11-07T11:50:21Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant a268b366-09a0-48cd-8b2d-bb1b33b52752",
+                "description": "Description for Test Variant a268b366-09a0-48cd-8b2d-bb1b33b52752",
+                "reference": "reference_for_test_variant_a268b366-09a0-48cd-8b2d-bb1b33b52752",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 105,
+                "sku": "sku_for_test_variant_a268b366-09a0-48cd-8b2d-bb1b33b52752",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/104/file.png"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/242/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/242/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/242/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/242/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/242/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/242/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/242.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 11:50:28 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/242.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"242\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=QkNPby8wNFczQUhrMmJHVnd1SS95d1B0d3EyVTJiZHkvaEo0bDlpQnlyUHNoek5wYnRhdXhDN0l6QXB2M0lDRmMxWHRSL2sxcjc4VG43NG96NFkyZXc9PS0tOWd0elZSa0R3dDdJUjhaTzZ0TWdFQT09--a0bd6c127e6d6dec14b8c11f5962e9801223c920; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "ca987a51-966b-4830-a5b8-43e74407d137"
+          ],
+          "X-Runtime": [
+            "0.437721"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/242.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/242.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 11:50:29 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/242.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=dEV2dXlveTBQQk0wM29mQ3E0ZUR3VlBGS2ZBTzg5TTdjWURheml5Zy9yVnMwcWxOY0ZGMm84YW5CbXgxRHdHOUZsaFJ4S1VyOW8yZitCYkNMOVNnOVE9PS0tVEx5S2M0Qk1ONHFCSDBnbmJtQ2IxQT09--5b06a3881813267589a18a9528bdcff7922ed14a; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "7124aeeb-b14d-4a0d-bd90-08d328f9e120"
+          ],
+          "X-Runtime": [
+            "3.264226"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 11:50:32 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/207.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"259db284e41214893b3727e531426b92\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=QjJkRE91UGd3U1dHTjN3em5sV1llUndJRW1uR2dGZGQ5SXU4ajRwWjFpN3BhVG90Z2FkTmJvS2dvRGtZdmJrd1pQcklEK1R2eHZ5blJteEthcW1makE9PS0tM2NHZ2VYc2g1NGxnYUUvdTBxRlAzUT09--6e54b64ac51b2e530725e2ac8eab5a35934e78ea; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "98ba57c7-f610-4cc0-9407-9904b0bccfa0"
+          ],
+          "X-Runtime": [
+            "0.178245"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"207\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/207.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-11-07T12:10:35Z\",\"created_at\":\"2016-11-07T12:10:35Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 6542a3fd-e940-4b0b-8dcd-0212d671a923\",\"description\":\"Description for Test Variant 6542a3fd-e940-4b0b-8dcd-0212d671a923\",\"reference\":\"reference_for_test_variant_6542a3fd-e940-4b0b-8dcd-0212d671a923\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":101,\"sku\":\"sku_for_test_variant_6542a3fd-e940-4b0b-8dcd-0212d671a923\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/101/file.png\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/207/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/207/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/207/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/207/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/207/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/207/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/207.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "207",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/207.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-11-07T12:10:35Z",
+                "created_at": "2016-11-07T12:10:35Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 6542a3fd-e940-4b0b-8dcd-0212d671a923",
+                "description": "Description for Test Variant 6542a3fd-e940-4b0b-8dcd-0212d671a923",
+                "reference": "reference_for_test_variant_6542a3fd-e940-4b0b-8dcd-0212d671a923",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 101,
+                "sku": "sku_for_test_variant_6542a3fd-e940-4b0b-8dcd-0212d671a923",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/101/file.png"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/207/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/207/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/207/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/207/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/207/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/207/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/207.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 12:10:41 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/207.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"207\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=MHdJQWxYblczM3VBMmxsRmF4Zjd4d2JiZGV0bkFTWG55dGppTnVaUnFHU3l0bjBxUUdkMGtmeTFoRHFBUHJLc2hlYmY1VjJEblZaT2Z6OENTSm1qR1E9PS0tcDlnbTF3MHIwdWZCK1pYdE5ia0Z0QT09--c74b7b113664c5c51d3ec93c811fdfa5fea5a52f; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "9e7d5abb-8afc-4c84-a65d-d208277fb3c6"
+          ],
+          "X-Runtime": [
+            "0.130829"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/207.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/207.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 12:10:42 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/207.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=YUVPRllNOTV6SjMrS3ZvNUhtajZSbkN6Y21Oa2dxS2k5RHpyWEN1dTVIYTlrUnlLVHlBNVRyZVBzbW03ZFkrSUxaQTM0VUV3NWNxdUVqaXM1TFVxY1E9PS0tci93YVBQUUJ2UkloMnNiVkE5bzBrUT09--719d6877c2a584efdcdf73aab6a078874642d403; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "10e01e84-5c1e-4eb5-b038-d917f44afa7f"
+          ],
+          "X-Runtime": [
+            "2.302518"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 12:10:44 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/219.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"382ed7f216f1ff46c42f1b59f7724263\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=dlBBUXBHTGs4K1NabW04VnRPYVBwZ21RUTNjVU9PUEFKd09ZdFdYT3B1b1ZXZ2RJSXFVOTM2WTVmczFPN2NMYmFGMldiNWdVMVZzak9EV09FUEYwZUE9PS0tTHpuRURrT0NIVDJabzI5b3RSSUJjQT09--c7bc54911a51b580dd000e3dd60bed7caf88c92f; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "c9872baa-a8e6-4341-8f0a-0e94850a09f6"
+          ],
+          "X-Runtime": [
+            "0.254122"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"219\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/219.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-11-07T12:15:11Z\",\"created_at\":\"2016-11-07T12:15:11Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 705050f1-856d-4ef9-b62c-296410c255d8\",\"description\":\"Description for Test Variant 705050f1-856d-4ef9-b62c-296410c255d8\",\"reference\":\"reference_for_test_variant_705050f1-856d-4ef9-b62c-296410c255d8\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":102,\"sku\":\"sku_for_test_variant_705050f1-856d-4ef9-b62c-296410c255d8\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/102/file.png\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/219/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/219/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/219/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/219/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/219/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/219/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/219.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "219",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/219.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-11-07T12:15:11Z",
+                "created_at": "2016-11-07T12:15:11Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 705050f1-856d-4ef9-b62c-296410c255d8",
+                "description": "Description for Test Variant 705050f1-856d-4ef9-b62c-296410c255d8",
+                "reference": "reference_for_test_variant_705050f1-856d-4ef9-b62c-296410c255d8",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 102,
+                "sku": "sku_for_test_variant_705050f1-856d-4ef9-b62c-296410c255d8",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/102/file.png"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/219/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/219/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/219/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/219/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/219/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/219/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/219.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 12:15:12 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/219.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"219\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=N2ZzWnVVbFpQWDUvNExicW5KbER0TEhFU3oxQXNsQld1c0RRYUZvZWNURDcyWHJRY3YwR2VwcGNoV2IyeEJpZWhsSm4ySitWandueXBoNXQ3ay8rMWc9PS0tMmt3bEVqd2cyVlhxdmJMTmZzazJCZz09--4b8217ade86db55ebd010172cd61d41f359c9a32; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "4548f549-83ad-48b7-a337-31294952a3a7"
+          ],
+          "X-Runtime": [
+            "0.180616"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/219.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/219.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 12:15:13 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/219.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=WjloNFBmUytoWktxMHZiTzBWNjVkSklKbGM1TWtvVEYra2x5NHRRYXk0cllNajdLN3ZOR281L2RVS0twRFFlak93SmxFMmdPK25DNTNwSWZOQ2hIL0E9PS0tVG02dTg3WkNvS0VseU4vTWd2T1g0UT09--f7f328de4b4fc97782ad00d5208d6b5d7011c13d; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "77985ab8-484c-4384-99b0-eb6683567c44"
+          ],
+          "X-Runtime": [
+            "1.124297"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 12:15:14 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/235.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"9d1f689a6ec115cc47cfe4deca628d3d\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=M0NEZk5DYXRCMVBta09sbXlOZDFkUHVraEZTUmgvQU5HSDZLcUkwR09WMnVBdERYblR4MlhXU3ZqZ2pEMVZ4SWZtUFc5U0EwS2ZXcGlNU29HR0xGZmc9PS0tdk0xT3UzcGN1UzRaNFVBNm11VFFIdz09--01ab4704f38bdb170bb0aac193907754ad56bb5c; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "8b96dfd6-bfbf-4acc-9e80-9ddd5b1bef52"
+          ],
+          "X-Runtime": [
+            "0.054972"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"235\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/235.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-11-07T13:01:12Z\",\"created_at\":\"2016-11-07T13:01:12Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant ab8e4a08-469b-4266-a6e2-a1f6850cc3dc\",\"description\":\"Description for Test Variant ab8e4a08-469b-4266-a6e2-a1f6850cc3dc\",\"reference\":\"reference_for_test_variant_ab8e4a08-469b-4266-a6e2-a1f6850cc3dc\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":107,\"sku\":\"sku_for_test_variant_ab8e4a08-469b-4266-a6e2-a1f6850cc3dc\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/103/file.png\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/235/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/235/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/235/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/235/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/235/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/235/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/235.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "235",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/235.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-11-07T13:01:12Z",
+                "created_at": "2016-11-07T13:01:12Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant ab8e4a08-469b-4266-a6e2-a1f6850cc3dc",
+                "description": "Description for Test Variant ab8e4a08-469b-4266-a6e2-a1f6850cc3dc",
+                "reference": "reference_for_test_variant_ab8e4a08-469b-4266-a6e2-a1f6850cc3dc",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 107,
+                "sku": "sku_for_test_variant_ab8e4a08-469b-4266-a6e2-a1f6850cc3dc",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/103/file.png"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/235/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/235/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/235/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/235/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/235/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/235/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/235.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:01:13 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/235.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"235\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=b3NTSGNTOWwxeHZwSjRmeWpiNFBHRFlNLzJvb2tkeXpnSEVseW13Sit4UnNlZSs4eDJyUE9zSVRPNkxqMEkrb2NML2h0djRvQnJKWDVsQkRRRlROeEE9PS0tMXhnTVFBbVVkZFN3WGRtektjVkdzdz09--ccb9bf94f0dacd9476c0268a83f275967979a03d; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "a82b96bf-de2d-4e47-83eb-ca8ed273fc57"
+          ],
+          "X-Runtime": [
+            "0.054589"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/235.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/235.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:01:13 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/235.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=TEJ2Z1VxSjlTbW9jRkp0VENoTkNvOGpzZnZLZ2tYSGtETE1rQktlZnFIb0lFQmRSMXhVcXJvLzVLRzI3NnkvQmFsMG5CMXE2eXZiV2RtaWo3K0ExNHc9PS0tcW5naGdlMUh6SlBCTFFpTjZCRTE4Zz09--c7056d2ba675d9fe70f5169f51676845790704a5; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "a4ca46a0-3dbf-4090-99ac-dbb58fa0fcc2"
+          ],
+          "X-Runtime": [
+            "0.155372"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:01:13 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/247.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"dc1edfada895f9b581b040cba71936ef\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=VDFEYXhrRlJOd3Via2FlTDF2V3lRREZjMTEvMVRERXlIVGt4cVYwdFR3dnJIdVNUZ1hGc3Y4SHlMWmhKaVMrSFBpalhjTzNjUDFTanRJUk5RY3JheWc9PS0tSHNuK1pGWXUzWlZzYkxGM2g4L1A2QT09--0cf2edc24ca3120cb3f31e34cf929e6179e772f5; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "0ae293f9-6fe8-40de-92cf-80e014617a13"
+          ],
+          "X-Runtime": [
+            "0.095274"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"247\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/247.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-11-07T13:04:05Z\",\"created_at\":\"2016-11-07T13:04:05Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant bec7d4f4-f3f8-419a-ad34-835812113b9b\",\"description\":\"Description for Test Variant bec7d4f4-f3f8-419a-ad34-835812113b9b\",\"reference\":\"reference_for_test_variant_bec7d4f4-f3f8-419a-ad34-835812113b9b\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":108,\"sku\":\"sku_for_test_variant_bec7d4f4-f3f8-419a-ad34-835812113b9b\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/104/file.png\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/247/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/247/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/247/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/247/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/247/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/247/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/247.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "247",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/247.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-11-07T13:04:05Z",
+                "created_at": "2016-11-07T13:04:05Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant bec7d4f4-f3f8-419a-ad34-835812113b9b",
+                "description": "Description for Test Variant bec7d4f4-f3f8-419a-ad34-835812113b9b",
+                "reference": "reference_for_test_variant_bec7d4f4-f3f8-419a-ad34-835812113b9b",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 108,
+                "sku": "sku_for_test_variant_bec7d4f4-f3f8-419a-ad34-835812113b9b",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/104/file.png"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/247/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/247/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/247/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/247/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/247/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/247/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/247.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:04:06 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/247.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"247\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=Yyt6TUVaamk1NEFldzA2blVjK3RjSjhETms5UnlmbWNlVmh4bmY5SDdwMDIwam83OVYzR1FmN0hlV1BzWTNwTm5lRHZzYmVpV243N0ovTW9MNTBMMHc9PS0tWCtXcFQ5YWIxbVd2Z0J2VXEwR1k5UT09--78504bc06386f5631188be38f55fe4c7ddd15d63; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "b502460a-0168-4ef0-b814-a3a5ea71e99f"
+          ],
+          "X-Runtime": [
+            "0.051526"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/247.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/247.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:04:06 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/247.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=UGpHdjM0aFFLaDI1UmRyRmJ2QWYzY1pualkrZktzNEY0dG1qV2pwRmhnM0IraEgxellPVUlvWDd4S2MzRXdITGxUZ2toczdJbTJtMVdaaVFyZmprMmc9PS0tSHRBSGF4VXAreFRpTFBRTHlmbGlpdz09--752f74416d3f4d9a97609bbd5f66f99c5e1069ba; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "20a6c744-4ab8-4a93-bffe-318ef24e81dc"
+          ],
+          "X-Runtime": [
+            "0.242062"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:04:06 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/259.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"6e55c3d16d68528f2d55189336186ca5\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=a1I5T3EvSE9qakplRFBLN0RHRUNTT0lDcHFGVmF3aFdHL2srVXYvZldBNkhua3VLOGMyR1N5Wk9lalQwdUsrNFlnR1hGekd5bHVadlRRNTExcWhuUHc9PS0tZkMwMDVHK0RsYi9Wd0tRVUZDTFg0UT09--791629616ebab5cc79ca17f03288c1e65000ac82; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "524c246f-bd1d-4279-9034-8b615318c694"
+          ],
+          "X-Runtime": [
+            "0.053148"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"259\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/259.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-11-07T13:14:19Z\",\"created_at\":\"2016-11-07T13:14:19Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 420eafd9-f525-4324-abd1-ea0806da7453\",\"description\":\"Description for Test Variant 420eafd9-f525-4324-abd1-ea0806da7453\",\"reference\":\"reference_for_test_variant_420eafd9-f525-4324-abd1-ea0806da7453\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":109,\"sku\":\"sku_for_test_variant_420eafd9-f525-4324-abd1-ea0806da7453\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/106/file.png\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/259/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/259/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/259/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/259/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/259/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/259/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/259.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "259",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/259.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-11-07T13:14:19Z",
+                "created_at": "2016-11-07T13:14:19Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 420eafd9-f525-4324-abd1-ea0806da7453",
+                "description": "Description for Test Variant 420eafd9-f525-4324-abd1-ea0806da7453",
+                "reference": "reference_for_test_variant_420eafd9-f525-4324-abd1-ea0806da7453",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 109,
+                "sku": "sku_for_test_variant_420eafd9-f525-4324-abd1-ea0806da7453",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/106/file.png"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/259/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/259/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/259/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/259/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/259/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/259/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/259.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:14:20 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/259.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"259\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=Vjk4aW1UMStpd1pQUVRuZUtYRVZMcWtQemtKcy83WWtNUm8zSzBkK0pzQjI0NnMrclZ1dzVlL3pkaFdlNFQ3NStYNDhBMVVRaXFBaC8vblpnTWpYZGc9PS0td1VXbENZb2cwUnRiQXp3ZjhFZ1Uydz09--ecc6c93974ee6879e4ac46523482d9746af5f48b; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "85410c66-a043-4a9b-a788-7752cfe383fb"
+          ],
+          "X-Runtime": [
+            "0.060672"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/259.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/259.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:14:20 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/259.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=QTJUa3hhU21DeHpJK2NTNUhLNVlKd0NWRzczQlVKcnlrc0JSTDRtU3A0UjVJYkljUFdxOENFbjhwMnkwM2dkTEt3Q3pSaWYwcHV3T0NTd0JmNVNiY2c9PS0tQkN3YmZaV1dTUXNsMFA5bkRCVkZvZz09--3e07424a8a53cdc93de0deaba90f4247ca2cde26; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "ff3f0bb4-9669-4ba6-bc9d-56753d172d7e"
+          ],
+          "X-Runtime": [
+            "0.240011"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:14:20 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/271.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"773bfdf7a784929e1f4b93e2bb74f1de\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=Tkg2R21WbjluMXFGdDhEVE4vZVYrOWw4UlFCZEVCeGl6VWQ1S1V2bW1Makp1WG9SY1JZWEh0RFVTWksvQy8xaUdvb0QveHM2ZHlNZjZ4RGh0eWFoZXc9PS0tYjlacFd2UFlqNytwdTFJSzFEeWp1dz09--9bd380998f30ebf91d85eea9f28b8fcfcf0a4a57; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "5bc6c42f-a1c7-4546-8fef-50bed2d02a5b"
+          ],
+          "X-Runtime": [
+            "0.039211"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"271\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/271.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-11-07T13:18:09Z\",\"created_at\":\"2016-11-07T13:18:09Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 11aebb44-1ac4-419f-b9c5-b9d0f31e4184\",\"description\":\"Description for Test Variant 11aebb44-1ac4-419f-b9c5-b9d0f31e4184\",\"reference\":\"reference_for_test_variant_11aebb44-1ac4-419f-b9c5-b9d0f31e4184\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":110,\"sku\":\"sku_for_test_variant_11aebb44-1ac4-419f-b9c5-b9d0f31e4184\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":true,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":\"https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/108/file.png\"},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/271/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/271/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/271/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/271/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/271/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/271/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/271.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "271",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/271.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-11-07T13:18:09Z",
+                "created_at": "2016-11-07T13:18:09Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 11aebb44-1ac4-419f-b9c5-b9d0f31e4184",
+                "description": "Description for Test Variant 11aebb44-1ac4-419f-b9c5-b9d0f31e4184",
+                "reference": "reference_for_test_variant_11aebb44-1ac4-419f-b9c5-b9d0f31e4184",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 110,
+                "sku": "sku_for_test_variant_11aebb44-1ac4-419f-b9c5-b9d0f31e4184",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": true,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": "https://garytaylor-dev.s3-eu-west-1.amazonaws.com/uploads/asset_file/asset_file/108/file.png"
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/271/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/271/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/271/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/271/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/271/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/271/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/271.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:18:09 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/271.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"271\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=dXc1NVR4MEF6SGd4YzJ1UzRNRCtNYXVIU3ByQXc5d3cvV0VBNHRZZVBTVDdZU0lJMW55RHdvWWVxUVAwVmtMLzRGQlE5RWZWVjlsM3BYd0Q5WFFrbEE9PS0tU1ZXZ3F5K04yQ0o2QlI4MXpWbVA1Zz09--066631b22bf1b2b696242430a68ba8c34998137e; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "3526cc2d-d3f6-4365-a826-1d2310ce08c9"
+          ],
+          "X-Runtime": [
+            "0.061468"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/271.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/271.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:18:09 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/271.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=MUFJb1gyTWZSMnh0cjg0VE84Tno2czdyZjIrdGZjZmtKR0xhRkVQejV5UytaNkoxeHFPWkYvS1VDbCtRVUd4Q0RJRzdZT1RnUXIwVWg2dm80UUFERXc9PS0tdVBkMU8zRDNZVWJqU2FXc3pPbm9IQT09--d7fb3ccf4a998ecb3764f942ea4bc2e0640830ef; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "2053dbd4-ee88-4d49-ac30-b681bd27c5e1"
+          ],
+          "X-Runtime": [
+            "0.137083"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 13:18:09 GMT"
+    },
+    {
+      "request": {
+        "method": "post",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/products.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"type\":\"products\",\"attributes\":{\"title\":\"Title for product 1 for variant c0eb0bc6-4ddf-4ebf-9836-881f9208a604\",\"reference\":\"reference for product 1 for variant c0eb0bc6-4ddf-4ebf-9836-881f9208a604\",\"content_type\":\"markdown\"}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=MllmZzBuRFZPOUwvUitTY2t3WS9xOTJRSnl5bDJKNk80ZFpwVlFPaFlRdlBLNFBkTXdINUdkcXBjWVcwTGs3ekhjejFudDFPRW1pN1ZrNEZjV3lKWUE9PS0tY3NjZGNwU0tKWHdyWDlQcUVkbXZkUT09--23c3f1e7af1b691f69a348f1da65ffa7c3fa41d1; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "6cbdb8d0-2f2d-441f-b0a2-ca114a6d05a3"
+          ],
+          "X-Runtime": [
+            "0.074519"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"has already been taken\",\"detail\":\"reference - has already been taken\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/reference\"},\"status\":\"422\"}],\"meta\":{\"facets\":[]}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "has already been taken",
+                "detail": "reference - has already been taken",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/reference"
+                },
+                "status": "422"
+              }
+            ],
+            "meta": {
+              "facets": [
+
+              ]
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 14:09:15 GMT"
+    },
+    {
+      "request": {
+        "method": "post",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/products.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"type\":\"products\",\"attributes\":{\"title\":\"Title for product 1 for variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"reference\":\"reference for product 1 for variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"content_type\":\"markdown\"}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 201,
+          "message": "Created"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Location": [
+            "/testaccount/v1/products/269.json_api"
+          ],
+          "Surrogate-Key": [
+            "testaccount%2Fproduct%2F269"
+          ],
+          "External-Surrogate-Key": [
+            "testaccount%2Fproduct%2F269"
+          ],
+          "Surrogate-Control": [
+            "max-age=31557600, stale-if-error=86400"
+          ],
+          "Cache-Control": [
+            "max-age=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"839ebcd6879243a9be6dfd71e302fb01\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=M0w0WTEvM3Iyd0hoQk84YnAweTJBU1pFMllQNnM4bEFtZ2dBaURaaUFLTXhpajU2Mk8zenhEM3g1TnY1eXo5eDh1dG9KWnBxSVEvU3lmNEk5M1Ard1E9PS0tSGlCbEgwYWdINGJVa2Q1U29DS0hzQT09--dc1a90b08b4e3266749785e8290a0a07de439b9e; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "06865677-2f96-495e-a1fa-dd0c89c82e1f"
+          ],
+          "X-Runtime": [
+            "0.247876"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"269\",\"type\":\"products\",\"links\":{\"self\":\"/testaccount/v1/products/269.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-11-07T14:11:06Z\",\"created_at\":\"2016-11-07T14:11:06Z\",\"deleted_at\":null,\"template_attributes\":{},\"title\":\"Title for product 1 for variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"slug\":\"products/reference-for-product-1-for-variant-85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"reference\":\"reference for product 1 for variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"description\":\"\",\"attribute_merchandising\":{},\"category_ids_cache\":[],\"content_type\":\"markdown\",\"merged_attribute_merchandising\":{},\"seo_meta_description\":\"\",\"seo_meta_keywords\":\"\",\"seo_meta_title\":\"\",\"total_ratings\":null,\"variants_count\":0,\"web_product_description\":\"\",\"web_product_name\":\"\",\"picture_url\":null,\"average_rating\":0.0,\"min_price\":0.0,\"max_price\":0.0,\"min_current_price\":0.0,\"max_current_price\":0.0,\"sellable\":true,\"available_to_browse\":false,\"merchandised\":false,\"published\":false,\"has_assets\":false,\"ewis_status\":\"not_ewis_eligible\"},\"relationships\":{\"breadcrumbs\":{\"links\":{\"self\":\"/testaccount/v1/products/269/relationships/breadcrumbs.json_api\",\"related\":\"/testaccount/v1/products/269/breadcrumbs.json_api\"}},\"variants\":{\"links\":{\"self\":\"/testaccount/v1/products/269/relationships/variants.json_api\",\"related\":\"/testaccount/v1/products/269/variants.json_api\"}},\"bundles\":{\"links\":{\"self\":\"/testaccount/v1/products/269/relationships/bundles.json_api\",\"related\":\"/testaccount/v1/products/269/bundles.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/products/269/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/products/269/asset_files.json_api\"}},\"template_definition\":{\"links\":{\"self\":\"/testaccount/v1/products/269/relationships/template_definition.json_api\",\"related\":\"/testaccount/v1/products/269/template_definition.json_api\"}}}},\"meta\":{\"facets\":[]}}",
+          "decoded": {
+            "data": {
+              "id": "269",
+              "type": "products",
+              "links": {
+                "self": "/testaccount/v1/products/269.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-11-07T14:11:06Z",
+                "created_at": "2016-11-07T14:11:06Z",
+                "deleted_at": null,
+                "template_attributes": {
+                },
+                "title": "Title for product 1 for variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f",
+                "slug": "products/reference-for-product-1-for-variant-85a9ca6d-c12d-4cb0-9b79-74b47fde607f",
+                "reference": "reference for product 1 for variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f",
+                "description": "",
+                "attribute_merchandising": {
+                },
+                "category_ids_cache": [
+
+                ],
+                "content_type": "markdown",
+                "merged_attribute_merchandising": {
+                },
+                "seo_meta_description": "",
+                "seo_meta_keywords": "",
+                "seo_meta_title": "",
+                "total_ratings": null,
+                "variants_count": 0,
+                "web_product_description": "",
+                "web_product_name": "",
+                "picture_url": null,
+                "average_rating": 0.0,
+                "min_price": 0.0,
+                "max_price": 0.0,
+                "min_current_price": 0.0,
+                "max_current_price": 0.0,
+                "sellable": true,
+                "available_to_browse": false,
+                "merchandised": false,
+                "published": false,
+                "has_assets": false,
+                "ewis_status": "not_ewis_eligible"
+              },
+              "relationships": {
+                "breadcrumbs": {
+                  "links": {
+                    "self": "/testaccount/v1/products/269/relationships/breadcrumbs.json_api",
+                    "related": "/testaccount/v1/products/269/breadcrumbs.json_api"
+                  }
+                },
+                "variants": {
+                  "links": {
+                    "self": "/testaccount/v1/products/269/relationships/variants.json_api",
+                    "related": "/testaccount/v1/products/269/variants.json_api"
+                  }
+                },
+                "bundles": {
+                  "links": {
+                    "self": "/testaccount/v1/products/269/relationships/bundles.json_api",
+                    "related": "/testaccount/v1/products/269/bundles.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/products/269/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/products/269/asset_files.json_api"
+                  }
+                },
+                "template_definition": {
+                  "links": {
+                    "self": "/testaccount/v1/products/269/relationships/template_definition.json_api",
+                    "related": "/testaccount/v1/products/269/template_definition.json_api"
+                  }
+                }
+              }
+            },
+            "meta": {
+              "facets": [
+
+              ]
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 14:11:06 GMT"
+    },
+    {
+      "request": {
+        "method": "post",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"type\":\"variants\",\"attributes\":{\"title\":\"Title for Test Variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"description\":\"Description for Test Variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"reference\":\"reference_for_test_variant_85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"price\":5.5,\"price_includes_taxes\":false,\"sku\":\"sku_for_test_variant_85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"product_id\":\"269\"}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 201,
+          "message": "Created"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Location": [
+            "/testaccount/v1/variants/416.json_api"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"b7322899dedff0bb4b17743c609867de\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=ZjcyMnJ6Yko1SWZFWWlMWkxGTURiRFp4NndaYlNBbHZERFVQYytEdE9RU0I5aGNQZmZYUmxETUlQZkZTQUd2VXRKMmxoUHRZcnMyZ0M5c2dnR3hVVUE9PS0taE9hdTJLWHI2Yllsc2o4SUhhdVBjQT09--bc8c8c0271a9498ba4770ed6e963048b4671b73f; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "d7b5e2c5-cc71-4ec4-afbe-788d92fccd01"
+          ],
+          "X-Runtime": [
+            "0.198154"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"416\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/416.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-11-07T14:11:06Z\",\"created_at\":\"2016-11-07T14:11:06Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"description\":\"Description for Test Variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"reference\":\"reference_for_test_variant_85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":269,\"sku\":\"sku_for_test_variant_85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":false,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":null},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/416/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/416/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/416/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/416/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/416/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/416/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants.json_api\"}}",
+          "decoded": {
+            "data": {
+              "id": "416",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/416.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-11-07T14:11:06Z",
+                "created_at": "2016-11-07T14:11:06Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f",
+                "description": "Description for Test Variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f",
+                "reference": "reference_for_test_variant_85a9ca6d-c12d-4cb0-9b79-74b47fde607f",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 269,
+                "sku": "sku_for_test_variant_85a9ca6d-c12d-4cb0-9b79-74b47fde607f",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": false,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": null
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/416/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/416/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/416/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/416/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/416/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/416/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 14:11:06 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/416.json_api?include=",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"19bea172ee1e860c07c1b758055cf437\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=ejBISHRCdkQrcHZUNGZCYTc2K1JqNXBsQzBpc1JOOXFwNFNsT3NFMmRaOEZVSkRjMkpYcys4bnJWbGNtaWJUTG1mS1ppV2d3MnRLN3JjUmxRSXFIQ0E9PS0tWThsY09sYXRvckJhVit5S05pci85UT09--38ac186db84dd4d84092427e57e7e2b8eed062d0; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "0e6d04ae-4fef-435d-aefb-049b38dcbbb1"
+          ],
+          "X-Runtime": [
+            "0.037272"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"416\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/416.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-11-07T14:11:06Z\",\"created_at\":\"2016-11-07T14:11:06Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"description\":\"Description for Test Variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"reference\":\"reference_for_test_variant_85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":269,\"sku\":\"sku_for_test_variant_85a9ca6d-c12d-4cb0-9b79-74b47fde607f\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":false,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":null},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/416/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/416/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/416/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/416/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/416/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/416/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants/416.json_api?include=\"}}",
+          "decoded": {
+            "data": {
+              "id": "416",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/416.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-11-07T14:11:06Z",
+                "created_at": "2016-11-07T14:11:06Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f",
+                "description": "Description for Test Variant 85a9ca6d-c12d-4cb0-9b79-74b47fde607f",
+                "reference": "reference_for_test_variant_85a9ca6d-c12d-4cb0-9b79-74b47fde607f",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 269,
+                "sku": "sku_for_test_variant_85a9ca6d-c12d-4cb0-9b79-74b47fde607f",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": false,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": null
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/416/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/416/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/416/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/416/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/416/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/416/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants/416.json_api?include="
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 14:11:06 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/416.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"416\",\"type\":\"variants\",\"attributes\":{\"sku\":null}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 422,
+          "message": "Unprocessable Entity"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=SUtheFJwRXc1VFV5RGhUUDhCc1E3RVN4eEt3cjNsaFlRWCtDSG5YWlFacEI3aHUwTHBCckh2VVhQWHZqNkxaaHkxWVNTR3I2Z2t3REovaDhiK0k3emc9PS0tSThpWHFDY3R1K0J3aEpqcEJDMnZSQT09--58f60551e1c8b632f2b9fd5330bd03ff6c3bd810; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "ea999192-5946-47eb-8aa0-af8e3d8a6e44"
+          ],
+          "X-Runtime": [
+            "0.056546"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"errors\":[{\"title\":\"can't be blank\",\"detail\":\"sku - can't be blank\",\"code\":\"100\",\"source\":{\"pointer\":\"/data/attributes/sku\"},\"status\":\"422\"}],\"links\":{\"self\":\"/testaccount/v1/variants/416.json_api\"}}",
+          "decoded": {
+            "errors": [
+              {
+                "title": "can't be blank",
+                "detail": "sku - can't be blank",
+                "code": "100",
+                "source": {
+                  "pointer": "/data/attributes/sku"
+                },
+                "status": "422"
+              }
+            ],
+            "links": {
+              "self": "/testaccount/v1/variants/416.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 14:11:06 GMT"
+    },
+    {
+      "request": {
+        "method": "delete",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants/416.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=VkdNYlJjZno4UkdMMzhBMTA2OS9iU2lHMkEzM21FbHpsTlM4MER2SXRzOENMWnFxK3BqSUllbk1NMC9mUTZJNndNbHViS2R0b0FIY01qc2dMSGJ5Mnc9PS0tMW1nS0kyendVV0pEN2ZKWi9PdUhoUT09--c68b98992788e24e3750fd13b0c4adc66fc5858f; path=/; HttpOnly"
+          ],
+          "X-Request-Id": [
+            "60d5a57d-bf95-4c23-b348-6fef28bb9dee"
+          ],
+          "X-Runtime": [
+            "0.135756"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 Nov 2016 14:11:07 GMT"
+    }
+  ],
+  "recorded_with": "VCR 3.0.3"
+}

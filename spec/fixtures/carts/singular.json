@@ -50,11 +50,6 @@
           "id": "1",
           "type": "free_shipping_promotion"
         }
-      },
-      "available_shipping_methods": {
-        "links": {
-          "related": "/testaccount/v1/carts/1/available_shipping_methods"
-        }
       }
     }
   },

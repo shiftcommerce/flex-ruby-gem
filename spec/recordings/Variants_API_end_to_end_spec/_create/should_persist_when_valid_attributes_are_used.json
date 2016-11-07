@@ -1,0 +1,141 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "post",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/variants.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"type\":\"variants\",\"attributes\":{\"title\":\"Title for Test Variant 19ea1491-f557-4466-ab5a-a2a3c75a6a7e\",\"description\":\"Description for Test Variant 19ea1491-f557-4466-ab5a-a2a3c75a6a7e\",\"reference\":\"reference_for_test_variant_19ea1491-f557-4466-ab5a-a2a3c75a6a7e\",\"price\":5.5,\"price_includes_taxes\":false,\"sku\":\"sku_for_test_variant_19ea1491-f557-4466-ab5a-a2a3c75a6a7e\",\"product_id\":\"114\"}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 201,
+          "message": "Created"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Location": [
+            "/testaccount/v1/variants/214.json_api"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"48e0f14dc4c09b1ee1189cbcaea255e7\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=TjRxQzREUU5NY2xwVU10YWhsQm52YWJxMllnRTJKM3QzMWRLZTJLS21jN0IrZ2VMUWJsTU1uQWIzRnJjWDdSRStEVHFlVk5Ba2d3bkNYMk8zZUg3SGc9PS0tQTVORmZjNkpHdVNLeGJ3cmRnbHZXQT09--673ca2294167f8cfe6fd21e66787213efe6b205d; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "8bfbcd4d-8bbc-4585-940b-af6ee36cf9de"
+          ],
+          "X-Runtime": [
+            "1.771714"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"214\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/214.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-10-15T07:57:21Z\",\"created_at\":\"2016-10-15T07:57:21Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant 19ea1491-f557-4466-ab5a-a2a3c75a6a7e\",\"description\":\"Description for Test Variant 19ea1491-f557-4466-ab5a-a2a3c75a6a7e\",\"reference\":\"reference_for_test_variant_19ea1491-f557-4466-ab5a-a2a3c75a6a7e\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":false,\"product_id\":114,\"sku\":\"sku_for_test_variant_19ea1491-f557-4466-ab5a-a2a3c75a6a7e\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":false,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":null},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/214/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/214/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/214/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/214/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/214/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/214/markdown_prices.json_api\"}}}},\"links\":{\"self\":\"/testaccount/v1/variants.json_api\"}}",
+          "decoded": {
+            "data": {
+              "id": "214",
+              "type": "variants",
+              "links": {
+                "self": "/testaccount/v1/variants/214.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-10-15T07:57:21Z",
+                "created_at": "2016-10-15T07:57:21Z",
+                "deleted_at": null,
+                "title": "Title for Test Variant 19ea1491-f557-4466-ab5a-a2a3c75a6a7e",
+                "description": "Description for Test Variant 19ea1491-f557-4466-ab5a-a2a3c75a6a7e",
+                "reference": "reference_for_test_variant_19ea1491-f557-4466-ab5a-a2a3c75a6a7e",
+                "ewis_eligible": false,
+                "expected_availability_date": null,
+                "ordered_total": 0,
+                "position": null,
+                "price": 5.5,
+                "price_includes_taxes": false,
+                "product_id": 114,
+                "sku": "sku_for_test_variant_19ea1491-f557-4466-ab5a-a2a3c75a6a7e",
+                "stock_allocated_level": 0,
+                "stock_level": 0,
+                "tax_code": null,
+                "current_price": 5.5,
+                "stock_available_level": 0,
+                "has_assets": false,
+                "available_to_browse": false,
+                "available_to_order": false,
+                "picture_url": null
+              },
+              "relationships": {
+                "product": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/214/relationships/product.json_api",
+                    "related": "/testaccount/v1/variants/214/product.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/214/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/variants/214/asset_files.json_api"
+                  }
+                },
+                "markdown_prices": {
+                  "links": {
+                    "self": "/testaccount/v1/variants/214/relationships/markdown_prices.json_api",
+                    "related": "/testaccount/v1/variants/214/markdown_prices.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testaccount/v1/variants.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Sat, 15 Oct 2016 07:57:23 GMT"
+    }
+  ],
+  "recorded_with": "VCR 3.0.3"
+}

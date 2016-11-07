@@ -1,0 +1,639 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/products/110.json_api?include=variants",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Surrogate-Key": [
+            "testaccount%2Fproduct%2F110 testaccount%2Fvariants testaccount%2Fvariant%2F250"
+          ],
+          "External-Surrogate-Key": [
+            "testaccount%2Fproduct%2F110 testaccount%2Fvariants testaccount%2Fvariant%2F250"
+          ],
+          "Surrogate-Control": [
+            "max-age=31557600, stale-if-error=86400"
+          ],
+          "Cache-Control": [
+            "max-age=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"f3d685c6d40146d0df49ea0d6171935c\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=d25EUFFRS0NWY1B3bFlta0JSVkxUS25SMnBXRGVtZFdxZWdqMW9vbDQ0SlY1eGRuS1lUZHVJQXBGem8wT3BVdnpyd3VRSXZPYlpYS1pZcTRGcHE0Unc9PS0tTkZiZzdqbEt0YUtaWU5DVUh2VXdWZz09--0d2475151f737b5283fe44324d3ecb58ac8c25fd; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "39d61aa3-9791-4452-9ebf-4324f7d543a5"
+          ],
+          "X-Runtime": [
+            "1.232599"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"110\",\"type\":\"products\",\"links\":{\"self\":\"/testaccount/v1/products/110.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-10-20T17:59:25Z\",\"created_at\":\"2016-10-20T17:59:25Z\",\"deleted_at\":null,\"template_attributes\":{},\"title\":\"Title for product 2b34783e-842c-4938-8d78-28413db1c506\",\"slug\":\"products/reference-for-for-product-2b34783e-842c-4938-8d78-28413db1c506\",\"reference\":\"reference for for product 2b34783e-842c-4938-8d78-28413db1c506\",\"description\":\"\",\"attribute_merchandising\":{},\"category_ids_cache\":[],\"content_type\":\"markdown\",\"merged_attribute_merchandising\":{},\"seo_meta_description\":\"\",\"seo_meta_keywords\":\"\",\"seo_meta_title\":\"\",\"total_ratings\":null,\"variants_count\":1,\"web_product_description\":\"\",\"web_product_name\":\"\",\"picture_url\":null,\"average_rating\":0.0,\"min_price\":5.5,\"max_price\":5.5,\"min_current_price\":5.5,\"max_current_price\":5.5,\"sellable\":true,\"available_to_browse\":false,\"merchandised\":false,\"published\":false,\"has_assets\":false,\"ewis_status\":\"not_ewis_eligible\"},\"relationships\":{\"breadcrumbs\":{\"links\":{\"self\":\"/testaccount/v1/products/110/relationships/breadcrumbs.json_api\",\"related\":\"/testaccount/v1/products/110/breadcrumbs.json_api\"}},\"variants\":{\"links\":{\"self\":\"/testaccount/v1/products/110/relationships/variants.json_api\",\"related\":\"/testaccount/v1/products/110/variants.json_api\"},\"data\":[{\"type\":\"variants\",\"id\":\"250\"}]},\"bundles\":{\"links\":{\"self\":\"/testaccount/v1/products/110/relationships/bundles.json_api\",\"related\":\"/testaccount/v1/products/110/bundles.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/products/110/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/products/110/asset_files.json_api\"}},\"template_definition\":{\"links\":{\"self\":\"/testaccount/v1/products/110/relationships/template_definition.json_api\",\"related\":\"/testaccount/v1/products/110/template_definition.json_api\"}}}},\"included\":[{\"id\":\"250\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/250.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-10-20T17:59:25Z\",\"created_at\":\"2016-10-20T17:59:25Z\",\"deleted_at\":null,\"title\":\"Title for variant for product 2b34783e-842c-4938-8d78-28413db1c506\",\"description\":\"Description for variant for product 2b34783e-842c-4938-8d78-28413db1c506\",\"reference\":\"reference_for_variant_for_product_2b34783e-842c-4938-8d78-28413db1c506\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":true,\"product_id\":110,\"sku\":\"sku_for_variant_for_product_2b34783e-842c-4938-8d78-28413db1c506\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":false,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":null},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/250/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/250/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/250/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/250/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/250/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/250/markdown_prices.json_api\"}}}}],\"meta\":{\"facets\":[]}}",
+          "decoded": {
+            "data": {
+              "id": "110",
+              "type": "products",
+              "links": {
+                "self": "/testaccount/v1/products/110.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-10-20T17:59:25Z",
+                "created_at": "2016-10-20T17:59:25Z",
+                "deleted_at": null,
+                "template_attributes": {
+                },
+                "title": "Title for product 2b34783e-842c-4938-8d78-28413db1c506",
+                "slug": "products/reference-for-for-product-2b34783e-842c-4938-8d78-28413db1c506",
+                "reference": "reference for for product 2b34783e-842c-4938-8d78-28413db1c506",
+                "description": "",
+                "attribute_merchandising": {
+                },
+                "category_ids_cache": [
+
+                ],
+                "content_type": "markdown",
+                "merged_attribute_merchandising": {
+                },
+                "seo_meta_description": "",
+                "seo_meta_keywords": "",
+                "seo_meta_title": "",
+                "total_ratings": null,
+                "variants_count": 1,
+                "web_product_description": "",
+                "web_product_name": "",
+                "picture_url": null,
+                "average_rating": 0.0,
+                "min_price": 5.5,
+                "max_price": 5.5,
+                "min_current_price": 5.5,
+                "max_current_price": 5.5,
+                "sellable": true,
+                "available_to_browse": false,
+                "merchandised": false,
+                "published": false,
+                "has_assets": false,
+                "ewis_status": "not_ewis_eligible"
+              },
+              "relationships": {
+                "breadcrumbs": {
+                  "links": {
+                    "self": "/testaccount/v1/products/110/relationships/breadcrumbs.json_api",
+                    "related": "/testaccount/v1/products/110/breadcrumbs.json_api"
+                  }
+                },
+                "variants": {
+                  "links": {
+                    "self": "/testaccount/v1/products/110/relationships/variants.json_api",
+                    "related": "/testaccount/v1/products/110/variants.json_api"
+                  },
+                  "data": [
+                    {
+                      "type": "variants",
+                      "id": "250"
+                    }
+                  ]
+                },
+                "bundles": {
+                  "links": {
+                    "self": "/testaccount/v1/products/110/relationships/bundles.json_api",
+                    "related": "/testaccount/v1/products/110/bundles.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/products/110/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/products/110/asset_files.json_api"
+                  }
+                },
+                "template_definition": {
+                  "links": {
+                    "self": "/testaccount/v1/products/110/relationships/template_definition.json_api",
+                    "related": "/testaccount/v1/products/110/template_definition.json_api"
+                  }
+                }
+              }
+            },
+            "included": [
+              {
+                "id": "250",
+                "type": "variants",
+                "links": {
+                  "self": "/testaccount/v1/variants/250.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2016-10-20T17:59:25Z",
+                  "created_at": "2016-10-20T17:59:25Z",
+                  "deleted_at": null,
+                  "title": "Title for variant for product 2b34783e-842c-4938-8d78-28413db1c506",
+                  "description": "Description for variant for product 2b34783e-842c-4938-8d78-28413db1c506",
+                  "reference": "reference_for_variant_for_product_2b34783e-842c-4938-8d78-28413db1c506",
+                  "ewis_eligible": false,
+                  "expected_availability_date": null,
+                  "ordered_total": 0,
+                  "position": null,
+                  "price": 5.5,
+                  "price_includes_taxes": true,
+                  "product_id": 110,
+                  "sku": "sku_for_variant_for_product_2b34783e-842c-4938-8d78-28413db1c506",
+                  "stock_allocated_level": 0,
+                  "stock_level": 0,
+                  "tax_code": null,
+                  "current_price": 5.5,
+                  "stock_available_level": 0,
+                  "has_assets": false,
+                  "available_to_browse": false,
+                  "available_to_order": false,
+                  "picture_url": null
+                },
+                "relationships": {
+                  "product": {
+                    "links": {
+                      "self": "/testaccount/v1/variants/250/relationships/product.json_api",
+                      "related": "/testaccount/v1/variants/250/product.json_api"
+                    }
+                  },
+                  "asset_files": {
+                    "links": {
+                      "self": "/testaccount/v1/variants/250/relationships/asset_files.json_api",
+                      "related": "/testaccount/v1/variants/250/asset_files.json_api"
+                    }
+                  },
+                  "markdown_prices": {
+                    "links": {
+                      "self": "/testaccount/v1/variants/250/relationships/markdown_prices.json_api",
+                      "related": "/testaccount/v1/variants/250/markdown_prices.json_api"
+                    }
+                  }
+                }
+              }
+            ],
+            "meta": {
+              "facets": [
+
+              ]
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 20 Oct 2016 17:59:30 GMT"
+    },
+    {
+      "request": {
+        "method": "post",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/products.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"type\":\"products\",\"attributes\":{\"title\":\"Title for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"reference\":\"reference for for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"content_type\":\"markdown\",\"variants_resources\":[{\"type\":\"variants\",\"attributes\":{\"title\":\"Title for variant for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"description\":\"Description for variant for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"reference\":\"reference_for_variant_for_product_0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"sku\":\"sku_for_variant_for_product_0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"price\":5.5,\"price_includes_taxes\":true}}]}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 201,
+          "message": "Created"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Location": [
+            "/testaccount/v1/products/112.json_api"
+          ],
+          "Surrogate-Key": [
+            "testaccount%2Fproduct%2F112"
+          ],
+          "External-Surrogate-Key": [
+            "testaccount%2Fproduct%2F112"
+          ],
+          "Surrogate-Control": [
+            "max-age=31557600, stale-if-error=86400"
+          ],
+          "Cache-Control": [
+            "max-age=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"8234605b7938c4a39e6d96352e5183df\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=MFNqSnAwODZJT0VhN2x6KzdudVUyU1k0QlZiTTRLODRTQm9HQ1AzMjVZZS9aUVpKNW5wNmIrWWU1QlR0Tm9maEpmYVd6MXBURDBMZlQ5T1VzZHRHUUE9PS0tOTFIZk5kUlZZQ2R3RFBDUlVialJRdz09--8e0ecc82aa58ad9fa4c9dc9279eedcce2f3b03b9; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "6aed7d87-cd2e-4977-8fbb-8b81f8ebc5b7"
+          ],
+          "X-Runtime": [
+            "1.108431"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"112\",\"type\":\"products\",\"links\":{\"self\":\"/testaccount/v1/products/112.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-10-20T18:00:24Z\",\"created_at\":\"2016-10-20T18:00:24Z\",\"deleted_at\":null,\"template_attributes\":{},\"title\":\"Title for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"slug\":\"products/reference-for-for-product-0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"reference\":\"reference for for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"description\":\"\",\"attribute_merchandising\":{},\"category_ids_cache\":[],\"content_type\":\"markdown\",\"merged_attribute_merchandising\":{},\"seo_meta_description\":\"\",\"seo_meta_keywords\":\"\",\"seo_meta_title\":\"\",\"total_ratings\":null,\"variants_count\":1,\"web_product_description\":\"\",\"web_product_name\":\"\",\"picture_url\":null,\"average_rating\":0.0,\"min_price\":5.5,\"max_price\":5.5,\"min_current_price\":5.5,\"max_current_price\":5.5,\"sellable\":true,\"available_to_browse\":false,\"merchandised\":false,\"published\":false,\"has_assets\":false,\"ewis_status\":\"not_ewis_eligible\"},\"relationships\":{\"breadcrumbs\":{\"links\":{\"self\":\"/testaccount/v1/products/112/relationships/breadcrumbs.json_api\",\"related\":\"/testaccount/v1/products/112/breadcrumbs.json_api\"}},\"variants\":{\"links\":{\"self\":\"/testaccount/v1/products/112/relationships/variants.json_api\",\"related\":\"/testaccount/v1/products/112/variants.json_api\"}},\"bundles\":{\"links\":{\"self\":\"/testaccount/v1/products/112/relationships/bundles.json_api\",\"related\":\"/testaccount/v1/products/112/bundles.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/products/112/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/products/112/asset_files.json_api\"}},\"template_definition\":{\"links\":{\"self\":\"/testaccount/v1/products/112/relationships/template_definition.json_api\",\"related\":\"/testaccount/v1/products/112/template_definition.json_api\"}}}},\"meta\":{\"facets\":[]}}",
+          "decoded": {
+            "data": {
+              "id": "112",
+              "type": "products",
+              "links": {
+                "self": "/testaccount/v1/products/112.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-10-20T18:00:24Z",
+                "created_at": "2016-10-20T18:00:24Z",
+                "deleted_at": null,
+                "template_attributes": {
+                },
+                "title": "Title for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1",
+                "slug": "products/reference-for-for-product-0b9564c6-20b9-40e6-9ac0-f8e40dea2be1",
+                "reference": "reference for for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1",
+                "description": "",
+                "attribute_merchandising": {
+                },
+                "category_ids_cache": [
+
+                ],
+                "content_type": "markdown",
+                "merged_attribute_merchandising": {
+                },
+                "seo_meta_description": "",
+                "seo_meta_keywords": "",
+                "seo_meta_title": "",
+                "total_ratings": null,
+                "variants_count": 1,
+                "web_product_description": "",
+                "web_product_name": "",
+                "picture_url": null,
+                "average_rating": 0.0,
+                "min_price": 5.5,
+                "max_price": 5.5,
+                "min_current_price": 5.5,
+                "max_current_price": 5.5,
+                "sellable": true,
+                "available_to_browse": false,
+                "merchandised": false,
+                "published": false,
+                "has_assets": false,
+                "ewis_status": "not_ewis_eligible"
+              },
+              "relationships": {
+                "breadcrumbs": {
+                  "links": {
+                    "self": "/testaccount/v1/products/112/relationships/breadcrumbs.json_api",
+                    "related": "/testaccount/v1/products/112/breadcrumbs.json_api"
+                  }
+                },
+                "variants": {
+                  "links": {
+                    "self": "/testaccount/v1/products/112/relationships/variants.json_api",
+                    "related": "/testaccount/v1/products/112/variants.json_api"
+                  }
+                },
+                "bundles": {
+                  "links": {
+                    "self": "/testaccount/v1/products/112/relationships/bundles.json_api",
+                    "related": "/testaccount/v1/products/112/bundles.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/products/112/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/products/112/asset_files.json_api"
+                  }
+                },
+                "template_definition": {
+                  "links": {
+                    "self": "/testaccount/v1/products/112/relationships/template_definition.json_api",
+                    "related": "/testaccount/v1/products/112/template_definition.json_api"
+                  }
+                }
+              }
+            },
+            "meta": {
+              "facets": [
+
+              ]
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 20 Oct 2016 18:00:25 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "http://testaccount:314e47ece578a11e6e77c6153229cd25@api.shiftlocal.co.uk:3000/testaccount/v1/products/112.json_api?include=variants",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.9.2"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "Vary": [
+            "Authorization"
+          ],
+          "Surrogate-Key": [
+            "testaccount%2Fproduct%2F112 testaccount%2Fvariants testaccount%2Fvariant%2F251"
+          ],
+          "External-Surrogate-Key": [
+            "testaccount%2Fproduct%2F112 testaccount%2Fvariants testaccount%2Fvariant%2F251"
+          ],
+          "Surrogate-Control": [
+            "max-age=31557600, stale-if-error=86400"
+          ],
+          "Cache-Control": [
+            "max-age=0, must-revalidate"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json; charset=utf-8"
+          ],
+          "Etag": [
+            "W/\"3bec7976948d6f1a449afe758fd0a2bc\""
+          ],
+          "Set-Cookie": [
+            "_flex_commerce_session=VjNlMVo3VXczSWEwelJWakxDMGhMeDJOR2hwZ29xaHRwM1dscXl3ZG1QWG1WSmFkVG5EUFNlMXk3citnR1JGcWlxenk5cE0vUDg4VkJDVE5QSldXSVE9PS0tZGt3aUg3b3o3dFdnQWxGR2NpNEFKdz09--9e7b5d8c764429d86c0aa3e434d0acf06e3c90c9; path=/; HttpOnly"
+          ],
+          "X-Meta-Request-Version": [
+            "0.4.0"
+          ],
+          "X-Request-Id": [
+            "aab17fad-f7d3-41c5-bf3a-dff2bafd6b8d"
+          ],
+          "X-Runtime": [
+            "0.353750"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"112\",\"type\":\"products\",\"links\":{\"self\":\"/testaccount/v1/products/112.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-10-20T18:00:24Z\",\"created_at\":\"2016-10-20T18:00:24Z\",\"deleted_at\":null,\"template_attributes\":{},\"title\":\"Title for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"slug\":\"products/reference-for-for-product-0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"reference\":\"reference for for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"description\":\"\",\"attribute_merchandising\":{},\"category_ids_cache\":[],\"content_type\":\"markdown\",\"merged_attribute_merchandising\":{},\"seo_meta_description\":\"\",\"seo_meta_keywords\":\"\",\"seo_meta_title\":\"\",\"total_ratings\":null,\"variants_count\":1,\"web_product_description\":\"\",\"web_product_name\":\"\",\"picture_url\":null,\"average_rating\":0.0,\"min_price\":5.5,\"max_price\":5.5,\"min_current_price\":5.5,\"max_current_price\":5.5,\"sellable\":true,\"available_to_browse\":false,\"merchandised\":false,\"published\":false,\"has_assets\":false,\"ewis_status\":\"not_ewis_eligible\"},\"relationships\":{\"breadcrumbs\":{\"links\":{\"self\":\"/testaccount/v1/products/112/relationships/breadcrumbs.json_api\",\"related\":\"/testaccount/v1/products/112/breadcrumbs.json_api\"}},\"variants\":{\"links\":{\"self\":\"/testaccount/v1/products/112/relationships/variants.json_api\",\"related\":\"/testaccount/v1/products/112/variants.json_api\"},\"data\":[{\"type\":\"variants\",\"id\":\"251\"}]},\"bundles\":{\"links\":{\"self\":\"/testaccount/v1/products/112/relationships/bundles.json_api\",\"related\":\"/testaccount/v1/products/112/bundles.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/products/112/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/products/112/asset_files.json_api\"}},\"template_definition\":{\"links\":{\"self\":\"/testaccount/v1/products/112/relationships/template_definition.json_api\",\"related\":\"/testaccount/v1/products/112/template_definition.json_api\"}}}},\"included\":[{\"id\":\"251\",\"type\":\"variants\",\"links\":{\"self\":\"/testaccount/v1/variants/251.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2016-10-20T18:00:24Z\",\"created_at\":\"2016-10-20T18:00:24Z\",\"deleted_at\":null,\"title\":\"Title for variant for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"description\":\"Description for variant for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"reference\":\"reference_for_variant_for_product_0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"price\":5.5,\"price_includes_taxes\":true,\"product_id\":112,\"sku\":\"sku_for_variant_for_product_0b9564c6-20b9-40e6-9ac0-f8e40dea2be1\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"current_price\":5.5,\"stock_available_level\":0,\"has_assets\":false,\"available_to_browse\":false,\"available_to_order\":false,\"picture_url\":null},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testaccount/v1/variants/251/relationships/product.json_api\",\"related\":\"/testaccount/v1/variants/251/product.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testaccount/v1/variants/251/relationships/asset_files.json_api\",\"related\":\"/testaccount/v1/variants/251/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testaccount/v1/variants/251/relationships/markdown_prices.json_api\",\"related\":\"/testaccount/v1/variants/251/markdown_prices.json_api\"}}}}],\"meta\":{\"facets\":[]}}",
+          "decoded": {
+            "data": {
+              "id": "112",
+              "type": "products",
+              "links": {
+                "self": "/testaccount/v1/products/112.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2016-10-20T18:00:24Z",
+                "created_at": "2016-10-20T18:00:24Z",
+                "deleted_at": null,
+                "template_attributes": {
+                },
+                "title": "Title for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1",
+                "slug": "products/reference-for-for-product-0b9564c6-20b9-40e6-9ac0-f8e40dea2be1",
+                "reference": "reference for for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1",
+                "description": "",
+                "attribute_merchandising": {
+                },
+                "category_ids_cache": [
+
+                ],
+                "content_type": "markdown",
+                "merged_attribute_merchandising": {
+                },
+                "seo_meta_description": "",
+                "seo_meta_keywords": "",
+                "seo_meta_title": "",
+                "total_ratings": null,
+                "variants_count": 1,
+                "web_product_description": "",
+                "web_product_name": "",
+                "picture_url": null,
+                "average_rating": 0.0,
+                "min_price": 5.5,
+                "max_price": 5.5,
+                "min_current_price": 5.5,
+                "max_current_price": 5.5,
+                "sellable": true,
+                "available_to_browse": false,
+                "merchandised": false,
+                "published": false,
+                "has_assets": false,
+                "ewis_status": "not_ewis_eligible"
+              },
+              "relationships": {
+                "breadcrumbs": {
+                  "links": {
+                    "self": "/testaccount/v1/products/112/relationships/breadcrumbs.json_api",
+                    "related": "/testaccount/v1/products/112/breadcrumbs.json_api"
+                  }
+                },
+                "variants": {
+                  "links": {
+                    "self": "/testaccount/v1/products/112/relationships/variants.json_api",
+                    "related": "/testaccount/v1/products/112/variants.json_api"
+                  },
+                  "data": [
+                    {
+                      "type": "variants",
+                      "id": "251"
+                    }
+                  ]
+                },
+                "bundles": {
+                  "links": {
+                    "self": "/testaccount/v1/products/112/relationships/bundles.json_api",
+                    "related": "/testaccount/v1/products/112/bundles.json_api"
+                  }
+                },
+                "asset_files": {
+                  "links": {
+                    "self": "/testaccount/v1/products/112/relationships/asset_files.json_api",
+                    "related": "/testaccount/v1/products/112/asset_files.json_api"
+                  }
+                },
+                "template_definition": {
+                  "links": {
+                    "self": "/testaccount/v1/products/112/relationships/template_definition.json_api",
+                    "related": "/testaccount/v1/products/112/template_definition.json_api"
+                  }
+                }
+              }
+            },
+            "included": [
+              {
+                "id": "251",
+                "type": "variants",
+                "links": {
+                  "self": "/testaccount/v1/variants/251.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2016-10-20T18:00:24Z",
+                  "created_at": "2016-10-20T18:00:24Z",
+                  "deleted_at": null,
+                  "title": "Title for variant for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1",
+                  "description": "Description for variant for product 0b9564c6-20b9-40e6-9ac0-f8e40dea2be1",
+                  "reference": "reference_for_variant_for_product_0b9564c6-20b9-40e6-9ac0-f8e40dea2be1",
+                  "ewis_eligible": false,
+                  "expected_availability_date": null,
+                  "ordered_total": 0,
+                  "position": null,
+                  "price": 5.5,
+                  "price_includes_taxes": true,
+                  "product_id": 112,
+                  "sku": "sku_for_variant_for_product_0b9564c6-20b9-40e6-9ac0-f8e40dea2be1",
+                  "stock_allocated_level": 0,
+                  "stock_level": 0,
+                  "tax_code": null,
+                  "current_price": 5.5,
+                  "stock_available_level": 0,
+                  "has_assets": false,
+                  "available_to_browse": false,
+                  "available_to_order": false,
+                  "picture_url": null
+                },
+                "relationships": {
+                  "product": {
+                    "links": {
+                      "self": "/testaccount/v1/variants/251/relationships/product.json_api",
+                      "related": "/testaccount/v1/variants/251/product.json_api"
+                    }
+                  },
+                  "asset_files": {
+                    "links": {
+                      "self": "/testaccount/v1/variants/251/relationships/asset_files.json_api",
+                      "related": "/testaccount/v1/variants/251/asset_files.json_api"
+                    }
+                  },
+                  "markdown_prices": {
+                    "links": {
+                      "self": "/testaccount/v1/variants/251/relationships/markdown_prices.json_api",
+                      "related": "/testaccount/v1/variants/251/markdown_prices.json_api"
+                    }
+                  }
+                }
+              }
+            ],
+            "meta": {
+              "facets": [
+
+              ]
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Thu, 20 Oct 2016 18:00:25 GMT"
+    }
+  ],
+  "recorded_with": "VCR 3.0.3"
+}
