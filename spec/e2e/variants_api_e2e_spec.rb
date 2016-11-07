@@ -95,8 +95,8 @@ RSpec.describe "Variants API end to end spec", vcr: true do
       end
       it "should persist" do
         expect(subject.errors).to be_empty
-        expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
-        expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
+        expect(http_request_tracker.last[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
+        expect(http_request_tracker.last[:response]).to be_valid_json_for_schema("shift/v1/documents/member/variant.json")
       end
     end
 
@@ -161,14 +161,14 @@ RSpec.describe "Variants API end to end spec", vcr: true do
     context "collection" do
     end
     context "member" do
-      let(:product) do
+      let!(:product) do
         keep_tidy do
           FlexCommerce::Product.create! title: "Title for product 1 for variant #{uuid}",
                                         reference: "reference for product 1 for variant #{uuid}",
                                         content_type: "markdown"
         end
       end
-      let(:created_resource) do
+      let!(:created_resource) do
         keep_tidy do
           FlexCommerce::Variant.create title: "Title for Test Variant #{uuid}",
                                        description: "Description for Test Variant #{uuid}",
@@ -217,18 +217,20 @@ RSpec.describe "Variants API end to end spec", vcr: true do
           expect(subject.relationships.product).to be_present
         end
         it "should be loadable using compound documents" do
+          http_request_tracker.clear
           subject = model.includes("product").find(created_resource.id).first
           expect(subject.product).to have_attributes product.attributes.slice(:id, :title, :reference, :content_type)
           expect(http_request_tracker.length).to eql 1
-          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
-          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/variant.json")
         end
         it "should be loadable using links" do
+          http_request_tracker.clear
           subject = model.includes("").find(created_resource.id).first
           expect(subject.product).to have_attributes product.attributes.slice(:id, :title, :reference, :content_type)
           expect(http_request_tracker.length).to eql 2
-          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
-          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/variant.json")
         end
       end
 
@@ -249,23 +251,25 @@ RSpec.describe "Variants API end to end spec", vcr: true do
           expect(subject.relationships.asset_files).to be_present
         end
         it "should be loadable using compound documents" do
+          http_request_tracker.clear
           subject = model.includes("asset_files").find(created_resource.id).first
           expect(subject.asset_files).to contain_exactly an_object_having_attributes asset_file.attributes.slice(:id, :title, :reference, :content_type)
           expect(http_request_tracker.length).to eql 1
-          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
-          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/variant.json")
         end
         it "should be loadable using links" do
+          http_request_tracker.clear
           subject = model.includes("").find(created_resource.id).first
           expect(subject.asset_files).to contain_exactly an_object_having_attributes asset_file.attributes.slice(:id, :title, :reference, :content_type)
           expect(http_request_tracker.length).to eql 2
-          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
-          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/variant.json")
         end
       end
 
       context "markdown prices relationship" do
-        let(:markdown_price) do
+        let!(:markdown_price) do
           keep_tidy do
             ::FlexCommerce::MarkdownPrice.create price: 99.0,
                                                  start_at: 1.day.since,
@@ -278,18 +282,20 @@ RSpec.describe "Variants API end to end spec", vcr: true do
           expect(subject.relationships.markdown_prices).to be_present
         end
         it "should be loadable using compound documents" do
+          http_request_tracker.clear
           subject = model.includes("markdown_prices").find(created_resource.id).first
           expect(subject.markdown_prices).to contain_exactly an_object_having_attributes markdown_price.attributes.slice(:id, :price, :start_at, :end_at)
           expect(http_request_tracker.length).to eql 1
-          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
-          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/variant.json")
         end
         it "should be loadable using links" do
+          http_request_tracker.clear
           subject = model.includes("").find(created_resource.id).first
           expect(subject.markdown_prices).to contain_exactly an_object_having_attributes markdown_price.attributes.slice(:id, :price, :start_at, :end_at)
           expect(http_request_tracker.length).to eql 2
-          expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
-          expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/variant")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
+          expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/variant.json")
         end
       end
     end
