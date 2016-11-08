@@ -19,9 +19,9 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
     File.expand_path("../support_e2e/fixtures/asset_file.png", File.dirname(__FILE__))
   end
 
-  let(:uuid) { SecureRandom.uuid }
 
   context "#create" do
+    let(:uuid) { SecureRandom.uuid }
     it "should persist when valid attributes are used" do
       subject = keep_tidy do
         FlexCommerce::AssetFolder.create! reference: "reference for asset folder #{uuid}",
@@ -46,11 +46,27 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/asset_folder.json")
       subject = FlexCommerce::AssetFolder.includes("asset_files").find(created_resource.id).first
       expect(subject.asset_files).to contain_exactly an_object_having_attributes name: "name for asset file for asset folder #{uuid}"
+    end
 
+    it "should persist when valid attributes with a nested sub folder is used" do
+      created_resource = keep_tidy do
+        FlexCommerce::AssetFolder.create! reference: "reference for asset folder #{uuid}",
+                                          name: "name for asset folder #{uuid}",
+                                          sub_folders_resources: [
+                                            model.new(reference: "reference for sub folder for asset folder #{uuid}",
+                                                      name: "name for sub folder for asset folder #{uuid}")
+                                          ]
+      end
+      expect(created_resource.errors).to be_empty
+      expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
+      expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/asset_folder.json")
+      subject = FlexCommerce::AssetFolder.includes("sub_folders").find(created_resource.id).first
+      expect(subject.sub_folders).to contain_exactly an_object_having_attributes name: "name for sub folder for asset folder #{uuid}"
     end
   end
 
   context "#read collection" do
+    let(:uuid) { SecureRandom.uuid }
     context "with caching", caching: true do
 
     end
@@ -64,6 +80,7 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
                       name: "name for asset folder #{uuid}").freeze
       end
     end
+
     it "should have no default relationships included" do
       subject = model.find(created_resource.id)
       http_request_tracker.clear
@@ -71,6 +88,14 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
       subject.sub_folders
       expect(http_request_tracker.length).to eql 2
     end
+
+    it "should have valid json" do
+      http_request_tracker.clear
+      model.find(created_resource.id)
+      expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
+      expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/asset_folder.json")
+    end
+
     context "asset_files relationship" do
       let(:asset_file) do
         FlexCommerce::AssetFile.new(name: "name for Asset file 1 for Test Asset Folder #{uuid} temp",
@@ -93,7 +118,7 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
       it "should be loadable using compound documents" do
         http_request_tracker.clear
         subject = model.includes("asset_files").find(created_resource.id).first
-        expect(subject.asset_files).to contain_exactly an_object_having_attributes asset_file.attributes.slice(:id, :title, :reference, :content_type)
+        expect(subject.asset_files).to contain_exactly an_object_having_attributes asset_file.attributes.slice(:name, :reference)
         expect(http_request_tracker.length).to eql 1
         expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
         expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/asset_folder.json")
@@ -102,14 +127,14 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
       it "should be loadable using links" do
         http_request_tracker.clear
         subject = model.includes("").find(created_resource.id).first
-        expect(subject.asset_files).to contain_exactly an_object_having_attributes asset_file.attributes.slice(:id, :title, :reference, :content_type)
+        expect(subject.asset_files).to contain_exactly an_object_having_attributes asset_file.attributes.slice(:name, :reference)
         expect(http_request_tracker.length).to eql 2
         expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
         expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/asset_folder.json")
       end
     end
 
-    context "sub_folders" do
+    context "sub_folders relationship" do
       let(:sub_folder) do
         FlexCommerce::AssetFolder.new(reference: "reference for asset folder #{uuid}_1",
                                       name: "name for asset folder #{uuid}_1")
@@ -154,10 +179,12 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
   end
 
   context "#update" do
+    let(:uuid) { SecureRandom.uuid }
 
   end
 
   context "#delete" do
+    let(:uuid) { SecureRandom.uuid }
 
   end
 

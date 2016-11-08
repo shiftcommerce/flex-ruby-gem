@@ -9,5 +9,6 @@ module FlexCommerce
   #
   class AssetFolder < FlexCommerceApi::ApiBase
     has_many :asset_files
+    has_many :sub_folders, class_name: "::FlexCommerce::AssetFolder"
   end
 end

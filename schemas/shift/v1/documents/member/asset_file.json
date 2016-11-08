@@ -30,7 +30,7 @@
     },
     "includedItems": {
       "oneOf": [
-
+        { "$ref": "../../resources/asset_folder.json" }
       ]
     }
   }
