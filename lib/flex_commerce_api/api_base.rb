@@ -125,6 +125,14 @@ module FlexCommerceApi
 
     reconfigure
 
+    def freeze
+      attributes.freeze
+      associations.freeze
+      links.freeze
+      relationships.freeze
+      self
+    end
+
     # Ensures all attributes are with indifferent access
     def initialize(attrs = {})
       super attrs.with_indifferent_access
@@ -180,7 +188,7 @@ module FlexCommerceApi
     end
 
     def relationship_attributes
-      @relationship_attributes ||= self.class.associations.map { |a| "#{a.attr_name}_resources" }
+      @relationship_attributes ||= self.class.associations.map { |a| a.is_a?(JsonApiClient::Associations::HasMany::Association) ? "#{a.attr_name}_resources" : "#{a.attr_name}_resource" }
     end
 
     def convert_relationship_attribute(data)

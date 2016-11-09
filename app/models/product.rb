@@ -59,6 +59,7 @@ module FlexCommerce
     has_many :bundles, class_name: "::FlexCommerce::Bundle"
     has_many :bundle_group, class_name: "::FlexCommerce::BundleGroup"
     has_many :slugs, class_name: "::FlexCommerce::Slug"
+    has_one :template_definition, class_name: "::FlexCommerce::TemplateDefinition"
 
     # Here we override breadcrumbs to provide a proxy to the array so we can use find on it in the normal
     # active record way

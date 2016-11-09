@@ -30,6 +30,8 @@
     },
     "includedItems": {
       "oneOf": [
+        { "$ref": "../../resources/variant.json" },
+        { "$ref": "../../resources/asset_file.json" }
 
       ]
     }

@@ -3,8 +3,10 @@
   "type": "object",
   "properties": {
     "data": {
-      "type": "object",
-      "$ref": "#/definitions/resource"
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/resource"
+      }
     },
     "meta": {
       "type": "object",
@@ -23,14 +25,18 @@
       }
     }
   },
+  "required": [
+    "data",
+    "meta"
+  ],
   "additionalProperties": false,
   "definitions": {
     "resource": {
-      "$ref": "../../resources/asset_file.json"
+      "$ref": "../../resources/asset_folder.json"
     },
     "includedItems": {
       "oneOf": [
-        { "$ref": "../../resources/asset_folder.json" }
+
       ]
     }
   }
