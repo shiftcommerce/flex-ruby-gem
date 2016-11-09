@@ -1,8 +1,11 @@
 RSpec.shared_context "housekeeping" do
+  # A general purpose open struct that the examples can store objects (flex commerce model instances) or arrays of objects in
+  # that will be cleaned up at the end of the top level context
   def to_clean
     context_store.to_clean
   end
 
+  # Wrap around the creation of an instance for it to be cleaned up after the context
   def keep_tidy
     yield.tap do |o|
       to_clean.dumping_ground ||= []
@@ -10,12 +13,7 @@ RSpec.shared_context "housekeeping" do
     end
   end
 
-  # As setting up for testing can be very expensive, we do it only at the start of then context
-  # it is then our responsibility to tidy up at the end of the context.
-  # In this case the expensive thing is the product, but the uuid is conveniently setup here to give us a unique id
-  # for the whole context.  Useful for when attributes in your test data must be unique.
   before(:context) do
-    uuid = SecureRandom.uuid
     context_store.to_clean = OpenStruct.new
   end
 
