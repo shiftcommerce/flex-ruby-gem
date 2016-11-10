@@ -7,38 +7,30 @@ RSpec.describe "Asset Files API end to end spec", vcr: true do
   # on having created an object in the first place.
   # This also means that this test suite must be run in the order defined, not random.
   include_context "context store"
+  include_context "housekeeping"
 
   # We define the model in advance, mainly allowing the code in the examples to be fairly generic and can be copied / pasted
   # into other tests without changing the model all over the place.
   let(:model) { FlexCommerce::AssetFile }
 
-  # A few convenience lets just to avoid writing context_store.uuid for example
-  let(:uuid) { context_store.uuid }
-  let(:created_resource) { context_store.created_resource }
-
-  # As setting up for testing can be very expensive, we do it only at the start of then context
-  # it is then our responsibility to tidy up at the end of the context.
-  before(:context) do
-    context_store.uuid = uuid = SecureRandom.uuid
-    context_store.foreign_resources = OpenStruct.new
-    context_store.foreign_resources.asset_folder = FlexCommerce::AssetFolder.create! name: "asset folder for Test Asset File #{uuid}",
-                                                                                     reference: "reference_for_asset_folder_1_for_asset_file_#{uuid}"
+  # Globals - Mainly for fixture objects that any test can use
+  let(:global_asset_folder) do
+    to_clean.global_asset_folder ||= FlexCommerce::AssetFolder.create! name: "asset folder for Test Asset File #{uuid}",
+                                                                       reference: "reference_for_asset_folder_1_for_asset_file_#{uuid}"
   end
-  # Clean up time - delete stuff in the reverse order to give us more chance of success
-  after(:context) do
-    context_store.created_resource.destroy unless context_store.created_resource.nil? || !context_store.created_resource.persisted?
-    context_store.foreign_resources.to_h.values.reverse.each do |resource|
-      resource.destroy if resource.persisted?
-    end
-  end
+  let(:asset_file_fixture_file) { File.expand_path("../support_e2e/fixtures/asset_file.png", File.dirname(__FILE__)) }
 
   context "#create" do
-    let(:asset_file_fixture_file) { File.expand_path("../support_e2e/fixtures/asset_file.png", File.dirname(__FILE__)) }
+    let(:uuid) { SecureRandom.uuid }
+    let!(:asset_folder) { global_asset_folder }
     it "should persist when valid attributes are used" do
-      context_store.created_resource = subject = model.create! name: "name for Test Asset File #{uuid}",
-                                                                                 reference: "reference_for_test_asset_file_#{uuid}",
-                                                                                 asset_file: "data:image/png;base64,#{Base64.encode64(File.read(asset_file_fixture_file))}",
-                                                                                 asset_folder_id: context_store.foreign_resources.asset_folder.id
+      http_request_tracker.clear
+      model.create! name: "name for Test Asset File #{uuid}",
+                                    reference: "reference_for_test_asset_file_#{uuid}",
+                                    asset_file: "data:image/png;base64,#{Base64.encode64(File.read(asset_file_fixture_file))}",
+                                    asset_folder_id: asset_folder.id
+      expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
+      expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/asset_file.json")
     end
   end
 

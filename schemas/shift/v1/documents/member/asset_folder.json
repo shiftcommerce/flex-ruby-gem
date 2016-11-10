@@ -26,11 +26,13 @@
   "additionalProperties": false,
   "definitions": {
     "resource": {
-      "$ref": "../../resources/asset_file.json"
+      "$ref": "../../resources/asset_folder.json"
     },
     "includedItems": {
       "oneOf": [
-        { "$ref": "../../resources/asset_folder.json" }
+        {"$ref": "../../resources/asset_folder.json"},
+        {"$ref": "../../resources/asset_file.json"}
+
       ]
     }
   }

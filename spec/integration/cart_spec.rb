@@ -22,22 +22,22 @@ RSpec.describe "Shopping Cart" do
       let(:singular_resource) { build(:cart_from_fixture) }
       let(:line_item_resources) do
         singular_resource.data.relationships.line_items.data.map do |ri|
-          singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
+          singular_resource.included.detect { |r| r.id == ri.id && r.type == ri.type }
         end
       end
       let(:discount_summary_resources) do
         singular_resource.data.relationships.discount_summaries.data.map do |ri|
-          singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
+          singular_resource.included.detect { |r| r.id == ri.id && r.type == ri.type }
         end
       end
       let(:free_shipping_promotion_resources) do
         singular_resource.data.relationships.free_shipping_promotion.data.map do |ri|
-          singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
+          singular_resource.included.detect { |r| r.id == ri.id && r.type == ri.type }
         end
       end
       context "creating a new cart" do
         before(:each) do
-          stub_request(:post, "#{api_root}/carts.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
+          stub_request(:post, "#{api_root}/carts.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
         end
         subject { subject_class.create }
         it_should_behave_like "a singular resource with an error response"
@@ -47,7 +47,7 @@ RSpec.describe "Shopping Cart" do
       end
       context "fetching a single cart" do
         before :each do
-          stub_request(:get, "#{api_root}/carts/1.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
+          stub_request(:get, "#{api_root}/carts/1.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
         end
         subject { subject_class.find(1) }
         it_should_behave_like "a singular resource with an error response"
@@ -63,7 +63,7 @@ RSpec.describe "Shopping Cart" do
           let(:other_cart) { build(:cart, id: 2) }
           let(:merged_result) { build(:cart_merged_from_fixture) }
           before(:each) do
-            stub_request(:patch, "#{api_root}/carts/merge.json_api").with(body: { data: { type: "carts", attributes: { to_cart_id: subject.id, from_cart_id: other_cart.id } } }, headers: { "Accept" => "application/vnd.api+json", "Content-Type" => "application/vnd.api+json" }).to_return(body: merged_result.to_json, status: response_status, headers: default_headers)
+            stub_request(:patch, "#{api_root}/carts/merge.json_api").with(body: {data: {type: "carts", attributes: {to_cart_id: subject.id, from_cart_id: other_cart.id}}}, headers: {"Accept" => "application/vnd.api+json", "Content-Type" => "application/vnd.api+json"}).to_return(body: merged_result.to_json, status: response_status, headers: default_headers)
           end
           it "should request that another cart is merged into this one" do
             subject.merge!(other_cart)
@@ -83,6 +83,56 @@ RSpec.describe "Shopping Cart" do
         context "the free_shipping_promotion association" do
           it "should fetch a list of discount summaries" do
             expect(subject.free_shipping_promotion).to be_a(free_shipping_promotion_class)
+          end
+        end
+        context "the available_shipping_methods association" do
+          let(:available_shipping_methods_relationship) { singular_resource.data.relationships.available_shipping_methods }
+          let(:remote_shipping_methods_data) do
+            {data: [
+                {
+                    type: "remote_shipping_methods",
+                    id: "remoteid1",
+                    attributes: {
+                        reference: "REFERENCE_1"
+                    }
+                },
+                {
+                    type: "remote_shipping_methods",
+                    id: "remoteid2",
+                    attributes: {
+                        reference: "REFERENCE_2"
+                    }
+                }
+            ]}
+          end
+          let(:shipping_methods_data) do
+            {data: [
+                {
+                    type: :shipping_methods,
+                    id: "1",
+                    attributes: {
+                        reference: "REFERENCE_1"
+                    }
+                },
+                {
+                    type: :shipping_methods,
+                    id: "2",
+                    attributes: {
+                        reference: "REFERENCE_2"
+                    }
+                }
+            ]}
+          end
+          it "should return the shipping methods untouched if they are not remote" do
+            stub_request(:get, "#{api_root}/carts/1/available_shipping_methods.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: shipping_methods_data.to_json, status: 200, headers: default_headers
+            expect(subject.available_shipping_methods.to_a).to contain_exactly an_object_having_attributes(type: "shipping_methods", reference: "REFERENCE_1"), an_object_having_attributes(type: "shipping_methods", reference: "REFERENCE_2")
+          end
+          it "should convert the shipping methods from remote to local" do
+            stub_request(:get, "#{api_root}/carts/1/available_shipping_methods.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: remote_shipping_methods_data.to_json, status: 200, headers: default_headers
+            stub_request(:get, "#{api_root}/shipping_methods.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: shipping_methods_data.to_json, status: 200, headers: default_headers
+            a = subject.available_shipping_methods.to_a
+            expect(a).to contain_exactly an_object_having_attributes(type: "shipping_methods", reference: "REFERENCE_1"), an_object_having_attributes(type: "shipping_methods", reference: "REFERENCE_2")
+
           end
         end
         context "using the line items association" do
@@ -128,8 +178,8 @@ RSpec.describe "Shopping Cart" do
           it "should allow you to retrieve the product from a line item's item" do
 
             stub_request(:get, /#{api_root}\/products\/\d+\.json_api/)
-              .with(headers: { "Accept" => "application/vnd.api+json" })
-              .to_return body: build(:product_from_fixture).to_json, status: 200, headers: default_headers
+                .with(headers: {"Accept" => "application/vnd.api+json"})
+                .to_return body: build(:product_from_fixture).to_json, status: 200, headers: default_headers
 
             subject.line_items.each do |line_item|
               line_item.item.tap do |item|
@@ -142,12 +192,12 @@ RSpec.describe "Shopping Cart" do
 
           context "creating a line item with a prepared variant" do
             before(:each) do
-              stub_request(:post, "#{api_root}/line_items.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return do |request|
+              stub_request(:post, "#{api_root}/line_items.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return do |request|
                 expect(request.body).to be_valid_json_for_schema("line_item")
                 {body: line_item_resource.to_json, status: response_status, headers: default_headers}
               end
             end
-            let(:variant) { variant_class.new id: "1", price: 15.50, title: "A variant"}
+            let(:variant) { variant_class.new id: "1", price: 15.50, title: "A variant" }
             let(:line_item_resource) { build(:line_item_from_fixture) }
             it "should create a line item when requested using the line_items collection on the cart - using save" do
               # @TODO We should not have to specify the cart id
@@ -167,25 +217,25 @@ RSpec.describe "Shopping Cart" do
           end
         end
         context "using the validate_stock! method" do
-          let!(:stub) { stub_request(:get, "#{api_root}/stock_levels.json_api").with(headers: {"Accept" => "application/vnd.api+json"}, query: {filter: { skus: "742207266-0-1,742207266-0-2"}}).to_return body: stock_level_list.to_json, status: response_status, headers: default_headers }
+          let!(:stub) { stub_request(:get, "#{api_root}/stock_levels.json_api").with(headers: {"Accept" => "application/vnd.api+json"}, query: {filter: {skus: "742207266-0-1,742207266-0-2"}}).to_return body: stock_level_list.to_json, status: response_status, headers: default_headers }
           context "with no stock" do
             let(:stock_level_list) { {
-              data: [
-                {
-                  id: "742207266-0-1",
-                  type: "stock_levels",
-                  attributes: {
-                    stock_available: 0
-                  }
-                },
-                {
-                  id: "742207266-0-2",
-                  type: "stock_levels",
-                  attributes: {
-                    stock_available: 10
-                  }
-                }
-              ]
+                data: [
+                    {
+                        id: "742207266-0-1",
+                        type: "stock_levels",
+                        attributes: {
+                            stock_available: 0
+                        }
+                    },
+                    {
+                        id: "742207266-0-2",
+                        type: "stock_levels",
+                        attributes: {
+                            stock_available: 10
+                        }
+                    }
+                ]
             } }
             it "should mark any line items that are out of stock" do
               subject.validate_stock!
@@ -195,22 +245,22 @@ RSpec.describe "Shopping Cart" do
           end
           context "with not enough stock" do
             let(:stock_level_list) { {
-              data: [
-                {
-                  id: "742207266-0-1",
-                  type: "stock_levels",
-                  attributes: {
-                    stock_available: 1
-                  }
-                },
-                {
-                  id: "742207266-0-2",
-                  type: "stock_levels",
-                  attributes: {
-                    stock_available: 10
-                  }
-                }
-              ]
+                data: [
+                    {
+                        id: "742207266-0-1",
+                        type: "stock_levels",
+                        attributes: {
+                            stock_available: 1
+                        }
+                    },
+                    {
+                        id: "742207266-0-2",
+                        type: "stock_levels",
+                        attributes: {
+                            stock_available: 10
+                        }
+                    }
+                ]
             } }
             it "should mark any line items that are out of stock" do
               subject.validate_stock!
@@ -228,7 +278,7 @@ RSpec.describe "Shopping Cart" do
       let(:shipping_address_resource) { singular_resource.included.detect { |r| r.to_h.slice(:id, :type) == singular_resource.data.relationships.shipping_address.data.to_h } }
       let(:shipping_method_resource) { singular_resource.included.detect { |r| r.to_h.slice(:id, :type) == singular_resource.data.relationships.shipping_method.data.to_h } }
       before :each do
-        stub_request(:get, "#{api_root}/carts/1.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
+        stub_request(:get, "#{api_root}/carts/1.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
       end
       subject { subject_class.find(1) }
       it_should_behave_like "a singular resource with an error response"

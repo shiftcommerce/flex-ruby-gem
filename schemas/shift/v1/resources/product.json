@@ -95,7 +95,7 @@
           "description": "Description for web_product_name"
         },
         "picture_url": {
-          "type": "null",
+          "type": ["null", "string"],
           "description": "Description for picture_url"
         },
         "average_rating": {
@@ -394,20 +394,7 @@
                   "additionalProperties": false
                 },
                 {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "description": "The id and type form a pointer into the 'included' top level document property",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string"
-                      }
-                    },
-                    "additionalProperties": false
-                  }
+                  "type": "null"
                 }
               ]
             },
