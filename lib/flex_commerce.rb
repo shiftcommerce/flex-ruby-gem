@@ -42,6 +42,7 @@ module FlexCommerce
   autoload :TemplateComponent, File.join(gem_root, "app", "models", "template_component")
   autoload :Template, File.join(gem_root, "app", "models", "template")
   autoload :Section, File.join(gem_root, "app", "models", "section")
+  autoload :Component, File.join(gem_root, "app", "models", "component")
   autoload :SearchSuggestion, File.join(gem_root, "app", "models", "search_suggestion")
   autoload :AssetFile, File.join(gem_root, "app", "models", "asset_file")
   autoload :AssetFolder, File.join(gem_root, "app", "models", "asset_folder")
