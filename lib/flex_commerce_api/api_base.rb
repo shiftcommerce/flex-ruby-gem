@@ -156,15 +156,6 @@ module FlexCommerceApi
       end
     end
 
-    # template_attribute(key) method removed as it doesn't work with new template format
-    def components_for_template_section(section_ref)
-      begin
-        attributes[:template_attributes][section_ref]
-      rescue NoMethodError => e
-        nil
-      end
-    end
-
     def method_missing(method, *args)
       if relationships and relationships.has_attribute?(method)
         super
