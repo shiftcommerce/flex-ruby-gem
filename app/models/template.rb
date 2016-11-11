@@ -5,5 +5,15 @@ module FlexCommerce
   #
   class Template < FlexCommerceApi::ApiBase
     has_many :sections, class_name: "::FlexCommerce::Section"
+
+    def method_missing(method, *args)
+      if relationships and relationships.has_attribute?(method)
+        super
+      elsif has_attribute?(method) || method.to_s=~(/=$/) || method.to_s=~/!$/
+        super
+      else
+        nil
+      end
+    end
   end
 end
