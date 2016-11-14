@@ -11,6 +11,8 @@ module FlexCommerce
         super
       elsif has_attribute?(method) || method.to_s=~(/=$/) || method.to_s=~/!$/
         super
+      elsif sections.map { |s| s.reference.to_sym }.include?(method)
+        sections.select { |s| s.reference.to_sym == method }.first
       else
         nil
       end
