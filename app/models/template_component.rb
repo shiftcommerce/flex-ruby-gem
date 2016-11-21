@@ -7,6 +7,5 @@ module FlexCommerce
   #
   #
   class TemplateComponent < FlexCommerceApi::ApiBase
-
   end
 end
