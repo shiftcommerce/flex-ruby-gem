@@ -8,9 +8,11 @@ module FlexCommerceApi
         if error.is_a?(::Enumerable)
           title = error.fetch("title", "")
           detail = error.fetch("detail", "")
-          exception = error.fetch("meta", {"exception" => ""}).fetch("exception")
-          backtrace = error.fetch("meta", {"backtrace" => []}).fetch("backtrace")
-          "Internal server error - #{title} #{detail} #{exception} #{backtrace}"
+          meta = error.fetch("meta", {})
+          exception = meta.fetch("exception", "")
+          backtrace = meta.fetch("backtrace", [])
+          event_id = meta.fetch("event_id", "")
+          "Internal server error - #{title} #{detail} #{event_id} #{exception} #{backtrace}"
         else
           "Internal server error - #{error}"
         end
