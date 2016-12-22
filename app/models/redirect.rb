@@ -7,8 +7,9 @@ module FlexCommerce
   #
   class Redirect < FlexCommerceApi::ApiBase
 
-    def self.find_by_resource(source_type: nil, source_slug: nil, source_path: )
-      where({type_slug_path: { source_type: source_type, source_slug: source_slug, source_path: source_path }}).first
+    def self.find_by_path(source_path: )
+      where({source_path: { source_path: source_path }}).first
     end
+
   end
 end

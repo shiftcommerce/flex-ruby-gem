@@ -6,12 +6,9 @@
       "attributes": {
         "name": "Some Redirect",
         "status_code": 301,
-        "source_type": "products",
-        "source_slug": "old-slug",
-        "source_path": null,
-        "destination_type": "products",
-        "destination_slug": "new-slug",
-        "destination_path": null
+        "source_type": "exact",
+        "source_path": "/products/product1",
+        "destination_path": "/products/product2"
       },
       "links": {
         "self": "/facili/v1/redirects/1.json_api"
@@ -27,19 +24,19 @@
 
   "links": {
     "self": {
-      "href": "/facili/v1/redirects/matches.json_api?page=1&source[type]=products&source[slug]=old-slug&source[path]=/xyz",
+      "href": "/facili/v1/redirects/matches.json_api?page=1&source[type]=exact&source[path]=/xyz",
       "meta": {
         "page_number": 1
       }
     },
     "first": {
-      "href": "/facili/v1/redirects/matches.json_api?page=1&source[type]=products&source[slug]=old-slug&source[path]=/xyz",
+      "href": "/facili/v1/redirects/matches.json_api?page=1&source[type]=exact&source[path]=/xyz",
       "meta": {
         "page_number": 1
       }
     },
     "last": {
-      "href": "/facili/v1/redirects/matches.json_api?page=1&source[type]=products&source[slug]=old-slug&source[path]=/xyz",
+      "href": "/facili/v1/redirects/matches.json_api?page=1&source[type]=exact&source[path]=/xyz",
       "meta": {
         "page_number": 1
       }
