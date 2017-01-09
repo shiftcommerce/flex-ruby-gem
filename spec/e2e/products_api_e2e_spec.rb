@@ -92,7 +92,7 @@ RSpec.describe "Products API end to end spec", vcr: true do
                                                                                                          data_type: "Product")
       end
       aggregate_failures "validating created resource and fetching back" do
-        subject = FlexCommerce::Product.find(created_resource.id)
+        subject = FlexCommerce::Product.includes("template_definition").find(created_resource.id).first
         expect(created_resource.errors).to be_empty
         expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
         expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/product.json")
