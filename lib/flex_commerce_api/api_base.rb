@@ -156,6 +156,15 @@ module FlexCommerceApi
       end
     end
 
+    def template_attribute(key)
+      begin
+        return self.send("template_#{key}") if RELATED_META_RESOURCES.include?(attributes[:template_attributes][key][:data_type])
+        attributes[:template_attributes][key][:value]
+      rescue NoMethodError => e
+        nil
+      end
+    end
+
     def method_missing(method, *args)
       if relationships and relationships.has_attribute?(method)
         super
