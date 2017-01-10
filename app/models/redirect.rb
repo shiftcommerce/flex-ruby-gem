@@ -10,6 +10,5 @@ module FlexCommerce
     def self.find_by_path(source_path: )
       where({source_path: { source_path: source_path }}).first
     end
-
   end
 end
