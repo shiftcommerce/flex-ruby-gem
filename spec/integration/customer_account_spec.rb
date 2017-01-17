@@ -250,32 +250,59 @@ RSpec.describe FlexCommerce::CustomerAccount do
       let(:expected_body) {
         {
             data: {
-                type: "customer_accounts",
+                type: "customer_account_authentications",
                 attributes: {
                     email: resource_identifier.attributes.email,
-                    password: "correctpassword"
+                    password: resource_identifier.attributes.password
                 }
             }
         }.with_indifferent_access
       }
+      let(:mock_response_hash) do
+        {
+          data: {
+            type: :customer_account_authentications,
+            id: "somelonguid",
+            relationships: {
+              customer_account: {
+                data: {
+                  id: "customer-account-1",
+                  type: :customer_accounts
+                }
+              }
+            }
+          },
+          included: [
+            {
+              id: "customer-account-1",
+              type: :customer_accounts,
+              attributes: {
+                email: resource_identifier.attributes.email
+              }
+            }
+          ]
+        }
+      end
       context "positive authentication" do
+        let(:resource_identifier) { build(:json_api_resource, build_resource: :customer_account_authentication, base_path: base_path) }
+        let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier) }
         before :each do
-          stub_request(:post, "#{api_root}/customer_accounts/authentications.json_api").with(body: expected_body, headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
+          stub_request(:post, "#{api_root}/customer_account_authentications.json_api").with(body: expected_body, headers: { "Accept" => "application/vnd.api+json" }).to_return body: mock_response_hash.to_json, status: response_status, headers: default_headers
         end
-        subject { subject_class.authenticate(email: resource_identifier.attributes.email, password: "correctpassword") }
+        subject { subject_class.authenticate(email: resource_identifier.attributes.email, password: resource_identifier.attributes.password) }
         it "should return the logged in account" do
           expect(subject.email).to eql resource_identifier.attributes.email
           expect(subject.password).to be_nil
-          expect(subject.id).to eql resource_identifier.id
+          expect(subject.id).to eql "customer-account-1"
         end
       end
       context "negative authentication" do
         let(:response_status) { 404 }
         let(:error_404) { build(:json_api_document, errors: [build(:json_api_error, status: "404", detail: "Not found", title: "Not found")]) }
         before :each do
-          stub_request(:post, "#{api_root}/customer_accounts/authentications.json_api").with(body: expected_body, headers: { "Accept" => "application/vnd.api+json" }).to_return body: error_404.to_h.to_json, status: response_status, headers: default_headers
+          stub_request(:post, "#{api_root}/customer_account_authentications.json_api").with(body: expected_body, headers: { "Accept" => "application/vnd.api+json" }).to_return body: error_404.to_h.to_json, status: response_status, headers: default_headers
         end
-        subject { subject_class.authenticate(email: resource_identifier.attributes.email, password: "correctpassword") }
+        subject { subject_class.authenticate(email: resource_identifier.attributes.email, password: resource_identifier.attributes.password) }
         it "should return nil" do
           expect(subject).to be_nil
         end

@@ -26,6 +26,7 @@ module FlexCommerce
   autoload :RemoteLineItem, File.join(gem_root, "app", "models", "remote_line_item")
   autoload :LineItemDiscount, File.join(gem_root, "app", "models", "line_item_discount")
   autoload :CustomerAccount, File.join(gem_root, "app", "models", "customer_account")
+  autoload :CustomerAccountAuthentication, File.join(gem_root, "app", "models", "customer_account_authentication")
   autoload :Address, File.join(gem_root, "app", "models", "address")
   autoload :RemoteAddress, File.join(gem_root, "app", "models", "remote_address")
   autoload :ShippingMethod, File.join(gem_root, "app", "models", "shipping_method")
