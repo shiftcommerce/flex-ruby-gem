@@ -45,6 +45,7 @@ module FlexCommerce
 
     has_many :slugs, class_name: "::FlexCommerce::Slug"
     has_one :template_definition, class_name: "::FlexCommerce::TemplateDefinition"
+    has_one :template, class_name: "::FlexCommerce::Template"
 
     # @TODO Document other popular methods that we will support
     self.query_builder = ::FlexCommerceApi::JsonApiClientExtension::Builder
