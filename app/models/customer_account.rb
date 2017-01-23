@@ -48,8 +48,8 @@ module FlexCommerce
     property :password, type: :string
 
 
-    def self.authenticate(attributes)
-      requestor.custom("authentications", {request_method: :post}, {data: {type: :customer_accounts, attributes: attributes}}).first
+    def self.authenticate(attributes = {})
+      FlexCommerce::CustomerAccountAuthentication.create(attributes).customer_account
     rescue ::FlexCommerceApi::Error::NotFound
       nil
     end
