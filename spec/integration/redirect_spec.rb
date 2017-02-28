@@ -11,7 +11,7 @@ RSpec.describe FlexCommerce::Redirect do
   describe ".find_by_resource" do
     it "should expect a path parameter" do
       expect {
-        subject_class.find_by_resource(source_slug: "bla", source_type: "bla")
+        subject_class.find_by_path()
       }.to raise_error(ArgumentError)
     end
 
@@ -21,7 +21,7 @@ RSpec.describe FlexCommerce::Redirect do
         status: 200,
         headers: default_headers
       })
-      redirect = subject_class.find_by_resource(source_slug: "old-slug", source_type: "products", source_path: "/xyz")
+      redirect = subject_class.find_by_path(source_path: "/xyz")
       expect(redirect).to be_kind_of(subject_class)
     end
   end
