@@ -53,6 +53,7 @@ module FlexCommerce
   autoload :AssetFolder, File.join(gem_root, "app", "models", "asset_folder")
   autoload :Country, File.join(gem_root, "app", "models", "country")
   autoload :Promotion, File.join(gem_root, "app", "models", "promotion")
+  autoload :PromotionQualifyingProductExclusion, File.join(gem_root, "app", "models", "promotion_qualifying_product_exclusion")
   autoload :StockLevel, File.join(gem_root, "app", "models", "stock_level")
   autoload :BundleGroup, File.join(gem_root, "app", "models", "bundle_group")
   autoload :Refund, File.join(gem_root, "app", "models", "refund")
