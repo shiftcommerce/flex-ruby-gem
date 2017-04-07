@@ -1,3 +1,4 @@
+require "json_api_client"
 if ["1.1.1"].include?(JsonApiClient::VERSION)
   require "json_api_client/resource"
   module JsonApiClient
