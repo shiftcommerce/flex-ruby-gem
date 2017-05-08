@@ -101,7 +101,7 @@ module FlexCommerceApi
       def reconfigure options = {}
         self.site = FlexCommerceApi.config.api_base_url
         base_options = {
-          adapter: :net_http,
+          adapter: FlexCommerceApi.config.adapter || :net_http,
           http_cache: FlexCommerceApi.config.http_cache,
           timeout: FlexCommerceApi.config.timeout,
           open_timeout: FlexCommerceApi.config.open_timeout
