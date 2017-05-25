@@ -1,4 +1,5 @@
-if ["0.6.27", "0.6.28", "0.6.29"].include?(FlexCommerceApi::VERSION)
+require "json_api_client/version"
+if ["1.1.1"].include?(JsonApiClient::VERSION)
   require "json_api_client/resource"
   module JsonApiClient
     class Resource
