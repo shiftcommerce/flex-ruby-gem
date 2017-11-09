@@ -25,8 +25,8 @@ module FlexCommerceApi
           end
           builder.use JsonApiClientExtension::StatusMiddleware
           builder.use JsonApiClient::Middleware::ParseJson
-          builder.adapter *adapter_options
           builder.use JsonApiClientExtension::LoggingMiddleware unless FlexCommerceApi.logger.nil?
+          builder.adapter *adapter_options
           builder.options[:open_timeout] = options.fetch(:open_timeout)
           builder.options[:timeout] = options.fetch(:timeout)
         end
