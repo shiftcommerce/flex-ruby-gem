@@ -242,6 +242,11 @@ RSpec.describe "Shopping Cart" do
               expect(subject.line_items[0].errors[:unit_quantity]).to include "Out of stock"
             end
 
+            it "should return an object with the line_item id and current unit_quantity" do
+              stock_errors_object = subject.validate_stock!
+              expect(stock_errors_object["742207266-0-1"]).to eq({ line_item_quantity: 3, stock_level: 0, message: "Out of stock" })
+            end
+
           end
           context "with not enough stock" do
             let(:stock_level_list) { {
@@ -267,6 +272,10 @@ RSpec.describe "Shopping Cart" do
               expect(subject.line_items[0].errors[:unit_quantity]).to include "Only 1 in stock"
             end
 
+            it "should return an object with the line_item id and current unit_quantity" do
+              stock_errors_object = subject.validate_stock!
+              expect(stock_errors_object["742207266-0-1"]).to eq({ line_item_quantity: 3, stock_level: 1, message: "Only 1 in stock" })
+            end
           end
 
         end
