@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:first_name, :last_name, :middle_names, :address_line_1, :address_line_2, :address_line_3, :city, :state, :postcode, :country, :preferred_billing, :preferred_shipping)
   factory :address, class: klass do
     sequence(:first_name)   { |n| "#{Faker::Name.first_name}#{n}suffix" }

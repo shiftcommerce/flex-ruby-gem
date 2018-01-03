@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:title, :reference, :slug, :latitude, :longitude, :address)
   factory :retail_store, class: klass do
     title { Faker::Lorem.words(3).join(" ") }

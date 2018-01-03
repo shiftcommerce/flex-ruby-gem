@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :customer_account, class: JsonStruct do
     email { Faker::Internet.email }
     sequence(:reference) { |num| "#{Faker::Name.first_name}#{num}" }
