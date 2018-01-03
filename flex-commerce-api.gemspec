@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "thor", "~> 0.19"
   spec.add_development_dependency "json_matchers", ["~> 0.5", ">= 0.5.1"]
 
-  spec.add_dependency "oj", "~> 2.18"
+  spec.add_dependency "oj", "~> 3.0.0"
   spec.add_runtime_dependency "json_api_client", "1.1.1"
   spec.add_runtime_dependency "activesupport", ">= 4.0"
   spec.add_runtime_dependency "rack", ">= 1.6"
