@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:title, :description, :sku, :price, :reference, :stock_level)
   factory :variant, class: klass do
     title { Faker::Commerce.product_name }

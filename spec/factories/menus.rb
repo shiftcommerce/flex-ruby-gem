@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:data, :included)
   factory :menu, class: klass do
         data {{

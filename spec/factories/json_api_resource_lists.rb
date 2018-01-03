@@ -12,7 +12,7 @@
 # @param [String] base_path (defaults to "/test_account/v1") Used as the base path for urls generated in the result's "links" section
 # @param [String|Symbol] type (defaults to "") The type (factory) of resources this will contain
 # @param [String|Symbol] primary_key (defaults to "id") The primary key used to generate the URL for an individual resource
-FactoryGirl.define do
+FactoryBot.define do
   factory :json_api_resource_list, parent: :json_api_top_singular_resource do
     meta { { type: pluralized_type, page_count: page_count, total_entries: quantity } }
     links { {} }

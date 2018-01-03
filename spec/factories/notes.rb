@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :note_from_fixture, class: JsonStruct do
     obj = JsonStruct.new(JSON.parse(File.read("spec/fixtures/notes/singular.json")))
     obj.each_pair do |key, value|

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:price, :start_at, :end_at)
 
   factory :markdown_price, class: klass do

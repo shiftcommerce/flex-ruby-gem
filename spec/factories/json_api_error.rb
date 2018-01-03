@@ -7,7 +7,7 @@
 # @param [String] title A short, human-readable summary of the problem
 # @param [String] detail A human-readable explanation specific to this occurrence of the problem
 # @param [Hash] meta A meta object containing non-standard meta-information about the error.
-FactoryGirl.define do
+FactoryBot.define do
   factory :json_api_error, class: JsonStruct do
     status "500"
     title "Something went wrong"

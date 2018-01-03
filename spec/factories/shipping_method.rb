@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :shipping_method, class: JsonStruct do
     sequence(:label) { |idx| "Shipping Method #{idx}" }
     sequence(:price) { |idx| idx * 1.50 }

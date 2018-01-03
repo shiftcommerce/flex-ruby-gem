@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:name, :asset_folder_id, :file_content_filename, :file_content_size, :file_content_content_type, :image_width, :image_height, :reference)
   factory :asset_file, class: klass do
     sequence(:name)             { |n| "asset file name-#{n}" }

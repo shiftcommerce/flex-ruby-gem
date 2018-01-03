@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:reference, :title)
   factory :breadcrumb, class: klass do
     reference { Faker::Lorem.words(3).join("-") }
