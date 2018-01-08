@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:title, :reference, :category_tree_id)
   factory :category, class: klass do
     title       { Faker::Lorem.sentence }

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:token_present, :token_expired)
   factory :password_recovery, class: klass do
     token_present { [true, false].sample}

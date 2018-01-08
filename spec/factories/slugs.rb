@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:slug, :resource_id, :resource_type, :active, :slug_prefix, :computed_slug)
   
   factory :slug, class: klass do

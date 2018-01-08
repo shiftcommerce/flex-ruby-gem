@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:label, :reference, :preview_icon)
   
   factory :template_component, class: klass do

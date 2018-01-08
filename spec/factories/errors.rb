@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :error_exception, class: JsonStruct do
     errors do
       build_list :json_api_error, 1,
