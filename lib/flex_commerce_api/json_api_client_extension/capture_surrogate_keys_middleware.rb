@@ -5,9 +5,7 @@ module FlexCommerceApi
       def call(environment)
         @app.call(environment).on_complete do |env|
           surrogate_keys = env.response_headers['external-surrogate-key'].split(' ') if env.response_headers['external-surrogate-key']
-          puts "surrogate keys in flex commerce"
-          puts surrogate_keys.inspect
-          
+
           if surrogate_keys && Thread.current[:shift_surrogate_keys]
             Thread.current[:shift_surrogate_keys].concat(surrogate_keys)
           end
