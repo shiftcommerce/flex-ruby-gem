@@ -14,9 +14,9 @@ module FlexCommerceApi
       def call(env)
         self.request_id += 1
         @app.call(env).on_complete do |response_env|
+          logger.debug("*******************")
           logger.debug("FlexApi::Request  id #{request_id} #{env.method.to_s.upcase} #{env.url} started at #{Time.now}")
-          logger.debug("\t >>> #{env[:request_body]}") unless  env[:request_body].nil? || env[:request_body].empty?
-          logger.debug("\t <<< (#{env[:status]}) #{env.body}")
+          logger.debug("\t <<< (#{env.response_headers['external-surrogate-key'].split(' ')})")
         end
       end
     end
