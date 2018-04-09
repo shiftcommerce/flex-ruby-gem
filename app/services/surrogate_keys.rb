@@ -5,17 +5,19 @@
 module FlexCommerce
   class SurrogateKeys
 
-    def self.get_keys(key:)
+    def self.keys(filter:)
+      # Return Empty string, if surrogate keys are not available on thread
+      return "" if surrogate_keys.nil?
       # Return all the surrogate keys, if not requested for a particular key
-      return surrogate_keys.join(' ') unless key.nil?
+      return surrogate_keys.join(' ') unless filter.nil?
       # Select only the surrogate keys, which includes the requested key
-      surrogate_keys.nil?  ? "" : surrogate_keys.select { |k| k.include?(key) }.join(' ')
+      surrogate_keys.nil?  ? "" : surrogate_keys.select { |k| k.include?(filter) }.join(' ')
     end
 
-    def self.set_keys(keys)
+    def self.append_keys(*keys)
       # Check if surrogate key is available, then update its value
       if surrogate_keys
-        Thread.current[:shift_surrogate_keys] += keys
+        Thread.current[:shift_surrogate_keys] += keys.flatten
       end
     end
 
