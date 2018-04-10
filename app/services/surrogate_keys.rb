@@ -16,9 +16,8 @@ module FlexCommerce
 
     def self.append_keys(*keys)
       # Check if surrogate key is available, then update its value
-      if surrogate_keys
-        Thread.current[:shift_surrogate_keys] += keys.flatten
-      end
+      return [] if surrogate_keys.nil?
+      Thread.current[:shift_surrogate_keys] += keys.flatten
     end
 
     def self.surrogate_keys
