@@ -52,7 +52,7 @@
         "picture_url", "category_ids_cache", "attribute_merchandising", "merged_attribute_merchandising", "meta_attributes", 
         "created_at", "updated_at", "deleted_at"
       ],
-      "additionalProperties": true
+      "additionalProperties": false
     },
     "relationships": {
       "type": "object",
