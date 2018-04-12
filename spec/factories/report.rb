@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:title, :query)
   factory :report, class: klass do
     title { Faker::Lorem.words(3).join(" ") }

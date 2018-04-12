@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:name, :starts_at, :active, :priority, :coupon_type, :coupon_code, :promotion_type)
   factory :promotion, class: klass do
     name                "Promotion name"

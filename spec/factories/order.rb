@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :order, class: JsonStruct do
     test false
   end

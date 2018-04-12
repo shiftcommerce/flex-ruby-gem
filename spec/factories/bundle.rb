@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:name, :reference, :slug, :description)
   factory :bundle, class: klass do
     name { Faker::Lorem.words(3).join(" ") }

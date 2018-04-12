@@ -21,7 +21,7 @@
 # @param [Numeric] id (defaults to the next value) If specified, overrides the default value of the next sequence
 # @param [String] type (defaults to "Unknown") If specified and not using {#build_resource}, specifies the type to be returned
 # @param [Hash] links (defaults to {}) If specified and not using {#build_resource}, specifies the links to be returned
-FactoryGirl.define do
+FactoryBot.define do
   klass = Struct.new(:id, :type, :attributes, :links, :relationships)
   factory :json_api_resource, class: klass do
     transient do
