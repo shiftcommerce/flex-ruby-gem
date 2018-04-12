@@ -5,10 +5,10 @@
 module FlexCommerce
   class SurrogateKeys
 
-    def self.keys(filter: [])
+    def self.keys(filter: nil)
       surrogate_keys = Thread.current[:shift_surrogate_keys]
       # Return all the surrogate keys, if not requested for a particular key
-      return surrogate_keys unless filter.nil?
+      return surrogate_keys if filter.nil?
       # Select only the surrogate keys, which includes the requested key
       surrogate_keys.nil?  ? [] : surrogate_keys.select { |k| k.include?(filter) }
     end
