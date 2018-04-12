@@ -54,19 +54,12 @@ module FlexCommerce
     # @TODO Document other popular methods that we will support
 
     has_many :variants, class_name: "::FlexCommerce::Variant"
-    has_many :breadcrumbs, class_name: "::FlexCommerce::Breadcrumb"
     has_many :asset_files, class_name: "::FlexCommerce::AssetFile"
     has_many :bundles, class_name: "::FlexCommerce::Bundle"
     has_many :bundle_group, class_name: "::FlexCommerce::BundleGroup"
     has_many :slugs, class_name: "::FlexCommerce::Slug"
     has_one :template_definition, class_name: "::FlexCommerce::TemplateDefinition"
     has_one :template, class_name: "::FlexCommerce::Template"
-
-    # Here we override breadcrumbs to provide a proxy to the array so we can use find on it in the normal
-    # active record way
-    def breadcrumbs
-      has_many_association_proxy :breadcrumbs, super
-    end
 
     # TODO Decide where sku really comes from - its in the variant but not at product level like in matalan direct appears to be
     def sku
