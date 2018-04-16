@@ -103,10 +103,45 @@ RSpec.describe FlexCommerce::TaxCode do
     end
   end
 
+  xcontext "updating a tax code" do
+    context "with Authorisation" do
+      it "should create a TaxCode" do
+        # Arrange
+        new_code_attributes = { code: "test update" }
+        resource = ::FlexCommerce::TaxCode.new(attributes_for(:tax_code, id: 1))
+
+        stub_request(:patch, "#{api_root}/tax_codes.json_api").
+          with(headers: { "Accept" => "application/vnd.api+json" }).
+          to_return body: resource.merge(new_code_attributes).to_json, status: 200, headers: default_headers
+
+        # Act
+        resource.update_attributes({ code: "test update" })
+
+        # Assert
+        expect(subject).to be_a(described_class)
+      end
+    end
+
+    context "without Authorisation" do
+      it "should raise an AccessDenied exception" do
+        # Arrange
+        new_code_attributes = { code: "test update" }
+        resource = ::FlexCommerce::TaxCode.new(attributes_for(:tax_code, id: 1))
+
+        stub_request(:patch, "#{api_root}/tax_codes.json_api").
+          with(headers: { "AccessDeniedept" => "application/vnd.api+json" }).
+          to_return(body: '', status: 403, headers: nil)
+
+        # Act & Assert
+        expect { resource.update_attributes({ code: "test update" }) }.to raise_exception(::FlexCommerceApi::Error::AccessDenied)
+      end
+    end
+  end
+
   context "deleting a tax code" do
     it "should destroy a tax code" do
       # Arrange
-      resource = ::FlexCommerce::TaxCode.new(attributes_for(:tax_code, id: 1))
+      resource = build(:tax_code, id: 1)
 
       stub_request(:delete, "#{api_root}/tax_codes/1.json_api").
         with(headers: { "Accept" => "application/vnd.api+json" }).
