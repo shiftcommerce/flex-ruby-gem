@@ -10,13 +10,12 @@ RSpec.describe FlexCommerce::TaxCode do
 
   context "fetching all tax codes" do
     context "with Authorisation" do
-      before(:each) do
-        stub_request(:get, "#{api_root}/tax_codes.json_api").
-          with(headers: {"Accept" => "application/vnd.api+json"}).
-          to_return(body: build(:tax_codes_from_fixture).to_json, status: response_status, headers: default_headers)
-      end
-
       it "should return the tax_code collection" do
+        # Arrange
+        stub_request(:get, "#{api_root}/tax_codes.json_api").
+          with(headers: { "Accept" => "application/vnd.api+json" }).
+          to_return(body: build(:tax_codes_from_fixture).to_json, status: response_status, headers: default_headers)
+
         # Act
         records = described_class.all
 
@@ -29,27 +28,26 @@ RSpec.describe FlexCommerce::TaxCode do
     end
 
     context "without Authorisation" do
-      before(:each) do
+      it "should raise an AccessDenied exception" do
+        # Arrange
         stub_request(:get, "#{api_root}/tax_codes.json_api").
-          with(headers: {"Accept" => "application/vnd.api+json"}).
-          to_return(body: build(:tax_codes_from_fixture).to_json, status: 401, headers: nil)
+          with(headers: { "Accept" => "application/vnd.api+json" }).
+          to_return(body: build(:tax_codes_from_fixture).to_json, status: 403, headers: nil)
+
+        # Act & Assert
+        expect { described_class.all }.to raise_exception(::FlexCommerceApi::Error::AccessDenied)
       end
-
-      subject { described_class.all }
-
-      it_should_behave_like "a collection of resources with an error response"
     end
   end
 
   context "fetching a tax code" do
     context "with Authorisation" do
-      before(:each) do
-        stub_request(:get, "#{api_root}/tax_codes/1.json_api").
-          with(headers: {"Accept" => "application/vnd.api+json"}).
-          to_return(body: build(:tax_code_from_fixture).to_json, status: response_status, headers: default_headers)
-      end
-
       it "should return the tax_code" do
+        # Arrange
+        stub_request(:get, "#{api_root}/tax_codes/1.json_api").
+          with(headers: { "Accept" => "application/vnd.api+json" }).
+          to_return(body: build(:tax_code_from_fixture).to_json, status: response_status, headers: default_headers)
+
         # Act
         record = described_class.find(1)
 
@@ -59,15 +57,15 @@ RSpec.describe FlexCommerce::TaxCode do
     end
 
     context "without Authorisation" do
-      before(:each) do
+      it "should raise an AccessDenied exception" do
+        # Arrange
         stub_request(:get, "#{api_root}/tax_codes/1.json_api").
-          with(headers: {"Accept" => "application/vnd.api+json"}).
-          to_return(body: build(:tax_code_from_fixture).to_json, status: 401, headers: nil)
+          with(headers: { "Accept" => "application/vnd.api+json" }).
+          to_return(body: build(:tax_code_from_fixture).to_json, status: 403, headers: nil)
+
+        # Act & Assert
+        expect { described_class.find(1) }.to raise_exception(::FlexCommerceApi::Error::AccessDenied)
       end
-
-      subject { described_class.find(1) }
-
-      it_should_behave_like "a singular resource with an error response"
     end
   end
 end
