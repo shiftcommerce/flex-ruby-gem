@@ -1,8 +1,7 @@
-FactoryBot.define do
-  
-  klass = Struct.new(:code, :starts_at, :ends_at, :country, :rate)
-  
-  factory :tax_code, class: klass do
+require "flex_commerce_api"
+
+FactoryBot.define do  
+  factory :tax_code, class: ::FlexCommerce::TaxCode do
     sequence(:code) { |n| "Code#{n}suffix" }
 
     starts_at   { Time.current }
