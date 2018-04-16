@@ -32,7 +32,7 @@ RSpec.describe FlexCommerce::TaxCode do
       before(:each) do
         stub_request(:get, "#{api_root}/tax_codes.json_api").
           with(headers: {"Accept" => "application/vnd.api+json"}).
-          to_return(body: build(:tax_codes_from_fixture).to_json, status: response_status, headers: nil)
+          to_return(body: build(:tax_codes_from_fixture).to_json, status: 401, headers: nil)
       end
 
       subject { described_class.all }
@@ -62,7 +62,7 @@ RSpec.describe FlexCommerce::TaxCode do
       before(:each) do
         stub_request(:get, "#{api_root}/tax_codes/1.json_api").
           with(headers: {"Accept" => "application/vnd.api+json"}).
-          to_return(body: build(:tax_code_from_fixture).to_json, status: response_status, headers: nil)
+          to_return(body: build(:tax_code_from_fixture).to_json, status: 401, headers: nil)
       end
 
       subject { described_class.find(1) }
