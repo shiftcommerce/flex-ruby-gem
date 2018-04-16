@@ -102,4 +102,18 @@ RSpec.describe FlexCommerce::TaxCode do
       end
     end
   end
+
+  context "deleting a tax code" do
+    it "should destroy a tax code" do
+      # Arrange
+      resource = ::FlexCommerce::TaxCode.new(attributes_for(:tax_code, id: 1))
+
+      stub_request(:delete, "#{api_root}/tax_codes/1.json_api").
+        with(headers: { "Accept" => "application/vnd.api+json" }).
+        to_return(status: 204, headers: default_headers)
+
+      # Assert
+      expect(resource.destroy).to eq(true)
+    end
+  end
 end
