@@ -8,7 +8,7 @@ RSpec.describe FlexCommerce::TaxCode do
   # see api_globals.rb in spec/support for the source code
   include_context "global context"
 
-  context "fetching all tax codes" do
+  describe "Fetching all tax codes" do
     context "with Authorisation" do
       it "should return the tax_code collection" do
         # Arrange
@@ -40,7 +40,7 @@ RSpec.describe FlexCommerce::TaxCode do
     end
   end
 
-  context "fetching a tax code" do
+  describe "Fetching a tax code" do
     context "with Authorisation" do
       it "should return the tax_code" do
         # Arrange
@@ -72,9 +72,9 @@ RSpec.describe FlexCommerce::TaxCode do
     end
   end
       
-  context "creating a new tax code" do
+  describe "Creating a new tax code" do
     context "with valid attributes" do
-      it "should create a TaxCode" do
+      it "should create a record" do
         # Arrange
         tax_code_attributes = attributes_for(:tax_code)
         resource = build(:tax_code, tax_code_attributes)
@@ -95,7 +95,7 @@ RSpec.describe FlexCommerce::TaxCode do
     end
 
     context "with invalid attributes" do
-      it "should create a TaxCode" do
+      it "should returns error messages" do
         # Arrange
         tax_code_attributes = attributes_for(:tax_code, code: '')
 
@@ -129,9 +129,9 @@ RSpec.describe FlexCommerce::TaxCode do
     end
   end
 
-  context "updating a tax code" do
+  describe "Updating a tax code" do
     context "with valid attributes" do
-      it "should updates a TaxCode" do
+      it "should update the record" do
         # Arrange
         new_code_attributes = { code: "test update" }
         tax_code_attributes = attributes_for(:tax_code, id: 1)
@@ -147,7 +147,7 @@ RSpec.describe FlexCommerce::TaxCode do
     end
 
     context "with invalid attributes" do
-      it "should updates a TaxCode" do
+      it "should returns error messages" do
         # Arrange
         tax_code_attributes = attributes_for(:tax_code, id: 1)
         resource = build(:tax_code, tax_code_attributes)
@@ -183,17 +183,33 @@ RSpec.describe FlexCommerce::TaxCode do
     end
   end
 
-  context "deleting a tax code" do
-    it "should destroy a tax code" do
-      # Arrange
-      resource = build(:tax_code, id: 1)
+  describe "Deleting a tax code" do
+    context "with Authorisation" do
+      it "should destroy the record" do
+        # Arrange
+        resource = build(:tax_code, id: 1)
 
-      stub_request(:delete, "#{api_root}/tax_codes/1.json_api").
-        with(headers: { "Accept" => "application/vnd.api+json" }).
-        to_return(status: 204, headers: default_headers)
+        stub_request(:delete, "#{api_root}/tax_codes/1.json_api").
+          with(headers: { "Accept" => "application/vnd.api+json" }).
+          to_return(status: 204, headers: default_headers)
 
-      # Assert
-      expect(resource.destroy).to eq(true)
+        # Assert
+        expect(resource.destroy).to eq(true)
+      end
+    end
+
+    context "without Authorisation" do
+      it "should raise an AccessDenied exception" do
+        # Arrange
+        resource = build(:tax_code, id: 1)
+
+        stub_request(:delete, "#{api_root}/tax_codes/1.json_api").
+          with(headers: { "Accept" => "application/vnd.api+json" }).
+          to_return(body: '', status: 403, headers: nil)
+
+        # Act & Assert
+        expect { resource.destroy }.to raise_exception(::FlexCommerceApi::Error::AccessDenied)
+      end
     end
   end
 end
