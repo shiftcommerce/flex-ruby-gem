@@ -70,7 +70,7 @@ RSpec.describe FlexCommerce::TaxCode do
   end
       
   context "creating a new tax code" do
-    context "with Authorisation" do
+    context "with valid attributes" do
       it "should create a TaxCode" do
         # Arrange
         tax_code_attributes = attributes_for(:tax_code)
@@ -81,10 +81,30 @@ RSpec.describe FlexCommerce::TaxCode do
           to_return body: resource.to_json, status: 201, headers: default_headers
 
         # Act
-        described_class.create(tax_code_attributes)
+        record = described_class.create(tax_code_attributes)
 
         # Assert
-        expect(subject).to be_a(described_class)
+        expect(record).to be_a(described_class)
+      end
+    end
+
+    context "with invalid attributes" do
+      it "should create a TaxCode" do
+        # Arrange
+        tax_code_attributes = attributes_for(:tax_code, code: '')
+
+        stub_request(:post, "#{api_root}/tax_codes.json_api").
+          with(headers: { "Accept" => "application/vnd.api+json" }).
+          to_return(body: File.read("spec/fixtures/tax_codes/error_response.json"), status: 422, headers: default_headers)
+
+        # Act
+        record = described_class.create(tax_code_attributes)
+
+        # Assert
+        aggregate_failures do
+          expect(record.errors).to be_present
+          expect(record.errors.details.keys).to include(:code)
+        end
       end
     end
 
@@ -115,11 +135,8 @@ RSpec.describe FlexCommerce::TaxCode do
           with(headers: { "Accept" => "application/vnd.api+json" }).
           to_return body: tax_code_attributes.merge(new_code_attributes).to_json, status: 200, headers: default_headers
 
-        # Act
-        resource.update_attributes({ code: "test update" })
-
-        # Assert
-        expect(subject).to be_a(described_class)
+        # Act & Assert
+        expect(resource.update_attributes(new_code_attributes)).to be_truthy
       end
     end
 
