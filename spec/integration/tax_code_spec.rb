@@ -52,7 +52,10 @@ RSpec.describe FlexCommerce::TaxCode do
         record = described_class.find(1)
 
         # Assert
-        expect(record).to be_a(described_class)
+        aggregate_failures do
+          expect(record).to be_present
+          expect(record).to be_a(described_class)
+        end
       end
     end
 
