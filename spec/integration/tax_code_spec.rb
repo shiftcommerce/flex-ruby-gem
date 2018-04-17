@@ -84,7 +84,10 @@ RSpec.describe FlexCommerce::TaxCode do
         record = described_class.create(tax_code_attributes)
 
         # Assert
-        expect(record).to be_a(described_class)
+        aggregate_failures do
+          expect(record).to be_a(described_class)
+          expect(record.code).to eq(resource.code)
+        end
       end
     end
 
@@ -124,7 +127,7 @@ RSpec.describe FlexCommerce::TaxCode do
   end
 
   context "updating a tax code" do
-    context "with Authorisation" do
+    context "with valid attributes" do
       it "should updates a TaxCode" do
         # Arrange
         new_code_attributes = { code: "test update" }
@@ -137,6 +140,27 @@ RSpec.describe FlexCommerce::TaxCode do
 
         # Act & Assert
         expect(resource.update_attributes(new_code_attributes)).to be_truthy
+      end
+    end
+
+    context "with invalid attributes" do
+      it "should updates a TaxCode" do
+        # Arrange
+        tax_code_attributes = attributes_for(:tax_code, id: 1)
+        resource = build(:tax_code, tax_code_attributes)
+
+        stub_request(:post, "#{api_root}/tax_codes.json_api").
+          with(headers: { "Accept" => "application/vnd.api+json" }).
+          to_return(body: File.read("spec/fixtures/tax_codes/error_response.json"), status: 422, headers: default_headers)
+
+        # Act
+        resource.update_attributes({ code: "" })
+
+        # Assert
+        aggregate_failures do
+          expect(resource.errors).to be_present
+          expect(resource.errors.details.keys).to include(:code)
+        end
       end
     end
 
