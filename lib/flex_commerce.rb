@@ -73,6 +73,7 @@ module FlexCommerce
   autoload :PasswordRecovery, File.join(gem_root, "app", "models", "password_recovery")
   autoload :Slug, File.join(gem_root, "app", "models", "slug")
   autoload :ExternalUrl, File.join(gem_root, "app", "models", "external_url")
+  autoload :TaxCode, File.join(gem_root, "app", "models", "tax_code")
 
   # Services
   autoload :ParamToShql, File.join(gem_root, "app", "services", "param_to_shql")
