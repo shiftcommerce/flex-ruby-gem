@@ -134,19 +134,13 @@ RSpec.describe FlexCommerce::Product do
   #
   context "using a single resource" do
     let(:variants_count) { 5 }
-    let(:breadcrumbs_count) { 2 }
     let(:variant_resources) { build_list(:json_api_resource, variants_count, build_resource: :variant) }
-    let(:breadcrumb_resources) { build_list(:json_api_resource, breadcrumbs_count, build_resource: :breadcrumb, type: :breadcrumbs) }
     let(:variant_relationship) { { variants: {
         data: variant_resources.map { |vr| { type: "variants", id: vr.id }}
     } } }
-    let(:breadcrumb_relationship) { { breadcrumbs: {
-        data: breadcrumb_resources.map { |br| { type: "breadcrumbs", id: br.id }}
-    } } }
     let(:variant_class) { FlexCommerce::Variant }
-    let(:breadcrumb_class) { FlexCommerce::Breadcrumb }
-    let(:resource_identifier) { build(:json_api_resource, build_resource: :product, relationships: variant_relationship.merge(breadcrumb_relationship), base_path: base_path, primary_key: :slug) }
-    let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier, included: variant_resources + breadcrumb_resources) }
+    let(:resource_identifier) { build(:json_api_resource, build_resource: :product, relationships: variant_relationship, base_path: base_path, primary_key: :slug) }
+    let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier, included: variant_resources) }
     let(:primary_key) { :slug }
     before :each do
       stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
@@ -175,32 +169,6 @@ RSpec.describe FlexCommerce::Product do
             end
           end
         end
-      end
-
-      it "should get the associated breadcrumbs" do
-        subject_class.find(resource_identifier.attributes.slug).tap do |result|
-          result.breadcrumbs.tap do |breadcrumb_list|
-            expect(breadcrumb_list.length).to eql breadcrumbs_count
-            breadcrumb_list.each_with_index do |b, idx|
-              mocked_breadcrumb = breadcrumb_resources[idx].attributes
-              expect(b).to be_a(breadcrumb_class)
-              expect(b.type).to eql "breadcrumbs"
-              expect(b.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(mocked_breadcrumb.as_json)
-            end
-          end
-        end
-
-      end
-      it "should find a single breadcrumb by using the find method similar to active record" do
-        mocked_breadcrumb = breadcrumb_resources.last
-        subject_class.find(resource_identifier.attributes.slug).tap do |result|
-          result.breadcrumbs.find(mocked_breadcrumb.attributes.reference).tap do |breadcrumb|
-            expect(breadcrumb).to be_a(breadcrumb_class)
-            expect(breadcrumb.type).to eql "breadcrumbs"
-            expect(breadcrumb.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(mocked_breadcrumb.attributes.as_json)
-          end
-        end
-
       end
     end
   end
@@ -243,7 +211,6 @@ RSpec.describe FlexCommerce::Product do
           end
         end
       end
-      it_should_behave_like "any resource with breadcrumbs"
     end
   end
 end
