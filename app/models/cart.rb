@@ -46,7 +46,7 @@ module FlexCommerce
     has_one :billing_address, class_name: "::FlexCommerce::Address"
     has_one :shipping_method, class_name: "::FlexCommerce::ShippingMethod"
     has_one :free_shipping_promotion, class_name: "::FlexCommerce::FreeShippingPromotion"
-    
+
     # properties
     property :line_items_count, type: :integer, default: 0
     property :total_discount, default: 0
