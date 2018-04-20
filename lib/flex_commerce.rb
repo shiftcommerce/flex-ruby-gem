@@ -68,7 +68,7 @@ module FlexCommerce
   autoload :StaticPageFolder, File.join(gem_root, "app", "models", "static_page_folder")
   autoload :StockLevel, File.join(gem_root, "app", "models", "stock_level")
   autoload :TaxCode, File.join(gem_root, "app", "models", "tax_code")
-  autoload :Taxonomy, File.join(gem_root, "app", "models", "Taxonomy")
+  autoload :Taxonomy, File.join(gem_root, "app", "models", "taxonomy")
   autoload :Template, File.join(gem_root, "app", "models", "template")
   autoload :TemplateComponent, File.join(gem_root, "app", "models", "template_component")
   autoload :TemplateDefinition, File.join(gem_root, "app", "models", "template_definition")
