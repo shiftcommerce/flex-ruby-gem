@@ -1,6 +1,6 @@
 require "flex_commerce_api"
 
-FactoryBot.define do  
+FactoryBot.define do
   factory :tax_code, class: ::FlexCommerce::TaxCode do
     sequence(:code) { |n| "Code#{n}suffix" }
 
@@ -23,5 +23,5 @@ FactoryBot.define do
       send(key, value)
     end
   end
-  
+
 end

@@ -46,6 +46,7 @@ RSpec.describe FlexCommerce::Taxonomy do
         stub_request(:delete, "#{api_root}/taxonomies/1.json_api").
           with(headers: { "Accept" => "application/vnd.api+json" }).
           to_return(status: 204, headers: default_headers)
+          
         # Assert
         expect(resource.destroy).to eq(true)
       end

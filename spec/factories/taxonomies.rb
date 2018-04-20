@@ -13,5 +13,4 @@ FactoryBot.define do
       send(key, value)
     end
   end
-
 end
