@@ -7,8 +7,6 @@ module FlexCommerce
   autoload :Address, File.join(gem_root, "app", "models", "address")
   autoload :AssetFile, File.join(gem_root, "app", "models", "asset_file")
   autoload :AssetFolder, File.join(gem_root, "app", "models", "asset_folder")
-  autoload :Breadcrumb, File.join(gem_root, "app", "models", "breadcrumb")
-  autoload :BreadcrumbItem, File.join(gem_root, "app", "models", "breadcrumb_item")
   autoload :Bundle, File.join(gem_root, "app", "models", "bundle")
   autoload :BundleGroup, File.join(gem_root, "app", "models", "bundle_group")
   autoload :Cart, File.join(gem_root, "app", "models", "cart")
