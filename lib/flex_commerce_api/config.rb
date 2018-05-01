@@ -38,7 +38,7 @@ module FlexCommerceApi
       self.order_test_mode = false
       self.http_cache = {}
       self.open_timeout = ENV.fetch('SHIFT_OPEN_TIMEOUT', 2).to_i
-      self.timeout = ENV.fetch('SHIFT_TIMEOUT', 15).to_i
+      self.timeout = ENV.fetch('SHIFT_TIMEOUT', 30).to_i
     end
 
     # The api base URL
