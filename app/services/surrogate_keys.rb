@@ -37,6 +37,7 @@ module FlexCommerce
       # Check if surrogate key is available, if not initiate it
       Thread.current[:shift_surrogate_keys] ||= []
       Thread.current[:shift_surrogate_keys] += keys.flatten
+      Thread.current[:shift_surrogate_keys] = Thread.current[:shift_surrogate_keys].uniq
     end
 
   end
