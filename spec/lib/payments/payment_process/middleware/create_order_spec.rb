@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "rails_helper"
+# require "rails_helper"
 RSpec.describe Payments::PaymentProcess::Middleware::CreateOrder, speed: :slow do
   let(:state) { OpenStruct.new }
   context "#call", account: true, use_transactions: true do

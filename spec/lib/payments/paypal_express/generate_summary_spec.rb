@@ -1,4 +1,4 @@
-require "rails_helper"
+# require "rails_helper"
 RSpec.describe Payments::PaypalExpress::GenerateSummary do
   def convert_amount(amt)
     (amt * 100).to_i

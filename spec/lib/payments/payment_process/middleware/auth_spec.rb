@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "rails_helper"
+# require "rails_helper"
 RSpec.describe Payments::PaymentProcess::Middleware::Auth do
   context "#call", account: true, use_real_elastic_search: false do
     let!(:auth_service_class) { class_double(Payments::Auth).as_stubbed_const }

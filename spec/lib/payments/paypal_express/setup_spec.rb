@@ -1,4 +1,4 @@
-require "rails_helper"
+# require "rails_helper"
 # The payments setup service for paypal express
 RSpec.describe Payments::PaypalExpress::Setup, speed: :slow, account: true do
   let(:shipping_address) { cart.shipping_address }
