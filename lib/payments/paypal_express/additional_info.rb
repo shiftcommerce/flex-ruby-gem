@@ -5,7 +5,7 @@ module FlexCommerce
     module PaypalExpress
       # Address verification service using paypal
       class AdditionalInfo
-        # include ::Payments::PaypalExpress::Api
+        include ::FlexCommerce::Payments::PaypalExpress::Api
         def initialize(payment_provider:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, shipping_method_model: FlexCommerce::ShippingMethod, options:)
           # @param options [Hash]  options to be used see below
           # @option options [String] :token Token to find the additional info for
@@ -72,7 +72,7 @@ module FlexCommerce
 
         def gateway_details_for(token)
           details = gateway_details[token] ||= gateway.details_for(token)
-          raise ::Payments::Exception::AccessDenied.new(details.message) unless details.success?
+          raise ::FlexCommerce::Payments::Exception::AccessDenied.new(details.message) unless details.success?
           details
         end
 

@@ -1,13 +1,18 @@
-require "rails_helper"
-RSpec.describe Payments::PaypalExpress::AdditionalInfo, account: true do
+require "e2e_spec_helper"
+
+
+RSpec.describe FlexCommerce::Payments::PaypalExpress::AdditionalInfo, vcr: true do
   include ActiveSupport::NumberHelper
+  include_context "context store"
+  include_context "housekeeping"
+  
   # Mock active merchant
-  let!(:active_merchant_gateway_class) { class_double("::ActiveMerchant::Billing::PaypalExpressGateway", new: active_merchant_gateway).as_stubbed_const }
-  let!(:active_merchant_gateway) { instance_double("::ActiveMerchant::Billing::PaypalExpressGateway") }
+  let!(:active_merchant_gateway_class) { class_double("ActiveMerchant::Billing::PaypalExpressGateway", new: active_merchant_gateway).as_stubbed_const }
+  let!(:active_merchant_gateway) { instance_double("ActiveMerchant::Billing::PaypalExpressGateway") }
 
   # Mock the payment provider
-  let!(:payment_provider_class) { class_double(::PaymentProvider).as_stubbed_const }
-  let(:payment_provider) { instance_double(::PaymentProvider, test_mode: true, reference: "paypal_express_test", service: "paypal_express", enrichment_hash: { "login" => "login", "password" => "password", "signature" => "signature" }) }
+  let!(:payment_provider_class) { class_double("PaymentProvider").as_stubbed_const }
+  let(:payment_provider) { instance_double("PaymentProvider", test_mode: true, reference: "paypal_express_test", service: "paypal_express", meta_attributes: { "login" => "login", "password" => "password", "signature" => "signature" }) }
   let(:valid_token) { "valid_token" }
   subject { described_class.new(payment_provider: payment_provider, options: { token: valid_token }) }
 
@@ -17,13 +22,15 @@ RSpec.describe Payments::PaypalExpress::AdditionalInfo, account: true do
 
   context "#call" do
     context "with valid token" do
-      let!(:shipping_method) { create(:shipping_method) }
+      let!(:shipping_method) do
+        FlexCommerce::ShippingMethod.first
+      end
       before(:each) do
         expect(active_merchant_gateway).to receive(:details_for).with(valid_token).and_return details_for_response
       end
       let(:shipping_option_name) { shipping_method.label }
       let(:details_for_response) do
-        instance_double ::ActiveMerchant::Billing::PaypalExpressResponse, "get_express_checkout_details", success?: true, params: {
+        instance_double "ActiveMerchant::Billing::PaypalExpressResponse", "get_express_checkout_details", success?: true, params: {
           "timestamp"=>"2016-04-11T12:59:43Z",
           "ack"=>"Success",
           "correlation_id"=>"8ebedb786508d",
@@ -194,7 +201,7 @@ RSpec.describe Payments::PaypalExpress::AdditionalInfo, account: true do
       end
 
       it "should return an additional info model" do
-        expect(subject.call).to be_a(PaymentAdditionalInfo)
+        expect(subject.call).to be_a(FlexCommerce::PaymentAdditionalInfo)
       end
 
       it "should reference the correct shipping method" do
@@ -220,7 +227,7 @@ RSpec.describe Payments::PaypalExpress::AdditionalInfo, account: true do
           "state"=>"Indiana",
           "country"=>"San Marino",
           "postcode"=>"21322"
-         }
+        }
         expect(subject.call).to have_attributes meta: a_hash_including(shipping_address_attributes: expected_address_attributes)
       end
 
@@ -235,7 +242,7 @@ RSpec.describe Payments::PaypalExpress::AdditionalInfo, account: true do
           "state"=>"Illinois",
           "country"=>"Kiribati",
           "postcode"=>"11669"
-         }
+        }
         expect(subject.call).to have_attributes meta: a_hash_including(billing_address_attributes: expected_address_attributes)
       end
     end
@@ -245,7 +252,7 @@ RSpec.describe Payments::PaypalExpress::AdditionalInfo, account: true do
       end
 
       let(:details_for_response) do
-        instance_double ::ActiveMerchant::Billing::PaypalExpressResponse, "get_express_checkout_details", success?: false, message: "Invalid Token", params: {
+        instance_double "ActiveMerchant::Billing::PaypalExpressResponse", "get_express_checkout_details", success?: false, message: "Invalid Token", params: {
             "GetExpressCheckoutDetailsResponse" => {
                 "Ack" => "Failure",
                 "Errors" => {
@@ -263,7 +270,7 @@ RSpec.describe Payments::PaypalExpress::AdditionalInfo, account: true do
       end
 
       it "should return nil" do
-        expect { subject.call }.to raise_error ::Payments::Exception::AccessDenied
+        expect { subject.call }.to raise_error ::FlexCommerce::Payments::Exception::AccessDenied
       end
     end
   end

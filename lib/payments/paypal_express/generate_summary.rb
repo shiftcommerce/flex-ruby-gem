@@ -4,7 +4,7 @@ module FlexCommerce
   module Payments
     module PaypalExpress
       class GenerateSummary
-        # include ::Payments::PaypalExpress::Api
+        include ::FlexCommerce::Payments::PaypalExpress::Api
         def initialize(cart: , use_tax: false)
           self.cart = cart
           self.use_tax = use_tax

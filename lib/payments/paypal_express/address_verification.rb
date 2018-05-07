@@ -4,7 +4,7 @@ module FlexCommerce
     module PaypalExpress
       # Address verification service using paypal
       class AddressVerification
-        # include ::Payments::PaypalExpress::Api
+        include ::FlexCommerce::Payments::PaypalExpress::Api
         # @param [PaymentAddressVerification] address_verification The address verification data to use
         def initialize(address_verification:, payment_provider:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway)
           self.address_verification = address_verification
@@ -22,7 +22,7 @@ module FlexCommerce
         # Also, if the confirmation code is not "Confirmed" or the ack value is not "Success" then the address_verification object
         # has errors marked on it.
         def call
-          response = gateway.verify_address(email: address_verification.email, address: {address1: address_verification.address.address_line_1, zip: address_verification.address.postcode})
+          response = gateway.verify_address(email: address_verification.email, address: {address1: address_verification.address[:address_line_1], zip: address_verification.address[:postcode]})
           update_transaction(response)
           mark_errors(response)
         end

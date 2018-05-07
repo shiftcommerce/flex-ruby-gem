@@ -1,5 +1,5 @@
 FactoryBot.define do
-  klass = Struct.new(:first_name, :last_name, :middle_names, :address_line_1, :address_line_2, :address_line_3, :city, :state, :postcode, :country, :preferred_billing, :preferred_shipping)
+  klass = Struct.new(:id, :first_name, :last_name, :middle_names, :address_line_1, :address_line_2, :address_line_3, :city, :state, :postcode, :country, :preferred_billing, :preferred_shipping)
   factory :address, class: klass do
     sequence(:first_name)   { |n| "#{Faker::Name.first_name}#{n}suffix" }
     sequence(:last_name)    { |n| "#{Faker::Name.last_name}#{n}suffix" }
@@ -23,6 +23,14 @@ FactoryBot.define do
   end
   factory :address_from_fixture, class: JsonStruct do
     obj = JsonStruct.new(JSON.parse(File.read("spec/fixtures/addresses/single.json")))
+    obj.each_pair do |key, value|
+      send(key, value)
+    end
+  end
+
+  factory :address_data_from_fixture, class: JsonStruct do
+    obj = JsonStruct.new(JSON.parse(File.read("spec/fixtures/addresses/multiple.json"))).data[0]
+    obj.attributes = obj.attributes.to_h
     obj.each_pair do |key, value|
       send(key, value)
     end

@@ -3,8 +3,9 @@ module FlexCommerce
   module Payments
     module PaypalExpress
       class Setup
-        # include ::Payments::PaypalExpress::Api
+        include ::FlexCommerce::Payments::PaypalExpress::Api
         DEFAULT_DESCRIPTION = "Shift Commerce Order"
+        
         def initialize(payment_provider_setup: , cart:, payment_provider:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false)
           self.payment_provider = payment_provider
           self.payment_provider_setup = payment_provider_setup

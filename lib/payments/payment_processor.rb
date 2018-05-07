@@ -55,6 +55,7 @@ module FlexCommerce
       private
 
       def init_reporting
+        puts payment_process.retry_count.inspect
         report_progress(0) if payment_process.retry_count.zero?
       end
 
@@ -67,19 +68,23 @@ module FlexCommerce
 
       def add_additional_processes_middleware
         idx = stack.find_index(::Payments::PaymentProcess::Middleware::CreateOrder)
-        payment_process.additional_processes.reverse.each do |process|
-          service_class = service_class_for_process(process)
-          raise "Process #{process} is not defined in the application" if service_class.nil?
-          stack.insert(idx, service_class)
+        if !payment_process.additional_processes.blank?
+          payment_process.additional_processes.reverse.each do |process|
+            service_class = service_class_for_process(process)
+            raise "Process #{process} is not defined in the application" if service_class.nil?
+            stack.insert(idx, service_class)
+          end
         end
       end
 
       def add_post_processes_middleware
         idx = stack.find_index(::Payments::PaymentProcess::Middleware::CreateOrder)
-        payment_process.post_processes.reverse.each do |process|
-          service_class = service_class_for_process(process)
-          raise "Process #{process} is not defined in the application" if service_class.nil?
-          stack.insert(idx + 1, service_class)
+        if !payment_process.post_processes.blank?
+          payment_process.post_processes.reverse.each do |process|
+            service_class = service_class_for_process(process)
+            raise "Process #{process} is not defined in the application" if service_class.nil?
+            stack.insert(idx + 1, service_class)
+          end
         end
       end
 

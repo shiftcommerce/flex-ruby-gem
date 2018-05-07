@@ -25,11 +25,11 @@ module FlexCommerce
       end
 
       def payment_provider
-        @payment_provider ||= PaymentProvider.find_by(reference: transaction.payment_gateway_reference)
+        @payment_provider ||= PaymentProvider.all.select{ |p| p.reference == transaction.payment_gateway_reference}.first
       end
 
       def verification_service_class
-        "::Payments::#{payment_provider.service.camelize}::AddressVerification".constantize
+        "::Payments::#{payment_provider.reference.camelize}::AddressVerification".constantize
       end
 
       def transaction

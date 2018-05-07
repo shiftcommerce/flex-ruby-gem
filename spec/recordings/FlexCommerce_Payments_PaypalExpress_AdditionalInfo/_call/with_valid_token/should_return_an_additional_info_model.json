@@ -1,0 +1,633 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://shift-platform-uat-api.global.ssl.fastly.net/testing/v1/shipping_methods.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.0"
+          ],
+          "Authorization": [
+            "Basic dGVzdGluZzpOeTgwTkdVd1pqTmpNRFkwTUdGak0yVm1NemxoWkRBMU5qZ3dNREl5WWpCa05EZGxOV1UxTnpCaVl6Y3pPV1l4TnpjMk1EbGhZbVJpWWpVelkyVmtZVE00TURsaU5EVXlNREl5TVRJeU1Ua3lPRE00Wm1VeFpqTXdNR0poWm1Vd1pEaGpPV0k1T0dZeFlXTmpaV00yWVdGaU9UQmtOMlV6TmpWallXTmhNalJqTTJZMlkyVTVaRGMxTVRrMU1UTmtNVFk0TXpVM01qVTBOelExTWpsbE0yTTNNamMxTlRjek1qazROemczTjJZek1qWTNZbVkxTlRKbVpUSTJZak0yT0RNM1lXSTBNbVEwT0dGaFpqVTJOVFl6TW1SaU5tSXlZbUl5TTJRd01tSTFORFZqWW1FM1pUY3lZemcyT1dRNU1qUTVZMkV5WTJReU1qZ3lNRFExTjJZNA=="
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "If-None-Match": [
+            "W/\"80a907f8f662cffbff7eb90aca5b9ec8\""
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 304,
+          "message": "Not Modified"
+        },
+        "headers": {
+          "Date": [
+            "Mon, 07 May 2018 08:27:26 GMT"
+          ],
+          "Cache-Control": [
+            "max-age=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"80a907f8f662cffbff7eb90aca5b9ec8\""
+          ],
+          "Age": [
+            "344"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "X-Served-By": [
+            "cache-lcy19227-LCY"
+          ],
+          "X-Cache": [
+            "HIT"
+          ],
+          "X-Cache-Hits": [
+            "1"
+          ],
+          "X-Timer": [
+            "S1525681646.322643,VS0,VE0"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ],
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Headers": [
+            "Accept, Accept-Encoding, Accept-Language, Content-Type, Authorization"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Max-Age": [
+            "3600"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 May 2018 08:27:27 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://shift-platform-uat-api.global.ssl.fastly.net/testing/v1/shipping_methods.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.0"
+          ],
+          "Authorization": [
+            "Basic dGVzdGluZzpOeTgwTkdVd1pqTmpNRFkwTUdGak0yVm1NemxoWkRBMU5qZ3dNREl5WWpCa05EZGxOV1UxTnpCaVl6Y3pPV1l4TnpjMk1EbGhZbVJpWWpVelkyVmtZVE00TURsaU5EVXlNREl5TVRJeU1Ua3lPRE00Wm1VeFpqTXdNR0poWm1Vd1pEaGpPV0k1T0dZeFlXTmpaV00yWVdGaU9UQmtOMlV6TmpWallXTmhNalJqTTJZMlkyVTVaRGMxTVRrMU1UTmtNVFk0TXpVM01qVTBOelExTWpsbE0yTTNNamMxTlRjek1qazROemczTjJZek1qWTNZbVkxTlRKbVpUSTJZak0yT0RNM1lXSTBNbVEwT0dGaFpqVTJOVFl6TW1SaU5tSXlZbUl5TTJRd01tSTFORFZqWW1FM1pUY3lZemcyT1dRNU1qUTVZMkV5WTJReU1qZ3lNRFExTjJZNA=="
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "External-Surrogate-Key": [
+            "testing%2Fshipping_methods testing%2Fshipping_method%2F1 testing%2Fshipping_method%2F2 testing%2Fshipping_method%2F3 testing%2Fshipping_method%2F4"
+          ],
+          "Cache-Control": [
+            "max-age=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"80a907f8f662cffbff7eb90aca5b9ec8\""
+          ],
+          "X-Request-Id": [
+            "4ce27c83-1e2d-47f7-ad0e-dffb0faaac88"
+          ],
+          "X-Runtime": [
+            "0.063552"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=15552000; includeSubDomains"
+          ],
+          "Content-Length": [
+            "481"
+          ],
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Date": [
+            "Mon, 07 May 2018 08:27:31 GMT"
+          ],
+          "Age": [
+            "349"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "X-Served-By": [
+            "cache-lcy19222-LCY"
+          ],
+          "X-Cache": [
+            "HIT"
+          ],
+          "X-Cache-Hits": [
+            "1"
+          ],
+          "X-Timer": [
+            "S1525681651.321491,VS0,VE4"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ],
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Headers": [
+            "Accept, Accept-Encoding, Accept-Language, Content-Type, Authorization"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Max-Age": [
+            "3600"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": "{\"data\":[{\"id\":\"1\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/1.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2017-11-17T10:46:00Z\",\"created_at\":\"2017-11-15T16:53:31Z\",\"label\":\"Click & Collect Standard\",\"sku\":\"EXPRESS_2_DAY\",\"reference\":\"CCSD\",\"description\":\"\",\"sub_total\":0.0,\"tax\":0.0,\"total\":0.0,\"tax_rate\":0.0}},{\"id\":\"2\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/2.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2017-11-17T10:44:32Z\",\"created_at\":\"2017-11-15T16:53:31Z\",\"label\":\"Standard\",\"sku\":\"REGULAR\",\"reference\":\"STANDARD\",\"description\":\"\",\"sub_total\":3.29,\"tax\":0.66,\"total\":3.95,\"tax_rate\":0.2}},{\"id\":\"3\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/3.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2017-11-17T10:45:18Z\",\"created_at\":\"2017-11-15T16:53:31Z\",\"label\":\"Next Day\",\"sku\":\"EXPRESS_1_DAY\",\"reference\":\"NEXT DAY\",\"description\":\"Next Day Delivery\",\"sub_total\":4.12,\"tax\":0.83,\"total\":4.95,\"tax_rate\":0.2}},{\"id\":\"4\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/4.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2017-11-17T10:46:36Z\",\"created_at\":\"2017-11-15T16:53:31Z\",\"label\":\"Click & Collect Next Day\",\"sku\":\"EXPRESS_3_DAY\",\"reference\":\"CCND\",\"description\":\"\",\"sub_total\":1.66,\"tax\":0.33,\"total\":1.99,\"tax_rate\":0.2}}],\"meta\":{\"total_entries\":4,\"page_count\":1},\"links\":{\"self\":\"/testing/v1/shipping_methods.json_api\",\"first\":\"/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25\",\"last\":\"/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25\"}}",
+          "decoded": {
+            "data": [
+              {
+                "id": "1",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/1.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2017-11-17T10:46:00Z",
+                  "created_at": "2017-11-15T16:53:31Z",
+                  "label": "Click & Collect Standard",
+                  "sku": "EXPRESS_2_DAY",
+                  "reference": "CCSD",
+                  "description": "",
+                  "sub_total": 0.0,
+                  "tax": 0.0,
+                  "total": 0.0,
+                  "tax_rate": 0.0
+                }
+              },
+              {
+                "id": "2",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/2.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2017-11-17T10:44:32Z",
+                  "created_at": "2017-11-15T16:53:31Z",
+                  "label": "Standard",
+                  "sku": "REGULAR",
+                  "reference": "STANDARD",
+                  "description": "",
+                  "sub_total": 3.29,
+                  "tax": 0.66,
+                  "total": 3.95,
+                  "tax_rate": 0.2
+                }
+              },
+              {
+                "id": "3",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/3.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2017-11-17T10:45:18Z",
+                  "created_at": "2017-11-15T16:53:31Z",
+                  "label": "Next Day",
+                  "sku": "EXPRESS_1_DAY",
+                  "reference": "NEXT DAY",
+                  "description": "Next Day Delivery",
+                  "sub_total": 4.12,
+                  "tax": 0.83,
+                  "total": 4.95,
+                  "tax_rate": 0.2
+                }
+              },
+              {
+                "id": "4",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/4.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2017-11-17T10:46:36Z",
+                  "created_at": "2017-11-15T16:53:31Z",
+                  "label": "Click & Collect Next Day",
+                  "sku": "EXPRESS_3_DAY",
+                  "reference": "CCND",
+                  "description": "",
+                  "sub_total": 1.66,
+                  "tax": 0.33,
+                  "total": 1.99,
+                  "tax_rate": 0.2
+                }
+              }
+            ],
+            "meta": {
+              "total_entries": 4,
+              "page_count": 1
+            },
+            "links": {
+              "self": "/testing/v1/shipping_methods.json_api",
+              "first": "/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25",
+              "last": "/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 May 2018 08:27:32 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://shift-platform-uat-api.global.ssl.fastly.net/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=1",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.0"
+          ],
+          "Authorization": [
+            "Basic dGVzdGluZzpOeTgwTkdVd1pqTmpNRFkwTUdGak0yVm1NemxoWkRBMU5qZ3dNREl5WWpCa05EZGxOV1UxTnpCaVl6Y3pPV1l4TnpjMk1EbGhZbVJpWWpVelkyVmtZVE00TURsaU5EVXlNREl5TVRJeU1Ua3lPRE00Wm1VeFpqTXdNR0poWm1Vd1pEaGpPV0k1T0dZeFlXTmpaV00yWVdGaU9UQmtOMlV6TmpWallXTmhNalJqTTJZMlkyVTVaRGMxTVRrMU1UTmtNVFk0TXpVM01qVTBOelExTWpsbE0yTTNNamMxTlRjek1qazROemczTjJZek1qWTNZbVkxTlRKbVpUSTJZak0yT0RNM1lXSTBNbVEwT0dGaFpqVTJOVFl6TW1SaU5tSXlZbUl5TTJRd01tSTFORFZqWW1FM1pUY3lZemcyT1dRNU1qUTVZMkV5WTJReU1qZ3lNRFExTjJZNA=="
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "External-Surrogate-Key": [
+            "testing%2Fshipping_methods testing%2Fshipping_method%2F1"
+          ],
+          "Cache-Control": [
+            "max-age=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"3b9a33732f2eaad33656b3663080347a\""
+          ],
+          "X-Request-Id": [
+            "1a8ef99c-5f94-4ff5-8b80-e4ef7009dc83"
+          ],
+          "X-Runtime": [
+            "0.042085"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=15552000; includeSubDomains"
+          ],
+          "Content-Length": [
+            "337"
+          ],
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Date": [
+            "Mon, 07 May 2018 08:27:55 GMT"
+          ],
+          "Age": [
+            "171"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "X-Served-By": [
+            "cache-lcy19232-LCY"
+          ],
+          "X-Cache": [
+            "HIT"
+          ],
+          "X-Cache-Hits": [
+            "1"
+          ],
+          "X-Timer": [
+            "S1525681675.192399,VS0,VE0"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ],
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Headers": [
+            "Accept, Accept-Encoding, Accept-Language, Content-Type, Authorization"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Max-Age": [
+            "3600"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": "{\"data\":[{\"id\":\"1\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/1.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2017-11-17T10:46:00Z\",\"created_at\":\"2017-11-15T16:53:31Z\",\"label\":\"Click & Collect Standard\",\"sku\":\"EXPRESS_2_DAY\",\"reference\":\"CCSD\",\"description\":\"\",\"sub_total\":0.0,\"tax\":0.0,\"total\":0.0,\"tax_rate\":0.0}}],\"meta\":{\"total_entries\":4,\"page_count\":4},\"links\":{\"self\":\"/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=1\",\"first\":\"/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=1\",\"next\":\"/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=2&page%5Bsize%5D=1\",\"last\":\"/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=4&page%5Bsize%5D=1\"}}",
+          "decoded": {
+            "data": [
+              {
+                "id": "1",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/1.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2017-11-17T10:46:00Z",
+                  "created_at": "2017-11-15T16:53:31Z",
+                  "label": "Click & Collect Standard",
+                  "sku": "EXPRESS_2_DAY",
+                  "reference": "CCSD",
+                  "description": "",
+                  "sub_total": 0.0,
+                  "tax": 0.0,
+                  "total": 0.0,
+                  "tax_rate": 0.0
+                }
+              }
+            ],
+            "meta": {
+              "total_entries": 4,
+              "page_count": 4
+            },
+            "links": {
+              "self": "/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=1",
+              "first": "/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=1",
+              "next": "/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=2&page%5Bsize%5D=1",
+              "last": "/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=4&page%5Bsize%5D=1"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 May 2018 08:27:55 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://shift-platform-uat-api.global.ssl.fastly.net/testing/v1/shipping_methods.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.0"
+          ],
+          "Authorization": [
+            "Basic dGVzdGluZzpOeTgwTkdVd1pqTmpNRFkwTUdGak0yVm1NemxoWkRBMU5qZ3dNREl5WWpCa05EZGxOV1UxTnpCaVl6Y3pPV1l4TnpjMk1EbGhZbVJpWWpVelkyVmtZVE00TURsaU5EVXlNREl5TVRJeU1Ua3lPRE00Wm1VeFpqTXdNR0poWm1Vd1pEaGpPV0k1T0dZeFlXTmpaV00yWVdGaU9UQmtOMlV6TmpWallXTmhNalJqTTJZMlkyVTVaRGMxTVRrMU1UTmtNVFk0TXpVM01qVTBOelExTWpsbE0yTTNNamMxTlRjek1qazROemczTjJZek1qWTNZbVkxTlRKbVpUSTJZak0yT0RNM1lXSTBNbVEwT0dGaFpqVTJOVFl6TW1SaU5tSXlZbUl5TTJRd01tSTFORFZqWW1FM1pUY3lZemcyT1dRNU1qUTVZMkV5WTJReU1qZ3lNRFExTjJZNA=="
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "External-Surrogate-Key": [
+            "testing%2Fshipping_methods testing%2Fshipping_method%2F1 testing%2Fshipping_method%2F2 testing%2Fshipping_method%2F3 testing%2Fshipping_method%2F4"
+          ],
+          "Cache-Control": [
+            "max-age=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"80a907f8f662cffbff7eb90aca5b9ec8\""
+          ],
+          "X-Request-Id": [
+            "4ce27c83-1e2d-47f7-ad0e-dffb0faaac88"
+          ],
+          "X-Runtime": [
+            "0.063552"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=15552000; includeSubDomains"
+          ],
+          "Content-Length": [
+            "481"
+          ],
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Date": [
+            "Mon, 07 May 2018 08:27:55 GMT"
+          ],
+          "Age": [
+            "374"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "X-Served-By": [
+            "cache-lcy19233-LCY"
+          ],
+          "X-Cache": [
+            "HIT"
+          ],
+          "X-Cache-Hits": [
+            "3"
+          ],
+          "X-Timer": [
+            "S1525681676.967791,VS0,VE0"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ],
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Headers": [
+            "Accept, Accept-Encoding, Accept-Language, Content-Type, Authorization"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Max-Age": [
+            "3600"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": "{\"data\":[{\"id\":\"1\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/1.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2017-11-17T10:46:00Z\",\"created_at\":\"2017-11-15T16:53:31Z\",\"label\":\"Click & Collect Standard\",\"sku\":\"EXPRESS_2_DAY\",\"reference\":\"CCSD\",\"description\":\"\",\"sub_total\":0.0,\"tax\":0.0,\"total\":0.0,\"tax_rate\":0.0}},{\"id\":\"2\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/2.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2017-11-17T10:44:32Z\",\"created_at\":\"2017-11-15T16:53:31Z\",\"label\":\"Standard\",\"sku\":\"REGULAR\",\"reference\":\"STANDARD\",\"description\":\"\",\"sub_total\":3.29,\"tax\":0.66,\"total\":3.95,\"tax_rate\":0.2}},{\"id\":\"3\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/3.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2017-11-17T10:45:18Z\",\"created_at\":\"2017-11-15T16:53:31Z\",\"label\":\"Next Day\",\"sku\":\"EXPRESS_1_DAY\",\"reference\":\"NEXT DAY\",\"description\":\"Next Day Delivery\",\"sub_total\":4.12,\"tax\":0.83,\"total\":4.95,\"tax_rate\":0.2}},{\"id\":\"4\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/4.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2017-11-17T10:46:36Z\",\"created_at\":\"2017-11-15T16:53:31Z\",\"label\":\"Click & Collect Next Day\",\"sku\":\"EXPRESS_3_DAY\",\"reference\":\"CCND\",\"description\":\"\",\"sub_total\":1.66,\"tax\":0.33,\"total\":1.99,\"tax_rate\":0.2}}],\"meta\":{\"total_entries\":4,\"page_count\":1},\"links\":{\"self\":\"/testing/v1/shipping_methods.json_api\",\"first\":\"/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25\",\"last\":\"/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25\"}}",
+          "decoded": {
+            "data": [
+              {
+                "id": "1",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/1.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2017-11-17T10:46:00Z",
+                  "created_at": "2017-11-15T16:53:31Z",
+                  "label": "Click & Collect Standard",
+                  "sku": "EXPRESS_2_DAY",
+                  "reference": "CCSD",
+                  "description": "",
+                  "sub_total": 0.0,
+                  "tax": 0.0,
+                  "total": 0.0,
+                  "tax_rate": 0.0
+                }
+              },
+              {
+                "id": "2",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/2.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2017-11-17T10:44:32Z",
+                  "created_at": "2017-11-15T16:53:31Z",
+                  "label": "Standard",
+                  "sku": "REGULAR",
+                  "reference": "STANDARD",
+                  "description": "",
+                  "sub_total": 3.29,
+                  "tax": 0.66,
+                  "total": 3.95,
+                  "tax_rate": 0.2
+                }
+              },
+              {
+                "id": "3",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/3.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2017-11-17T10:45:18Z",
+                  "created_at": "2017-11-15T16:53:31Z",
+                  "label": "Next Day",
+                  "sku": "EXPRESS_1_DAY",
+                  "reference": "NEXT DAY",
+                  "description": "Next Day Delivery",
+                  "sub_total": 4.12,
+                  "tax": 0.83,
+                  "total": 4.95,
+                  "tax_rate": 0.2
+                }
+              },
+              {
+                "id": "4",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/4.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2017-11-17T10:46:36Z",
+                  "created_at": "2017-11-15T16:53:31Z",
+                  "label": "Click & Collect Next Day",
+                  "sku": "EXPRESS_3_DAY",
+                  "reference": "CCND",
+                  "description": "",
+                  "sub_total": 1.66,
+                  "tax": 0.33,
+                  "total": 1.99,
+                  "tax_rate": 0.2
+                }
+              }
+            ],
+            "meta": {
+              "total_entries": 4,
+              "page_count": 1
+            },
+            "links": {
+              "self": "/testing/v1/shipping_methods.json_api",
+              "first": "/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25",
+              "last": "/testing/v1/shipping_methods.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 07 May 2018 08:27:56 GMT"
+    }
+  ],
+  "recorded_with": "VCR 4.0.0"
+}
