@@ -1,0 +1,77 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "tax_codes",
+      "links": {
+        "self": "/some_account/v1/tax_codes/1.json_api"
+      },
+      "attributes": {
+        "updated_at": "2017-03-20T11:15:03Z",
+        "created_at": "2017-03-20T11:15:03Z",
+        "code": "1",
+        "country": "GB",
+        "rate": 0.2,
+        "starts_at": "2017-03-20T00:00:00Z",
+        "ends_at": "9999-03-20T00:00:00Z"
+      }
+    },
+    {
+      "id": "2",
+      "type": "tax_codes",
+      "links": {
+        "self": "/some_account/v1/tax_codes/2.json_api"
+      },
+      "attributes": {
+        "updated_at": "2017-03-20T11:15:24Z",
+        "created_at": "2017-03-20T11:15:24Z",
+        "code": "2",
+        "country": "GB",
+        "rate": 0,
+        "starts_at": "2017-03-20T00:00:00Z",
+        "ends_at": "9999-03-20T00:00:00Z"
+      }
+    },
+    {
+      "id": "3",
+      "type": "tax_codes",
+      "links": {
+        "self": "/some_account/v1/tax_codes/3.json_api"
+      },
+      "attributes": {
+        "updated_at": "2018-03-06T11:53:53Z",
+        "created_at": "2018-03-06T11:53:53Z",
+        "code": "3",
+        "country": "GB",
+        "rate": 0.2,
+        "starts_at": "2018-03-05T00:00:00Z",
+        "ends_at": "2018-03-06T00:00:00Z"
+      }
+    },
+    {
+      "id": "4",
+      "type": "tax_codes",
+      "links": {
+        "self": "/some_account/v1/tax_codes/4.json_api"
+      },
+      "attributes": {
+        "updated_at": "2018-04-09T08:48:41Z",
+        "created_at": "2018-04-09T08:26:42Z",
+        "code": "4",
+        "country": "GB",
+        "rate": 0.15,
+        "starts_at": "2018-04-08T00:00:00Z",
+        "ends_at": "2018-04-23T00:00:00Z"
+      }
+    }
+  ],
+  "meta": {
+    "total_entries": 4,
+    "page_count": 1
+  },
+  "links": {
+    "self": "/some_account/v1/tax_codes",
+    "first": "/some_account/v1/tax_codes.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25",
+    "last": "/some_account/v1/tax_codes.json_api?page%5Bnumber%5D=1&page%5Bsize%5D=25"
+  }
+}
