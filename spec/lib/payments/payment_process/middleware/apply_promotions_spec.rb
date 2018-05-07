@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # require "rails_helper"
-RSpec.describe Payments::PaymentProcess::Middleware::ApplyPromotions, speed: :slow do
+RSpec.describe FlexCommerce::Payments::PaymentProcess::Middleware::ApplyPromotions, speed: :slow do
   let(:state) { OpenStruct.new }
   let(:promotions_service) { class_double(Promotions).as_stubbed_const }
   context "#call", account: true, use_transactions: true do

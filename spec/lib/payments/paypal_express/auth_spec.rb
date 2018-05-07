@@ -1,5 +1,5 @@
 # require "rails_helper"
-RSpec.describe Payments::PaypalExpress::Auth, account: true, speed: :slow, use_transactions: true do
+RSpec.describe FlexCommerce::Payments::PaypalExpress::Auth, account: true, speed: :slow, use_transactions: true do
   let(:token) { "fake-token" }
   let(:payer_id) { "fake-payer-id" }
   let(:cart) { build_stubbed(:cart) }

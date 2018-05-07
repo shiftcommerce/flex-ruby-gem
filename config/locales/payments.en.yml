@@ -1,0 +1,10 @@
+en:
+  payment_address_verifications:
+    email_not_present: "Email not present in paypal"
+    unconfirmed: "Address is not confirmed"
+    service_failed: "Address verification service failed"
+  payment_setup:
+    shipping_method_not_available: "Shipping method not available"
+  payment_auth:
+    already_authorized_on_container: "This container already has an authorized transaction"
+    transaction_validation_errors: "Could not save transaction due to validation errors - %{message}"

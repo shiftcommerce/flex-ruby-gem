@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # require "rails_helper"
-RSpec.describe Payments::PaymentProcess::Middleware::Auth do
+RSpec.describe FlexCommerce::Payments::PaymentProcess::Middleware::Auth do
   context "#call", account: true, use_real_elastic_search: false do
     let!(:auth_service_class) { class_double(Payments::Auth).as_stubbed_const }
     let(:auth_service) { instance_spy(Payments::Auth) }

@@ -1,6 +1,6 @@
 # require "rails_helper"
 # The payments setup service for paypal express
-RSpec.describe Payments::PaypalExpress::Setup, speed: :slow, account: true do
+RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, speed: :slow, account: true do
   let(:shipping_address) { cart.shipping_address }
   context "paypal" do
     # Inputs to the service
