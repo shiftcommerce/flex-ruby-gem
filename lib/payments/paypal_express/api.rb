@@ -33,9 +33,14 @@ module FlexCommerce
         end
 
         #TODO: here test mode, has to be integrated with test_mode value from setup class
-        # DONT FORGET THIS
+        # Currently it is not being exposed via api. 
         def gateway
-          @gateway ||= gateway_class.new(test: true, login: payment_provider.meta_attributes["login"]["value"], password: payment_provider.meta_attributes["password"]["value"], signature: payment_provider.meta_attributes["signature"]["value"])
+          @gateway ||= gateway_class.new(test: gateway_test_mode, login: payment_provider.meta_attributes["login"]["value"], password: payment_provider.meta_attributes["password"]["value"], signature: payment_provider.meta_attributes["signature"]["value"])
+        end
+
+        def gateway_test_mode
+          return payment_provider.test_mode unless payment_provider.test_mode.nil?
+          ENV.fetch("ORDER_TEST_MODE", true)
         end
 
         def is_user_error?(response)

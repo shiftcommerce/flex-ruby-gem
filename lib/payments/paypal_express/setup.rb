@@ -22,6 +22,7 @@ module FlexCommerce
 
         def call
           return false unless valid_shipping_method?
+          
           response = gateway.setup_order(convert_amount(cart.total), paypal_params)
           if response.success?
             payment_provider_setup.setup_type = "redirect"
@@ -91,7 +92,7 @@ module FlexCommerce
 
         # Update this method later, for matching logic with flex commerce
         def shipping_methods
-          @shipping_methods ||= ShippingMethodsForCart.new(cart: cart, shipping_methods: shipping_method_model.all).send(:shipping_methods).sort_by(&:total)
+          @shipping_methods ||= ShippingMethodsForCart.new(cart: cart, shipping_methods: shipping_method_model.all).call.sort_by(&:total)
         end
 
         def shipping_method
@@ -102,7 +103,7 @@ module FlexCommerce
           return { shipping_options: [] } if !allow_shipping_change || shipping_method.nil?
           shipping_method_id = shipping_method.id
           {
-              shipping_options: shipping_methods.map {|sm| {name: sm.label, amount: convert_amount(sm.total), default: sm.id == shipping_method_id, label: sm.description}}
+              shipping_options: shipping_methods.map {|sm| {name: sm.label, amount: convert_amount(sm.total), default: sm.id == shipping_method_id, label: "#{sm.description}#{sm.id}"}}
           }
         end
 

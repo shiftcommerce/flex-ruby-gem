@@ -11,22 +11,22 @@ module FlexCommerce
           self.shipping_promotions = cart.available_shipping_promotions
         end
 
-        def each
+        def call
           free_shipping_method_ids = [ ]
-          shipping_promotions.each do |promotion|
+          shipping_promotions.reverse.each do |promotion|
             if can_apply_promotion_to_cart?(promotion: promotion)
-              free_shipping_method_ids << promotion.shipping_method_ids
+              free_shipping_method_ids << promotion.shipping_methods.map(&:id)
             end
           end
 
           free_shipping_method_ids.flatten!
-
+          updated_shipping_methods = []
           shipping_methods.each do |shipping_method|
             shipping_method_free = free_shipping_method_ids.include?(shipping_method.id)
 
-            yield CartShippingMethod.new(shipping_method, shipping_method_free)
+            updated_shipping_methods << CartShippingMethod.new(shipping_method, shipping_method_free)
           end
-          nil
+          updated_shipping_methods
         end
 
         private

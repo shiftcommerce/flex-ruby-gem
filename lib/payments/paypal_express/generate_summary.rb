@@ -40,6 +40,7 @@ module FlexCommerce
         end
 
         def shipping
+          return 0 if cart.free_shipping
           convert_amount(cart.shipping_total)
         end
 

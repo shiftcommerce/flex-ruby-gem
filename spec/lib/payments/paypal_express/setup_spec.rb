@@ -1,12 +1,16 @@
-# require "rails_helper"
+require "e2e_spec_helper"
+
 # The payments setup service for paypal express
-RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, speed: :slow, account: true do
+RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true do
+  include_context "context store"
+  include_context "housekeeping"
+
   let(:shipping_address) { cart.shipping_address }
   context "paypal" do
     # Inputs to the service
-    let(:payment_provider_setup) { instance_spy(::PaymentProviderSetup, errors: error_collector) }
+    let(:payment_provider_setup) { instance_spy("PaymentProviderSetup", errors: error_collector) }
     let(:error_collector) { instance_spy(ActiveModel::Errors) }
-    let(:payment_provider) { instance_double(::PaymentProvider, test_mode: true, enrichment_hash: { "login" => "login", "password" => "password", "signature" => "signature" }) }
+    let(:payment_provider) { instance_double("PaymentProvider", test_mode: true, meta_attributes: { "login" => "login", "password" => "password", "signature" => "signature" }) }
     let(:success_url) { "http://success.com" }
     let(:cancel_url) { "http://failure.com" }
     let(:callback_url) { "http://irrelevant.com" }
@@ -14,20 +18,63 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, speed: :slow, accou
     let(:use_mobile_payments)  { false }
     let(:allow_shipping_change) { true }
 
-    before(:each) { create(:shipping_method, label: "Really Expensive", total: 100.0) }
+    # Prepare cart data
+    let(:uuid) { SecureRandom.uuid }
+    let(:global_product) do
+      to_clean.global_product ||= FlexCommerce::Product.create!(title: "Title for product 1 for variant #{uuid}",
+                                                                reference: "reference for product 1 for variant #{uuid}",
+                                                                content_type: "markdown").freeze
+    end
+
+    let(:global_variant) do
+      to_clean.global_variant ||= FlexCommerce::Variant.create(title: "Title for Test Variant #{uuid}",
+        description: "Description for Test Variant #{uuid}",
+        reference: "reference_for_test_variant_#{uuid}",
+        price: 5.50,
+        price_includes_taxes: false,
+        sku: "sku_for_test_variant_#{uuid}",
+        product_id: global_product.id).freeze
+    end
+
+    let(:line_items) do
+      to_clean.line_items ||= FlexCommerce::LineItem.create(item_id: global_variant.id, unit_quantity: 2, item_type: 'Variant')
+    end
+
+    let(:shipping_address) do 
+      to_clean.shipping_address ||= FlexCommerce::Address.create(first_name: 'First Name', last_name: 'Last name', address_line_1: 'Address line 1', city: 'Leeds', country: 'GB', postcode: 'LS10 1QN')
+    end
+
+    let(:shipping_method) do
+      to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference:"testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: 'Test Shipping Method', total: '5.00')
+    end
+
+    let(:promotion) do
+      to_clean.promotion ||= FlexCommerce::Promotion.create(name: 'test_free_shipping', promotion_type: 'FreeShippingRule', priority: 10, active: true, exclusive: false, starts_at: 10.days.ago, ends_at: 10.days.from_now, channels: [ ], coupon_type: 'none', shipping_method_ids: [shipping_method.id], minimum_cart_total: '2.00' )
+    end
+
+    API_CART_INCLUDES = [
+      "line_items.item",
+      "line_items.item.product",
+      "discount_summaries",
+      "shipping_method",
+      "shipping_address",
+      "billing_address",
+      "available_shipping_promotions.shipping_methods"
+    ].join(',').freeze
 
     subject { described_class.new(payment_provider_setup: payment_provider_setup, payment_provider: payment_provider, cart: cart, success_url: success_url, cancel_url: cancel_url, ip_address: ip_address, callback_url: callback_url, allow_shipping_change: allow_shipping_change, use_mobile_payments: use_mobile_payments) }
 
     # Mock active merchant
-    let(:active_merchant_gateway_class) { class_double("::ActiveMerchant::Billing::PaypalExpressGateway").as_stubbed_const }
-    let!(:active_merchant_gateway) { instance_spy("::ActiveMerchant::Billing::PaypalExpressGateway") }
+    let(:active_merchant_gateway_class) { class_double("ActiveMerchant::Billing::PaypalExpressGateway").as_stubbed_const }
+    let!(:active_merchant_gateway) { instance_spy("ActiveMerchant::Billing::PaypalExpressGateway") }
 
 
     context "normal flow" do
 
       let(:redirect_url) { "https://some.paypal.url.com" }
       let(:paypal_token) { "paypal_token" }
-      let(:positive_paypal_response) { instance_double("::ActiveMerchant::Billing::PaypalExpressResponse", success?: true, token: paypal_token) }
+      let(:positive_paypal_response) { instance_double("ActiveMerchant::Billing::PaypalExpressResponse", success?: true, token: paypal_token) }
+
 
       shared_examples_for "any paypal setup" do
 
@@ -68,7 +115,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, speed: :slow, accou
         end
 
         it "should send a total which matches the sum of the line items" do
-          expect(active_merchant_gateway).to receive(:setup_order) do |total, params|
+            expect(active_merchant_gateway).to receive(:setup_order) do |total, params|
             handling = params.fetch(:handling, 0)
             shipping = params.fetch(:shipping, 0)
             tax = params.fetch(:tax, 0)
@@ -103,7 +150,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, speed: :slow, accou
           expect(error_collector).not_to have_received(:add)
         end
 
-        it "should have the shipping options set with the default equal to the shipping unless the shipping is zero", use_real_elastic_search: true do
+        it "should have the shipping options set with the default equal to the shipping unless the shipping is zero" do
           expect(active_merchant_gateway).to receive(:setup_order) do |total, params|
             expect(params[:shipping_options].select {|so| so[:default]}).to contain_exactly(hash_including(amount: params[:shipping]))
             positive_paypal_response
@@ -199,41 +246,58 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, speed: :slow, accou
 
       context "in test mode" do
         before(:each) do
-          expect(active_merchant_gateway_class).to receive(:new).with(test: true, login: payment_provider.enrichment_hash["login"], password: payment_provider.enrichment_hash["password"], signature: payment_provider.enrichment_hash["signature"]).and_return active_merchant_gateway
+          expect(active_merchant_gateway_class).to receive(:new).with(test: true, login: payment_provider.meta_attributes["login"]["value"], password: payment_provider.meta_attributes["password"]["value"], signature: payment_provider.meta_attributes["signature"]["value"]).and_return active_merchant_gateway
         end
-        context "with a cart ready for checkout standard", :account do
-          let(:cart) { create(:cart, :checkout_ready) }
+        context "with a cart ready for checkout standard" do
+          let(:cart) do
+            cart ||= FlexCommerce::Cart.find(line_items.container_id) 
+            cart.update(shipping_method_id: shipping_method.id, shipping_address_id: shipping_address.id)
+            cart
+          end
           it_should_behave_like "any paypal setup"
           it_should_behave_like "a paypal setup with shipping address"
         end
 
-        context "with a cart that has rounding error", :account do
+        context "with a cart that has rounding error" do
           let(:cart) do
-            create(:cart, :checkout_ready).tap do |cart|
+            FlexCommerce::Cart.find(line_items.container_id) do |cart|
               new_total = cart.total - 0.0000000000000001
               allow(cart).to receive(:total).and_return(new_total)
             end
           end
+
           it_should_behave_like "any paypal setup"
         end
 
-        context "with a cart with free shipping promotion", :account do
-          let!(:promotion) { create(:promotion,  :free_shipping) }
+        context "with a cart with free shipping promotion" do
           let(:cart) do
-            create(:cart, :with_line_items, line_items_count: 1).tap do |cart|
-              Promotions.apply_to_cart(cart: cart)
-            end
+            expect(promotion.id).not_to be_nil
+            cart = FlexCommerce::Cart.find(line_items.container_id)
+            cart.update(shipping_method_id: shipping_method.id)
+            cart = FlexCommerce::Cart.with_params(version: DateTime.now.strftime('%Q')).includes(API_CART_INCLUDES).find(cart.id).first
+            cart.shipping_total = 0
+            cart
           end
           it_should_behave_like "any paypal setup"
         end
 
-        context "with a cart ready for 'Click & Collect' checkout", :account do
-          let(:cart) { create(:cart, :checkout_ready) }
+        context "with a cart ready for 'Click & Collect' checkout" do
+          let(:cart) do
+            cart = FlexCommerce::Cart.find(line_items.container_id)
+            cart.update(shipping_method_id: shipping_method.id)
+            cart = FlexCommerce::Cart.with_params(version: DateTime.now.strftime('%Q')).includes(API_CART_INCLUDES).find(cart.id).first
+            cart
+          end
           it_should_behave_like "a paypal setup that does not allow shipping change"
         end
 
-        context "with a cart ready for mobile checkout", :account do
-          let(:cart)                { create(:cart, :checkout_ready) }
+        context "with a cart ready for mobile checkout" do
+          let(:cart) do
+            cart = FlexCommerce::Cart.find(line_items.container_id)
+            cart.update(shipping_method_id: shipping_method.id, shipping_address_id: shipping_address.id)
+            cart = FlexCommerce::Cart.with_params(version: DateTime.now.strftime('%Q')).includes(API_CART_INCLUDES).find(cart.id).first
+            cart
+          end
           let(:use_mobile_payments) { true }
           it_should_behave_like "any paypal setup"
           it_should_behave_like "a paypal setup with shipping address"
@@ -241,29 +305,50 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, speed: :slow, accou
       end
 
       context "in production mode" do
-        let(:payment_provider) { instance_double(::PaymentProvider, test_mode: false, enrichment_hash: { "login" => "login", "password" => "password", "signature" => "signature" }) }
+        let(:payment_provider) { instance_double("PaymentProvider", test_mode: false, meta_attributes: { "login" => "login", "password" => "password", "signature" => "signature" }) }
         before(:each) do
-          expect(active_merchant_gateway_class).to receive(:new).with(test: false, login: payment_provider.enrichment_hash["login"], password: payment_provider.enrichment_hash["password"], signature: payment_provider.enrichment_hash["signature"]).and_return active_merchant_gateway
+          expect(active_merchant_gateway_class).to receive(:new).with(test: false, login: payment_provider.meta_attributes["login"]["value"], password: payment_provider.meta_attributes["password"]["value"], signature: payment_provider.meta_attributes["signature"]["value"]).and_return active_merchant_gateway
         end
-        context "with a cart ready for checkout standard", :account do
-          let(:cart) { create(:cart, :checkout_ready) }
+        context "with a cart ready for checkout standard" do
+          let(:cart) do
+            cart = FlexCommerce::Cart.find(line_items.container_id)
+            cart.update(shipping_method_id: shipping_method.id, shipping_address_id: shipping_address.id)
+            cart = FlexCommerce::Cart.with_params(version: DateTime.now.strftime('%Q')).includes(API_CART_INCLUDES).find(cart.id).first
+            cart
+          end
           it_should_behave_like "any paypal setup"
           it_should_behave_like "a paypal setup with shipping address"
         end
 
-        context "with a cart with free shipping promotion", :account do
-          let!(:promotion) { create(:promotion,  :free_shipping) }
-          let(:cart) { create(:cart, :with_line_items, line_items_count: 1) }
+        context "with a cart with free shipping promotion" do
+          let(:cart) do
+            expect(promotion.id).not_to be_nil
+            cart = FlexCommerce::Cart.find(line_items.container_id)
+            cart.update(shipping_method_id: shipping_method.id)
+            cart = FlexCommerce::Cart.with_params(version: DateTime.now.strftime('%Q')).includes(API_CART_INCLUDES).find(cart.id).first
+            cart.shipping_total = 0
+            cart
+          end
           it_should_behave_like "any paypal setup"
         end
 
         context "with a cart ready for 'Click & Collect' checkout", :account do
-          let(:cart) { create(:cart, :checkout_ready) }
+          let(:cart) do
+            cart = FlexCommerce::Cart.find(line_items.container_id)
+            cart.update(shipping_method_id: shipping_method.id)
+            cart = FlexCommerce::Cart.with_params(version: DateTime.now.strftime('%Q')).includes(API_CART_INCLUDES).find(cart.id).first
+            cart
+          end
           it_should_behave_like "a paypal setup that does not allow shipping change"
         end
 
         context "with a cart ready for mobile checkout", :account do
-          let(:cart)                { create(:cart, :checkout_ready) }
+          let(:cart) do
+            cart = FlexCommerce::Cart.find(line_items.container_id)
+            cart.update(shipping_method_id: shipping_method.id, shipping_address_id: shipping_address.id)
+            cart = FlexCommerce::Cart.with_params(version: DateTime.now.strftime('%Q')).includes(API_CART_INCLUDES).find(cart.id).first
+            cart
+          end
           let(:use_mobile_payments) { true }
           it_should_behave_like "any paypal setup"
           it_should_behave_like "a paypal setup with shipping address"
@@ -274,7 +359,12 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, speed: :slow, accou
 
     context "unhappy flow" do
       context "with a cart with an invalid shipping_method_id" do
-        let(:cart) { create(:cart, :checkout_ready, shipping_method_id: -1) }
+        let(:cart) do
+          cart = FlexCommerce::Cart.find(line_items.container_id)
+          cart = FlexCommerce::Cart.with_params(version: DateTime.now.strftime('%Q')).includes(API_CART_INCLUDES).find(cart.id).first
+          cart.shipping_method_id = -1
+          cart
+        end
         let(:use_mobile_payments) { true }
         it "should not call active merchant and should mark the cart with an error" do
           expect(active_merchant_gateway_class).not_to receive(:new)
