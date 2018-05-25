@@ -28,7 +28,7 @@ RSpec.shared_context "housekeeping" do
     end
     
     if resource.type == 'promotions'
-      resource.update_attributes({active: false, archived: true})
+      resource.archive
       resource.destroy
     end
   end

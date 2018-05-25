@@ -25,8 +25,6 @@ module FlexCommerce
       attr_accessor :payment_provider_id, :cart, :success_url, :cancel_url, :ip_address, :allow_shipping_change, :callback_url, :use_mobile_payments
 
       def setup_service
-        puts "in the setup service...."
-        puts setup_service_class.inspect
         @setup_service ||= setup_service_class.new(
           cart: cart,
           payment_provider_setup: payment_provider_setup,

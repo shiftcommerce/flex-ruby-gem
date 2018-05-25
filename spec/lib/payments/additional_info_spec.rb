@@ -9,17 +9,15 @@ module FlexCommerce
       include_context "server context"
       context "paypal" do
         
-        let(:paypal_service_class) { class_double("Payments::PaypalExpress::AdditionalInfo").as_stubbed_const }
+        let(:paypal_service_class) { class_double("FlexCommerce::Payments::PaypalExpress::AdditionalInfo").as_stubbed_const }
         
         let(:payment_provider) {  FlexCommerce::PaymentProvider.all.select{ |p| p.reference == 'paypal_express' }.first }
         
         let!(:paypal_service) do
-          instance_double("Payments::PaypalExpress::AdditionalInfo").tap do |instance|
+          instance_double("FlexCommerce::Payments::PaypalExpress::AdditionalInfo").tap do |instance|
             expected_params = {
               payment_provider: payment_provider, options: { token: "my-token" }
             }
-            # Did this explicit matching because payment provider 
-            # was not working with normal with arguments
             expect(paypal_service_class).to  receive(:new) do |**args|
               expect(args[:options]).to eq({:token => "my-token" })
               expect(args[:payment_provider].reference).to eq(payment_provider.reference)

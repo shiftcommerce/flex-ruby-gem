@@ -48,18 +48,19 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::GenerateSummary do
     context "with no shipping" do
       let(:shipping_total) { BigDecimal.new(0) }
       context "with no discounts" do
-        let(:cart) { instance_double(FlexCommerce::Cart, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
+        let(:cart) { double(:cart, free_shipping: false, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
         let(:line_item_discount) { BigDecimal.new(0) }
-        let(:item) { 5.times.map { |n| instance_double(FlexCommerce::Variant, sku: "sku_#{n}") } }
-        let(:line_items) { 5.times.map { |n| instance_double(FlexCommerce::LineItem, unit_price: BigDecimal.new(1.67, 12), item: item[n], unit_quantity: 3, total: BigDecimal.new(5.01, 12), title: "Line item #{n}", tax: BigDecimal.new(0)) } }
+        let(:item) { 5.times.map { |n| double(:variant, sku: "sku_#{n}") } }
+        let(:line_items) { 5.times.map { |n| double(:line_item, unit_price: BigDecimal.new(1.67, 12), item: item[n], unit_quantity: 3, total: BigDecimal.new(5.01, 12), title: "Line item #{n}", tax: BigDecimal.new(0)) } }
+        
         include_examples "a summary from a cart with tax ignored"
         include_examples "non discounted line items"
       end
       context "with line item discounts" do
-        let(:cart) { instance_double(Cart, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
+        let(:cart) { double(:cart, free_shipping: false, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
         let(:line_item_discount) { BigDecimal.new(0.79, 12) }
-        let(:item) { 5.times.map { |n| instance_double(Variant, sku: "sku_#{n}") } }
-        let(:line_items) { 5.times.map { |n| instance_double(LineItem, unit_price: BigDecimal.new(1.67, 12), item: item[n], unit_quantity: 3, total: BigDecimal.new(5.01, 12) - line_item_discount, title: "Line item #{n}", tax: BigDecimal.new(0)) } }
+        let(:item) { 5.times.map { |n| double(:variant, sku: "sku_#{n}") } }
+        let(:line_items) { 5.times.map { |n| double(:line_item, unit_price: BigDecimal.new(1.67, 12), item: item[n], unit_quantity: 3, total: BigDecimal.new(5.01, 12) - line_item_discount, title: "Line item #{n}", tax: BigDecimal.new(0)) } }
         include_examples "a summary from a cart with tax ignored"
         include_examples "discounted line items"
       end
@@ -67,26 +68,21 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::GenerateSummary do
     context "with shipping" do
       let(:shipping_total) { BigDecimal.new(3.99, 12) }
       context "with no discounts" do
-        let(:cart) { instance_double(Cart, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
+        let(:cart) { double(:cart, free_shipping: false, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
         let(:line_item_discount) { BigDecimal.new(0) }
-        let(:item) { 5.times.map { |n| instance_double(Variant, sku: "sku_#{n}") } }
-        let(:line_items) { 5.times.map { |n| instance_double(LineItem, unit_price: BigDecimal.new(1.67, 12), item: item[n], unit_quantity: 3, total: BigDecimal.new(5.01, 12), title: "Line item #{n}", tax: BigDecimal.new(0)) } }
+        let(:item) { 5.times.map { |n| double(:variant, sku: "sku_#{n}") } }
+        let(:line_items) { 5.times.map { |n| double(:line_ttem, unit_price: BigDecimal.new(1.67, 12), item: item[n], unit_quantity: 3, total: BigDecimal.new(5.01, 12), title: "Line item #{n}", tax: BigDecimal.new(0)) } }
         include_examples "a summary from a cart with tax ignored"
         include_examples "non discounted line items"
       end
       context "with line item discounts" do
-        let(:cart) { instance_double(Cart, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
+        let(:cart) { double(:cart, free_shipping: false, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
         let(:line_item_discount) { BigDecimal.new(0.79, 12) }
-        let(:item) { 5.times.map { |n| instance_double(Variant, sku: "sku_#{n}") } }
-        let(:line_items) { 5.times.map { |n| instance_double(LineItem, unit_price: BigDecimal.new(1.67, 12), item: item[n], unit_quantity: 3, total: BigDecimal.new(5.01, 12) - line_item_discount, title: "Line item #{n}", tax: BigDecimal.new(0)) } }
+        let(:item) { 5.times.map { |n| double(:variant, sku: "sku_#{n}") } }
+        let(:line_items) { 5.times.map { |n| double(:line_item, unit_price: BigDecimal.new(1.67, 12), item: item[n], unit_quantity: 3, total: BigDecimal.new(5.01, 12) - line_item_discount, title: "Line item #{n}", tax: BigDecimal.new(0)) } }
         include_examples "a summary from a cart with tax ignored"
         include_examples "discounted line items"
       end
     end
-
-
-  end
-  context "with tax" do
-
   end
 end
