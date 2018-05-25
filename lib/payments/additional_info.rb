@@ -25,7 +25,7 @@ module FlexCommerce
       end
 
       def delegated_service_class
-        "::Payments::#{payment_provider_id.camelize}::AdditionalInfo".constantize
+        "::FlexCommerce::Payments::#{payment_provider_id.camelize}::AdditionalInfo".constantize
       end
 
       def payment_provider
