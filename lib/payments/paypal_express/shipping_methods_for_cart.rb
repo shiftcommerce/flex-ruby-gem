@@ -14,7 +14,9 @@ module FlexCommerce
         def call
           free_shipping_method_ids = [ ]
           shipping_promotions.reverse.each do |promotion|
-            if can_apply_promotion_to_cart?(promotion: promotion)
+            # See if promotion is having a shipping method, 
+            # and also see if that cart total is eligible for promotion
+            if promotion.shipping_methods && can_apply_promotion_to_cart?(promotion: promotion)
               free_shipping_method_ids << promotion.shipping_methods.map(&:id)
             end
           end

@@ -8,9 +8,6 @@ module FlexCommerce
         ZERO = BigDecimal.new(0)
 
         def initialize(shipping_method, free)
-          puts "CAME TO CART SHIPPING METHOD"
-          puts shipping_method.inspect
-          puts free.inspect
           super(shipping_method)
           self.free = free
         end
