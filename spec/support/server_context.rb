@@ -1,7 +1,3 @@
-require 'dotenv'
-# Required for ENV variables
-Dotenv.load
-
 RSpec.shared_context "server context" do
   def setup_for_api!
     FlexCommerceApi.config do |config|

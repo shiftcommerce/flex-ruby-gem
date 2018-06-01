@@ -14,9 +14,5 @@ module FlexCommerce
     def add_markdown_prices(markdown_prices)
       self.class.requestor.custom("relationships/markdown_prices", {request_method: :post}, {id: id, data: markdown_prices.map(&:as_relation)})
     end
-
-    def sku
-      reference
-    end
   end
 end
