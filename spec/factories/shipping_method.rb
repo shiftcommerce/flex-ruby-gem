@@ -1,4 +1,3 @@
-require "flex_commerce_api"
 FactoryBot.define do
   factory :shipping_method, class: JsonStruct do
     sequence(:label) { |idx| "Shipping Method #{idx}" }

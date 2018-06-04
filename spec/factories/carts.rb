@@ -2,8 +2,6 @@ require "flex_commerce_api"
 
 FactoryBot.define do
   factory :cart, class: JsonStruct do
-    shipping_address factory: :address_data_from_fixture
-    
     transient do
       line_items_count 3  # number of line items to create in traits
       line_item_unit_quantity 1

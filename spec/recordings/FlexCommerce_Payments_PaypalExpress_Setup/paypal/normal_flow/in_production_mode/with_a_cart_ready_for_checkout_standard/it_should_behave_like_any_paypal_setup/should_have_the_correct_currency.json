@@ -1,0 +1,1450 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://testing:Mi9lMmY2MjI2M2JmOTU3NDFmYzZiMTM1NGEwMDQzNTI3NmFlZTMxMmY2YTJlMzA4OGViOGNkYjNmYWY0YmY0MGYyODQ3MGU3MWEwZGEyZGFhZjBkN2E2OGYwMGM5ZmVkNzdlNTU3ZWMzYzFhOTI4YjhiN2Q4ZWRmZWJkMDM5YWZlZTJhMTE1NDg1OTM3YjhkNTdkMmQ2OGVkNTJhYTc0NGZlNzQ1N2E2YjM3YzZmZDQxZGU1OGViMzgyMTIzMzZmN2Q4YzQzMjg5ZTFhNDU4MThkNTZkNTZiMzAxMjEyZjk5YjExNWFhNzY0NjYwYjUyOGNkYTA4M2ZiMGYwMmMwZTBi@shift-platform-dev-api.global.ssl.fastly.net/testing/v1/carts/390.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.0"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Cache-Control": [
+            "private, max-age=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"4b42a4e7d62d341917a1b2d849af7d6b\""
+          ],
+          "X-Request-Id": [
+            "68ab9b79-37c2-42d8-9035-8e9cdb4a1dcc"
+          ],
+          "X-Runtime": [
+            "0.132260"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=15552000; includeSubDomains"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Date": [
+            "Mon, 04 Jun 2018 12:32:55 GMT"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "X-Served-By": [
+            "cache-lcy19250-LCY"
+          ],
+          "X-Cache": [
+            "MISS"
+          ],
+          "X-Cache-Hits": [
+            "0"
+          ],
+          "X-Timer": [
+            "S1528115575.216561,VS0,VE150"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ],
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Headers": [
+            "Accept, Accept-Encoding, Accept-Language, Content-Type, Authorization"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Max-Age": [
+            "3600"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"390\",\"type\":\"carts\",\"links\":{\"self\":\"/testing/v1/carts/390.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:55Z\",\"created_at\":\"2018-06-04T12:32:01Z\",\"email\":\"\",\"channel\":\"web\",\"line_items_count\":1,\"shipping_total_discount\":-5.0,\"shipping_discount_name\":null,\"free_shipping\":false,\"test\":false,\"sub_total\":11.0,\"tax\":0.0,\"total_discount\":0.0,\"total\":16.0,\"shipping_total\":5.0},\"relationships\":{\"line_items\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/line_items.json_api\",\"related\":\"/testing/v1/carts/390/line_items.json_api\"},\"data\":[{\"type\":\"line_items\",\"id\":\"340\"}]},\"discount_summaries\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/discount_summaries.json_api\",\"related\":\"/testing/v1/carts/390/discount_summaries.json_api\"},\"data\":[]},\"customer_account\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/customer_account.json_api\",\"related\":\"/testing/v1/carts/390/customer_account.json_api\"},\"data\":null},\"billing_address\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/billing_address.json_api\",\"related\":\"/testing/v1/carts/390/billing_address.json_api\"},\"data\":null},\"shipping_address\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/shipping_address.json_api\",\"related\":\"/testing/v1/carts/390/shipping_address.json_api\"},\"data\":{\"type\":\"addresses\",\"id\":\"312\"}},\"shipping_method\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/shipping_method.json_api\",\"related\":\"/testing/v1/carts/390/shipping_method.json_api\"},\"data\":{\"type\":\"shipping_methods\",\"id\":\"346\"}},\"free_shipping_promotion\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/free_shipping_promotion.json_api\",\"related\":\"/testing/v1/carts/390/free_shipping_promotion.json_api\"}},\"applied_promotions\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/applied_promotions.json_api\",\"related\":\"/testing/v1/carts/390/applied_promotions.json_api\"}},\"available_shipping_methods\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/available_shipping_methods.json_api\",\"related\":\"/testing/v1/carts/390/available_shipping_methods.json_api\"}},\"available_shipping_promotions\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/available_shipping_promotions.json_api\",\"related\":\"/testing/v1/carts/390/available_shipping_promotions.json_api\"}},\"payment_transactions\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/payment_transactions.json_api\",\"related\":\"/testing/v1/carts/390/payment_transactions.json_api\"}}}},\"included\":[{\"id\":\"340\",\"type\":\"line_items\",\"links\":{\"self\":\"/testing/v1/line_items/340.json_api\"},\"attributes\":{\"stock_available_level\":0,\"title\":\"Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"unit_quantity\":2,\"item_type\":\"Variant\",\"item_id\":352,\"tax_rate\":0,\"order_status\":null,\"total\":11.0,\"total_discount\":0.0,\"tax\":0.0,\"sub_total\":11.0,\"unit_price\":5.5,\"gift\":false,\"container_id\":390},\"relationships\":{\"item\":{\"links\":{\"self\":\"/testing/v1/line_items/340/relationships/item.json_api\",\"related\":\"/testing/v1/line_items/340/item.json_api\"},\"data\":{\"type\":\"variants\",\"id\":\"352\"}},\"container\":{\"links\":{\"self\":\"/testing/v1/line_items/340/relationships/container.json_api\",\"related\":\"/testing/v1/line_items/340/container.json_api\"}},\"line_item_discounts\":{\"links\":{\"self\":\"/testing/v1/line_items/340/relationships/line_item_discounts.json_api\",\"related\":\"/testing/v1/line_items/340/line_item_discounts.json_api\"},\"data\":[]}}},{\"id\":\"352\",\"type\":\"variants\",\"links\":{\"self\":\"/testing/v1/variants/352.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:00Z\",\"created_at\":\"2018-06-04T12:32:00Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"description\":\"Description for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"reference\":\"reference_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"product_id\":387,\"sku\":\"sku_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"stock_available_level\":0,\"has_assets\":false,\"price_includes_taxes\":false,\"available_to_browse\":false,\"available_to_order\":false,\"price\":5.5,\"current_price\":5.5,\"picture_url\":null},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testing/v1/variants/352/relationships/product.json_api\",\"related\":\"/testing/v1/variants/352/product.json_api\"},\"data\":{\"type\":\"products\",\"id\":\"387\"}},\"asset_files\":{\"links\":{\"self\":\"/testing/v1/variants/352/relationships/asset_files.json_api\",\"related\":\"/testing/v1/variants/352/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testing/v1/variants/352/relationships/markdown_prices.json_api\",\"related\":\"/testing/v1/variants/352/markdown_prices.json_api\"}}}},{\"id\":\"387\",\"type\":\"products\",\"links\":{\"self\":\"/testing/v1/products/387.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:00Z\",\"created_at\":\"2018-06-04T12:32:00Z\",\"deleted_at\":null,\"slug\":\"reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"canonical_path\":\"/products/reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"title\":\"Title for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"reference\":\"reference for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"description\":\"\",\"attribute_merchandising\":{},\"category_ids_cache\":[],\"content_type\":\"markdown\",\"merged_attribute_merchandising\":{},\"seo_meta_description\":\"\",\"seo_meta_keywords\":\"\",\"seo_meta_title\":\"\",\"rating\":0,\"total_ratings\":null,\"web_product_description\":\"\",\"web_product_name\":\"\",\"picture_url\":null,\"sellable\":true,\"available_to_browse\":false,\"merchandised\":false,\"published\":true,\"has_assets\":false,\"ewis_status\":\"not_ewis_eligible\",\"average_rating\":0.0,\"min_price\":5.5,\"max_price\":5.5,\"min_current_price\":5.5,\"max_current_price\":5.5},\"relationships\":{\"template_definition\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/template_definition.json_api\",\"related\":\"/testing/v1/products/387/template_definition.json_api\"}},\"template\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/template.json_api\",\"related\":\"/testing/v1/products/387/template.json_api\"}},\"variants\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/variants.json_api\",\"related\":\"/testing/v1/products/387/variants.json_api\"}},\"bundles\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/bundles.json_api\",\"related\":\"/testing/v1/products/387/bundles.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/asset_files.json_api\",\"related\":\"/testing/v1/products/387/asset_files.json_api\"}}}},{\"id\":\"312\",\"type\":\"addresses\",\"links\":{\"self\":\"/testing/v1/addresses/312.json_api\"},\"attributes\":{\"meta_attributes\":{},\"customer_account_id\":null,\"first_name\":\"First Name\",\"last_name\":\"Last name\",\"middle_names\":\"\",\"address_line_1\":\"Address line 1\",\"address_line_2\":\"\",\"address_line_3\":\"\",\"city\":\"Leeds\",\"state\":null,\"postcode\":\"LS10 1QN\",\"country\":\"GB\",\"preferred_shipping\":false,\"preferred_billing\":false},\"relationships\":{\"customer_account\":{\"links\":{\"self\":\"/testing/v1/addresses/312/relationships/customer_account.json_api\",\"related\":\"/testing/v1/addresses/312/customer_account.json_api\"}}}},{\"id\":\"346\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/346.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:02Z\",\"created_at\":\"2018-06-04T12:32:02Z\",\"label\":\"Test Shipping Method\",\"sku\":\"test_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"reference\":\"testing_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"description\":null,\"sub_total\":5.0,\"tax\":0.0,\"total\":5.0,\"tax_rate\":0.0}}],\"links\":{\"self\":\"/testing/v1/carts/390.json_api\"}}",
+          "decoded": {
+            "data": {
+              "id": "390",
+              "type": "carts",
+              "links": {
+                "self": "/testing/v1/carts/390.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2018-06-04T12:32:55Z",
+                "created_at": "2018-06-04T12:32:01Z",
+                "email": "",
+                "channel": "web",
+                "line_items_count": 1,
+                "shipping_total_discount": -5.0,
+                "shipping_discount_name": null,
+                "free_shipping": false,
+                "test": false,
+                "sub_total": 11.0,
+                "tax": 0.0,
+                "total_discount": 0.0,
+                "total": 16.0,
+                "shipping_total": 5.0
+              },
+              "relationships": {
+                "line_items": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/line_items.json_api",
+                    "related": "/testing/v1/carts/390/line_items.json_api"
+                  },
+                  "data": [
+                    {
+                      "type": "line_items",
+                      "id": "340"
+                    }
+                  ]
+                },
+                "discount_summaries": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/discount_summaries.json_api",
+                    "related": "/testing/v1/carts/390/discount_summaries.json_api"
+                  },
+                  "data": [
+
+                  ]
+                },
+                "customer_account": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/customer_account.json_api",
+                    "related": "/testing/v1/carts/390/customer_account.json_api"
+                  },
+                  "data": null
+                },
+                "billing_address": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/billing_address.json_api",
+                    "related": "/testing/v1/carts/390/billing_address.json_api"
+                  },
+                  "data": null
+                },
+                "shipping_address": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/shipping_address.json_api",
+                    "related": "/testing/v1/carts/390/shipping_address.json_api"
+                  },
+                  "data": {
+                    "type": "addresses",
+                    "id": "312"
+                  }
+                },
+                "shipping_method": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/shipping_method.json_api",
+                    "related": "/testing/v1/carts/390/shipping_method.json_api"
+                  },
+                  "data": {
+                    "type": "shipping_methods",
+                    "id": "346"
+                  }
+                },
+                "free_shipping_promotion": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/free_shipping_promotion.json_api",
+                    "related": "/testing/v1/carts/390/free_shipping_promotion.json_api"
+                  }
+                },
+                "applied_promotions": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/applied_promotions.json_api",
+                    "related": "/testing/v1/carts/390/applied_promotions.json_api"
+                  }
+                },
+                "available_shipping_methods": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/available_shipping_methods.json_api",
+                    "related": "/testing/v1/carts/390/available_shipping_methods.json_api"
+                  }
+                },
+                "available_shipping_promotions": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/available_shipping_promotions.json_api",
+                    "related": "/testing/v1/carts/390/available_shipping_promotions.json_api"
+                  }
+                },
+                "payment_transactions": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/payment_transactions.json_api",
+                    "related": "/testing/v1/carts/390/payment_transactions.json_api"
+                  }
+                }
+              }
+            },
+            "included": [
+              {
+                "id": "340",
+                "type": "line_items",
+                "links": {
+                  "self": "/testing/v1/line_items/340.json_api"
+                },
+                "attributes": {
+                  "stock_available_level": 0,
+                  "title": "Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "unit_quantity": 2,
+                  "item_type": "Variant",
+                  "item_id": 352,
+                  "tax_rate": 0,
+                  "order_status": null,
+                  "total": 11.0,
+                  "total_discount": 0.0,
+                  "tax": 0.0,
+                  "sub_total": 11.0,
+                  "unit_price": 5.5,
+                  "gift": false,
+                  "container_id": 390
+                },
+                "relationships": {
+                  "item": {
+                    "links": {
+                      "self": "/testing/v1/line_items/340/relationships/item.json_api",
+                      "related": "/testing/v1/line_items/340/item.json_api"
+                    },
+                    "data": {
+                      "type": "variants",
+                      "id": "352"
+                    }
+                  },
+                  "container": {
+                    "links": {
+                      "self": "/testing/v1/line_items/340/relationships/container.json_api",
+                      "related": "/testing/v1/line_items/340/container.json_api"
+                    }
+                  },
+                  "line_item_discounts": {
+                    "links": {
+                      "self": "/testing/v1/line_items/340/relationships/line_item_discounts.json_api",
+                      "related": "/testing/v1/line_items/340/line_item_discounts.json_api"
+                    },
+                    "data": [
+
+                    ]
+                  }
+                }
+              },
+              {
+                "id": "352",
+                "type": "variants",
+                "links": {
+                  "self": "/testing/v1/variants/352.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2018-06-04T12:32:00Z",
+                  "created_at": "2018-06-04T12:32:00Z",
+                  "deleted_at": null,
+                  "title": "Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "description": "Description for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "reference": "reference_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "ewis_eligible": false,
+                  "expected_availability_date": null,
+                  "ordered_total": 0,
+                  "position": null,
+                  "product_id": 387,
+                  "sku": "sku_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "stock_allocated_level": 0,
+                  "stock_level": 0,
+                  "tax_code": null,
+                  "stock_available_level": 0,
+                  "has_assets": false,
+                  "price_includes_taxes": false,
+                  "available_to_browse": false,
+                  "available_to_order": false,
+                  "price": 5.5,
+                  "current_price": 5.5,
+                  "picture_url": null
+                },
+                "relationships": {
+                  "product": {
+                    "links": {
+                      "self": "/testing/v1/variants/352/relationships/product.json_api",
+                      "related": "/testing/v1/variants/352/product.json_api"
+                    },
+                    "data": {
+                      "type": "products",
+                      "id": "387"
+                    }
+                  },
+                  "asset_files": {
+                    "links": {
+                      "self": "/testing/v1/variants/352/relationships/asset_files.json_api",
+                      "related": "/testing/v1/variants/352/asset_files.json_api"
+                    }
+                  },
+                  "markdown_prices": {
+                    "links": {
+                      "self": "/testing/v1/variants/352/relationships/markdown_prices.json_api",
+                      "related": "/testing/v1/variants/352/markdown_prices.json_api"
+                    }
+                  }
+                }
+              },
+              {
+                "id": "387",
+                "type": "products",
+                "links": {
+                  "self": "/testing/v1/products/387.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2018-06-04T12:32:00Z",
+                  "created_at": "2018-06-04T12:32:00Z",
+                  "deleted_at": null,
+                  "slug": "reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "canonical_path": "/products/reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "title": "Title for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "reference": "reference for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "description": "",
+                  "attribute_merchandising": {
+                  },
+                  "category_ids_cache": [
+
+                  ],
+                  "content_type": "markdown",
+                  "merged_attribute_merchandising": {
+                  },
+                  "seo_meta_description": "",
+                  "seo_meta_keywords": "",
+                  "seo_meta_title": "",
+                  "rating": 0,
+                  "total_ratings": null,
+                  "web_product_description": "",
+                  "web_product_name": "",
+                  "picture_url": null,
+                  "sellable": true,
+                  "available_to_browse": false,
+                  "merchandised": false,
+                  "published": true,
+                  "has_assets": false,
+                  "ewis_status": "not_ewis_eligible",
+                  "average_rating": 0.0,
+                  "min_price": 5.5,
+                  "max_price": 5.5,
+                  "min_current_price": 5.5,
+                  "max_current_price": 5.5
+                },
+                "relationships": {
+                  "template_definition": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/template_definition.json_api",
+                      "related": "/testing/v1/products/387/template_definition.json_api"
+                    }
+                  },
+                  "template": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/template.json_api",
+                      "related": "/testing/v1/products/387/template.json_api"
+                    }
+                  },
+                  "variants": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/variants.json_api",
+                      "related": "/testing/v1/products/387/variants.json_api"
+                    }
+                  },
+                  "bundles": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/bundles.json_api",
+                      "related": "/testing/v1/products/387/bundles.json_api"
+                    }
+                  },
+                  "asset_files": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/asset_files.json_api",
+                      "related": "/testing/v1/products/387/asset_files.json_api"
+                    }
+                  }
+                }
+              },
+              {
+                "id": "312",
+                "type": "addresses",
+                "links": {
+                  "self": "/testing/v1/addresses/312.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "customer_account_id": null,
+                  "first_name": "First Name",
+                  "last_name": "Last name",
+                  "middle_names": "",
+                  "address_line_1": "Address line 1",
+                  "address_line_2": "",
+                  "address_line_3": "",
+                  "city": "Leeds",
+                  "state": null,
+                  "postcode": "LS10 1QN",
+                  "country": "GB",
+                  "preferred_shipping": false,
+                  "preferred_billing": false
+                },
+                "relationships": {
+                  "customer_account": {
+                    "links": {
+                      "self": "/testing/v1/addresses/312/relationships/customer_account.json_api",
+                      "related": "/testing/v1/addresses/312/customer_account.json_api"
+                    }
+                  }
+                }
+              },
+              {
+                "id": "346",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/346.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2018-06-04T12:32:02Z",
+                  "created_at": "2018-06-04T12:32:02Z",
+                  "label": "Test Shipping Method",
+                  "sku": "test_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "reference": "testing_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "description": null,
+                  "sub_total": 5.0,
+                  "tax": 0.0,
+                  "total": 5.0,
+                  "tax_rate": 0.0
+                }
+              }
+            ],
+            "links": {
+              "self": "/testing/v1/carts/390.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 04 Jun 2018 12:32:54 GMT"
+    },
+    {
+      "request": {
+        "method": "patch",
+        "uri": "https://testing:Mi9lMmY2MjI2M2JmOTU3NDFmYzZiMTM1NGEwMDQzNTI3NmFlZTMxMmY2YTJlMzA4OGViOGNkYjNmYWY0YmY0MGYyODQ3MGU3MWEwZGEyZGFhZjBkN2E2OGYwMGM5ZmVkNzdlNTU3ZWMzYzFhOTI4YjhiN2Q4ZWRmZWJkMDM5YWZlZTJhMTE1NDg1OTM3YjhkNTdkMmQ2OGVkNTJhYTc0NGZlNzQ1N2E2YjM3YzZmZDQxZGU1OGViMzgyMTIzMzZmN2Q4YzQzMjg5ZTFhNDU4MThkNTZkNTZiMzAxMjEyZjk5YjExNWFhNzY0NjYwYjUyOGNkYTA4M2ZiMGYwMmMwZTBi@shift-platform-dev-api.global.ssl.fastly.net/testing/v1/carts/390.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"390\",\"type\":\"carts\",\"attributes\":{\"shipping_method_id\":\"346\",\"shipping_address_id\":\"312\"}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.0"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Cache-Control": [
+            "private, max-age=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"5c35fb01ed6315c8ea2d3e66e1f273ee\""
+          ],
+          "X-Request-Id": [
+            "f5d1b632-b8fb-4fff-b920-1878de66f616"
+          ],
+          "X-Runtime": [
+            "0.179468"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=15552000; includeSubDomains"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Date": [
+            "Mon, 04 Jun 2018 12:32:55 GMT"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "X-Served-By": [
+            "cache-lcy19232-LCY"
+          ],
+          "X-Cache": [
+            "MISS"
+          ],
+          "X-Cache-Hits": [
+            "0"
+          ],
+          "X-Timer": [
+            "S1528115575.469770,VS0,VE201"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ],
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Headers": [
+            "Accept, Accept-Encoding, Accept-Language, Content-Type, Authorization"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Max-Age": [
+            "3600"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": "{\"data\":{\"id\":\"390\",\"type\":\"carts\",\"links\":{\"self\":\"/testing/v1/carts/390.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:55Z\",\"created_at\":\"2018-06-04T12:32:01Z\",\"email\":\"\",\"channel\":\"web\",\"line_items_count\":1,\"shipping_total_discount\":-5.0,\"shipping_discount_name\":null,\"free_shipping\":false,\"test\":false,\"sub_total\":11.0,\"tax\":0.0,\"total_discount\":0.0,\"total\":16.0,\"shipping_total\":5.0},\"relationships\":{\"line_items\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/line_items.json_api\",\"related\":\"/testing/v1/carts/390/line_items.json_api\"},\"data\":[{\"type\":\"line_items\",\"id\":\"340\"}]},\"discount_summaries\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/discount_summaries.json_api\",\"related\":\"/testing/v1/carts/390/discount_summaries.json_api\"},\"data\":[]},\"customer_account\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/customer_account.json_api\",\"related\":\"/testing/v1/carts/390/customer_account.json_api\"},\"data\":null},\"billing_address\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/billing_address.json_api\",\"related\":\"/testing/v1/carts/390/billing_address.json_api\"},\"data\":null},\"shipping_address\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/shipping_address.json_api\",\"related\":\"/testing/v1/carts/390/shipping_address.json_api\"},\"data\":{\"type\":\"addresses\",\"id\":\"312\"}},\"shipping_method\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/shipping_method.json_api\",\"related\":\"/testing/v1/carts/390/shipping_method.json_api\"},\"data\":{\"type\":\"shipping_methods\",\"id\":\"346\"}},\"free_shipping_promotion\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/free_shipping_promotion.json_api\",\"related\":\"/testing/v1/carts/390/free_shipping_promotion.json_api\"}},\"applied_promotions\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/applied_promotions.json_api\",\"related\":\"/testing/v1/carts/390/applied_promotions.json_api\"}},\"available_shipping_methods\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/available_shipping_methods.json_api\",\"related\":\"/testing/v1/carts/390/available_shipping_methods.json_api\"}},\"available_shipping_promotions\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/available_shipping_promotions.json_api\",\"related\":\"/testing/v1/carts/390/available_shipping_promotions.json_api\"}},\"payment_transactions\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/payment_transactions.json_api\",\"related\":\"/testing/v1/carts/390/payment_transactions.json_api\"}}}},\"included\":[{\"id\":\"340\",\"type\":\"line_items\",\"links\":{\"self\":\"/testing/v1/line_items/340.json_api\"},\"attributes\":{\"stock_available_level\":0,\"title\":\"Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"unit_quantity\":2,\"item_type\":\"Variant\",\"item_id\":352,\"tax_rate\":0,\"order_status\":null,\"total\":11.0,\"total_discount\":0.0,\"tax\":0.0,\"sub_total\":11.0,\"unit_price\":5.5,\"gift\":false,\"container_id\":390},\"relationships\":{\"item\":{\"links\":{\"self\":\"/testing/v1/line_items/340/relationships/item.json_api\",\"related\":\"/testing/v1/line_items/340/item.json_api\"},\"data\":{\"type\":\"variants\",\"id\":\"352\"}},\"container\":{\"links\":{\"self\":\"/testing/v1/line_items/340/relationships/container.json_api\",\"related\":\"/testing/v1/line_items/340/container.json_api\"}},\"line_item_discounts\":{\"links\":{\"self\":\"/testing/v1/line_items/340/relationships/line_item_discounts.json_api\",\"related\":\"/testing/v1/line_items/340/line_item_discounts.json_api\"},\"data\":[]}}},{\"id\":\"352\",\"type\":\"variants\",\"links\":{\"self\":\"/testing/v1/variants/352.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:00Z\",\"created_at\":\"2018-06-04T12:32:00Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"description\":\"Description for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"reference\":\"reference_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"product_id\":387,\"sku\":\"sku_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"stock_available_level\":0,\"has_assets\":false,\"price_includes_taxes\":false,\"available_to_browse\":false,\"available_to_order\":false,\"price\":5.5,\"current_price\":5.5,\"picture_url\":null},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testing/v1/variants/352/relationships/product.json_api\",\"related\":\"/testing/v1/variants/352/product.json_api\"},\"data\":{\"type\":\"products\",\"id\":\"387\"}},\"asset_files\":{\"links\":{\"self\":\"/testing/v1/variants/352/relationships/asset_files.json_api\",\"related\":\"/testing/v1/variants/352/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testing/v1/variants/352/relationships/markdown_prices.json_api\",\"related\":\"/testing/v1/variants/352/markdown_prices.json_api\"}}}},{\"id\":\"387\",\"type\":\"products\",\"links\":{\"self\":\"/testing/v1/products/387.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:00Z\",\"created_at\":\"2018-06-04T12:32:00Z\",\"deleted_at\":null,\"slug\":\"reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"canonical_path\":\"/products/reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"title\":\"Title for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"reference\":\"reference for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"description\":\"\",\"attribute_merchandising\":{},\"category_ids_cache\":[],\"content_type\":\"markdown\",\"merged_attribute_merchandising\":{},\"seo_meta_description\":\"\",\"seo_meta_keywords\":\"\",\"seo_meta_title\":\"\",\"rating\":0,\"total_ratings\":null,\"web_product_description\":\"\",\"web_product_name\":\"\",\"picture_url\":null,\"sellable\":true,\"available_to_browse\":false,\"merchandised\":false,\"published\":true,\"has_assets\":false,\"ewis_status\":\"not_ewis_eligible\",\"average_rating\":0.0,\"min_price\":5.5,\"max_price\":5.5,\"min_current_price\":5.5,\"max_current_price\":5.5},\"relationships\":{\"template_definition\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/template_definition.json_api\",\"related\":\"/testing/v1/products/387/template_definition.json_api\"}},\"template\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/template.json_api\",\"related\":\"/testing/v1/products/387/template.json_api\"}},\"variants\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/variants.json_api\",\"related\":\"/testing/v1/products/387/variants.json_api\"}},\"bundles\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/bundles.json_api\",\"related\":\"/testing/v1/products/387/bundles.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/asset_files.json_api\",\"related\":\"/testing/v1/products/387/asset_files.json_api\"}}}},{\"id\":\"312\",\"type\":\"addresses\",\"links\":{\"self\":\"/testing/v1/addresses/312.json_api\"},\"attributes\":{\"meta_attributes\":{},\"customer_account_id\":null,\"first_name\":\"First Name\",\"last_name\":\"Last name\",\"middle_names\":\"\",\"address_line_1\":\"Address line 1\",\"address_line_2\":\"\",\"address_line_3\":\"\",\"city\":\"Leeds\",\"state\":null,\"postcode\":\"LS10 1QN\",\"country\":\"GB\",\"preferred_shipping\":false,\"preferred_billing\":false},\"relationships\":{\"customer_account\":{\"links\":{\"self\":\"/testing/v1/addresses/312/relationships/customer_account.json_api\",\"related\":\"/testing/v1/addresses/312/customer_account.json_api\"}}}},{\"id\":\"346\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/346.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:02Z\",\"created_at\":\"2018-06-04T12:32:02Z\",\"label\":\"Test Shipping Method\",\"sku\":\"test_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"reference\":\"testing_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"description\":null,\"sub_total\":5.0,\"tax\":0.0,\"total\":5.0,\"tax_rate\":0.0}}],\"links\":{\"self\":\"/testing/v1/carts/390.json_api\"}}",
+          "decoded": {
+            "data": {
+              "id": "390",
+              "type": "carts",
+              "links": {
+                "self": "/testing/v1/carts/390.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2018-06-04T12:32:55Z",
+                "created_at": "2018-06-04T12:32:01Z",
+                "email": "",
+                "channel": "web",
+                "line_items_count": 1,
+                "shipping_total_discount": -5.0,
+                "shipping_discount_name": null,
+                "free_shipping": false,
+                "test": false,
+                "sub_total": 11.0,
+                "tax": 0.0,
+                "total_discount": 0.0,
+                "total": 16.0,
+                "shipping_total": 5.0
+              },
+              "relationships": {
+                "line_items": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/line_items.json_api",
+                    "related": "/testing/v1/carts/390/line_items.json_api"
+                  },
+                  "data": [
+                    {
+                      "type": "line_items",
+                      "id": "340"
+                    }
+                  ]
+                },
+                "discount_summaries": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/discount_summaries.json_api",
+                    "related": "/testing/v1/carts/390/discount_summaries.json_api"
+                  },
+                  "data": [
+
+                  ]
+                },
+                "customer_account": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/customer_account.json_api",
+                    "related": "/testing/v1/carts/390/customer_account.json_api"
+                  },
+                  "data": null
+                },
+                "billing_address": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/billing_address.json_api",
+                    "related": "/testing/v1/carts/390/billing_address.json_api"
+                  },
+                  "data": null
+                },
+                "shipping_address": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/shipping_address.json_api",
+                    "related": "/testing/v1/carts/390/shipping_address.json_api"
+                  },
+                  "data": {
+                    "type": "addresses",
+                    "id": "312"
+                  }
+                },
+                "shipping_method": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/shipping_method.json_api",
+                    "related": "/testing/v1/carts/390/shipping_method.json_api"
+                  },
+                  "data": {
+                    "type": "shipping_methods",
+                    "id": "346"
+                  }
+                },
+                "free_shipping_promotion": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/free_shipping_promotion.json_api",
+                    "related": "/testing/v1/carts/390/free_shipping_promotion.json_api"
+                  }
+                },
+                "applied_promotions": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/applied_promotions.json_api",
+                    "related": "/testing/v1/carts/390/applied_promotions.json_api"
+                  }
+                },
+                "available_shipping_methods": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/available_shipping_methods.json_api",
+                    "related": "/testing/v1/carts/390/available_shipping_methods.json_api"
+                  }
+                },
+                "available_shipping_promotions": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/available_shipping_promotions.json_api",
+                    "related": "/testing/v1/carts/390/available_shipping_promotions.json_api"
+                  }
+                },
+                "payment_transactions": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/payment_transactions.json_api",
+                    "related": "/testing/v1/carts/390/payment_transactions.json_api"
+                  }
+                }
+              }
+            },
+            "included": [
+              {
+                "id": "340",
+                "type": "line_items",
+                "links": {
+                  "self": "/testing/v1/line_items/340.json_api"
+                },
+                "attributes": {
+                  "stock_available_level": 0,
+                  "title": "Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "unit_quantity": 2,
+                  "item_type": "Variant",
+                  "item_id": 352,
+                  "tax_rate": 0,
+                  "order_status": null,
+                  "total": 11.0,
+                  "total_discount": 0.0,
+                  "tax": 0.0,
+                  "sub_total": 11.0,
+                  "unit_price": 5.5,
+                  "gift": false,
+                  "container_id": 390
+                },
+                "relationships": {
+                  "item": {
+                    "links": {
+                      "self": "/testing/v1/line_items/340/relationships/item.json_api",
+                      "related": "/testing/v1/line_items/340/item.json_api"
+                    },
+                    "data": {
+                      "type": "variants",
+                      "id": "352"
+                    }
+                  },
+                  "container": {
+                    "links": {
+                      "self": "/testing/v1/line_items/340/relationships/container.json_api",
+                      "related": "/testing/v1/line_items/340/container.json_api"
+                    }
+                  },
+                  "line_item_discounts": {
+                    "links": {
+                      "self": "/testing/v1/line_items/340/relationships/line_item_discounts.json_api",
+                      "related": "/testing/v1/line_items/340/line_item_discounts.json_api"
+                    },
+                    "data": [
+
+                    ]
+                  }
+                }
+              },
+              {
+                "id": "352",
+                "type": "variants",
+                "links": {
+                  "self": "/testing/v1/variants/352.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2018-06-04T12:32:00Z",
+                  "created_at": "2018-06-04T12:32:00Z",
+                  "deleted_at": null,
+                  "title": "Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "description": "Description for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "reference": "reference_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "ewis_eligible": false,
+                  "expected_availability_date": null,
+                  "ordered_total": 0,
+                  "position": null,
+                  "product_id": 387,
+                  "sku": "sku_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "stock_allocated_level": 0,
+                  "stock_level": 0,
+                  "tax_code": null,
+                  "stock_available_level": 0,
+                  "has_assets": false,
+                  "price_includes_taxes": false,
+                  "available_to_browse": false,
+                  "available_to_order": false,
+                  "price": 5.5,
+                  "current_price": 5.5,
+                  "picture_url": null
+                },
+                "relationships": {
+                  "product": {
+                    "links": {
+                      "self": "/testing/v1/variants/352/relationships/product.json_api",
+                      "related": "/testing/v1/variants/352/product.json_api"
+                    },
+                    "data": {
+                      "type": "products",
+                      "id": "387"
+                    }
+                  },
+                  "asset_files": {
+                    "links": {
+                      "self": "/testing/v1/variants/352/relationships/asset_files.json_api",
+                      "related": "/testing/v1/variants/352/asset_files.json_api"
+                    }
+                  },
+                  "markdown_prices": {
+                    "links": {
+                      "self": "/testing/v1/variants/352/relationships/markdown_prices.json_api",
+                      "related": "/testing/v1/variants/352/markdown_prices.json_api"
+                    }
+                  }
+                }
+              },
+              {
+                "id": "387",
+                "type": "products",
+                "links": {
+                  "self": "/testing/v1/products/387.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2018-06-04T12:32:00Z",
+                  "created_at": "2018-06-04T12:32:00Z",
+                  "deleted_at": null,
+                  "slug": "reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "canonical_path": "/products/reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "title": "Title for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "reference": "reference for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "description": "",
+                  "attribute_merchandising": {
+                  },
+                  "category_ids_cache": [
+
+                  ],
+                  "content_type": "markdown",
+                  "merged_attribute_merchandising": {
+                  },
+                  "seo_meta_description": "",
+                  "seo_meta_keywords": "",
+                  "seo_meta_title": "",
+                  "rating": 0,
+                  "total_ratings": null,
+                  "web_product_description": "",
+                  "web_product_name": "",
+                  "picture_url": null,
+                  "sellable": true,
+                  "available_to_browse": false,
+                  "merchandised": false,
+                  "published": true,
+                  "has_assets": false,
+                  "ewis_status": "not_ewis_eligible",
+                  "average_rating": 0.0,
+                  "min_price": 5.5,
+                  "max_price": 5.5,
+                  "min_current_price": 5.5,
+                  "max_current_price": 5.5
+                },
+                "relationships": {
+                  "template_definition": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/template_definition.json_api",
+                      "related": "/testing/v1/products/387/template_definition.json_api"
+                    }
+                  },
+                  "template": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/template.json_api",
+                      "related": "/testing/v1/products/387/template.json_api"
+                    }
+                  },
+                  "variants": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/variants.json_api",
+                      "related": "/testing/v1/products/387/variants.json_api"
+                    }
+                  },
+                  "bundles": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/bundles.json_api",
+                      "related": "/testing/v1/products/387/bundles.json_api"
+                    }
+                  },
+                  "asset_files": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/asset_files.json_api",
+                      "related": "/testing/v1/products/387/asset_files.json_api"
+                    }
+                  }
+                }
+              },
+              {
+                "id": "312",
+                "type": "addresses",
+                "links": {
+                  "self": "/testing/v1/addresses/312.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "customer_account_id": null,
+                  "first_name": "First Name",
+                  "last_name": "Last name",
+                  "middle_names": "",
+                  "address_line_1": "Address line 1",
+                  "address_line_2": "",
+                  "address_line_3": "",
+                  "city": "Leeds",
+                  "state": null,
+                  "postcode": "LS10 1QN",
+                  "country": "GB",
+                  "preferred_shipping": false,
+                  "preferred_billing": false
+                },
+                "relationships": {
+                  "customer_account": {
+                    "links": {
+                      "self": "/testing/v1/addresses/312/relationships/customer_account.json_api",
+                      "related": "/testing/v1/addresses/312/customer_account.json_api"
+                    }
+                  }
+                }
+              },
+              {
+                "id": "346",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/346.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2018-06-04T12:32:02Z",
+                  "created_at": "2018-06-04T12:32:02Z",
+                  "label": "Test Shipping Method",
+                  "sku": "test_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "reference": "testing_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "description": null,
+                  "sub_total": 5.0,
+                  "tax": 0.0,
+                  "total": 5.0,
+                  "tax_rate": 0.0
+                }
+              }
+            ],
+            "links": {
+              "self": "/testing/v1/carts/390.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 04 Jun 2018 12:32:54 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://testing:Mi9lMmY2MjI2M2JmOTU3NDFmYzZiMTM1NGEwMDQzNTI3NmFlZTMxMmY2YTJlMzA4OGViOGNkYjNmYWY0YmY0MGYyODQ3MGU3MWEwZGEyZGFhZjBkN2E2OGYwMGM5ZmVkNzdlNTU3ZWMzYzFhOTI4YjhiN2Q4ZWRmZWJkMDM5YWZlZTJhMTE1NDg1OTM3YjhkNTdkMmQ2OGVkNTJhYTc0NGZlNzQ1N2E2YjM3YzZmZDQxZGU1OGViMzgyMTIzMzZmN2Q4YzQzMjg5ZTFhNDU4MThkNTZkNTZiMzAxMjEyZjk5YjExNWFhNzY0NjYwYjUyOGNkYTA4M2ZiMGYwMmMwZTBi@shift-platform-dev-api.global.ssl.fastly.net/testing/v1/carts/390.json_api?include=line_items.item,line_items.item.product,discount_summaries,shipping_method,shipping_address,billing_address,available_shipping_promotions.shipping_methods&version=152811557462680",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.0"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "headers": {
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Cache-Control": [
+            "private, max-age=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"e57f439c7c8a45e379955ac6d5101146\""
+          ],
+          "X-Request-Id": [
+            "2c8a7c82-811f-4606-83a3-c620ecef25f1"
+          ],
+          "X-Runtime": [
+            "0.135626"
+          ],
+          "Strict-Transport-Security": [
+            "max-age=15552000; includeSubDomains"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Date": [
+            "Mon, 04 Jun 2018 12:32:55 GMT"
+          ],
+          "Age": [
+            "0"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "X-Served-By": [
+            "cache-lcy19245-LCY"
+          ],
+          "X-Cache": [
+            "MISS"
+          ],
+          "X-Cache-Hits": [
+            "0"
+          ],
+          "X-Timer": [
+            "S1528115576.747292,VS0,VE154"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ],
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Headers": [
+            "Accept, Accept-Encoding, Accept-Language, Content-Type, Authorization"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Max-Age": [
+            "3600"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"id\":\"390\",\"type\":\"carts\",\"links\":{\"self\":\"/testing/v1/carts/390.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:55Z\",\"created_at\":\"2018-06-04T12:32:01Z\",\"email\":\"\",\"channel\":\"web\",\"line_items_count\":1,\"shipping_total_discount\":-5.0,\"shipping_discount_name\":null,\"free_shipping\":false,\"test\":false,\"sub_total\":11.0,\"tax\":0.0,\"total_discount\":0.0,\"total\":16.0,\"shipping_total\":5.0},\"relationships\":{\"line_items\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/line_items.json_api\",\"related\":\"/testing/v1/carts/390/line_items.json_api\"},\"data\":[{\"type\":\"line_items\",\"id\":\"340\"}]},\"discount_summaries\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/discount_summaries.json_api\",\"related\":\"/testing/v1/carts/390/discount_summaries.json_api\"},\"data\":[]},\"customer_account\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/customer_account.json_api\",\"related\":\"/testing/v1/carts/390/customer_account.json_api\"}},\"billing_address\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/billing_address.json_api\",\"related\":\"/testing/v1/carts/390/billing_address.json_api\"},\"data\":null},\"shipping_address\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/shipping_address.json_api\",\"related\":\"/testing/v1/carts/390/shipping_address.json_api\"},\"data\":{\"type\":\"addresses\",\"id\":\"312\"}},\"shipping_method\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/shipping_method.json_api\",\"related\":\"/testing/v1/carts/390/shipping_method.json_api\"},\"data\":{\"type\":\"shipping_methods\",\"id\":\"346\"}},\"free_shipping_promotion\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/free_shipping_promotion.json_api\",\"related\":\"/testing/v1/carts/390/free_shipping_promotion.json_api\"}},\"applied_promotions\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/applied_promotions.json_api\",\"related\":\"/testing/v1/carts/390/applied_promotions.json_api\"}},\"available_shipping_methods\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/available_shipping_methods.json_api\",\"related\":\"/testing/v1/carts/390/available_shipping_methods.json_api\"}},\"available_shipping_promotions\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/available_shipping_promotions.json_api\",\"related\":\"/testing/v1/carts/390/available_shipping_promotions.json_api\"},\"data\":[]},\"payment_transactions\":{\"links\":{\"self\":\"/testing/v1/carts/390/relationships/payment_transactions.json_api\",\"related\":\"/testing/v1/carts/390/payment_transactions.json_api\"}}}},\"included\":[{\"id\":\"340\",\"type\":\"line_items\",\"links\":{\"self\":\"/testing/v1/line_items/340.json_api\"},\"attributes\":{\"stock_available_level\":0,\"title\":\"Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"unit_quantity\":2,\"item_type\":\"Variant\",\"item_id\":352,\"tax_rate\":0,\"order_status\":null,\"total\":11.0,\"total_discount\":0.0,\"tax\":0.0,\"sub_total\":11.0,\"unit_price\":5.5,\"gift\":false,\"container_id\":390},\"relationships\":{\"item\":{\"links\":{\"self\":\"/testing/v1/line_items/340/relationships/item.json_api\",\"related\":\"/testing/v1/line_items/340/item.json_api\"},\"data\":{\"type\":\"variants\",\"id\":\"352\"}},\"container\":{\"links\":{\"self\":\"/testing/v1/line_items/340/relationships/container.json_api\",\"related\":\"/testing/v1/line_items/340/container.json_api\"}},\"line_item_discounts\":{\"links\":{\"self\":\"/testing/v1/line_items/340/relationships/line_item_discounts.json_api\",\"related\":\"/testing/v1/line_items/340/line_item_discounts.json_api\"}}}},{\"id\":\"352\",\"type\":\"variants\",\"links\":{\"self\":\"/testing/v1/variants/352.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:00Z\",\"created_at\":\"2018-06-04T12:32:00Z\",\"deleted_at\":null,\"title\":\"Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"description\":\"Description for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"reference\":\"reference_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"ewis_eligible\":false,\"expected_availability_date\":null,\"ordered_total\":0,\"position\":null,\"product_id\":387,\"sku\":\"sku_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"stock_allocated_level\":0,\"stock_level\":0,\"tax_code\":null,\"stock_available_level\":0,\"has_assets\":false,\"price_includes_taxes\":false,\"available_to_browse\":false,\"available_to_order\":false,\"price\":5.5,\"current_price\":5.5,\"picture_url\":null},\"relationships\":{\"product\":{\"links\":{\"self\":\"/testing/v1/variants/352/relationships/product.json_api\",\"related\":\"/testing/v1/variants/352/product.json_api\"},\"data\":{\"type\":\"products\",\"id\":\"387\"}},\"asset_files\":{\"links\":{\"self\":\"/testing/v1/variants/352/relationships/asset_files.json_api\",\"related\":\"/testing/v1/variants/352/asset_files.json_api\"}},\"markdown_prices\":{\"links\":{\"self\":\"/testing/v1/variants/352/relationships/markdown_prices.json_api\",\"related\":\"/testing/v1/variants/352/markdown_prices.json_api\"}}}},{\"id\":\"387\",\"type\":\"products\",\"links\":{\"self\":\"/testing/v1/products/387.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:00Z\",\"created_at\":\"2018-06-04T12:32:00Z\",\"deleted_at\":null,\"slug\":\"reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"canonical_path\":\"/products/reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"title\":\"Title for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"reference\":\"reference for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"description\":\"\",\"attribute_merchandising\":{},\"category_ids_cache\":[],\"content_type\":\"markdown\",\"merged_attribute_merchandising\":{},\"seo_meta_description\":\"\",\"seo_meta_keywords\":\"\",\"seo_meta_title\":\"\",\"rating\":0,\"total_ratings\":null,\"web_product_description\":\"\",\"web_product_name\":\"\",\"picture_url\":null,\"sellable\":true,\"available_to_browse\":false,\"merchandised\":false,\"published\":true,\"has_assets\":false,\"ewis_status\":\"not_ewis_eligible\",\"average_rating\":0.0,\"min_price\":5.5,\"max_price\":5.5,\"min_current_price\":5.5,\"max_current_price\":5.5},\"relationships\":{\"template_definition\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/template_definition.json_api\",\"related\":\"/testing/v1/products/387/template_definition.json_api\"}},\"template\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/template.json_api\",\"related\":\"/testing/v1/products/387/template.json_api\"}},\"variants\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/variants.json_api\",\"related\":\"/testing/v1/products/387/variants.json_api\"}},\"bundles\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/bundles.json_api\",\"related\":\"/testing/v1/products/387/bundles.json_api\"}},\"asset_files\":{\"links\":{\"self\":\"/testing/v1/products/387/relationships/asset_files.json_api\",\"related\":\"/testing/v1/products/387/asset_files.json_api\"}}}},{\"id\":\"312\",\"type\":\"addresses\",\"links\":{\"self\":\"/testing/v1/addresses/312.json_api\"},\"attributes\":{\"meta_attributes\":{},\"customer_account_id\":null,\"first_name\":\"First Name\",\"last_name\":\"Last name\",\"middle_names\":\"\",\"address_line_1\":\"Address line 1\",\"address_line_2\":\"\",\"address_line_3\":\"\",\"city\":\"Leeds\",\"state\":null,\"postcode\":\"LS10 1QN\",\"country\":\"GB\",\"preferred_shipping\":false,\"preferred_billing\":false},\"relationships\":{\"customer_account\":{\"links\":{\"self\":\"/testing/v1/addresses/312/relationships/customer_account.json_api\",\"related\":\"/testing/v1/addresses/312/customer_account.json_api\"}}}},{\"id\":\"346\",\"type\":\"shipping_methods\",\"links\":{\"self\":\"/testing/v1/shipping_methods/346.json_api\"},\"attributes\":{\"meta_attributes\":{},\"updated_at\":\"2018-06-04T12:32:02Z\",\"created_at\":\"2018-06-04T12:32:02Z\",\"label\":\"Test Shipping Method\",\"sku\":\"test_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"reference\":\"testing_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8\",\"description\":null,\"sub_total\":5.0,\"tax\":0.0,\"total\":5.0,\"tax_rate\":0.0}}],\"links\":{\"self\":\"/testing/v1/carts/390.json_api?include=line_items.item%2Cline_items.item.product%2Cdiscount_summaries%2Cshipping_method%2Cshipping_address%2Cbilling_address%2Cavailable_shipping_promotions.shipping_methods&version=152811557462680\"}}",
+          "decoded": {
+            "data": {
+              "id": "390",
+              "type": "carts",
+              "links": {
+                "self": "/testing/v1/carts/390.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "updated_at": "2018-06-04T12:32:55Z",
+                "created_at": "2018-06-04T12:32:01Z",
+                "email": "",
+                "channel": "web",
+                "line_items_count": 1,
+                "shipping_total_discount": -5.0,
+                "shipping_discount_name": null,
+                "free_shipping": false,
+                "test": false,
+                "sub_total": 11.0,
+                "tax": 0.0,
+                "total_discount": 0.0,
+                "total": 16.0,
+                "shipping_total": 5.0
+              },
+              "relationships": {
+                "line_items": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/line_items.json_api",
+                    "related": "/testing/v1/carts/390/line_items.json_api"
+                  },
+                  "data": [
+                    {
+                      "type": "line_items",
+                      "id": "340"
+                    }
+                  ]
+                },
+                "discount_summaries": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/discount_summaries.json_api",
+                    "related": "/testing/v1/carts/390/discount_summaries.json_api"
+                  },
+                  "data": [
+
+                  ]
+                },
+                "customer_account": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/customer_account.json_api",
+                    "related": "/testing/v1/carts/390/customer_account.json_api"
+                  }
+                },
+                "billing_address": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/billing_address.json_api",
+                    "related": "/testing/v1/carts/390/billing_address.json_api"
+                  },
+                  "data": null
+                },
+                "shipping_address": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/shipping_address.json_api",
+                    "related": "/testing/v1/carts/390/shipping_address.json_api"
+                  },
+                  "data": {
+                    "type": "addresses",
+                    "id": "312"
+                  }
+                },
+                "shipping_method": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/shipping_method.json_api",
+                    "related": "/testing/v1/carts/390/shipping_method.json_api"
+                  },
+                  "data": {
+                    "type": "shipping_methods",
+                    "id": "346"
+                  }
+                },
+                "free_shipping_promotion": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/free_shipping_promotion.json_api",
+                    "related": "/testing/v1/carts/390/free_shipping_promotion.json_api"
+                  }
+                },
+                "applied_promotions": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/applied_promotions.json_api",
+                    "related": "/testing/v1/carts/390/applied_promotions.json_api"
+                  }
+                },
+                "available_shipping_methods": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/available_shipping_methods.json_api",
+                    "related": "/testing/v1/carts/390/available_shipping_methods.json_api"
+                  }
+                },
+                "available_shipping_promotions": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/available_shipping_promotions.json_api",
+                    "related": "/testing/v1/carts/390/available_shipping_promotions.json_api"
+                  },
+                  "data": [
+
+                  ]
+                },
+                "payment_transactions": {
+                  "links": {
+                    "self": "/testing/v1/carts/390/relationships/payment_transactions.json_api",
+                    "related": "/testing/v1/carts/390/payment_transactions.json_api"
+                  }
+                }
+              }
+            },
+            "included": [
+              {
+                "id": "340",
+                "type": "line_items",
+                "links": {
+                  "self": "/testing/v1/line_items/340.json_api"
+                },
+                "attributes": {
+                  "stock_available_level": 0,
+                  "title": "Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "unit_quantity": 2,
+                  "item_type": "Variant",
+                  "item_id": 352,
+                  "tax_rate": 0,
+                  "order_status": null,
+                  "total": 11.0,
+                  "total_discount": 0.0,
+                  "tax": 0.0,
+                  "sub_total": 11.0,
+                  "unit_price": 5.5,
+                  "gift": false,
+                  "container_id": 390
+                },
+                "relationships": {
+                  "item": {
+                    "links": {
+                      "self": "/testing/v1/line_items/340/relationships/item.json_api",
+                      "related": "/testing/v1/line_items/340/item.json_api"
+                    },
+                    "data": {
+                      "type": "variants",
+                      "id": "352"
+                    }
+                  },
+                  "container": {
+                    "links": {
+                      "self": "/testing/v1/line_items/340/relationships/container.json_api",
+                      "related": "/testing/v1/line_items/340/container.json_api"
+                    }
+                  },
+                  "line_item_discounts": {
+                    "links": {
+                      "self": "/testing/v1/line_items/340/relationships/line_item_discounts.json_api",
+                      "related": "/testing/v1/line_items/340/line_item_discounts.json_api"
+                    }
+                  }
+                }
+              },
+              {
+                "id": "352",
+                "type": "variants",
+                "links": {
+                  "self": "/testing/v1/variants/352.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2018-06-04T12:32:00Z",
+                  "created_at": "2018-06-04T12:32:00Z",
+                  "deleted_at": null,
+                  "title": "Title for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "description": "Description for Test Variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "reference": "reference_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "ewis_eligible": false,
+                  "expected_availability_date": null,
+                  "ordered_total": 0,
+                  "position": null,
+                  "product_id": 387,
+                  "sku": "sku_for_test_variant_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "stock_allocated_level": 0,
+                  "stock_level": 0,
+                  "tax_code": null,
+                  "stock_available_level": 0,
+                  "has_assets": false,
+                  "price_includes_taxes": false,
+                  "available_to_browse": false,
+                  "available_to_order": false,
+                  "price": 5.5,
+                  "current_price": 5.5,
+                  "picture_url": null
+                },
+                "relationships": {
+                  "product": {
+                    "links": {
+                      "self": "/testing/v1/variants/352/relationships/product.json_api",
+                      "related": "/testing/v1/variants/352/product.json_api"
+                    },
+                    "data": {
+                      "type": "products",
+                      "id": "387"
+                    }
+                  },
+                  "asset_files": {
+                    "links": {
+                      "self": "/testing/v1/variants/352/relationships/asset_files.json_api",
+                      "related": "/testing/v1/variants/352/asset_files.json_api"
+                    }
+                  },
+                  "markdown_prices": {
+                    "links": {
+                      "self": "/testing/v1/variants/352/relationships/markdown_prices.json_api",
+                      "related": "/testing/v1/variants/352/markdown_prices.json_api"
+                    }
+                  }
+                }
+              },
+              {
+                "id": "387",
+                "type": "products",
+                "links": {
+                  "self": "/testing/v1/products/387.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2018-06-04T12:32:00Z",
+                  "created_at": "2018-06-04T12:32:00Z",
+                  "deleted_at": null,
+                  "slug": "reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "canonical_path": "/products/reference-for-product-1-for-variant-ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "title": "Title for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "reference": "reference for product 1 for variant ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "description": "",
+                  "attribute_merchandising": {
+                  },
+                  "category_ids_cache": [
+
+                  ],
+                  "content_type": "markdown",
+                  "merged_attribute_merchandising": {
+                  },
+                  "seo_meta_description": "",
+                  "seo_meta_keywords": "",
+                  "seo_meta_title": "",
+                  "rating": 0,
+                  "total_ratings": null,
+                  "web_product_description": "",
+                  "web_product_name": "",
+                  "picture_url": null,
+                  "sellable": true,
+                  "available_to_browse": false,
+                  "merchandised": false,
+                  "published": true,
+                  "has_assets": false,
+                  "ewis_status": "not_ewis_eligible",
+                  "average_rating": 0.0,
+                  "min_price": 5.5,
+                  "max_price": 5.5,
+                  "min_current_price": 5.5,
+                  "max_current_price": 5.5
+                },
+                "relationships": {
+                  "template_definition": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/template_definition.json_api",
+                      "related": "/testing/v1/products/387/template_definition.json_api"
+                    }
+                  },
+                  "template": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/template.json_api",
+                      "related": "/testing/v1/products/387/template.json_api"
+                    }
+                  },
+                  "variants": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/variants.json_api",
+                      "related": "/testing/v1/products/387/variants.json_api"
+                    }
+                  },
+                  "bundles": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/bundles.json_api",
+                      "related": "/testing/v1/products/387/bundles.json_api"
+                    }
+                  },
+                  "asset_files": {
+                    "links": {
+                      "self": "/testing/v1/products/387/relationships/asset_files.json_api",
+                      "related": "/testing/v1/products/387/asset_files.json_api"
+                    }
+                  }
+                }
+              },
+              {
+                "id": "312",
+                "type": "addresses",
+                "links": {
+                  "self": "/testing/v1/addresses/312.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "customer_account_id": null,
+                  "first_name": "First Name",
+                  "last_name": "Last name",
+                  "middle_names": "",
+                  "address_line_1": "Address line 1",
+                  "address_line_2": "",
+                  "address_line_3": "",
+                  "city": "Leeds",
+                  "state": null,
+                  "postcode": "LS10 1QN",
+                  "country": "GB",
+                  "preferred_shipping": false,
+                  "preferred_billing": false
+                },
+                "relationships": {
+                  "customer_account": {
+                    "links": {
+                      "self": "/testing/v1/addresses/312/relationships/customer_account.json_api",
+                      "related": "/testing/v1/addresses/312/customer_account.json_api"
+                    }
+                  }
+                }
+              },
+              {
+                "id": "346",
+                "type": "shipping_methods",
+                "links": {
+                  "self": "/testing/v1/shipping_methods/346.json_api"
+                },
+                "attributes": {
+                  "meta_attributes": {
+                  },
+                  "updated_at": "2018-06-04T12:32:02Z",
+                  "created_at": "2018-06-04T12:32:02Z",
+                  "label": "Test Shipping Method",
+                  "sku": "test_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "reference": "testing_shipping_ebf2d7bf-a361-421d-ac1e-b22ab2f0d5d8",
+                  "description": null,
+                  "sub_total": 5.0,
+                  "tax": 0.0,
+                  "total": 5.0,
+                  "tax_rate": 0.0
+                }
+              }
+            ],
+            "links": {
+              "self": "/testing/v1/carts/390.json_api?include=line_items.item%2Cline_items.item.product%2Cdiscount_summaries%2Cshipping_method%2Cshipping_address%2Cbilling_address%2Cavailable_shipping_promotions.shipping_methods&version=152811557462680"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 04 Jun 2018 12:32:54 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://testing:Mi9lMmY2MjI2M2JmOTU3NDFmYzZiMTM1NGEwMDQzNTI3NmFlZTMxMmY2YTJlMzA4OGViOGNkYjNmYWY0YmY0MGYyODQ3MGU3MWEwZGEyZGFhZjBkN2E2OGYwMGM5ZmVkNzdlNTU3ZWMzYzFhOTI4YjhiN2Q4ZWRmZWJkMDM5YWZlZTJhMTE1NDg1OTM3YjhkNTdkMmQ2OGVkNTJhYTc0NGZlNzQ1N2E2YjM3YzZmZDQxZGU1OGViMzgyMTIzMzZmN2Q4YzQzMjg5ZTFhNDU4MThkNTZkNTZiMzAxMjEyZjk5YjExNWFhNzY0NjYwYjUyOGNkYTA4M2ZiMGYwMmMwZTBi@shift-platform-dev-api.global.ssl.fastly.net/testing/v1/shipping_methods.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.0"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "If-None-Match": [
+            "W/\"71dfabe8e49cd8d3c71d9ecb1d8037f1\""
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 304,
+          "message": "Not Modified"
+        },
+        "headers": {
+          "Date": [
+            "Mon, 04 Jun 2018 12:32:55 GMT"
+          ],
+          "Cache-Control": [
+            "max-age=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"71dfabe8e49cd8d3c71d9ecb1d8037f1\""
+          ],
+          "Age": [
+            "52"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "X-Served-By": [
+            "cache-lcy19244-LCY"
+          ],
+          "X-Cache": [
+            "HIT"
+          ],
+          "X-Cache-Hits": [
+            "6"
+          ],
+          "X-Timer": [
+            "S1528115576.974293,VS0,VE0"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ],
+          "Access-Control-Allow-Credentials": [
+            "true"
+          ],
+          "Access-Control-Allow-Headers": [
+            "Accept, Accept-Encoding, Accept-Language, Content-Type, Authorization"
+          ],
+          "Access-Control-Allow-Origin": [
+            "*"
+          ],
+          "Access-Control-Max-Age": [
+            "3600"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Mon, 04 Jun 2018 12:32:54 GMT"
+    }
+  ],
+  "recorded_with": "VCR 4.0.0"
+}
