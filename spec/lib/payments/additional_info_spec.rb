@@ -5,7 +5,7 @@ require "flex_commerce_api"
 # to the correct additional info service which is provider specific
 module FlexCommerce
   module Payments
-    describe AdditionalInfo, speed: :slow do
+    describe AdditionalInfo, speed: :slow, vcr: true do
       include_context "server context"
       context "paypal" do
         

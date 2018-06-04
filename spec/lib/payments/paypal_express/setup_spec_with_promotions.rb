@@ -131,9 +131,6 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true do
         end
 
         it "should have the correct subtotal" do
-          puts "*************************"
-          puts cart.inspect
-          puts "*************************"
           expect(active_merchant_gateway).to receive(:setup_order) do |*params|
             expect(params[0]).to eq((cart.total * 100).round.to_i)
             expect(params[1][:currency]).to eq("GBP")
@@ -144,9 +141,6 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true do
         end
 
         it "should have the correct shipping" do
-          puts "*************************"
-          puts cart.inspect
-          puts "*************************"
           expect(active_merchant_gateway).to receive(:setup_order) do |*params|
             expect(params[0]).to eq((cart.total * 100).round.to_i)
             expect(params[1][:currency]).to eq("GBP")
