@@ -10,7 +10,7 @@ module FlexCommerce
   #
   #
   class PaymentProviderSetup < FlexCommerceApi::ApiBase
-    belongs_to :payment_provider, class_name: '::FlexCommerce::PaymentProvider'
+    belongs_to :payment_provider
 
   end
 end

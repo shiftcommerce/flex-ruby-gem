@@ -36,19 +36,4 @@ FactoryBot.define do
       send(key, value)
     end
   end
-
-  factory :api_address, class: ::FlexCommerce::Address do
-    sequence(:first_name)   { |n| "#{Faker::Name.first_name}#{n}suffix" }
-    sequence(:last_name)    { |n| "#{Faker::Name.last_name}#{n}suffix" }
-    sequence(:middle_names) { |n| "#{Faker::Name.first_name}#{n}suffix" }
-    address_line_1   { Faker::Address.street_name }
-    address_line_2   { Faker::Address.street_address }
-    address_line_3   { Faker::Address.secondary_address }
-    city             { Faker::Address.city }
-    state            { Faker::Address.state }
-    postcode         { Faker::Address.postcode }
-    country          { Faker::Address.country }
-    preferred_billing false
-    preferred_shipping false
-  end
 end

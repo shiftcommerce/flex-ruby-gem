@@ -10,6 +10,6 @@ module FlexCommerce
   #
   #
   class PaymentProvider < FlexCommerceApi::ApiBase
-    has_many :setups, class_name: "::FlexCommerce::PaymentProviderSetup"
+
   end
 end
