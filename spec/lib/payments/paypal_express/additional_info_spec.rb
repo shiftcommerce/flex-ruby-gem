@@ -1,7 +1,7 @@
 require "e2e_spec_helper"
 
 
-RSpec.describe FlexCommerce::Payments::PaypalExpress::AdditionalInfo, vcr: true do
+RSpec.describe FlexCommerce::Payments::PaypalExpress::AdditionalInfo, vcr: true, paypal: true do
   include ActiveSupport::NumberHelper
   include_context "context store"
   include_context "housekeeping"

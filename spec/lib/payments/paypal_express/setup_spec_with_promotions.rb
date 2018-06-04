@@ -1,7 +1,7 @@
 require "e2e_spec_helper"
 
 # The payments setup service for paypal express
-RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true do
+RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: true do
   include_context "context store"
   include_context "housekeeping"
 

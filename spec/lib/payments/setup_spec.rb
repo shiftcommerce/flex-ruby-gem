@@ -5,7 +5,7 @@ require "flex_commerce_api"
 # to the correct setup service which is provider specific
 module FlexCommerce
   module Payments
-    describe Setup, vcr: true do
+    describe Setup, vcr: true, paypal: true do
       include_context "server context"
       context "paypal" do
 
