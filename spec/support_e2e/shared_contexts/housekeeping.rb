@@ -9,7 +9,6 @@ RSpec.shared_context "housekeeping" do
   def keep_tidy
     yield.tap do |o|
       to_clean.dumping_ground ||= []
-      to_disable.dus
       if o.is_a?(Array)
         to_clean.dumping_ground.concat o
       else

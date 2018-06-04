@@ -1,5 +1,4 @@
-require "spec_helper"
-require "flex_commerce_api"
+require "e2e_spec_helper"
 
 # The payments setup service in itself is simply a router
 # to the correct setup service which is provider specific

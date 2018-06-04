@@ -2,7 +2,7 @@ require "spec_helper"
 require "flex_commerce_api"
 require "uri"
 
-RSpec.describe "Shopping Cart", vcr: true do
+RSpec.describe "Shopping Cart" do
   # Global context for all specs - defines things you dont see defined in here
   # such as flex_root_url, api_root, default_headers and page_size
   # see api_globals.rb in spec/support for the source code

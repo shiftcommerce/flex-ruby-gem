@@ -1,4 +1,5 @@
 require "e2e_spec_helper"
+
 RSpec.describe FlexCommerce::Payments::PaypalExpress::GenerateSummary, paypal: true do
   def convert_amount(amt)
     (amt * 100).to_i
