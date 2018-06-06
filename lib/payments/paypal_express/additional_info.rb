@@ -7,6 +7,7 @@ module FlexCommerce
       class AdditionalInfo
         include ::FlexCommerce::Payments::PaypalExpress::Api
         def initialize(payment_provider:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, shipping_method_model: FlexCommerce::ShippingMethod, options:)
+
           # @param options [Hash]  options to be used see below
           # @option options [String] :token Token to find the additional info for
           self.gateway_class = gateway_class
@@ -42,9 +43,8 @@ module FlexCommerce
         end
 
         def find_shipping_method(shipping_option_name)
-          all_shipping_methods = shipping_method_model.all
-          sm = all_shipping_methods.select { |sm| sm.label == shipping_option_name }.first
-          sm ||= all_shipping_methods.select{ |sm| sm.label == de_dup_shipping_option_name(shipping_option_name) }.first
+          sm = shipping_method_model.where(label: shipping_option_name).first
+          sm ||= shipping_method_model.where(label: de_dup_shipping_option_name(shipping_option_name)).first
           sm
         end
 

@@ -9,8 +9,21 @@ module FlexCommerce
   #
   #
   #
-  class PaymentProviderSetup < FlexCommerceApi::ApiBase
-    belongs_to :payment_provider
+  class PaymentProviderSetup
+    include ActiveModel::Model
+    attr_accessor :setup_type, :redirect, :redirect_url, :cart, :callback_url, :remote_ip
+    attr_accessor :ip_address, :success_url, :cancel_url, :allow_shipping_change, :use_mobile_payments, :payment_provider_id
+
+    def call
+      @setup_service ||= ::FlexCommerce::Payments::Setup.new(cart: cart,
+        payment_provider_id: payment_provider_id,
+        ip_address: remote_ip,
+        success_url: success_url,
+        cancel_url: cancel_url,
+        allow_shipping_change: allow_shipping_change,
+        callback_url: callback_url,
+        use_mobile_payments: use_mobile_payments).call
+    end
 
   end
 end

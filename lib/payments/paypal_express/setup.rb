@@ -28,6 +28,7 @@ module FlexCommerce
           if response.success?
             payment_provider_setup.setup_type = "redirect"
             payment_provider_setup.redirect_url = gateway.redirect_url_for(response.token, mobile: use_mobile_payments)
+            payment_provider_setup
           else
             raise "An error occured communicating with paypal #{response.message} \n\n#{response.params.to_json}. Total sent was #{convert_amount(cart.total)} Parameters sent were \n\n#{paypal_params}" # @TODO Find out where to get the message from and add it
           end

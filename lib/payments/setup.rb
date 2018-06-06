@@ -27,7 +27,7 @@ module FlexCommerce
       def setup_service
         @setup_service ||= setup_service_class.new(
           cart: cart,
-          payment_provider_setup: payment_provider_setup,
+          payment_provider_setup: ::FlexCommerce::PaymentProviderSetup.new ,
           payment_provider: payment_provider,
           success_url: success_url,
           cancel_url: cancel_url,
@@ -42,7 +42,7 @@ module FlexCommerce
       end
 
       def payment_provider_setup
-        PaymentProviderSetup.new 
+        ::FlexCommerce::PaymentProviderSetup.new 
       end
     end
   end
