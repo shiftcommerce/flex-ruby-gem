@@ -8,13 +8,13 @@ module FlexCommerce
   #
   class PaymentAdditionalInfo
     include ActiveModel::Model
-    attr_accessor :meta, :id
+    attr_accessor :meta, :id, :payment_provider_id, :options
 
-    def self.find(values)
-      apply_gateway_response_filter(records, values).first
+    def call
+      apply_gateway_response_filter.first
     end
 
-    def self.records(*)
+    def records(*)
       []
     end
 
@@ -32,10 +32,16 @@ module FlexCommerce
       end
     end
 
-    private
+    def apply_gateway_response_filter
+      records << delegated_service_class.new(payment_provider: payment_provider, options: options).call
+    end
 
-    def self.apply_gateway_response_filter(records, values)
-      records << ::FlexCommerce::Payments::AdditionalInfo.new(payment_provider_id: values[:gateway_response][:payment_provider_id], options: values[:gateway_response].except(:payment_provider_id)).call
+    def delegated_service_class
+      "::FlexCommerce::Payments::#{payment_provider_id.camelize}::AdditionalInfo".constantize
+    end
+
+    def payment_provider
+      FlexCommerce::PaymentProvider.all.select{ |p| p.reference == payment_provider_id }.first
     end
 
   end
