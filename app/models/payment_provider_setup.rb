@@ -15,14 +15,23 @@ module FlexCommerce
     attr_accessor :ip_address, :success_url, :cancel_url, :allow_shipping_change, :use_mobile_payments, :payment_provider_id
 
     def call
-      @setup_service ||= ::FlexCommerce::Payments::Setup.new(cart: cart,
-        payment_provider_id: payment_provider_id,
+      @setup_service ||= setup_service_class.new(cart: cart,
+        payment_provider_setup: self,
+        payment_provider: payment_provider,
         ip_address: remote_ip,
         success_url: success_url,
         cancel_url: cancel_url,
         allow_shipping_change: allow_shipping_change,
         callback_url: callback_url,
         use_mobile_payments: use_mobile_payments).call
+    end
+
+    def payment_provider
+      FlexCommerce::PaymentProvider.all.select{ |p| p.reference == payment_provider_id }.first
+    end
+
+    def setup_service_class
+      "::FlexCommerce::Payments::#{payment_provider_id.camelize}::Setup".constantize
     end
 
   end

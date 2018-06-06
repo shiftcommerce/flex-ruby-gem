@@ -5,7 +5,7 @@ require "oj"
 RSpec::Matchers.define :be_valid_json_for_schema do |schema_name|
   match do |response|
     @body = response.respond_to?(:body) ? response.body : response
-    schema_path =File.expand_path("../../schemas/#{schema_name}", File.dirname(__FILE__))
+    schema_path =File.expand_path("../schemas/#{schema_name}", File.dirname(__FILE__))
 
     @errors = []
     # Don't use 'strict: true' since it has side-effect making all properties required.

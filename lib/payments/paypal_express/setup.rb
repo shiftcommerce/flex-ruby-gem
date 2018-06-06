@@ -88,17 +88,13 @@ module FlexCommerce
           { callback_url: callback_url, callback_timeout: 6, callback_version: 95, max_amount: convert_amount((cart.total * 1.2) + shipping_methods.last.total + shipping_methods.last.tax) }
         end
 
-        def cart_shipping_method
-          cart.shipping_method
-        end
-
         # Update this method later, for matching logic with flex commerce
         def shipping_methods
           @shipping_methods ||= ShippingMethodsForCart.new(cart: cart, shipping_methods: shipping_method_model.all).call.sort_by(&:total)
         end
 
         def shipping_method
-          cart_shipping_method || shipping_methods.first
+          cart.shipping_method || shipping_methods.first
         end
 
         def shipping_options_params
