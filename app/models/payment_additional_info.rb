@@ -2,8 +2,8 @@ module FlexCommerce
   #
   # A flex commerce payment additional info model
   #
-  # The content depends on the payment gateway being used.  For paypal for example,
-  # we will get address details and shipping method back from shift
+  # This will be triggered once user returns back to paypal confirmation page.
+  # This model will get address details and shipping method back from paypal.
   #
   #
   class PaymentAdditionalInfo
@@ -33,11 +33,9 @@ module FlexCommerce
     end
 
     def apply_gateway_response_filter
-      records << delegated_service_class.new(payment_provider: payment_provider, options: options).call
-    end
-
-    def delegated_service_class
-      "::FlexCommerce::Payments::#{payment_provider_id.camelize}::AdditionalInfo".constantize
+      records << ::FlexCommerce::Payments::PaypalExpress::AdditionalInfo.new(
+                    payment_provider: payment_provider,
+                    options: options).call
     end
 
     def payment_provider

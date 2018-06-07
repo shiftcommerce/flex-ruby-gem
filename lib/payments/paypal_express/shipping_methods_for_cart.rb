@@ -25,7 +25,6 @@ module FlexCommerce
           updated_shipping_methods = []
           shipping_methods.each do |shipping_method|
             shipping_method_free = free_shipping_method_ids.include?(shipping_method.id)
-
             updated_shipping_methods << CartShippingMethod.new(shipping_method, shipping_method_free)
           end
           updated_shipping_methods

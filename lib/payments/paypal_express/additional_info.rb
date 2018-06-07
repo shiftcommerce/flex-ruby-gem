@@ -16,13 +16,14 @@ module FlexCommerce
           self.shipping_method_model = shipping_method_model
           self.gateway_details = {}
         end
-
+        
         def call
           PaymentAdditionalInfo.new(meta: meta_data, id: SecureRandom.uuid)
         end
-
+        
         private
-
+        
+        attr_accessor :gateway_class, :payment_provider, :token, :gateway_details, :shipping_method_model
 
         def meta_data
           result = {}
@@ -110,18 +111,15 @@ module FlexCommerce
 
         def address_direct_mapping
           {
-              "Street1" => "address_line_1",
-              "Street2" => "address_line_2",
-              "CityName" => "city",
-              "StateOrProvince" => "state",
-              "Country" => "country",
-              "PostalCode" => "postcode"
+            "Street1" => "address_line_1",
+            "Street2" => "address_line_2",
+            "CityName" => "city",
+            "StateOrProvince" => "state",
+            "Country" => "country",
+            "PostalCode" => "postcode"
           }
         end
 
-
-
-        attr_accessor :gateway_class, :payment_provider, :token, :gateway_details, :shipping_method_model
       end
     end
   end
