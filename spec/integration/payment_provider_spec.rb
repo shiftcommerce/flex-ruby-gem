@@ -8,7 +8,6 @@ RSpec.describe FlexCommerce::PaymentProvider do
   # see api_globals.rb in spec/support for the source code
   include_context "global context"
   let(:subject_class) { ::FlexCommerce::PaymentProvider }
-  let(:payment_provider_setup_class) { ::FlexCommerce::PaymentProviderSetup }
   let(:singular_resource) { build(:payment_provider) }
   context "with fixture files from flex" do
     let(:resource_list) { build(:payment_provider_list_from_fixture) }
@@ -30,21 +29,6 @@ RSpec.describe FlexCommerce::PaymentProvider do
           end
           pr.attributes.meta_attributes.each_pair do |attr, value|
             expect(gateway.meta_attributes[attr]).to eql value
-          end
-        end
-      end
-    end
-    context "setup relationship" do
-      let(:setup_relationship_data) { resource_list.data.first.relationships.setup.data }
-      let(:setup_data) { resource_list.included.detect {|r| r.id == setup_relationship_data.id && r.type == setup_relationship_data.type} }
-      it "should have the correct setup from the fixture" do
-        subject.first.setup.tap do |setup|
-          expect(setup).to be_a(payment_provider_setup_class)
-          setup_data.attributes.to_h.except(:meta_attributes).each_pair do |attr, value|
-            expect(setup.send(attr)).to eql value
-          end
-          setup_data.attributes.meta_attributes.each_pair do |attr, value|
-            expect(setup.meta_attributes[attr]).to eql value
           end
         end
       end
