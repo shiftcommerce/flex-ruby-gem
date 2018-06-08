@@ -1,0 +1,13 @@
+{
+  "errors": [
+	  {
+      "title": "Record not found",
+      "detail": "The record identified by 123 could not be found.",
+      "code": "404",
+      "status": "404"
+    }
+  ],
+  "links": {
+    "self": "/some_account/v1/taxonomies/123.json_api"
+  }
+}
