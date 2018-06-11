@@ -1,0 +1,175 @@
+{
+  "meta": {
+    "type": "template_sections",
+    "page_count": 2,
+    "total_entries": 11
+  },
+  "links": {
+    "self": "/test/v1/template_sections/1.json_api",
+    "next": "/test/v1/template_sections/2.json_api",
+    "first": "/test/v1/template_sections/1.json_api",
+    "last": "/test/v1/template_sections/2.json_api"
+  },
+  "data": [
+    {
+      "type": "template_sections",
+      "id": "1",
+      "attributes": {
+        "label": "label",
+        "reference": "reference",
+        "min_components": "1",
+        "max_components": "2",
+        "position": "1",
+        "preview_icon": "null",
+        "template_definition_id": "1"
+      },
+      "links": {
+        "self": "/test/v1/template_sections/1.json_api"
+      }
+    },
+    {
+      "type": "template_sections",
+      "id": "2",
+      "attributes": {
+        "label": "label",
+        "reference": "reference",
+        "min_components": "1",
+        "max_components": "2",
+        "position": "1",
+        "preview_icon": "null",
+        "template_definition_id": "1"
+      },
+      "links": {
+        "self": "/test/v1/template_sections/2.json_api"
+      }
+    },
+    {
+      "type": "template_sections",
+      "id": "3",
+      "attributes": {
+        "label": "label",
+        "reference": "reference",
+        "min_components": "1",
+        "max_components": "2",
+        "position": "1",
+        "preview_icon": "null",
+        "template_definition_id": "1"
+      },
+      "links": {
+        "self": "/test/v1/template_sections/3.json_api"
+      }
+    },
+    {
+      "type": "template_sections",
+      "id": "4",
+      "attributes": {
+        "label": "label",
+        "reference": "reference",
+        "min_components": "1",
+        "max_components": "2",
+        "position": "1",
+        "preview_icon": "null",
+        "template_definition_id": "1"
+      },
+      "links": {
+        "self": "/test/v1/template_sections/4.json_api"
+      }
+    },
+    {
+      "type": "template_sections",
+      "id": "5",
+      "attributes": {
+        "label": "label",
+        "reference": "reference",
+        "min_components": "1",
+        "max_components": "2",
+        "position": "1",
+        "preview_icon": "null",
+        "template_definition_id": "1"
+      },
+      "links": {
+        "self": "/test/v1/template_sections/5.json_api"
+      }
+    },
+    {
+      "type": "template_sections",
+      "id": "6",
+      "attributes": {
+        "label": "label",
+        "reference": "reference",
+        "min_components": "1",
+        "max_components": "2",
+        "position": "1",
+        "preview_icon": "null",
+        "template_definition_id": "1"
+      },
+      "links": {
+        "self": "/test/v1/template_sections/6.json_api"
+      }
+    },
+    {
+      "type": "template_sections",
+      "id": "7",
+      "attributes": {
+        "label": "label",
+        "reference": "reference",
+        "min_components": "1",
+        "max_components": "2",
+        "position": "1",
+        "preview_icon": "null",
+        "template_definition_id": "1"
+      },
+      "links": {
+        "self": "/test/v1/template_sections/7.json_api"
+      }
+    },
+    {
+      "type": "template_sections",
+      "id": "8",
+      "attributes": {
+        "label": "label",
+        "reference": "reference",
+        "min_components": "1",
+        "max_components": "2",
+        "position": "1",
+        "preview_icon": "null",
+        "template_definition_id": "1"
+      },
+      "links": {
+        "self": "/test/v1/template_sections/8.json_api"
+      }
+    },
+    {
+      "type": "template_sections",
+      "id": "9",
+      "attributes": {
+        "label": "label",
+        "reference": "reference",
+        "min_components": "1",
+        "max_components": "2",
+        "position": "1",
+        "preview_icon": "null",
+        "template_definition_id": "1"
+      },
+      "links": {
+        "self": "/test/v1/template_sections/9.json_api"
+      }
+    },
+    {
+      "type": "template_sections",
+      "id": "10",
+      "attributes": {
+        "label": "label",
+        "reference": "reference",
+        "min_components": "1",
+        "max_components": "2",
+        "position": "1",
+        "preview_icon": "null",
+        "template_definition_id": "1"
+      },
+      "links": {
+        "self": "/test/v1/template_sections/10.json_api"
+      }
+    }
+  ]
+}
