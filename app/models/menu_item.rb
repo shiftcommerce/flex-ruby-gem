@@ -11,7 +11,8 @@ module FlexCommerce
   # in order to build a menu system on the front end application.
   #
   #
-class MenuItem < FlexCommerceApi::ApiBase
+  class MenuItem < FlexCommerceApi::ApiBase
+    belongs_to :menu, class_name: "::FlexCommerce::Menu"
     has_many :menu_items
   end
 end
