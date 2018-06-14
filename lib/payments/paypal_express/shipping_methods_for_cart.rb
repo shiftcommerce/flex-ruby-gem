@@ -1,6 +1,10 @@
+# @module FlexCommerce::Payments::PaypalExpress
 module FlexCommerce
   module Payments
     module PaypalExpress
+      # @class ShippingMethodsForCart
+      # 
+      # This deals with free shipping promotions and updates the shipping methods accordingly
       class ShippingMethodsForCart
 
         include Enumerable

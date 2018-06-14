@@ -1,12 +1,34 @@
 require_relative 'api'
+
+# @module FlexCommerce::Payments::PaypalExpress
 module FlexCommerce
   module Payments
     module PaypalExpress
+      # @class Setup
+      # 
+      # This is the main class, which talks to ActiveMerchant gem to initiate a transaction using Paypal
       class Setup
         include ::FlexCommerce::Payments::PaypalExpress::Api
         DEFAULT_DESCRIPTION = "Shift Commerce Order"
-        # For this `::ActiveMerchant::Billing::PaypalExpressGateway` to work
-        # rails-site should include active merchant gem
+
+        # @initialize
+        # 
+        # @param {FlexCommerce::PaymentProviderSetup} payment_provider_setup
+        # @param {FlexCommerce::Cart} cart
+        # @param {FlexCommerce::PaymentProvider} payment_provider
+        # @param {Paypal Gateway} [gateway_class = ::ActiveMerchant::Billing::PaypalExpressGateway]
+        # @param {URL} success_url - Generally Paypal confirmation page
+        # @param {URL} cancel_url - Generally new transaction page
+        # @param {IP} ip_address - User ip address
+        # @param {boolean} [allow_shipping_change = true] - true: display shipping options, false: dont display shipping options
+        # @param {URL} callback_url - Generally cart show page
+        # @param {FlexCommerce::ShippingMethod} shipping_method_model = FlexCommerce::ShippingMethod
+        # @param {boolean} [use_mobile_payments = false]
+        # 
+        # @note:
+        # For `::ActiveMerchant::Billing::PaypalExpressGateway` to work
+        # rails-site should include active merchant gem. Ideally this gem should be included in the gemspec.
+        # But as we are using custom gem, which is not published to ruby gems, there is no way of including it within this gem dependency
         def initialize(payment_provider_setup: , cart:, payment_provider:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false)
           self.payment_provider = payment_provider
           self.payment_provider_setup = payment_provider_setup
@@ -25,6 +47,8 @@ module FlexCommerce
           return false unless valid_shipping_method?
           
           response = gateway.setup_order(convert_amount(cart.total), paypal_params)
+
+          # If paypal setup went fine, redirect to the paypal page
           if response.success?
             payment_provider_setup.setup_type = "redirect"
             payment_provider_setup.redirect_url = gateway.redirect_url_for(response.token, mobile: use_mobile_payments)
@@ -85,10 +109,17 @@ module FlexCommerce
 
         def ui_callback_params
           return {} unless allow_shipping_change && shipping_methods.count > 0
-          { callback_url: callback_url, callback_timeout: 6, callback_version: 95, max_amount: convert_amount((cart.total * 1.2) + shipping_methods.last.total + shipping_methods.last.tax) }
+          { 
+            callback_url: callback_url,
+            callback_timeout: 6,
+            callback_version: 95,
+            max_amount: convert_amount((cart.total * 1.2) + shipping_methods.last.total + shipping_methods.last.tax) 
+          }
         end
 
-        # Update this method later, for matching logic with flex commerce
+        # @method shipping_methods
+        # 
+        # @returns shipping methods with promotions applied
         def shipping_methods
           @shipping_methods ||= ShippingMethodsForCart.new(cart: cart, shipping_methods: shipping_method_model.all).call.sort_by(&:total)
         end

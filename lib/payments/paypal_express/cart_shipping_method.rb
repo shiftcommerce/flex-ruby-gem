@@ -1,8 +1,12 @@
 require 'bigdecimal'
 
+# @module FlexCommerce::Payments::PaypalExpress
 module FlexCommerce
   module Payments
     module PaypalExpress
+      # @class CartShippingMethod
+      # 
+      # Used to decorate shipping methods based on Promotions
       class CartShippingMethod < SimpleDelegator
 
         ZERO = BigDecimal.new(0)

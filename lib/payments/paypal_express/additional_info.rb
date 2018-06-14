@@ -1,22 +1,28 @@
 require_relative 'api'
 
+# @module FlexCommerce::Payments::PaypalExpress
 module FlexCommerce
   module Payments
     module PaypalExpress
+      # @class AdditionalInfo
       # Address verification service using paypal
       class AdditionalInfo
         include ::FlexCommerce::Payments::PaypalExpress::Api
-        def initialize(payment_provider:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, shipping_method_model: FlexCommerce::ShippingMethod, options:)
 
-          # @param options [Hash]  options to be used see below
-          # @option options [String] :token Token to find the additional info for
+        def initialize(payment_provider:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, shipping_method_model: FlexCommerce::ShippingMethod, options:)
           self.gateway_class = gateway_class
           self.payment_provider = payment_provider
           self.token = options[:token]
           self.shipping_method_model = shipping_method_model
           self.gateway_details = {}
         end
-        
+
+        # @method call
+        # 
+        # calculates the meta attributes for shipping method id, 
+        # billing and shipping address
+        # 
+        # @return [FlexCommerce::PaymentAdditionalInfo]
         def call
           PaymentAdditionalInfo.new(meta: meta_data, id: SecureRandom.uuid)
         end
@@ -28,7 +34,6 @@ module FlexCommerce
         def meta_data
           result = {}
           details = gateway_details_for(token)
-
           if details.params["shipping_option_name"]
             shipping_option_name = details.params["shipping_option_name"]
             shipping_method = find_shipping_method(shipping_option_name)
@@ -49,6 +54,8 @@ module FlexCommerce
           sm
         end
 
+        # COPIED this comments from flex-platform code
+        # 
         # This is temporary but will do no harm if left in
         # When paypal calls the "callback url" to get the list of shipping options
         # then, the user clicks on "buy" - the resulting shipping method name is duplicated
