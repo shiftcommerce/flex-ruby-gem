@@ -1,0 +1,33 @@
+{
+  "data": {
+    "id": "1",
+    "type": "markdown_prices",
+    "attributes": {
+      "start_at": "2017-09-12T07:40:58Z",
+        "end_at": "2017-03-21T09:19:57Z",
+        "price": 10
+    },
+    "relationships": {
+      "products": {
+        "links": {
+          "related": "/test/v1/variants/1.json_api"
+        }
+      }
+    },
+    "links": {
+      "self": "/test/v1/markdown_prices/1"
+    }
+  },
+  "included": [
+    {
+      "id": "1",
+      "type": "variant",
+      "attributes": {
+        "title": "title"
+      },
+      "links": {
+        "self": "/test/v1/variants/1.json_api"
+      }
+    }
+  ]
+}
