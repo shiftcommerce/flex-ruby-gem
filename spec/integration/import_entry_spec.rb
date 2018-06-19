@@ -10,7 +10,7 @@ RSpec.describe FlexCommerce::ImportEntry do
   let(:subject_class) { ::FlexCommerce::ImportEntry }
 
   context "with fixture files from flex" do
-    context "working with a single category" do
+    context "working with a single import entry" do
       let(:singular_resource) { build(:import_entry_from_fixture) }
       before :each do
         stub_request(:get, "#{api_root}/imports/1/import_entries/1.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers

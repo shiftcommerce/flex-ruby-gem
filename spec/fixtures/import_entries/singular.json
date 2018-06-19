@@ -8,14 +8,14 @@
       "processing_errors": []
     },
     "relationships": {
-      "categories": {
+      "import": {
         "links": {
-          "related": "/test/v1/imports/1/import_entries"
+          "related": "/test/v1/imports/1"
         }
       }
     },
     "links": {
-      "self": "/test/v1/imports/1"
+      "self": "/test/v1/imports/1/import_entries/1"
     }
   },
   "included": []

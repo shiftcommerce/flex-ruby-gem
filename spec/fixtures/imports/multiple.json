@@ -24,9 +24,9 @@
         "updated_at": "2017-03-21T09:19:57Z"
       },
       "relationships": {
-        "categories": {
+        "import_entries": {
           "links": {
-            "related": "/test/v1/imports/2/categories"
+            "related": "/test/v1/imports/2/import_entries/1"
           }
         }
       },
@@ -48,7 +48,7 @@
         "updated_at": "2017-03-21T09:19:57Z"
       },
       "relationships": {
-        "categories": {
+        "import_entries": {
           "links": {
             "related": "/test/v1/imports/1/import_entries"
           }
