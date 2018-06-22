@@ -1,0 +1,40 @@
+{
+  "data": {
+    "id": "1",
+    "type": "template_sections",
+    "attributes": {
+      "label": "label",
+      "reference": "reference",
+      "min_components": "1",
+      "max_components": "2",
+      "position": "1",
+      "preview_icon": "null",
+      "template_definition_id": "1"
+    },
+    "links": {
+      "self": "test/v1/template_sections/1"
+    },
+    "relationships": {
+      "template_definition": {
+        "links": {
+          "related": "test/v1/template_definitions/1"
+        },
+        "data": {
+          "type": "template_definitions",
+          "id":   "1"
+        }
+      },
+      "template_components": {
+        "links": {
+          "related": "test/v1/template_components/1"
+        },
+        "data": {
+          "items": {
+            "type": "template_components",
+            "id":   "1"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "data": {
+    "id": "1",
+    "type": "bundle_groups",
+    "attributes": {
+      "name": "name",
+      "sort": 1,
+      "updated_at": "2017-09-12T07:40:58Z",
+      "created_at": "2017-03-21T09:19:57Z"
+    },
+    "links": {
+      "self": "/test/v1/bundles/1/bundle_groups/1"
+    },
+    "relationships": {
+      "products": {
+        "links": {
+          "self":  "/test/v1/bundles/1/bundle_groups/1",
+          "related":  "/test/v1/bundle_groups/1/products"
+        }
+      }
+    }
+  }
+}

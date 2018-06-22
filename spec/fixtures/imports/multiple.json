@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "type": "imports",
+    "page_count": 1,
+    "total_entries": 2
+  },
+  "links": {
+    "self": "/test/v1/imports.json_api?page=1",
+    "first": "/test/v1/imports.json_api?page=1",
+    "last": "/test/v1/imports.json_api?page=1"
+  },
+  "data": [
+    {
+      "id": "2",
+      "type": "imports",
+      "attributes": {
+        "status": "processed",
+        "importer_type": "products",
+        "processing_errors": [],
+        "processed_entries": 1,
+        "failed_entries": 0,
+        "total_entries": 1,
+        "created_at": "2017-09-12T07:40:58Z",
+        "updated_at": "2017-03-21T09:19:57Z"
+      },
+      "relationships": {
+        "import_entries": {
+          "links": {
+            "related": "/test/v1/imports/2/import_entries/1"
+          }
+        }
+      },
+      "links": {
+        "self": "/test/v1/imports/2"
+      }
+    },
+    {
+      "id": "1",
+      "type": "imports",
+      "attributes": {
+        "status": "processed",
+        "importer_type": "products",
+        "processing_errors": [],
+        "processed_entries": 1,
+        "failed_entries": 0,
+        "total_entries": 1,
+        "created_at": "2017-09-12T07:40:58Z",
+        "updated_at": "2017-03-21T09:19:57Z"
+      },
+      "relationships": {
+        "import_entries": {
+          "links": {
+            "related": "/test/v1/imports/1/import_entries"
+          }
+        }
+      },
+      "links": {
+        "self": "/test/v1/imports/1"
+      }
+    }
+  ]
+}
