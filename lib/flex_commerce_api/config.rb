@@ -47,7 +47,7 @@ module FlexCommerceApi
     # but only if ApiBase is defined - else nothing has loaded yet
     # so they wont need reconfiguring
     def reconfigure_all!
-      FlexCommerceApi::ApiBase.reconfigure_all if FlexCommerceApi.const_defined? "ApiBase"
+      FlexCommerceApi::BaseResource.reconfigure_all if FlexCommerceApi.const_defined? "ApiBase"
     end
 
   end

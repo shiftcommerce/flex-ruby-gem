@@ -5,14 +5,10 @@ module FlexCommerce
 
   # V2 Models
   module V2
-    def self.gem_root
-      File.expand_path("../", __dir__)
-    end
-
-    autoload :Order, File.join(gem_root, "app", "models", "v2", "order")
-    autoload :LineItem, File.join(gem_root, "app", "models", "v2", "line_item")
-    autoload :CreateOrder, File.join(gem_root, "app", "models", "v2", "create_order")
-    autoload :DeallocateOrder, File.join(gem_root, "app", "models", "v2", "deallocate_order")
+    autoload :Order, File.join(FlexCommerce.gem_root, "app", "models", "v2", "order")
+    autoload :LineItem, File.join(FlexCommerce.gem_root, "app", "models", "v2", "line_item")
+    autoload :CreateOrder, File.join(FlexCommerce.gem_root, "app", "models", "v2", "create_order")
+    autoload :DeallocateOrder, File.join(FlexCommerce.gem_root, "app", "models", "v2", "deallocate_order")
   end
 
   # V1 Models

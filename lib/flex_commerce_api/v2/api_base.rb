@@ -1,8 +1,8 @@
-require "flex_commerce_api/api_base"
+require "flex_commerce_api/base_resource"
 
 module FlexCommerceApi
   module V2
-    class ApiBase < FlexCommerceApi::ApiBase
+    class ApiBase < FlexCommerceApi::BaseResource
       def self.endpoint_version
         "v2"
       end
