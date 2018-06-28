@@ -93,13 +93,17 @@ module FlexCommerceApi
 
       def reconfigure_all options = {}
         subclasses.each do |sub|
-          sub.reconfigure options
+          if sub.respond_to?(:reconfigure_all)
+            sub.reconfigure_all options
+          else
+            sub.reconfigure options
+          end
         end
         reconfigure options
       end
 
       def reconfigure options = {}
-        self.site = FlexCommerceApi.config.api_base_url
+        self.site = append_version(FlexCommerceApi.config.api_base_url)
         base_options = {
           adapter: FlexCommerceApi.config.adapter || :net_http,
           http_cache: FlexCommerceApi.config.http_cache,
@@ -120,6 +124,14 @@ module FlexCommerceApi
         return super unless self == FlexCommerceApi::ApiBase
         klass = JsonApiClient::Utils.compute_type(FlexCommerce, params["type"].singularize.classify)
         klass.load(params)
+      end
+
+      def append_version(base_url)
+        "#{base_url}/#{endpoint_version}"
+      end
+
+      def endpoint_version
+        "v1"
       end
     end
 
@@ -151,7 +163,7 @@ module FlexCommerceApi
       begin
         return self.send(key) if RELATED_META_RESOURCES.include?(attributes[:meta_attributes][key][:data_type])
         attributes[:meta_attributes][key][:value]
-      rescue NoMethodError => e
+      rescue NoMethodError
         nil
       end
     end
