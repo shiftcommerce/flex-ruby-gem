@@ -1,19 +1,94 @@
 {
-  "data": {
-    "id": "1",
-    "type": "orders",
-    "attributes": {
-      "email": "my.name@myemail.com",
-      "reference": "WEBORDER21",
-      "channel": "web",
-      "status": "pending",
-      "date": "<%= Time.now %>",
-      "sub_total": 10,
-      "total": 10,
-      "tax": 10,
-      "shipping_total": 10,
-      "total_discount": 10,
-      "test": false
-    }
-  }
+	"data": {
+		"id": "1",
+		"type": "orders",
+		"links": {
+			"self": "/hubert/v2/orders/1.json_api"
+		},
+		"attributes": {
+			"email": "guest@example.com",
+			"channel": "web",
+			"shipping_discount_name": null,
+			"free_shipping": false,
+			"free_shipping_promotion_data": null,
+			"reference": "a reference",
+			"status": "pending",
+			"deallocated_at": null,
+			"deallocated": false,
+			"coupons_applied": [],
+			"ip_address": "127.0.0.1",
+			"shipping_address": {
+				"type": "addresses",
+				"attributes": {
+					"city": "London",
+					"country": "GB",
+					"postcode": "SW1A 1AA",
+					"last_name": "Windsor",
+					"first_name": "Elizabeth",
+					"address_line_1": "Buckingham Palace",
+					"address_line_2": "Westminster"
+				}
+			},
+			"billing_address": {
+				"type": "addresses",
+				"attributes": {
+					"city": "London",
+					"country": "GB",
+					"postcode": "SW1A 1AA",
+					"last_name": "Windsor",
+					"first_name": "Elizabeth",
+					"address_line_1": "Buckingham Palace",
+					"address_line_2": "Westminster"
+				}
+			},
+			"customer_account_id": null,
+			"shipping_method": {
+				"id": "851",
+				"type": "shipping_methods",
+				"attributes": {
+					"sku": null,
+					"tax": 15.55,
+					"label": "Ipsa quae.",
+					"total": 54.43,
+					"tax_rate": 0.4,
+					"reference": "reference_1",
+					"sub_total": 38.88,
+					"created_at": "2018-06-29T07:49:53Z",
+					"updated_at": "2018-06-29T07:49:53Z",
+					"description": "Quia esse excepturi sed harum voluptatem.",
+					"meta_attributes": {}
+				}
+			},
+			"currency": "GBP",
+			"discount_summaries": [],
+			"shipping_discount": 0.0,
+			"total": 10.0,
+			"sub_total": 8.0,
+			"shipping_total": 0.0,
+			"tax": 0.0
+		},
+		"relationships": {
+			"line_items": {
+				"links": {
+					"self": "/hubert/v2/orders/1/relationships/line_items.json_api",
+					"related": "/hubert/v2/orders/1/line_items.json_api"
+				}
+			},
+			"payment_transactions": {
+				"links": {
+					"self": "/hubert/v2/orders/1/relationships/payment_transactions.json_api",
+					"related": "/hubert/v2/orders/1/payment_transactions.json_api"
+				}
+			},
+			"customer_account": {
+				"links": {
+					"self": "/hubert/v2/orders/1/relationships/customer_account.json_api",
+					"related": "/hubert/v2/orders/1/customer_account.json_api"
+				}
+			}
+		}
+	},
+	"links": {
+		"self": "/hubert/v2/orders/1.json_api"
+	}
 }
