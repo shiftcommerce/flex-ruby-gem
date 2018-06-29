@@ -94,9 +94,7 @@ module FlexCommerceApi
       def reconfigure_all options = {}
         self.subclasses.each do |sub|
           sub.reconfigure_api_base options
-          # sub.reconfigure options
         end
-        # reconfigure options
       end
 
       def reconfigure_api_base options = {}
