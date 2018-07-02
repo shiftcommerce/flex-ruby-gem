@@ -7,9 +7,10 @@ module FlexCommerce
       module Api
         extend ActiveSupport::Concern
 
-        PAYPAL_LOGIN = ENV['PAYPAL_LOGIN']
-        PAYPAL_PASSWORD = ENV['PAYPAL_PASSWORD']
-        PAYPAL_SIGNATURE = ENV['PAYPAL_SIGNATURE']
+        PAYPAL_LOGIN = ENV.fetch('PAYPAL_LOGIN')
+        PAYPAL_PASSWORD = ENV.fetch('PAYPAL_PASSWORD')
+        PAYPAL_SIGNATURE = ENV.fetch('PAYPAL_SIGNATURE')
+        ORDER_TEST_MODE = ENV.fetch('ORDER_TEST_MODE', "true")
 
         private
 
@@ -20,7 +21,13 @@ module FlexCommerce
         def gateway
           raise "Please ensure all Paypal Credentails are set in your env file." unless PAYPAL_LOGIN.present? && PAYPAL_PASSWORD.present? && PAYPAL_SIGNATURE.present?
 
-          @gateway ||= gateway_class.new(test: payment_provider.test_mode, login: PAYPAL_LOGIN, password: PAYPAL_PASSWORD, signature: PAYPAL_SIGNATURE)
+          @gateway ||= gateway_class.new(test: test_mode, login: PAYPAL_LOGIN, password: PAYPAL_PASSWORD, signature: PAYPAL_SIGNATURE)
+        end
+
+        def test_mode
+          puts "****************"
+          puts ORDER_TEST_MODE.inspect
+          ORDER_TEST_MODE == 'true'
         end
       end
     end

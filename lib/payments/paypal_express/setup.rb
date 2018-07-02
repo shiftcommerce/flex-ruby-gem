@@ -15,7 +15,6 @@ module FlexCommerce
         # 
         # @param {FlexCommerce::PaymentProviderSetup} payment_provider_setup
         # @param {FlexCommerce::Cart} cart
-        # @param {FlexCommerce::PaymentProvider} payment_provider
         # @param {Paypal Gateway} [gateway_class = ::ActiveMerchant::Billing::PaypalExpressGateway]
         # @param {URL} success_url - Generally Paypal confirmation page
         # @param {URL} cancel_url - Generally new transaction page
@@ -29,8 +28,7 @@ module FlexCommerce
         # For `::ActiveMerchant::Billing::PaypalExpressGateway` to work
         # rails-site should include active merchant gem. Ideally this gem should be included in the gemspec.
         # But as we are using custom gem, which is not published to ruby gems, there is no way of including it within this gem dependency
-        def initialize(payment_provider_setup: , cart:, payment_provider:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false)
-          self.payment_provider = payment_provider
+        def initialize(payment_provider_setup: , cart:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false)
           self.payment_provider_setup = payment_provider_setup
           self.gateway_class = gateway_class
           self.cart = cart
@@ -60,7 +58,7 @@ module FlexCommerce
 
         private
 
-        attr_accessor :payment_provider, :payment_provider_setup, :cart, :gateway_class, :success_url, :cancel_url, :ip_address, :allow_shipping_change, :callback_url, :shipping_method_model, :use_mobile_payments
+        attr_accessor :payment_provider_setup, :cart, :gateway_class, :success_url, :cancel_url, :ip_address, :allow_shipping_change, :callback_url, :shipping_method_model, :use_mobile_payments
 
         def paypal_params
           base_paypal_params

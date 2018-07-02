@@ -9,9 +9,8 @@ module FlexCommerce
       class AdditionalInfo
         include ::FlexCommerce::Payments::PaypalExpress::Api
 
-        def initialize(payment_provider:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, shipping_method_model: FlexCommerce::ShippingMethod, options:)
+        def initialize(gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, shipping_method_model: FlexCommerce::ShippingMethod, options:)
           self.gateway_class = gateway_class
-          self.payment_provider = payment_provider
           self.token = options[:token]
           self.shipping_method_model = shipping_method_model
           self.gateway_details = {}
@@ -29,7 +28,7 @@ module FlexCommerce
         
         private
         
-        attr_accessor :gateway_class, :payment_provider, :token, :gateway_details, :shipping_method_model
+        attr_accessor :gateway_class, :token, :gateway_details, :shipping_method_model
 
         def meta_data
           result = {}

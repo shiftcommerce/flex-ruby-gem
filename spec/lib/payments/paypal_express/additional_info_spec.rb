@@ -12,9 +12,8 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::AdditionalInfo, vcr: true,
 
   # Mock the payment provider
   let!(:payment_provider_class) { class_double("PaymentProvider").as_stubbed_const }
-  let(:payment_provider) { instance_double("PaymentProvider", test_mode: true, reference: "paypal_express_test", service: "paypal_express") }
   let(:valid_token) { "valid_token" }
-  subject { described_class.new(payment_provider: payment_provider, options: { token: valid_token }) }
+  subject { described_class.new(options: { token: valid_token }) }
 
   # As we are not testing the paypal service itself, we are only interested in what happens
   # when specific canned paypal responses are returned from the mocks, then the inputs to

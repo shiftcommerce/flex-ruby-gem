@@ -7,7 +7,7 @@ module FlexCommerce
   #
   class PaymentAdditionalInfo
     include ActiveModel::Model
-    attr_accessor :meta, :id, :payment_provider_id, :options
+    attr_accessor :meta, :id, :options
 
     # @method call
     # 
@@ -41,13 +41,7 @@ module FlexCommerce
 
     def apply_gateway_response_filter
       # Call AdditionalInfo service class to trigger Paypal for details
-      records << ::FlexCommerce::Payments::PaypalExpress::AdditionalInfo.new(
-                    payment_provider: payment_provider,
-                    options: options).call
-    end
-
-    def payment_provider
-      FlexCommerce::PaymentProvider.all.select{ |p| p.reference == payment_provider_id }.first
+      records << ::FlexCommerce::Payments::PaypalExpress::AdditionalInfo.new(options: options).call
     end
 
   end

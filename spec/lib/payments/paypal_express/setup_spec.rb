@@ -14,7 +14,6 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
     # Inputs to the service
     let(:payment_provider_setup) { instance_spy("PaymentProviderSetup", errors: error_collector) }
     let(:error_collector) { instance_spy(ActiveModel::Errors) }
-    let(:payment_provider) { instance_double("PaymentProvider", test_mode: true) }
     let(:success_url) { "http://success.com" }
     let(:cancel_url) { "http://failure.com" }
     let(:callback_url) { "http://irrelevant.com" }
@@ -59,7 +58,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
       to_clean.shipping_address ||= FlexCommerce::Address.create(first_name: 'First Name', last_name: 'Last name', address_line_1: 'Address line 1', city: 'Leeds', country: 'GB', postcode: 'LS10 1QN')
     end
 
-    subject { described_class.new(payment_provider_setup: payment_provider_setup, payment_provider: payment_provider, cart: cart, success_url: success_url, cancel_url: cancel_url, ip_address: ip_address, callback_url: callback_url, allow_shipping_change: allow_shipping_change, use_mobile_payments: use_mobile_payments) }
+    subject { described_class.new(payment_provider_setup: payment_provider_setup, cart: cart, success_url: success_url, cancel_url: cancel_url, ip_address: ip_address, callback_url: callback_url, allow_shipping_change: allow_shipping_change, use_mobile_payments: use_mobile_payments) }
     
     context "normal flow" do
 
@@ -302,8 +301,9 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
       end
 
       context "in production mode" do
-        let(:payment_provider) { instance_double("PaymentProvider", test_mode: false) }
+        let(:api) { instance_double("FlexCommerce::Payments::PaypalExpress::Api") }
         before(:each) do
+          allow(api).to receive(:test_mode).and_return(false)
           expect(active_merchant_gateway_class).to receive(:new).with(test: false, login: ENV['PAYPAL_LOGIN'], password: ENV['PAYPAL_PASSWORD'], signature: ENV['PAYPAL_SIGNATURE']).and_return active_merchant_gateway
         end
         context "with a cart ready for checkout standard" do
