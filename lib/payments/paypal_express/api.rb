@@ -18,14 +18,10 @@ module FlexCommerce
         end
 
         def gateway
-          validate_keys
+          raise "Please ensure all Paypal Credentails are set in your env file." unless PAYPAL_LOGIN.present? && PAYPAL_PASSWORD.present? && PAYPAL_SIGNATURE.present?
+
           @gateway ||= gateway_class.new(test: payment_provider.test_mode, login: PAYPAL_LOGIN, password: PAYPAL_PASSWORD, signature: PAYPAL_SIGNATURE)
         end
-
-        def validate_keys
-          raise "Please ensure all Paypal Credentails are set in your env file." unless PAYPAL_LOGIN.present? && PAYPAL_PASSWORD.present? && PAYPAL_SIGNATURE.present?
-        end
-
       end
     end
   end
