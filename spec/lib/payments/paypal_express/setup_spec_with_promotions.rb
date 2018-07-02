@@ -272,7 +272,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
 
       context "in production mode" do
         before(:each) do
-          allow(ENV).to receive(:[]).with(:ORDER_TEST_MODE).and_return(false)
+          allow_any_instance_of(FlexCommerce::Payments::PaypalExpress::Api).to receive(:test_mode).and_return(false)
           expect(active_merchant_gateway_class).to receive(:new).with(test: false, login: ENV['PAYPAL_LOGIN'], password: ENV['PAYPAL_PASSWORD'], signature: ENV['PAYPAL_SIGNATURE']).and_return active_merchant_gateway
         end
 

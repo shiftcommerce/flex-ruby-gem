@@ -8,7 +8,7 @@ RSpec.shared_context "server context" do
       config.flex_api_key = ENV.fetch("API_KEY", "somerandomkeythatisprettylongevenlongerthanthat")
       config.flex_account = ENV.fetch("API_ACCOUNT", "testing")
       config.logger = nil
-      #config.logger = ActiveSupport::Logger.new(STDOUT)
+      config.logger = ActiveSupport::Logger.new(STDOUT)
     end
     WebMock.allow_net_connect!
   end

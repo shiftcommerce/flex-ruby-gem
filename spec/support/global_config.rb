@@ -9,5 +9,5 @@ FlexCommerceApi.config do |config|
   config.flex_account = ENV.fetch("API_ACCOUNT", "testing")
   config.logger = nil
   config.order_test_mode = false
-  #config.logger = ActiveSupport::Logger.new(STDOUT)
+  config.logger = ActiveSupport::Logger.new(STDOUT)
 end

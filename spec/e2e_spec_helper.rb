@@ -11,5 +11,12 @@ FlexCommerceApi.config do |config|
   config.flex_root_url = ENV["API_ROOT"]
   config.flex_account = ENV["API_ACCOUNT"]
   config.flex_api_key = ENV["API_KEY"]
+
+  # Paypal Secrets
+  config.paypal_login = ENV.fetch("PAYPAL_LOGIN")
+  config.paypal_password = ENV.fetch("PAYPAL_PASSWORD")
+  config.paypal_signature = ENV.fetch("PAYPAL_SIGNATURE")
+  config.order_test_mode = ENV.fetch("ORDER_TEST_MODE")
+  
   config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
 end
