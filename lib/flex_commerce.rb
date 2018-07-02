@@ -28,6 +28,8 @@ module FlexCommerce
   autoload :EwisOptIn, File.join(gem_root, "app", "models", "ewis_opt_in")
   autoload :ExternalUrl, File.join(gem_root, "app", "models", "external_url")
   autoload :FreeShippingPromotion, File.join(gem_root, "app", "models", "free_shipping_promotion")
+  autoload :Import, File.join(gem_root, "app", "models", "import")
+  autoload :ImportEntry, File.join(gem_root, "app", "models", "import_entry")
   autoload :LineItem, File.join(gem_root, "app", "models", "line_item")
   autoload :LineItemDiscount, File.join(gem_root, "app", "models", "line_item_discount")
   autoload :MarkdownPrice, File.join(gem_root, "app", "models", "markdown_price")

@@ -1,0 +1,22 @@
+{
+  "data": {
+    "id": "1",
+    "type": "imports",
+    "attributes": {
+      "status": "processed",
+      "body": {},
+      "processing_errors": []
+    },
+    "relationships": {
+      "import": {
+        "links": {
+          "related": "/test/v1/imports/1"
+        }
+      }
+    },
+    "links": {
+      "self": "/test/v1/imports/1/import_entries/1"
+    }
+  },
+  "included": []
+}
