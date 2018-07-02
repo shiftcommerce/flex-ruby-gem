@@ -14,7 +14,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
     # Inputs to the service
     let(:payment_provider_setup) { instance_spy("PaymentProviderSetup", errors: error_collector) }
     let(:error_collector) { instance_spy(ActiveModel::Errors) }
-    let(:payment_provider) { instance_double("PaymentProvider", test_mode: true, meta_attributes: { "login" => "login", "password" => "password", "signature" => "signature" }) }
+    let(:payment_provider) { instance_double("PaymentProvider", test_mode: true) }
     let(:success_url) { "http://success.com" }
     let(:cancel_url) { "http://failure.com" }
     let(:callback_url) { "http://irrelevant.com" }
@@ -302,7 +302,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
       end
 
       context "in production mode" do
-        let(:payment_provider) { instance_double("PaymentProvider", test_mode: false, meta_attributes: { "login" => "login", "password" => "password", "signature" => "signature" }) }
+        let(:payment_provider) { instance_double("PaymentProvider", test_mode: false) }
         before(:each) do
           expect(active_merchant_gateway_class).to receive(:new).with(test: false, login: ENV['PAYPAL_LOGIN'], password: ENV['PAYPAL_PASSWORD'], signature: ENV['PAYPAL_SIGNATURE']).and_return active_merchant_gateway
         end
