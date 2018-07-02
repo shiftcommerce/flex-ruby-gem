@@ -48,9 +48,12 @@ module FlexCommerce
           result
         end
 
+        # Currently Paypal is returning only shipping method label.
+        # And we cannot query for shipping method 
         def find_shipping_method(shipping_option_name)
-          sm = shipping_method_model.where(label: shipping_option_name).first
-          sm ||= shipping_method_model.where(label: de_dup_shipping_option_name(shipping_option_name)).first
+          all_shipping_methods = shipping_method_model.all
+          sm = all_shipping_methods.select { |sm| sm.label == shipping_option_name }.first
+          sm ||= all_shipping_methods.select{ |sm| sm.label == de_dup_shipping_option_name(shipping_option_name) }.first
           sm
         end
 

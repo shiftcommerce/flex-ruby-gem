@@ -246,7 +246,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
 
       context "in test mode" do
         before(:each) do
-          expect(active_merchant_gateway_class).to receive(:new).with(test: true, login: payment_provider.meta_attributes["login"]["value"], password: payment_provider.meta_attributes["password"]["value"], signature: payment_provider.meta_attributes["signature"]["value"]).and_return active_merchant_gateway
+          expect(active_merchant_gateway_class).to receive(:new).with(test: true, login: ENV['PAYPAL_LOGIN'], password: ENV['PAYPAL_PASSWORD'], signature: ENV['PAYPAL_SIGNATURE']).and_return active_merchant_gateway
         end
         context "with a cart ready for checkout standard" do
           let(:shipping_method) do
@@ -304,7 +304,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
       context "in production mode" do
         let(:payment_provider) { instance_double("PaymentProvider", test_mode: false, meta_attributes: { "login" => "login", "password" => "password", "signature" => "signature" }) }
         before(:each) do
-          expect(active_merchant_gateway_class).to receive(:new).with(test: false, login: payment_provider.meta_attributes["login"]["value"], password: payment_provider.meta_attributes["password"]["value"], signature: payment_provider.meta_attributes["signature"]["value"]).and_return active_merchant_gateway
+          expect(active_merchant_gateway_class).to receive(:new).with(test: false, login: ENV['PAYPAL_LOGIN'], password: ENV['PAYPAL_PASSWORD'], signature: ENV['PAYPAL_SIGNATURE']).and_return active_merchant_gateway
         end
         context "with a cart ready for checkout standard" do
           let!(:shipping_method) do

@@ -7,6 +7,10 @@ module FlexCommerce
       module Api
         extend ActiveSupport::Concern
 
+        PAYPAL_LOGIN = ENV['PAYPAL_LOGIN']
+        PAYPAL_PASSWORD = ENV['PAYPAL_PASSWORD']
+        PAYPAL_SIGNATURE = ENV['PAYPAL_SIGNATURE']
+
         private
 
         def convert_amount(amount)
@@ -14,7 +18,12 @@ module FlexCommerce
         end
 
         def gateway
-          @gateway ||= gateway_class.new(test: payment_provider.test_mode, login: payment_provider.meta_attributes["login"]["value"], password: payment_provider.meta_attributes["password"]["value"], signature: payment_provider.meta_attributes["signature"]["value"])
+          validate_keys
+          @gateway ||= gateway_class.new(test: payment_provider.test_mode, login: PAYPAL_LOGIN, password: PAYPAL_PASSWORD, signature: PAYPAL_SIGNATURE)
+        end
+
+        def validate_keys
+          raise "Please ensure all Paypal Credentails are set in your env file." unless PAYPAL_LOGIN.present? && PAYPAL_PASSWORD.present? && PAYPAL_SIGNATURE.present?
         end
 
       end
