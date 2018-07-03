@@ -23,7 +23,7 @@ module FlexCommerce
         # 
         # @return [FlexCommerce::PaymentAdditionalInfo]
         def call
-          PaymentAdditionalInfo.new(meta: meta_data, id: SecureRandom.uuid)
+          OpenStruct.new(meta: meta_data, id: SecureRandom.uuid)  
         end
         
         private

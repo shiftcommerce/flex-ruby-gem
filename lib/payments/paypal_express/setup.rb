@@ -9,7 +9,7 @@ module FlexCommerce
       # This is the main class, which talks to ActiveMerchant gem to initiate a transaction using Paypal
       class Setup
         include ::FlexCommerce::Payments::PaypalExpress::Api
-        DEFAULT_DESCRIPTION = "Shift Commerce Order"
+        DEFAULT_DESCRIPTION = "Shift Commerce Order".freeze
 
         # @initialize
         # 
@@ -28,8 +28,7 @@ module FlexCommerce
         # For `::ActiveMerchant::Billing::PaypalExpressGateway` to work
         # rails-site should include active merchant gem. Ideally this gem should be included in the gemspec.
         # But as we are using custom gem, which is not published to ruby gems, there is no way of including it within this gem dependency
-        def initialize(payment_provider_setup: , cart:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false)
-          self.payment_provider_setup = payment_provider_setup
+        def initialize(cart:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false, description: nil)
           self.gateway_class = gateway_class
           self.cart = cart
           self.allow_shipping_change = allow_shipping_change
@@ -39,26 +38,28 @@ module FlexCommerce
           self.callback_url = callback_url
           self.shipping_method_model = shipping_method_model
           self.use_mobile_payments = use_mobile_payments
+          self.description = description
         end
 
         def call
           return false unless valid_shipping_method?
           
           response = gateway.setup_order(convert_amount(cart.total), paypal_params)
-
           # If paypal setup went fine, redirect to the paypal page
           if response.success?
-            payment_provider_setup.setup_type = "redirect"
-            payment_provider_setup.redirect_url = gateway.redirect_url_for(response.token, mobile: use_mobile_payments)
-            payment_provider_setup
+            PaypalSetup.new(setup_type:  "redirect", redirect_url: gateway.redirect_url_for(response.token, mobile: use_mobile_payments))
           else
-            raise "An error occured communicating with paypal #{response.message} \n\n#{response.params.to_json}. Total sent was #{convert_amount(cart.total)} Parameters sent were \n\n#{paypal_params}" # @TODO Find out where to get the message from and add it
+            # @TODO Find out where to get the message from and add it
+            error = "An error occured communicating with paypal #{response.message} \n\n#{response.params.to_json}. Total sent was #{convert_amount(cart.total)} Parameters sent were \n\n#{paypal_params}"
+            raise ::FlexCommerce::Payments::Exception::AccessDenied.new(error)
           end
+        rescue ::FlexCommerce::Payments::Exception::AccessDenied => exception
+          PaypalSetup.new(errors: exception)
         end
 
         private
 
-        attr_accessor :payment_provider_setup, :cart, :gateway_class, :success_url, :cancel_url, :ip_address, :allow_shipping_change, :callback_url, :shipping_method_model, :use_mobile_payments
+        attr_accessor :description, :cart, :gateway_class, :success_url, :cancel_url, :ip_address, :allow_shipping_change, :callback_url, :shipping_method_model, :use_mobile_payments
 
         def paypal_params
           base_paypal_params
@@ -89,7 +90,7 @@ module FlexCommerce
         def base_paypal_params
           {
             currency: "GBP",
-            description: DEFAULT_DESCRIPTION,
+            description: description || DEFAULT_DESCRIPTION,
             ip: ip_address,
             return_url: success_url,
             cancel_return_url: cancel_url,
@@ -140,10 +141,11 @@ module FlexCommerce
 
         def valid_shipping_method?
           return true if cart.shipping_method_id.nil? || shipping_methods.any? {|sm| sm.id == cart.shipping_method_id}
-          payment_provider_setup.errors.add(:cart_id, I18n.t("payment_setup.shipping_method_not_available"))
-          false
+          raise ::FlexCommerce::Payments::Exception::AccessDenied.new(I18n.t("payment_setup.shipping_method_not_available"))
         end
       end
+
+      class PaypalSetup < OpenStruct; end
     end
   end
 end

@@ -199,8 +199,8 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::AdditionalInfo, vcr: true,
         }
       end
 
-      it "should return an additional info model" do
-        expect(subject.call).to be_a(FlexCommerce::PaymentAdditionalInfo)
+      it "should return an OpenStruct Object" do
+        expect(subject.call).to be_a(::OpenStruct)
       end
 
       it "should reference the correct shipping method" do

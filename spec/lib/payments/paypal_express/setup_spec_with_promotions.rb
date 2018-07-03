@@ -12,8 +12,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
      let(:active_merchant_gateway) { instance_spy("ActiveMerchant::Billing::PaypalExpressGateway") }
 
     # Inputs to the service
-    let(:payment_provider_setup) { instance_spy("PaymentProviderSetup", errors: error_collector) }
-    let(:error_collector) { instance_spy(ActiveModel::Errors) }
+    let(:error_collector) { instance_spy('FlexCommerce::Payments::Exception::AccessDenied') }
     let(:success_url) { "http://success.com" }
     let(:cancel_url) { "http://failure.com" }
     let(:callback_url) { "http://irrelevant.com" }
@@ -58,7 +57,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
       to_clean.shipping_address ||= FlexCommerce::Address.create(first_name: 'First Name', last_name: 'Last name', address_line_1: 'Address line 1', city: 'Leeds', country: 'GB', postcode: 'LS10 1QN')
     end
 
-    subject { described_class.new(payment_provider_setup: payment_provider_setup, cart: cart, success_url: success_url, cancel_url: cancel_url, ip_address: ip_address, callback_url: callback_url, allow_shipping_change: allow_shipping_change, use_mobile_payments: use_mobile_payments) }
+    subject { described_class.new(cart: cart, success_url: success_url, cancel_url: cancel_url, ip_address: ip_address, callback_url: callback_url, allow_shipping_change: allow_shipping_change, use_mobile_payments: use_mobile_payments) }
     
     context "normal flow" do
 
@@ -72,17 +71,17 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
         it "should communicate with the paypal gem and on success set redirect_url on the setup" do
           expect(active_merchant_gateway).to receive(:setup_order).and_return positive_paypal_response
           expect(active_merchant_gateway).to receive(:redirect_url_for).with(paypal_token, { mobile: use_mobile_payments }).and_return redirect_url
-          subject.call
-          expect(error_collector).not_to have_received(:add)
-          expect(payment_provider_setup).to have_received(:redirect_url=).with(redirect_url)
+          response = subject.call
+          expect(response.errors).to be_nil
+          expect(response.redirect_url).to eq(redirect_url)
         end
 
         it "should set the setup_type to redirect" do
           expect(active_merchant_gateway).to receive(:setup_order).and_return positive_paypal_response
           expect(active_merchant_gateway).to receive(:redirect_url_for).with(paypal_token, { mobile: use_mobile_payments }).and_return redirect_url
-          subject.call
-          expect(error_collector).not_to have_received(:add)
-          expect(payment_provider_setup).to have_received(:setup_type=).with("redirect")
+          response = subject.call
+          expect(response.errors).to be_nil
+          expect(response.setup_type).to eq("redirect")
         end
 
         it "should have the correct items" do
@@ -101,8 +100,8 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
             positive_paypal_response
           end
 
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should send a total which matches the sum of the line items" do
@@ -119,14 +118,14 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
 
         it "should have the correct currency" do
           expect(active_merchant_gateway).to receive(:setup_order).with(kind_of(Integer), hash_including(currency: "GBP")).and_return positive_paypal_response
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should have the correct total" do
           expect(active_merchant_gateway).to receive(:setup_order).with((cart.total * 100).round.to_i, hash_including(currency: "GBP")).and_return positive_paypal_response
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should have the correct subtotal" do
@@ -135,8 +134,8 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
             expect(params[1][:currency]).to eq("GBP")
             expect(params[1][:subtotal]).to eq(((cart.total - cart.tax - cart.shipping_total) * 100).round.to_i)
           end.and_return positive_paypal_response
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should have the correct shipping" do
@@ -145,8 +144,8 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
             expect(params[1][:currency]).to eq("GBP")
             expect(params[1][:shipping]).to eq((cart.shipping_total * 100).round.to_i)
           end.and_return positive_paypal_response
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should have the shipping options set with the default equal to the shipping unless the shipping is zero" do
@@ -154,8 +153,8 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
             expect(params[:shipping_options].select {|so| so[:default]}).to contain_exactly(hash_including(amount: params[:shipping]))
             positive_paypal_response
           end
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should have the shipping options with at least 1 default when the callback is used" do
@@ -165,20 +164,20 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
             expect(default_shipping).to be_present
             positive_paypal_response
           end
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should have the correct tax" do
           expect(active_merchant_gateway).to receive(:setup_order).with((cart.total * 100).round.to_i, hash_including(currency: "GBP", tax: (cart.tax * 100).round.to_i)).and_return positive_paypal_response
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should have zero handling" do
           expect(active_merchant_gateway).to receive(:setup_order).with((cart.total * 100).round.to_i, hash_including(currency: "GBP", handling: 0)).and_return positive_paypal_response
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should have its total equal to the sum of subtotal, shipping, tax and handling" do
@@ -188,26 +187,26 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
             expect(total).to eql(params[:subtotal] + params[:shipping] + params[:tax] + params[:handling]), error_msg
             positive_paypal_response
           end
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should have the return_url" do
           expect(active_merchant_gateway).to receive(:setup_order).with(kind_of(Integer), hash_including(return_url: success_url)).and_return positive_paypal_response
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should have the cancel_return_url" do
           expect(active_merchant_gateway).to receive(:setup_order).with(kind_of(Integer), hash_including(cancel_return_url: cancel_url)).and_return positive_paypal_response
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
 
         it "should have the ip" do
           expect(active_merchant_gateway).to receive(:setup_order).with(kind_of(Integer), hash_including(ip: ip_address)).and_return positive_paypal_response
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
       end
 
@@ -226,8 +225,8 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
             }
           }
           expect(active_merchant_gateway).to receive(:setup_order).with(kind_of(Integer), hash_including(shipping_address_paypal_params)).and_return positive_paypal_response
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
       end
 
@@ -238,8 +237,8 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
             expect(params[:shipping_options]).to eq([])
             positive_paypal_response
           end
-          subject.call
-          expect(error_collector).not_to have_received(:add)
+          response = subject.call
+          expect(response.errors).to be_nil
         end
       end
 
