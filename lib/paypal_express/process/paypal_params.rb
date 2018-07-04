@@ -1,6 +1,6 @@
 require 'paypal_express/api'
 
-# @module FlexCommerce::PaypalExpress::Api
+# @module FlexCommerce::PaypalExpress::Process
 module FlexCommerce
   module PaypalExpress
     module Process
