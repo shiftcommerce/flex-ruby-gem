@@ -1,7 +1,7 @@
 require_relative 'transaction'
 
 module FlexCommerce
-  module Payments
+  module PaypalExpress
     module Exception
       class AccessDenied < Transaction
       end

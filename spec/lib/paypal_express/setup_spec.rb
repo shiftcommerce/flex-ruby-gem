@@ -1,7 +1,7 @@
 require "e2e_spec_helper"
 
 # The payments setup service for paypal express
-RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: true do
+RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
   include_context "context store"
   include_context "housekeeping"
 
@@ -300,7 +300,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
 
       context "in production mode" do
         before(:each) do
-          allow_any_instance_of(FlexCommerce::Payments::PaypalExpress::Api).to receive(:test_mode).and_return(false)
+          allow_any_instance_of(FlexCommerce::PaypalExpress::Api).to receive(:test_mode).and_return(false)
           expect(active_merchant_gateway_class).to receive(:new).with(test: false, login: ENV['PAYPAL_LOGIN'], password: ENV['PAYPAL_PASSWORD'], signature: ENV['PAYPAL_SIGNATURE']).and_return active_merchant_gateway
         end
         context "with a cart ready for checkout standard" do
@@ -350,7 +350,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
 
     end
 
-    context "unhappy flow", wip: true do
+    context "unhappy flow" do
       context "with a cart with an invalid shipping_method_id" do
         let(:cart) do
           cart = FlexCommerce::Cart.find(line_items.container_id)

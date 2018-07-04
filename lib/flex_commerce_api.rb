@@ -1,6 +1,6 @@
 require "flex_commerce_api/version"
 require "patches"
-require "payments"
+require "paypal_express"
 require "flex_commerce_api/config"
 require "flex_commerce"
 require "flex_commerce_api/errors"

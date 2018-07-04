@@ -1,7 +1,7 @@
 require "e2e_spec_helper"
 
 
-RSpec.describe FlexCommerce::Payments::PaypalExpress::AdditionalInfo, vcr: true, paypal: true do
+RSpec.describe FlexCommerce::PaypalExpress::AdditionalInfo, vcr: true, paypal: true do
   include ActiveSupport::NumberHelper
   include_context "context store"
   include_context "housekeeping"
@@ -269,7 +269,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::AdditionalInfo, vcr: true,
       end
 
       it "should return nil" do
-        expect { subject.call }.to raise_error ::FlexCommerce::Payments::Exception::AccessDenied
+        expect { subject.call }.to raise_error ::FlexCommerce::PaypalExpress::Exception::AccessDenied
       end
     end
   end

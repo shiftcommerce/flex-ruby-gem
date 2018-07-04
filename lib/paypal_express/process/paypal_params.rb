@@ -1,11 +1,11 @@
-require_relative 'api'
+require 'paypal_express/api'
 
-# @module FlexCommerce::Payments::PaypalExpress::Api
+# @module FlexCommerce::PaypalExpress::Api
 module FlexCommerce
-  module Payments
-    module PaypalExpress
+  module PaypalExpress
+    module Process
       class PaypalParams
-        include ::FlexCommerce::Payments::PaypalExpress::Api
+        include ::FlexCommerce::PaypalExpress::Api
 
         DEFAULT_DESCRIPTION = "Shift Commerce Order".freeze
         

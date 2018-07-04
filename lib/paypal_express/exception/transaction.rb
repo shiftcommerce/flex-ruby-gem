@@ -1,5 +1,5 @@
 module FlexCommerce
-  module Payments
+  module PaypalExpress
     module Exception
       class Transaction < ::StandardError
         attr_accessor :transaction_id, :gateway_transaction_id, :response

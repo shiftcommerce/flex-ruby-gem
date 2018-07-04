@@ -1,7 +1,7 @@
 require "e2e_spec_helper"
 
 # The payments setup service for paypal express
-RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: true do
+RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
   include_context "context store"
   include_context "housekeeping"
 
@@ -12,7 +12,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
      let(:active_merchant_gateway) { instance_spy("ActiveMerchant::Billing::PaypalExpressGateway") }
 
     # Inputs to the service
-    let(:error_collector) { instance_spy('FlexCommerce::Payments::Exception::AccessDenied') }
+    let(:error_collector) { instance_spy('FlexCommerce::PaypalExpress::Exception::AccessDenied') }
     let(:success_url) { "http://success.com" }
     let(:cancel_url) { "http://failure.com" }
     let(:callback_url) { "http://irrelevant.com" }
@@ -271,7 +271,7 @@ RSpec.describe FlexCommerce::Payments::PaypalExpress::Setup, vcr: true, paypal: 
 
       context "in production mode" do
         before(:each) do
-          allow_any_instance_of(FlexCommerce::Payments::PaypalExpress::Api).to receive(:test_mode).and_return(false)
+          allow_any_instance_of(FlexCommerce::PaypalExpress::Api).to receive(:test_mode).and_return(false)
           expect(active_merchant_gateway_class).to receive(:new).with(test: false, login: ENV['PAYPAL_LOGIN'], password: ENV['PAYPAL_PASSWORD'], signature: ENV['PAYPAL_SIGNATURE']).and_return active_merchant_gateway
         end
 
