@@ -54,8 +54,6 @@ module FlexCommerce
           raise ::FlexCommerce::PaypalExpress::Exception::AccessDenied.new(error)
         end
       rescue ::FlexCommerce::PaypalExpress::Exception::AccessDenied => exception
-        puts "EXCEPTION IN SETUP"
-        puts exception.inspect
         PaypalSetup.new(errors: exception)
       end
 
