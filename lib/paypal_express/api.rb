@@ -13,7 +13,7 @@ module FlexCommerce
       end
 
       def gateway
-        raise "Please ensure all Paypal Credentails are set in your env file." unless paypal_login.present? && paypal_password.present? && paypal_signature.present?
+        verify_credentials
 
         @gateway ||= gateway_class.new(
           test: test_mode,
@@ -22,9 +22,18 @@ module FlexCommerce
           signature: paypal_signature)
       end
 
+      def verify_credentials
+        unless paypal_login.present? && paypal_password.present? && paypal_signature.present? then
+          raise "Please ensure all Paypal Credentails are set in your env file." 
+        end
+      end
+
+      # DEFAULT value for test mode is true.
       def test_mode
         FlexCommerceApi.config.order_test_mode == true
       end
+
+      # PAYPAL CREDENTAILS
 
       def paypal_login
         FlexCommerceApi.config.paypal_login

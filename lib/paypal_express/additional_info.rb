@@ -17,18 +17,22 @@ module FlexCommerce
 
       # @method call
       # 
-      # calculates the meta attributes for shipping method id, 
-      # billing and shipping address
+      # Fetches Shipping Method, Billing and Shipping address
+      # details from Paypal
       # 
       # @return [PaymentAdditionalInfo]
       def call
-        PaymentAdditionalInfo.new(meta: gateway_details_for(token), id: SecureRandom.uuid)  
+        PaymentAdditionalInfo.new(meta: gateway_details_for(token))  
       end
       
       private
       
       attr_accessor :gateway_class, :token, :gateway_details, :shipping_method_model
 
+      # @method gateway_details_for
+      # 
+      # @param {ID} token - Paypal token
+      # 
       def gateway_details_for(token)
         response = gateway_details[token] ||= gateway.details_for(token)
         raise ::FlexCommerce::PaypalExpress::Exception::AccessDenied.new(response.message) unless response.success?

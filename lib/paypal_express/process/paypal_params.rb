@@ -4,12 +4,27 @@ require 'paypal_express/api'
 module FlexCommerce
   module PaypalExpress
     module Process
+      # @class PaypalParams
       class PaypalParams
         include ::FlexCommerce::PaypalExpress::Api
 
         DEFAULT_DESCRIPTION = "Shift Commerce Order".freeze
         
-        def initialize(cart:,success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false, description: nil)
+        # @initialize
+        # 
+        # @param {FlexCommerce::PaymentProviderSetup} payment_provider_setup
+        # @param {FlexCommerce::Cart} cart
+        # @param {Paypal Gateway} [gateway_class = ::ActiveMerchant::Billing::PaypalExpressGateway]
+        # @param {URL} success_url - Generally Paypal confirmation page
+        # @param {URL} cancel_url - Generally new transaction page
+        # @param {IP} ip_address - User ip address
+        # @param {boolean} [allow_shipping_change = true] - true: display shipping options, false: dont display shipping options
+        # @param {URL} callback_url - Generally cart show page
+        # @param {FlexCommerce::ShippingMethod} shipping_method_model = FlexCommerce::ShippingMethod
+        # @param {boolean} [use_mobile_payments = false]
+        # @param {String} [description]
+        # 
+        def initialize(cart:,success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false, description:)
           self.cart = cart
           self.allow_shipping_change = allow_shipping_change
           self.success_url = success_url

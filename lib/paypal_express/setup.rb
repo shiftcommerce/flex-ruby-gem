@@ -22,6 +22,7 @@ module FlexCommerce
       # @param {URL} callback_url - Generally cart show page
       # @param {FlexCommerce::ShippingMethod} shipping_method_model = FlexCommerce::ShippingMethod
       # @param {boolean} [use_mobile_payments = false]
+      # @param {String} [description = nil]
       # 
       # @note:
       # For `::ActiveMerchant::Billing::PaypalExpressGateway` to work
