@@ -2,15 +2,15 @@
 module FlexCommerce
   module PaypalExpress
     module Process
-      # @class ParseResponse
-      class ParseResponse
+      # @class ResponseParser
+      class ResponseParser
 
-        def initialize(response:, shipping_method_model: FlexCommerce::ShippingMethod)
+        def initialize(response:, shipping_method_model:)
           self.response = response
           self.shipping_method_model = shipping_method_model
         end
 
-        def parse
+        def call
           {
             shipping_method_id: get_shipping_method_details,
             email: get_email_address,

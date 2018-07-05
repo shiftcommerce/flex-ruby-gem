@@ -268,7 +268,7 @@ RSpec.describe FlexCommerce::PaypalExpress::AdditionalInfo, vcr: true, paypal: t
         }
       end
 
-      it "should return nil" do
+      it "should raise error" do
         expect { subject.call }.to raise_error ::FlexCommerce::PaypalExpress::Exception::AccessDenied
       end
     end
