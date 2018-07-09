@@ -210,7 +210,7 @@ RSpec.describe "Shopping Cart" do
               expect(line_item).to be_a(line_item_class)
             end
             it "should create a line item when requested using only the cart id" do
-              line_item = line_item_class.new(cart_id: 1, relationships: {item: variant, container: subject_class.new(id: "1")})
+              line_item = line_item_class.new(cart_id: subject.id, relationships: {item: variant, container: subject_class.new(id: "1")})
               line_item.save
               expect(line_item).to be_a(line_item_class)
             end
