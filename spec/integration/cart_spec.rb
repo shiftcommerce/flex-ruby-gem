@@ -192,7 +192,7 @@ RSpec.describe "Shopping Cart" do
 
           context "creating a line item with a prepared variant" do
             before(:each) do
-              stub_request(:post, "#{api_root}/carts/1/line_items.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return do |request|
+              stub_request(:post, "#{api_root}/carts/#{subject.id}/line_items.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return do |request|
                 expect(request.body).to be_valid_json_for_schema("line_item")
                 {body: line_item_resource.to_json, status: response_status, headers: default_headers}
               end
@@ -201,12 +201,12 @@ RSpec.describe "Shopping Cart" do
             let(:line_item_resource) { build(:line_item_from_fixture) }
             it "should create a line item when requested using the line_items collection on the cart - using save" do
               # @TODO We should not have to specify the cart id
-              line_item = subject.line_items.new(item_id: variant.id, item_type: "Variant", cart_id: 1)
+              line_item = subject.line_items.new(item_id: variant.id, item_type: "Variant", cart_id: subject.id)
               line_item.save
               expect(line_item).to be_a(line_item_class)
             end
             it "should create a line item when requested using the line_items collection on the cart - using create" do
-              line_item = subject.line_items.create(item_id: variant.id, item_type: "Variant", cart_id: 1)
+              line_item = subject.line_items.create(item_id: variant.id, item_type: "Variant", cart_id: subject.id)
               expect(line_item).to be_a(line_item_class)
             end
             it "should create a line item when requested using only the cart id" do
