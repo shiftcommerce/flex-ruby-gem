@@ -9,6 +9,7 @@ module FlexCommerce
   #
   #
   class BundleGroup < FlexCommerceApi::ApiBase
+    belongs_to :bundle, class_name: "::FlexCommerce::Bundle"
     has_many :products, class_name: "::FlexCommerce::Product"
   end
 end
