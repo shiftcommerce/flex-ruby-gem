@@ -9,7 +9,7 @@ RSpec.describe "capturing surrogate keys" do
   # see api_globals.rb in spec/support for the source code
   include_context "global context"
   let(:subject_class) do
-    TempClass = Class.new(FlexCommerceApi::ApiBase) do
+    TempClass ||= Class.new(FlexCommerceApi::ApiBase) do
     end
   end
 

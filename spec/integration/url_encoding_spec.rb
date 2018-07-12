@@ -9,9 +9,7 @@ RSpec.describe "url encoding on any model" do
   # see api_globals.rb in spec/support for the source code
   include_context "global context"
   let(:subject_class) do
-    TempClass = Class.new(FlexCommerceApi::ApiBase) do
-
-    end
+    TempClass ||= Class.new(FlexCommerceApi::ApiBase) do; end
   end
   let(:empty_data) do
     {
