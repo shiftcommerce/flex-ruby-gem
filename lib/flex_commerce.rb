@@ -5,10 +5,10 @@ module FlexCommerce
 
   # V2 Models
   module V2
-    autoload :Order, File.join(FlexCommerce.gem_root, "app", "models", "v2", "order")
-    autoload :LineItem, File.join(FlexCommerce.gem_root, "app", "models", "v2", "line_item")
     autoload :CreateOrder, File.join(FlexCommerce.gem_root, "app", "models", "v2", "create_order")
     autoload :DeallocateOrder, File.join(FlexCommerce.gem_root, "app", "models", "v2", "deallocate_order")
+    autoload :LineItem, File.join(FlexCommerce.gem_root, "app", "models", "v2", "line_item")
+    autoload :Order, File.join(FlexCommerce.gem_root, "app", "models", "v2", "order")
   end
 
   # V1 Models
