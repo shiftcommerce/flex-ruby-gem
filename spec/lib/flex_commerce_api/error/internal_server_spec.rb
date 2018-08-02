@@ -41,6 +41,5 @@ describe FlexCommerceApi::Error::InternalServer do
       internal_server_error = described_class.new(nil, response)
       expect(internal_server_error.message).to eq "Internal server error"
     end
-
   end
 end
