@@ -22,7 +22,7 @@ module FlexCommerceApi
 
       def extract_error(body)
         return body if body.is_a?(::String)
-        body["message"] || body["errors"].first
+        body["message"] || body["errors"]&.first
       end
     end
   end
