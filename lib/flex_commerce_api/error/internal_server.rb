@@ -3,7 +3,7 @@ module FlexCommerceApi
     class InternalServer < Base
       def message
         body = response_env.fetch(:body, {"errors" => []})
-        error = body.is_a?(::String) ? body : body["errors"].first
+        error = extract_error(body)
         return "Internal server error" unless error.present?
         if error.is_a?(::Enumerable)
           title = error.fetch("title", "")
@@ -18,6 +18,12 @@ module FlexCommerceApi
         end
       end
 
+      private
+
+      def extract_error(body)
+        return body if body.is_a?(::String)
+        body["message"] || body["errors"].first
+      end
     end
   end
 end
