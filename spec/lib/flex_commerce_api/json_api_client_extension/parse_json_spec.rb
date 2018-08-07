@@ -21,8 +21,13 @@ describe FlexCommerceApi::JsonApiClientExtension::ParseJson do
         "quoted string not terminated at line 1, column 13937 [parse.c:337]"
     )
 
-    expect{ FlexCommerce::Address.find(1) }.to raise_error(
-      JSON::ParserError, /some_random_value/
-    )
+    expect{ FlexCommerce::Address.find(1) }.to raise_error do |error|
+      expect(error).to be_a(JSON::ParserError)
+      expect(error.raven_context).to eq({
+        extra: {
+          body: {"key": "some_random_value"}.to_json,
+        }
+      })
+    end
   end
 end
