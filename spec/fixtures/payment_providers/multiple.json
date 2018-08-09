@@ -11,14 +11,7 @@
           "password": "password"
         }
       },
-      "relationships": {
-        "setup": {
-          "data": {
-            "id": "1",
-            "type": "payment_provider_setups"
-          }
-        }
-      }
+      "relationships": {}
     },
     {
       "id": "spreedly",
@@ -29,40 +22,10 @@
           "environment_key": "jhg5jh34g53j4g534ghj5gjh34g5hj3g4jh5gj3h4g5jk2h"
         }
       },
-      "relationships": {
-        "setup": {
-          "data": {
-            "id": "2",
-            "type": "payment_provider_setups"
-          }
-        }
-      }
+      "relationships": {}
     }
   ],
-  "included": [
-    {
-      "id": "1",
-      "type": "payment_provider_setups",
-      "attributes": {
-        "setup_type": "custom",
-        "meta_attributes": {
-          "signature": "exhehfywkehrhejrtkjeht",
-          "login": "login",
-          "password": "password"
-        }
-      }
-    },
-    {
-      "id": "2",
-      "type": "payment_provider_setups",
-      "attributes": {
-        "setup_type": "custom",
-        "meta_attributes": {
-          "environment_key": "jhg5jh34g53j4g534ghj5gjh34g5hj3g4jh5gj3h4g5jk2h"
-        }
-      }
-    }
-  ],
+  "included": [],
   "links": {
     "first": "http://www.com/someurl/pages/1.json_api",
     "last": "http://www.com/someurl/pages/1.json_api"
