@@ -1,5 +1,5 @@
 require "json_api_client/version"
-if ["1.1.1"].include?(JsonApiClient::VERSION)
+if ["1.1.1", "1.5.3"].include?(JsonApiClient::VERSION)
   require "json_api_client/resource"
   module JsonApiClient
     class Resource
@@ -26,7 +26,6 @@ if ["1.1.1"].include?(JsonApiClient::VERSION)
           mark_as_persisted!
           if updated = last_result_set.first
             self.attributes = updated.attributes
-            # This line has been added as part of https://github.com/chingor13/json_api_client/pull/238
             self.links.attributes = updated.links.attributes
             self.relationships.attributes = updated.relationships.attributes
             clear_changes_information
@@ -41,7 +40,6 @@ if ["1.1.1"].include?(JsonApiClient::VERSION)
 else
   raise %q(
     Please check these two PRs:
-      * https://github.com/chingor13/json_api_client/pull/238 (This was released in version 1.5.0)
       * https://github.com/JsonApiClient/json_api_client/pull/285 (This hasn't yet been released at the time of writing this)
 
     If both have been merged into the gem version you are using, remove this file (#{__FILE__}).
