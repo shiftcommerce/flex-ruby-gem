@@ -17,6 +17,9 @@ require "flex_commerce_api/json_api_client_extension/parsers/parser"
 require "flex_commerce_api/json_api_client_extension/remote_builder"
 
 module FlexCommerceApi
+  # Set the pagination param
+  JsonApiClientExtension::Paginating::Paginator.per_page_param = "page[size]"
+
   #
   # Base class for all flex commerce models
   #
