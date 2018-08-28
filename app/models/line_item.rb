@@ -25,15 +25,10 @@ module FlexCommerce
     # @TODO Document other popular methods that we will support
 
     has_one :item
-    belongs_to :container
+    belongs_to :cart, class_name: "::FlexCommerce::Cart"
+
 
     # note: only embedded in order responses, not carts
     has_many :line_item_discounts, class_name: "::FlexCommerce::LineItemDiscount"
-
-    class << self
-      def _prefix_path
-        ""
-      end
-    end
   end
 end

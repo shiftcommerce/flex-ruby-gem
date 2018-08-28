@@ -53,7 +53,7 @@
       },
       "available_shipping_methods": {
         "links": {
-          "related": "/testaccount/v1/carts/1/available_shipping_methods"
+          "related": "/testing/v1/carts/1/available_shipping_methods"
         }
       }
     }
@@ -156,7 +156,7 @@
       "relationships": {
         "product": {
           "links": {
-            "related": "/testaccount/v1/products/1.json_api"
+            "related": "/testing/v1/products/1.json_api"
           }
         }
       }
@@ -176,7 +176,7 @@
       "relationships": {
         "product": {
           "links": {
-            "related": "/testaccount/v1/products/2.json_api"
+            "related": "/testing/v1/products/2.json_api"
           }
         }
       }

@@ -26,7 +26,7 @@
       "template_attributes": {}
     },
     "links": {
-      "self": "/testaccount/v1/products/seed_product_1.json_api"
+      "self": "/testing/v1/products/seed_product_1.json_api"
     },
     "relationships": {
       "variants": {
@@ -95,12 +95,12 @@
         "reference": "ca6e414e-10aa-492f-9b3e-1445a93ef725"
       },
       "links": {
-        "self": "/testaccount/v1/products/1.json_api"
+        "self": "/testing/v1/products/1.json_api"
       },
       "relationships": {
         "asset_folder": {
           "links": {
-            "related": "/testaccount/v1/asset_folders/1.json_api"
+            "related": "/testing/v1/asset_folders/1.json_api"
           }
         }
       }

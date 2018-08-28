@@ -25,16 +25,12 @@ module FlexCommerceApi
     # @!attribute flex_api_key
     #  The API key to access the flex server with.  This comes from the 'Access Keys'
     #  section of the admin panel
-    # @!attribute [r] api_version
-    #  The API version.  This is tied to the gem version so if you want to access
-    #  a later version of the API you must get a later version of the gem.
     # @!attribute order_test_mode
     #  The order test mode.This config determines if orders are processed as test or real orders
-    attr_accessor :flex_root_url, :flex_api_key, :flex_account, :logger, :adapter, :order_test_mode, :http_cache, :open_timeout, :timeout
+    attr_accessor :flex_root_url, :flex_api_key, :flex_account, :logger, :adapter, :order_test_mode, :http_cache, :open_timeout, :timeout, :paypal_login, :paypal_password, :paypal_signature, :order_test_mode
     attr_reader :api_version
 
     def initialize
-      @api_version = API_VERSION
       self.order_test_mode = false
       self.http_cache = {}
       self.open_timeout = ENV.fetch('SHIFT_OPEN_TIMEOUT', 2).to_i
@@ -45,14 +41,14 @@ module FlexCommerceApi
     # @return [String] The base URL for the flex system.  Calculated from the
     #  flex_root_url and _api_verision
     def api_base_url
-      "#{flex_root_url}/#{flex_account}/#{api_version}"
+      "#{flex_root_url}/#{flex_account}"
     end
 
     # Informs all models that the configuration may have changed
     # but only if ApiBase is defined - else nothing has loaded yet
     # so they wont need reconfiguring
     def reconfigure_all!
-      FlexCommerceApi::ApiBase.reconfigure_all if FlexCommerceApi.const_defined? "ApiBase"
+      FlexCommerceApi::BaseResource.reconfigure_all if FlexCommerceApi.const_defined? "ApiBase"
     end
 
   end

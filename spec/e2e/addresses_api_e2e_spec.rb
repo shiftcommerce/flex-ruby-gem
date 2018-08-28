@@ -5,7 +5,7 @@ RSpec.describe "Addresses API end to end spec", vcr: true do
   let(:created_id) { context_store.created_resource.id }
   let(:created_customer_account_id) { context_store[:created_customer_account_id] }
   before(:context) do
-    context_store.created_customer_account_id = FlexCommerce::CustomerAccount.create!(email: "testaccount#{Time.now.to_f}@domain.com", reference: "ref_#{Time.now.to_f}", password: "12345test67890").id
+    context_store.created_customer_account_id = FlexCommerce::CustomerAccount.create!(email: "testing#{Time.now.to_f}@domain.com", reference: "ref_#{Time.now.to_f}", password: "12345test67890").id
     http_request_tracker.clear
   end
   after(:context) do
