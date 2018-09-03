@@ -1,4 +1,7 @@
 require "json_api_client/version"
+puts "==================================="
+puts "=== JsonApiClient::VERSION: #{JsonApiClient::VERSION}"
+puts "==================================="
 if ["1.5.3"].include?(JsonApiClient::VERSION)
   require "json_api_client/resource"
   module JsonApiClient
