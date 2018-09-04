@@ -1,7 +1,7 @@
 module FlexCommerceApi
   module JsonApiClientExtension
     class RemoteBuilder < ::JsonApiClient::Query::Builder
-      def initialize(klass, opts = {})
+      def initialize(klass, path: klass.path, connection: klass.connection, opts = {})
         super(klass, opts)
         self.connection = connection
         self.path = path
