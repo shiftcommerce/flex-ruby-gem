@@ -21,7 +21,7 @@ module FlexCommerceApi
       private
 
       def get_request(params)
-        klass.parser.parse(klass, connection.run(:get, path, params, klass.custom_headers))
+        klass.parser.parse(klass, connection.run(:get, path, params: params, headers: klass.custom_headers))
       end
       attr_accessor :path, :connection
     end
