@@ -17,7 +17,7 @@ module FlexCommerceApi
       def get(params = {})
         path = resource_path(params)
         params.delete(klass.primary_key)
-        request(:get, path, params)
+        request(:get, path, params: params)
       end
 
       def destroy(record)
