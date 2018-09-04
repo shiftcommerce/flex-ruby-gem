@@ -10,7 +10,7 @@ module FlexCommerceApi
 
       def update(record)
         request(:patch, resource_path(record.attributes, record), {
-                          data: record.as_json_api
+                          body: { data: record.as_json_api }
                       })
       end
 
