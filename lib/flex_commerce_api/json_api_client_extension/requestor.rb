@@ -4,7 +4,7 @@ module FlexCommerceApi
       # expects a record
       def create(record)
         request(:post, klass.path(record.attributes, record), {
-                         data: record.as_json_api
+                         body: { data: record.as_json_api }
                      })
       end
 
