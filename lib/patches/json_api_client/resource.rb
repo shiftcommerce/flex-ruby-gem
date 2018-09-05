@@ -33,7 +33,7 @@ if ["1.1.1", "1.5.3"].include?(JsonApiClient::VERSION)
     end
   end
 else
-  raise %q(
+  puts %q(
     Please check this PR:
       * https://github.com/JsonApiClient/json_api_client/pull/285 (This hasn't yet been released at the time of writing this)
 
