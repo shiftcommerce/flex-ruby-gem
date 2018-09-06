@@ -12,11 +12,11 @@ module FlexCommerceApi
         include_previewed = options.fetch :include_previewed, false
         @faraday = Faraday.new(site) do |builder|
           builder.request :json
-          # builder.use FaradayMiddleware::Gzip
+          builder.use FaradayMiddleware::Gzip
           builder.use JsonApiClientExtension::SaveRequestBodyMiddleware
           builder.use JsonApiClientExtension::JsonFormatMiddleware if add_json_api_extension
           builder.use JsonApiClientExtension::PreviewedRequestMiddleware if include_previewed
-          builder.use JsonApiClientExtension::ForceGzipRequestHeadersMiddleware
+          # builder.use JsonApiClientExtension::ForceGzipRequestHeadersMiddleware
           builder.use JsonApiClient::Middleware::JsonRequest
           # Surrogate Key middleware should always be above HTTP caching to ensure we're reading headers
           # from the original response not the 304 responses
