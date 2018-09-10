@@ -331,10 +331,6 @@ RSpec.describe FlexCommerce::CustomerAccount do
           {status: 200, body: {data: [{type: :remote_orders, id: "1", attributes: {}}]}.to_json, headers: {"Content-Type" => "application/vnd.api+json"}}
         end
 
-        # stub_request(:get, "#{api_root}/remote_orders.json_api?page%5Bnumber%5D=2&page%5Bsize%5D=20").
-        #   with(headers: {'Accept'=>'application/vnd.api+json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/vnd.api+json', 'User-Agent'=>'Faraday v0.15.2'}).
-        #   to_return(status: 200, body: "", headers: {})
-
         expect(subject.orders.page(2).per(20).to_a).to contain_exactly(instance_of(FlexCommerce::RemoteOrder))
         expect(requests.length).to eql 1
       end
