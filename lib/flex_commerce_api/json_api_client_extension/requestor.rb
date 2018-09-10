@@ -4,20 +4,20 @@ module FlexCommerceApi
       # expects a record
       def create(record)
         request(:post, klass.path(record.attributes, record), {
-                         body: { data: record.as_json_api }
+                         data: record.as_json_api
                      })
       end
 
       def update(record)
         request(:patch, resource_path(record.attributes, record), {
-                          body: { data: record.as_json_api }
+                          data: record.as_json_api
                       })
       end
 
       def get(params = {})
         path = resource_path(params)
         params.delete(klass.primary_key)
-        request(:get, path, params: params)
+        request(:get, path, params)
       end
 
       def destroy(record)

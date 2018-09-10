@@ -1,10 +1,10 @@
 module FlexCommerceApi
   module JsonApiClientExtension
     class RemoteBuilder < ::JsonApiClient::Query::Builder
-      def initialize(klass, opts = {})
-        super(klass, opts)
-        self.connection = opts.fetch(:connection, klass.connection)
-        self.path = opts.fetch(:path, klass.path)
+      def initialize(klass, path: klass.path, connection: klass.connection)
+        super(klass)
+        self.connection = connection
+        self.path = path
       end
 
       def find(args = {})
@@ -21,7 +21,7 @@ module FlexCommerceApi
       private
 
       def get_request(params)
-        klass.parser.parse(klass, connection.run(:get, path, params: params, headers: klass.custom_headers))
+        klass.parser.parse(klass, connection.run(:get, path, params, klass.custom_headers))
       end
       attr_accessor :path, :connection
     end
