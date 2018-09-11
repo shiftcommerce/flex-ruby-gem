@@ -1,4 +1,3 @@
-require "flex_commerce_api/version"
 require "patches"
 require "paypal_express"
 require "flex_commerce_api/config"

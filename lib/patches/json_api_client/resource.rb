@@ -26,9 +26,12 @@ if ["1.1.1"].include?(JsonApiClient::VERSION)
           mark_as_persisted!
           if updated = last_result_set.first
             self.attributes = updated.attributes
+            # This line has been added as part of https://github.com/chingor13/json_api_client/pull/238
             self.links.attributes = updated.links.attributes
             self.relationships.attributes = updated.relationships.attributes
             clear_changes_information
+            # This line has been added as part of https://github.com/JsonApiClient/json_api_client/pull/285
+            self.relationships.clear_changes_information
           end
           true
         end
@@ -36,5 +39,12 @@ if ["1.1.1"].include?(JsonApiClient::VERSION)
     end
   end
 else
-  raise "Please check this PR (https://github.com/chingor13/json_api_client/pull/238) and if it has been merged, remove this file (#{__FILE__}) - if not add the current version to the allowed array at the top of this file."
+  raise %q(
+    Please check these two PRs:
+      * https://github.com/chingor13/json_api_client/pull/238 (This was released in version 1.5.0)
+      * https://github.com/JsonApiClient/json_api_client/pull/285 (This hasn't yet been released at the time of writing this)
+
+    If both have been merged into the gem version you are using, remove this file (#{__FILE__}).
+    If not, add the current version to the allowed array at the top of this file.
+  )
 end
