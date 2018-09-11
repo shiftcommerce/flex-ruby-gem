@@ -30,7 +30,7 @@ module FlexCommerce
 
       # DEFAULT value for test mode is true.
       def test_mode
-        FlexCommerceApi.config.order_test_mode == true
+        FlexCommerceApi.config.order_test_mode || true
       end
 
       # PAYPAL CREDENTAILS
