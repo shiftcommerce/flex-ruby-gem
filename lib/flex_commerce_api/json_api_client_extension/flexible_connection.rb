@@ -12,7 +12,9 @@ module FlexCommerceApi
         include_previewed = options.fetch :include_previewed, false
         @faraday = Faraday.new(site) do |builder|
           builder.request :json
-          builder.use FaradayMiddleware::Gzip
+          # We know gzip compression works with net_http and typhoeus adapters,
+          # but not rack for example, so we whitelist supported adapters here:
+          builder.use FaradayMiddleware::Gzip if (adapter_options & [:net_http, :typhoeus]).any?
           builder.use JsonApiClientExtension::SaveRequestBodyMiddleware
           builder.use JsonApiClientExtension::JsonFormatMiddleware if add_json_api_extension
           builder.use JsonApiClientExtension::PreviewedRequestMiddleware if include_previewed
