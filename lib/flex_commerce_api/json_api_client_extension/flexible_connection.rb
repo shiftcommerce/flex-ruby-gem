@@ -5,9 +5,6 @@ module FlexCommerceApi
     class FlexibleConnection < JsonApiClient::Connection
       attr_accessor :last_response
       def initialize(options = {})
-        puts "================================================================="
-        puts "================FlexibleConnection initialize ==================="
-        puts "================================================================="
         site = options.fetch(:site)
         adapter_options = Array(options.fetch(:adapter, Faraday.default_adapter))
         add_json_api_extension = options.fetch(:add_json_api_extension, true)
