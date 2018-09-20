@@ -110,12 +110,14 @@ module FlexCommerceApi
 
       def reconfigure options = {}
         self.site = append_version(FlexCommerceApi.config.api_base_url)
+
         base_options = {
           adapter: FlexCommerceApi.config.adapter || :net_http,
           http_cache: FlexCommerceApi.config.http_cache,
           timeout: FlexCommerceApi.config.timeout,
           open_timeout: FlexCommerceApi.config.open_timeout
         }
+
         self.connection_options.delete(:include_previewed)
         self.connection_options = connection_options.merge(base_options).merge(options)
         reload_connection_if_required

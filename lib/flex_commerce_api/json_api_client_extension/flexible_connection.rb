@@ -11,16 +11,9 @@ module FlexCommerceApi
         authenticate = options.fetch(:authenticate, true)
         include_previewed = options.fetch :include_previewed, false
 
-        puts "==========================="
-        puts "=== adapter_options: #{adapter_options}"
-        puts "=== (adapter_options & [:net_http, :typhoeus]).any? #{(adapter_options & [:net_http, :typhoeus]).any?}"
-        puts "==========================="
-
         @faraday = Faraday.new(site) do |builder|
           builder.request :json
-          # We know gzip compression works with net_http and typhoeus adapters,
-          # but not rack for example, so we whitelist supported adapters here:
-          builder.use FaradayMiddleware::Gzip if (adapter_options & [:net_http, :typhoeus]).any?
+          builder.use FaradayMiddleware::Gzip if gzip_enabled?(adapter_options)
           builder.use JsonApiClientExtension::SaveRequestBodyMiddleware
           builder.use JsonApiClientExtension::JsonFormatMiddleware if add_json_api_extension
           builder.use JsonApiClientExtension::PreviewedRequestMiddleware if include_previewed
@@ -51,6 +44,7 @@ module FlexCommerceApi
       end
 
       private
+
       def cache_options(options)
         {
           # treats the cache like a client, not a proxy
@@ -62,6 +56,17 @@ module FlexCommerceApi
           # use our configured logger
           logger: FlexCommerceApi.logger
         }.merge(options.fetch(:http_cache, {}))
+      end
+
+      def gzip_enabled?(adapter_options)
+        # We know gzip compression works with net_http and typhoeus adapters,
+        # but not rack for example, so we whitelist supported adapters here:
+        supported_adapters = [:net_http, :typhoeus]
+        adapter_supported = (adapter_options & supported_adapters).any?
+
+        # Gzip is enabled if the adapter supports it and we aren't explicitly
+        # disabling gzip in the gem config
+        adapter_supported && !FlexCommerceApi.config.disable_gzip
       end
     end
   end
