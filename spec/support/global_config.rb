@@ -10,4 +10,5 @@ FlexCommerceApi.config do |config|
   config.logger = nil
   config.order_test_mode = false
   config.logger = ActiveSupport::Logger.new(STDOUT)
+  config.disable_gzip = true
 end
