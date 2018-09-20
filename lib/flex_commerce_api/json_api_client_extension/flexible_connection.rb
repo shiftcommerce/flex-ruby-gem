@@ -5,15 +5,17 @@ module FlexCommerceApi
     class FlexibleConnection < JsonApiClient::Connection
       attr_accessor :last_response
       def initialize(options = {})
-        puts "==========================="
-        puts "=== adapter_options: #{adapter_options}"
-        puts "=== (adapter_options & [:net_http, :typhoeus]).any? #{(adapter_options & [:net_http, :typhoeus]).any?}"
-        puts "==========================="
         site = options.fetch(:site)
         adapter_options = Array(options.fetch(:adapter, Faraday.default_adapter))
         add_json_api_extension = options.fetch(:add_json_api_extension, true)
         authenticate = options.fetch(:authenticate, true)
         include_previewed = options.fetch :include_previewed, false
+
+        puts "==========================="
+        puts "=== adapter_options: #{adapter_options}"
+        puts "=== (adapter_options & [:net_http, :typhoeus]).any? #{(adapter_options & [:net_http, :typhoeus]).any?}"
+        puts "==========================="
+
         @faraday = Faraday.new(site) do |builder|
           builder.request :json
           # We know gzip compression works with net_http and typhoeus adapters,
