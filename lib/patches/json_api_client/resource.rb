@@ -13,13 +13,7 @@ if ["1.1.1", "1.5.3"].include?(JsonApiClient::VERSION)
           self.class.requestor.create(self)
         end
         if last_result_set.has_errors?
-          last_result_set.errors.each do |error|
-            if error.source_parameter
-              errors.add(error.source_parameter, error.title || error.detail)
-            else
-              errors.add(:base, error.title || error.detail)
-            end
-          end
+          fill_errors
           false
         else
           self.errors.clear if self.errors
