@@ -1,15 +1,18 @@
+require "json_api_client/version"
+
 if ["1.1.1", "1.5.3"].include?(JsonApiClient::VERSION)
   require "json_api_client/resource"
   module JsonApiClient
     class Resource
       def save
         return false unless valid?
-         self.last_result_set = if persisted?
+
+        self.last_result_set = if persisted?
           self.class.requestor.update(self)
         else
           self.class.requestor.create(self)
         end
-         if last_result_set.has_errors?
+        if last_result_set.has_errors?
           last_result_set.errors.each do |error|
             if error.source_parameter
               errors.add(error.source_parameter, error.title || error.detail)
@@ -36,7 +39,7 @@ if ["1.1.1", "1.5.3"].include?(JsonApiClient::VERSION)
     end
   end
 else
-  puts %q(
+  raise %q(
     Please check these two PRs:
       * https://github.com/chingor13/json_api_client/pull/238 (This was released in version 1.5.0)
       * https://github.com/JsonApiClient/json_api_client/pull/285 (This hasn't yet been released at the time of writing this)
