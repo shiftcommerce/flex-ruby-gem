@@ -27,13 +27,14 @@ module FlexCommerce
     has_one :item
     belongs_to :cart, class_name: "::FlexCommerce::Cart"
 
-    # class << self
-    #   def _prefix_path
-    #     ""
-    #   end
-    # end
-
     # note: only embedded in order responses, not carts
     has_many :line_item_discounts, class_name: "::FlexCommerce::LineItemDiscount"
+
+    # This allows us to set the `path` parameter automatically from the provided `container_id`
+    def self.path(params = nil, *args)
+      params[:path] = { cart_id: params["container_id"] }
+
+      super
+    end
   end
 end

@@ -37,18 +37,22 @@ RSpec.describe "Line items API end to end spec", vcr: true do
           item_type: "Variant",
           unit_quantity: 1,
           container_id: context_store.created_cart.id
-          # path: { cart_id: context_store.created_cart.id }
       }.not_to raise_error
     end
   end
 
   context "#update" do
     it "should persist when valid attributes are used" do
-      FlexCommerce::LineItem.create! item_id: context_store.foreign_resources.variant.id, item_type: "Variant", unit_quantity: 1, container_id: context_store.created_cart.id
-      context_store.created_cart = FlexCommerce::Cart.find(context_store.created_cart.id) # Reload it
-      line_item = context_store.created_cart.line_items.first
+      FlexCommerce::LineItem.create! \
+        item_id: context_store.foreign_resources.variant.id,
+        item_type: "Variant",
+        unit_quantity: 1,
+        container_id: context_store.created_cart.id
+      created_cart = FlexCommerce::Cart.find(context_store.created_cart.id) # Reload it
+      line_item = created_cart.line_items.first
       line_item.update(unit_quantity: 5)
-      expect(line_item.reload.unit_quantity).to eq(5)
+      line_item.reload
+      expect(line_item.unit_quantity).to eq(5)
     end
   end
 end
