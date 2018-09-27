@@ -32,9 +32,9 @@ module FlexCommerce
 
     # This allows us to set the `path` parameter automatically from the provided `container_id`
     def self.path(params = nil, *args)
-      params[:path] = { cart_id: params["container_id"] }
+      params["path"] = { "cart_id" => params["container_id"] }
 
-      super
+      super(params, args)
     end
   end
 end
