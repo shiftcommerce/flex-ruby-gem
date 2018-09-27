@@ -87,7 +87,7 @@ module FlexCommerce
           if cart.shipping_method_id.nil?
             error_message = "Shipping method not specified on cart."
           else
-            error_message  = "Shipping method not available: #{cart.shipping_method_id}"
+            error_message = "Shipping method not available: #{cart.shipping_method_id}"
             error_message += " (in #{shipping_methods.to_a.collect(&:id).join(", ")})"
           end
           raise ::FlexCommerce::PaypalExpress::Exception::AccessDenied.new(error_message)

@@ -47,10 +47,8 @@ RSpec.describe "Line items API end to end spec", vcr: true do
       FlexCommerce::LineItem.create! item_id: context_store.foreign_resources.variant.id, item_type: "Variant", unit_quantity: 1, container_id: context_store.created_cart.id
       context_store.created_cart = FlexCommerce::Cart.find(context_store.created_cart.id) # Reload it
       line_item = context_store.created_cart.line_items.first
-      line_item.update(unit_quantity: 100)
-      expect(line_item.reload.unit_quantity).to eq(100)
-
-      binding.pry
+      line_item.update(unit_quantity: 5)
+      expect(line_item.reload.unit_quantity).to eq(5)
     end
   end
 end
