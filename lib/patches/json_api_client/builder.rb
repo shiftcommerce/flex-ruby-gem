@@ -7,8 +7,8 @@ module JsonApiClient
       # This causes an error when Faraday parses our params due to the filter
       # param appearing to be malformed.
       #
-      # TODO: Look at fixing our links so that we don't see errors when
-      # Faraday parses the params.
+      # TODO: Look at fixing our links so that we can remove this workaround
+      # (platform ticket #7293)
       def last
         self.to_a.last
       end
