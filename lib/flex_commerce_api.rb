@@ -3,6 +3,7 @@ require "paypal_express"
 require "flex_commerce_api/config"
 require "flex_commerce"
 require "flex_commerce_api/errors"
+require "flex_commerce_api/json_api_client_extension/parse_json"
 
 module FlexCommerceApi
   def self.config
