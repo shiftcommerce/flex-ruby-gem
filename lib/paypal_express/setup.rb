@@ -4,14 +4,14 @@ require_relative 'api'
 module FlexCommerce
   module PaypalExpress
     # @class Setup
-    # 
+    #
     # This is the main class, which talks to ActiveMerchant gem to initiate a transaction using Paypal
     class Setup
       include ::FlexCommerce::PaypalExpress::Api
-      
+
 
       # @initialize
-      # 
+      #
       # @param {FlexCommerce::PaymentProviderSetup} payment_provider_setup
       # @param {FlexCommerce::Cart} cart
       # @param {Paypal Gateway} [gateway_class = ::ActiveMerchant::Billing::PaypalExpressGateway]
@@ -23,7 +23,7 @@ module FlexCommerce
       # @param {FlexCommerce::ShippingMethod} shipping_method_model = FlexCommerce::ShippingMethod
       # @param {boolean} [use_mobile_payments = false]
       # @param {String} [description = nil]
-      # 
+      #
       # @note:
       # For `::ActiveMerchant::Billing::PaypalExpressGateway` to work
       # rails-site should include active merchant gem. Ideally this gem should be included in the gemspec.
@@ -43,7 +43,7 @@ module FlexCommerce
 
       def call
         validate_shipping_method
-        
+
         response = gateway.setup_order(convert_amount(cart.total), paypal_params)
         # If paypal setup went fine, redirect to the paypal page
         if response.success?
@@ -76,15 +76,21 @@ module FlexCommerce
       end
 
       # @method shipping_methods
-      # 
+      #
       # @returns shipping methods with promotions applied
       def shipping_methods
         @shipping_methods ||= ShippingMethodsForCart.new(cart: cart, shipping_methods: shipping_method_model.all).call.sort_by(&:total)
       end
 
       def validate_shipping_method
-        unless cart.shipping_method_id.nil? || shipping_methods.any? {|sm| sm.id == cart.shipping_method_id} then
-          raise ::FlexCommerce::PaypalExpress::Exception::AccessDenied.new(I18n.t("payment_setup.shipping_method_not_available"))
+        unless cart.shipping_method_id.nil? || shipping_methods.any? { |sm| sm.id == cart.shipping_method_id }
+          if cart.shipping_method_id.nil?
+            error_message = "Shipping method not specified on cart."
+          else
+            error_message = "Shipping method not available: #{cart.shipping_method_id}"
+            error_message += " (in #{shipping_methods.to_a.collect(&:id).join(", ")})"
+          end
+          raise ::FlexCommerce::PaypalExpress::Exception::AccessDenied.new(error_message)
         end
       end
     end
