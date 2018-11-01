@@ -105,8 +105,7 @@ module FlexCommerce
     end
 
     def self.create(*args)
-      puts "args: #{args.inspect}"
-      if FlexCommerceApi.config.order_test_mode
+      if FlexCommerceApi.config.order_test_mode && args.is_a?(Array)
         args.first.merge(test: true)
         super
       else
