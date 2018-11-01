@@ -49,8 +49,12 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
         product_id: global_product.id).freeze
     end
 
+    let(:cart_id) do
+      FlexCommerce::Cart.create.id
+    end
+
     let(:line_items) do
-      to_clean.line_items ||= FlexCommerce::LineItem.create(item_id: global_variant.id, unit_quantity: 2, item_type: 'Variant')
+      to_clean.line_items ||= FlexCommerce::LineItem.create(item_id: global_variant.id, unit_quantity: 2, item_type: 'Variant', cart_id: cart_id)
     end
 
     let(:shipping_address) do 

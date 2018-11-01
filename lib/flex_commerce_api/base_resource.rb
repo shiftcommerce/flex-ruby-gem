@@ -17,6 +17,10 @@ require "flex_commerce_api/json_api_client_extension/parsers/parser"
 require "flex_commerce_api/json_api_client_extension/remote_builder"
 
 module FlexCommerceApi
+  # Set the pagination param
+  JsonApiClientExtension::Paginator.page_param = "number"
+  JsonApiClientExtension::Paginator.per_page_param = "size"
+
   #
   # Base class for all flex commerce models
   #
@@ -106,12 +110,14 @@ module FlexCommerceApi
 
       def reconfigure options = {}
         self.site = append_version(FlexCommerceApi.config.api_base_url)
+
         base_options = {
           adapter: FlexCommerceApi.config.adapter || :net_http,
           http_cache: FlexCommerceApi.config.http_cache,
           timeout: FlexCommerceApi.config.timeout,
           open_timeout: FlexCommerceApi.config.open_timeout
         }
+
         self.connection_options.delete(:include_previewed)
         self.connection_options = connection_options.merge(base_options).merge(options)
         reload_connection_if_required

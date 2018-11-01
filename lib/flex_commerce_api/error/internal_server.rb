@@ -18,6 +18,14 @@ module FlexCommerceApi
         end
       end
 
+      def raven_context
+        {
+          extra: {
+            body: response_env[:body]
+          }  
+        }
+      end
+
       private
 
       def extract_error(body)
