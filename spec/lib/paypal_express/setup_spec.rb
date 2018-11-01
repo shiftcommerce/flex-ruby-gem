@@ -49,8 +49,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
     end
 
     let(:cart_id) do
-      cart = FlexCommerce::Cart.new
-      cart.id
+      cart = FlexCommerce::Cart.create.id
     end
 
     let(:line_items) do
