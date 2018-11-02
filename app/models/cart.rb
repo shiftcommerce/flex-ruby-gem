@@ -104,9 +104,9 @@ module FlexCommerce
       self.class.requestor.custom("relationships/payment_transactions", {request_method: :post}, {id: id, data: [type: "payment_transactions", id: transaction.id.to_s]})
     end
 
-    def self.create(*args)
+    def self.create(args)
       if FlexCommerceApi.config.order_test_mode
-        super(args.first&.merge(test: true))
+        super(args&.merge(test: true))
       else
         super
       end
