@@ -30,10 +30,7 @@ module FlexCommerce
       # has errors marked on it.
       def call
         response = gateway.verify_address(email: cart.email, address: {address1: cart.shipping_address.address_line_1, zip: cart.shipping_address.postcode})
-        {
-          gateway_response: parse_gateway_response(response),
-          errors: parse_errors(response)
-        }
+        parse_gateway_response(response).merge(parse_errors(response))
       end
 
       private
@@ -51,11 +48,11 @@ module FlexCommerce
         errors = {}
         case response.params["AddressVerifyResponse"]["ConfirmationCode"]
           when "None"
-            errors[:email] = I18n.t("payment_address_verifications.email_not_present") 
+            errors[:email] = "Email not present in paypal" 
           when "Unconfirmed"
-            errors[:address] = I18n.t("payment_address_verifications.unconfirmed")
+            errors[:address] = "Address is not confirmed"
         end
-        errors[:transaction] = I18n.t("payment_address_verifications.service_failed") unless response.params["AddressVerifyResponse"]["Ack"]
+        errors[:transaction] = "Address verification service failed" unless response.params["AddressVerifyResponse"]["Ack"]
         errors
       end
     end
