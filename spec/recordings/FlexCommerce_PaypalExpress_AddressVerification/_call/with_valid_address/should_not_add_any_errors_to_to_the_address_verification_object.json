@@ -1,0 +1,110 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "post",
+        "uri": "https://testing:Mi9lMmY2MjI2M2JmOTU3NDFmYzZiMTM1NGEwMDQzNTI3NmFlZTMxMmY2YTJlMzA4OGViOGNkYjNmYWY0YmY0MGYyODQ3MGU3MWEwZGEyZGFhZjBkN2E2OGYwMGM5ZmVkNzdlNTU3ZWMzYzFhOTI4YjhiN2Q4ZWRmZWJkMDM5YWZlZTJhMTE1NDg1OTM3YjhkNTdkMmQ2OGVkNTJhYTc0NGZlNzQ1N2E2YjM3YzZmZDQxZGU1OGViMzgyMTIzMzZmN2Q4YzQzMjg5ZTFhNDU4MThkNTZkNTZiMzAxMjEyZjk5YjExNWFhNzY0NjYwYjUyOGNkYTA4M2ZiMGYwMmMwZTBi@shift-platform-dev-api.global.ssl.fastly.net/testing/v1/addresses.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"type\":\"addresses\",\"attributes\":{\"first_name\":\"First Name\",\"last_name\":\"Last name\",\"address_line_1\":\"Address line 1\",\"city\":\"Leeds\",\"country\":\"GB\",\"postcode\":\"LS10 1QN\"}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.4"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 201,
+          "message": "Created"
+        },
+        "headers": {
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Location": [
+            "/testing/v1/addresses/496.json_api"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"3b81ee6cb47de5902be0b284e6285617\""
+          ],
+          "Strict-Transport-Security": [
+            "max-age=15552000; includeSubDomains"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Date": [
+            "Fri, 30 Nov 2018 09:52:36 GMT"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": "{\"data\":{\"id\":\"496\",\"type\":\"addresses\",\"links\":{\"self\":\"/testing/v1/addresses/496.json_api\"},\"attributes\":{\"meta_attributes\":{},\"customer_account_id\":null,\"first_name\":\"First Name\",\"last_name\":\"Last name\",\"middle_names\":\"\",\"address_line_1\":\"Address line 1\",\"address_line_2\":\"\",\"address_line_3\":\"\",\"city\":\"Leeds\",\"state\":null,\"postcode\":\"LS10 1QN\",\"country\":\"GB\",\"preferred_shipping\":false,\"preferred_billing\":false},\"relationships\":{\"customer_account\":{\"links\":{\"self\":\"/testing/v1/addresses/496/relationships/customer_account.json_api\",\"related\":\"/testing/v1/addresses/496/customer_account.json_api\"}}}},\"links\":{\"self\":\"/testing/v1/addresses.json_api\"}}",
+          "decoded": {
+            "data": {
+              "id": "496",
+              "type": "addresses",
+              "links": {
+                "self": "/testing/v1/addresses/496.json_api"
+              },
+              "attributes": {
+                "meta_attributes": {
+                },
+                "customer_account_id": null,
+                "first_name": "First Name",
+                "last_name": "Last name",
+                "middle_names": "",
+                "address_line_1": "Address line 1",
+                "address_line_2": "",
+                "address_line_3": "",
+                "city": "Leeds",
+                "state": null,
+                "postcode": "LS10 1QN",
+                "country": "GB",
+                "preferred_shipping": false,
+                "preferred_billing": false
+              },
+              "relationships": {
+                "customer_account": {
+                  "links": {
+                    "self": "/testing/v1/addresses/496/relationships/customer_account.json_api",
+                    "related": "/testing/v1/addresses/496/customer_account.json_api"
+                  }
+                }
+              }
+            },
+            "links": {
+              "self": "/testing/v1/addresses.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Fri, 30 Nov 2018 09:52:36 GMT"
+    }
+  ],
+  "recorded_with": "VCR 4.0.0"
+}
