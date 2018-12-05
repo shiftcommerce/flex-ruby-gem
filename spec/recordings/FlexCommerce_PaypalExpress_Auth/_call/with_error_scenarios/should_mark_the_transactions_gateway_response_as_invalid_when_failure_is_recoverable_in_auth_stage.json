@@ -1,0 +1,100 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "post",
+        "uri": "https://testing:Mi9lMmY2MjI2M2JmOTU3NDFmYzZiMTM1NGEwMDQzNTI3NmFlZTMxMmY2YTJlMzA4OGViOGNkYjNmYWY0YmY0MGYyODQ3MGU3MWEwZGEyZGFhZjBkN2E2OGYwMGM5ZmVkNzdlNTU3ZWMzYzFhOTI4YjhiN2Q4ZWRmZWJkMDM5YWZlZTJhMTE1NDg1OTM3YjhkNTdkMmQ2OGVkNTJhYTc0NGZlNzQ1N2E2YjM3YzZmZDQxZGU1OGViMzgyMTIzMzZmN2Q4YzQzMjg5ZTFhNDU4MThkNTZkNTZiMzAxMjEyZjk5YjExNWFhNzY0NjYwYjUyOGNkYTA4M2ZiMGYwMmMwZTBi@shift-platform-dev-api.global.ssl.fastly.net/testing/v1/payment_transactions.json_api",
+        "body": {
+          "encoding": "UTF-8",
+          "string": "{\"data\":{\"type\":\"payment_transactions\",\"attributes\":{\"cart_id\":1004,\"gateway_response\":{\"token\":\"fake-token\",\"payer_id\":\"fake-payer-id\"},\"amount\":100,\"status\":\"success\",\"transaction_type\":\"authorisation\",\"currency\":\"GBP\",\"payment_gateway_reference\":\"paypal_reference\"}}}"
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.4"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 201,
+          "message": "Created"
+        },
+        "headers": {
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Location": [
+            "/testing/v1/payment_transactions/5.json_api"
+          ],
+          "External-Surrogate-Key": [
+            "testing%2Fpayment_transaction%2F5"
+          ],
+          "Cache-Control": [
+            "max-age=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"d60255a8f9ac5d867117b896684a5470\""
+          ],
+          "Strict-Transport-Security": [
+            "max-age=15552000; includeSubDomains"
+          ],
+          "Transfer-Encoding": [
+            "chunked"
+          ],
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Date": [
+            "Wed, 05 Dec 2018 12:12:20 GMT"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ]
+        },
+        "body": {
+          "encoding": "ASCII-8BIT",
+          "string": "{\"data\":{\"id\":\"5\",\"type\":\"payment_transactions\",\"links\":{\"self\":\"/testing/v1/payment_transactions/5.json_api\"},\"attributes\":{\"status\":\"success\",\"transaction_type\":\"authorisation\",\"payment_gateway_reference\":\"paypal_reference\",\"currency\":\"GBP\",\"gateway_response\":{\"token\":\"fake-token\",\"payer_id\":\"fake-payer-id\"},\"reference_code\":null,\"amount\":100.0}},\"links\":{\"self\":\"/testing/v1/payment_transactions.json_api\"}}",
+          "decoded": {
+            "data": {
+              "id": "5",
+              "type": "payment_transactions",
+              "links": {
+                "self": "/testing/v1/payment_transactions/5.json_api"
+              },
+              "attributes": {
+                "status": "success",
+                "transaction_type": "authorisation",
+                "payment_gateway_reference": "paypal_reference",
+                "currency": "GBP",
+                "gateway_response": {
+                  "token": "fake-token",
+                  "payer_id": "fake-payer-id"
+                },
+                "reference_code": null,
+                "amount": 100.0
+              }
+            },
+            "links": {
+              "self": "/testing/v1/payment_transactions.json_api"
+            }
+          }
+        },
+        "http_version": null
+      },
+      "recorded_at": "Wed, 05 Dec 2018 12:12:20 GMT"
+    }
+  ],
+  "recorded_with": "VCR 4.0.0"
+}

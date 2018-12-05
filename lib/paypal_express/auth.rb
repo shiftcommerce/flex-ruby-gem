@@ -48,7 +48,7 @@ module FlexCommerce
         end
 
         # Authorizing transaction
-        auth_response = do_authorization
+        auth_response = do_authorization(response)
         unless auth_response.success?
           unless is_user_error?(auth_response)
             # TODO Integrate with new relic here
@@ -75,7 +75,7 @@ module FlexCommerce
       end
 
 
-      def do_authorization
+      def do_authorization(response)
         Retry.call(no_of_retries: 5, rescue_errors: ::ActiveMerchant::ConnectionError) {
           gateway.authorize_transaction(response.params["transaction_id"], convert_amount(cart.total), transaction_entity: "Order", currency: DEFAULT_CURRENCY, payer_id: payer_id)
         }

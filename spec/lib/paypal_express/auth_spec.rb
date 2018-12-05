@@ -8,14 +8,28 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
   let(:token) { "fake-token" }
   let(:payer_id) { "fake-payer-id" }
   let(:cart) { build_stubbed(:cart, total: 100) }
+  let(:transaction) { 
+    to_clean.transaction = FlexCommerce::PaymentTransaction.create(
+      cart_id: cart.id,
+      gateway_response: {
+        token: token,
+        payer_id: payer_id
+      },
+      amount: cart.total,
+      status: "success",
+      transaction_type: 'authorisation',
+      currency: "GBP",
+      payment_gateway_reference: "paypal_reference"
+    )
+  }
   before(:each) do
     # Ensure the service doesnt touch the cart or its addresses
     cart.shipping_address.freeze
     cart.billing_address.freeze
     cart.freeze
   end
-
-  subject { described_class.new(cart: cart, token: token, payer_id: payer_id) }
+  
+  subject { described_class.new(cart: cart, token: token, payer_id: payer_id, payment_transaction: transaction) }
 
   shared_context "mocked active merchant" do |expect_login: true, test_mode: true|
     # Mock active merchant
@@ -64,7 +78,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
 
       it "should set the gateway response" do
         response = subject.call
-        expect(response).to include(transaction_id: transaction_id, authorization_id: auth_transaction_id)
+        expect(response.gateway_response).to include(transaction_id: transaction_id, authorization_id: auth_transaction_id)
       end
 
     end
@@ -79,7 +93,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
 
       it "should set the gateway response" do
         response = subject.call
-        expect(response).to include(transaction_id: transaction_id, authorization_id: auth_transaction_id)
+        expect(response.gateway_response).to include(transaction_id: transaction_id, authorization_id: auth_transaction_id)
       end
     end
 
