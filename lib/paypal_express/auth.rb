@@ -40,8 +40,6 @@ module FlexCommerce
         response = do_express_checkout_payment
         unless response.success?
           unless is_user_error?(response)
-            # TODO: Integrate new relic here
-            # TODO: Integrate with I18n here
             raise ::FlexCommerce::PaypalExpress::Exception::NotAuthorized.new("Payment not authorised - #{response.message}", response: response)
           end
           return mark_transaction_with_errors!(response)
@@ -51,8 +49,6 @@ module FlexCommerce
         auth_response = do_authorization(response)
         unless auth_response.success?
           unless is_user_error?(auth_response)
-            # TODO Integrate with new relic here
-            # TODO Integrate with I18n here
             raise ::FlexCommerce::PaypalExpress::Exception::NotAuthorized.new("Failed authorising transaction - #{auth_response.message}", response: auth_response)
           end
           return mark_transaction_with_errors!(auth_response)
@@ -61,15 +57,13 @@ module FlexCommerce
         payment_transaction.attributes = { gateway_response: { payer_id: payer_id, token: token, transaction_id: response.params["transaction_id"], authorization_id: auth_response.params["transaction_id"]} }
         payment_transaction.save if payment_transaction.persisted?
         payment_transaction
-      # TODO: There should be a time limit on this
-      # TODO: And a retry process around this.
       rescue ::ActiveMerchant::ConnectionError => ex
-        # TODO: I18n integration for the message
         raise ::FlexCommerce::PaypalExpress::Exception::ConnectionError.new("Failed authorising transaction due to a connection error.  Original message was #{ex.message}")
       end
 
       def do_express_checkout_payment
         Retry.call(no_of_retries: 5, rescue_errors: ::ActiveMerchant::ConnectionError) {
+          ::NewRelic::Agent.increment_metric('Custom/Paypal/Do_Express_Checkout_Payment') if defined?(NewRelic::Agent)
           gateway.order(convert_amount(cart.total), token: token, payer_id: payer_id, currency: DEFAULT_CURRENCY)
         }
       end
@@ -77,6 +71,7 @@ module FlexCommerce
 
       def do_authorization(response)
         Retry.call(no_of_retries: 5, rescue_errors: ::ActiveMerchant::ConnectionError) {
+          ::NewRelic::Agent.increment_metric('Custom/Paypal/Do_Auhtorization') if defined?(NewRelic::Agent)
           gateway.authorize_transaction(response.params["transaction_id"], convert_amount(cart.total), transaction_entity: "Order", currency: DEFAULT_CURRENCY, payer_id: payer_id)
         }
       end
