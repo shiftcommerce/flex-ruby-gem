@@ -13,7 +13,6 @@ module Retry
       retry if total_attempts < no_of_retries
     ensure
       if total_attempts == no_of_retries
-        # notity logging/monitoring system here
         return
       end
     end
