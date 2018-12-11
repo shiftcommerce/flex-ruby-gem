@@ -1,0 +1,185 @@
+{
+  "http_interactions": [
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://testing:Mi9lMmY2MjI2M2JmOTU3NDFmYzZiMTM1NGEwMDQzNTI3NmFlZTMxMmY2YTJlMzA4OGViOGNkYjNmYWY0YmY0MGYyODQ3MGU3MWEwZGEyZGFhZjBkN2E2OGYwMGM5ZmVkNzdlNTU3ZWMzYzFhOTI4YjhiN2Q4ZWRmZWJkMDM5YWZlZTJhMTE1NDg1OTM3YjhkNTdkMmQ2OGVkNTJhYTc0NGZlNzQ1N2E2YjM3YzZmZDQxZGU1OGViMzgyMTIzMzZmN2Q4YzQzMjg5ZTFhNDU4MThkNTZkNTZiMzAxMjEyZjk5YjExNWFhNzY0NjYwYjUyOGNkYTA4M2ZiMGYwMmMwZTBi@shift-platform-dev-api.global.ssl.fastly.net/testing/v1/carts/1184.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.4"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "If-None-Match": [
+            "W/\"687b64e097b65ca76f9bf1ee8b85ca1b\""
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 304,
+          "message": "Not Modified"
+        },
+        "headers": {
+          "Cache-Control": [
+            "private, max-age=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"687b64e097b65ca76f9bf1ee8b85ca1b\""
+          ],
+          "Strict-Transport-Security": [
+            "max-age=15552000; includeSubDomains"
+          ],
+          "Accept-Ranges": [
+            "bytes"
+          ],
+          "Date": [
+            "Tue, 11 Dec 2018 10:08:33 GMT"
+          ],
+          "Connection": [
+            "keep-alive"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Tue, 11 Dec 2018 10:08:34 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://testing:Mi9lMmY2MjI2M2JmOTU3NDFmYzZiMTM1NGEwMDQzNTI3NmFlZTMxMmY2YTJlMzA4OGViOGNkYjNmYWY0YmY0MGYyODQ3MGU3MWEwZGEyZGFhZjBkN2E2OGYwMGM5ZmVkNzdlNTU3ZWMzYzFhOTI4YjhiN2Q4ZWRmZWJkMDM5YWZlZTJhMTE1NDg1OTM3YjhkNTdkMmQ2OGVkNTJhYTc0NGZlNzQ1N2E2YjM3YzZmZDQxZGU1OGViMzgyMTIzMzZmN2Q4YzQzMjg5ZTFhNDU4MThkNTZkNTZiMzAxMjEyZjk5YjExNWFhNzY0NjYwYjUyOGNkYTA4M2ZiMGYwMmMwZTBi@shift-platform-dev-api.global.ssl.fastly.net/testing/v1/shipping_methods.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.4"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "If-None-Match": [
+            "W/\"4595e4f6934d81309085a01c409aec74\""
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 304,
+          "message": "Not Modified"
+        },
+        "headers": {
+          "Date": [
+            "Tue, 11 Dec 2018 10:08:33 GMT"
+          ],
+          "Cache-Control": [
+            "max-age=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"4595e4f6934d81309085a01c409aec74\""
+          ],
+          "Age": [
+            "17"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Tue, 11 Dec 2018 10:08:34 GMT"
+    },
+    {
+      "request": {
+        "method": "get",
+        "uri": "https://testing:Mi9lMmY2MjI2M2JmOTU3NDFmYzZiMTM1NGEwMDQzNTI3NmFlZTMxMmY2YTJlMzA4OGViOGNkYjNmYWY0YmY0MGYyODQ3MGU3MWEwZGEyZGFhZjBkN2E2OGYwMGM5ZmVkNzdlNTU3ZWMzYzFhOTI4YjhiN2Q4ZWRmZWJkMDM5YWZlZTJhMTE1NDg1OTM3YjhkNTdkMmQ2OGVkNTJhYTc0NGZlNzQ1N2E2YjM3YzZmZDQxZGU1OGViMzgyMTIzMzZmN2Q4YzQzMjg5ZTFhNDU4MThkNTZkNTZiMzAxMjEyZjk5YjExNWFhNzY0NjYwYjUyOGNkYTA4M2ZiMGYwMmMwZTBi@shift-platform-dev-api.global.ssl.fastly.net/testing/v1/carts/1184/available_shipping_promotions.json_api",
+        "body": {
+          "encoding": "US-ASCII",
+          "string": ""
+        },
+        "headers": {
+          "User-Agent": [
+            "Faraday v0.15.4"
+          ],
+          "Content-Type": [
+            "application/vnd.api+json"
+          ],
+          "Accept": [
+            "application/vnd.api+json"
+          ],
+          "If-None-Match": [
+            "W/\"16c6fc6ff6c9229a26c4d7dbd88fa463\""
+          ],
+          "Accept-Encoding": [
+            "gzip;q=1.0,deflate;q=0.6,identity;q=0.3"
+          ]
+        }
+      },
+      "response": {
+        "status": {
+          "code": 304,
+          "message": "Not Modified"
+        },
+        "headers": {
+          "Date": [
+            "Tue, 11 Dec 2018 10:08:34 GMT"
+          ],
+          "Cache-Control": [
+            "max-age=0, s-maxage=0, must-revalidate"
+          ],
+          "Etag": [
+            "W/\"16c6fc6ff6c9229a26c4d7dbd88fa463\""
+          ],
+          "Age": [
+            "0"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Vary": [
+            "Accept-Encoding"
+          ]
+        },
+        "body": {
+          "encoding": "UTF-8",
+          "string": "",
+          "decoded": null
+        },
+        "http_version": null
+      },
+      "recorded_at": "Tue, 11 Dec 2018 10:08:34 GMT"
+    }
+  ],
+  "recorded_with": "VCR 4.0.0"
+}
