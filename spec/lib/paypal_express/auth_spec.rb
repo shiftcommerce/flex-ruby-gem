@@ -101,19 +101,19 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
       include_context "mocked active merchant"
       
       it "should mark the transactions gateway_response as invalid when failure is recoverable in order stage" do
-        order_response = instance_double "ActiveMerchant::Billing::PaypalExpressGateway", "order_response", params: {"error_codes" => "10410", "message" => "Invalid token.", "ack" => "Failure", "Ack" => "Failure"}, success?: false
+        order_response = instance_double "ActiveMerchant::Billing::PaypalExpressGateway", "order_response", params: {"error_codes" => "10410", "message" => "Invalid token", "ack" => "Failure", "Ack" => "Failure"}, success?: false
         expect(active_merchant_gateway).to receive(:order).with(convert_amount(cart.total), token: token, payer_id: payer_id, currency: "GBP").and_return order_response
         expect(active_merchant_gateway).not_to receive(:authorize_transaction)
         response = subject.call
-        expect(response[0]["gateway_response"]).to include "Invalid token"
+        expect(response[0][:gateway_response]).to include "Invalid token"
       end
 
       it "should mark the transactions gateway_response as invalid when failure is recoverable in auth stage" do
-        authorize_order_response = instance_double "ActiveMerchant::Billing::PaypalExpressGateway", "order_response", params: {"error_codes" => "10410", "message" => "Invalid token.", "ack" => "Failure", "Ack" => "Failure"}, success?: false
+        authorize_order_response = instance_double "ActiveMerchant::Billing::PaypalExpressGateway", "order_response", params: {"error_codes" => "10410", "message" => "Invalid token", "ack" => "Failure", "Ack" => "Failure"}, success?: false
         expect(active_merchant_gateway).to receive(:order).with(convert_amount(cart.total), token: token, payer_id: payer_id, currency: "GBP").and_return order_response
         expect(active_merchant_gateway).to receive(:authorize_transaction).with(transaction_id, convert_amount(cart.total), transaction_entity: "Order", payer_id: payer_id, currency: "GBP").and_return authorize_order_response
         response = subject.call
-        expect(response[0]["gateway_response"]).to include "Invalid token"
+        expect(response[0][:gateway_response]).to include "Invalid token"
       end
 
       it "should raise an error when failure is not recoverable in order stage" do

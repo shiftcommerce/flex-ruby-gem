@@ -33,16 +33,16 @@
             "application/vnd.api+json"
           ],
           "Location": [
-            "/testing/v1/payment_transactions/8.json_api"
+            "/testing/v1/payment_transactions/28.json_api"
           ],
           "External-Surrogate-Key": [
-            "testing%2Fpayment_transaction%2F8"
+            "testing%2Fpayment_transaction%2F28"
           ],
           "Cache-Control": [
             "max-age=0, must-revalidate"
           ],
           "Etag": [
-            "W/\"ca9069e97bce8f3f33b13df4c4cdd5b5\""
+            "W/\"7eeade445e70232834250f5474ab2c48\""
           ],
           "Strict-Transport-Security": [
             "max-age=15552000; includeSubDomains"
@@ -54,7 +54,7 @@
             "bytes"
           ],
           "Date": [
-            "Wed, 05 Dec 2018 12:12:21 GMT"
+            "Tue, 11 Dec 2018 09:51:19 GMT"
           ],
           "Connection": [
             "keep-alive"
@@ -65,13 +65,13 @@
         },
         "body": {
           "encoding": "ASCII-8BIT",
-          "string": "{\"data\":{\"id\":\"8\",\"type\":\"payment_transactions\",\"links\":{\"self\":\"/testing/v1/payment_transactions/8.json_api\"},\"attributes\":{\"status\":\"success\",\"transaction_type\":\"authorisation\",\"payment_gateway_reference\":\"paypal_reference\",\"currency\":\"GBP\",\"gateway_response\":{\"token\":\"fake-token\",\"payer_id\":\"fake-payer-id\"},\"reference_code\":null,\"amount\":100.0}},\"links\":{\"self\":\"/testing/v1/payment_transactions.json_api\"}}",
+          "string": "{\"data\":{\"id\":\"28\",\"type\":\"payment_transactions\",\"links\":{\"self\":\"/testing/v1/payment_transactions/28.json_api\"},\"attributes\":{\"status\":\"success\",\"transaction_type\":\"authorisation\",\"payment_gateway_reference\":\"paypal_reference\",\"currency\":\"GBP\",\"gateway_response\":{\"token\":\"fake-token\",\"payer_id\":\"fake-payer-id\"},\"reference_code\":null,\"amount\":100.0}},\"links\":{\"self\":\"/testing/v1/payment_transactions.json_api\"}}",
           "decoded": {
             "data": {
-              "id": "8",
+              "id": "28",
               "type": "payment_transactions",
               "links": {
-                "self": "/testing/v1/payment_transactions/8.json_api"
+                "self": "/testing/v1/payment_transactions/28.json_api"
               },
               "attributes": {
                 "status": "success",
@@ -93,7 +93,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Wed, 05 Dec 2018 12:12:20 GMT"
+      "recorded_at": "Tue, 11 Dec 2018 09:51:20 GMT"
     }
   ],
   "recorded_with": "VCR 4.0.0"

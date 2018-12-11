@@ -54,7 +54,7 @@ module FlexCommerce
         end
 
         payment_transaction.attributes = { gateway_response: { payer_id: payer_id, token: token, transaction_id: response.params["transaction_id"], authorization_id: auth_response.params["transaction_id"]} }
-        payment_transaction.save if payment_transaction.persisted?
+        payment_transaction.save
         payment_transaction
       rescue ::ActiveMerchant::ConnectionError => ex
         raise ::FlexCommerce::PaypalExpress::Exception::ConnectionError.new("Failed authorising transaction due to a connection error.  Original message was #{ex.message}")

@@ -42,7 +42,7 @@
             "max-age=0, must-revalidate"
           ],
           "Etag": [
-            "W/\"641535d1384b49742f1a3bc40946efde\""
+            "W/\"1e1d4c40d085189604dc1473ac50972f\""
           ],
           "Strict-Transport-Security": [
             "max-age=15552000; includeSubDomains"
@@ -54,7 +54,7 @@
             "bytes"
           ],
           "Date": [
-            "Wed, 05 Dec 2018 12:12:20 GMT"
+            "Tue, 11 Dec 2018 09:51:18 GMT"
           ],
           "Connection": [
             "keep-alive"
@@ -95,7 +95,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Wed, 05 Dec 2018 12:12:20 GMT"
+      "recorded_at": "Tue, 11 Dec 2018 09:51:18 GMT"
     },
     {
       "request": {
@@ -136,7 +136,7 @@
             "max-age=0, must-revalidate"
           ],
           "Etag": [
-            "W/\"9705429532cb938789a1d3f006cde7e8\""
+            "W/\"0f12e68355f89001fd512dc3e932e673\""
           ],
           "Strict-Transport-Security": [
             "max-age=15552000; includeSubDomains"
@@ -148,7 +148,7 @@
             "bytes"
           ],
           "Date": [
-            "Wed, 05 Dec 2018 12:12:20 GMT"
+            "Tue, 11 Dec 2018 09:51:18 GMT"
           ],
           "Connection": [
             "keep-alive"
@@ -189,7 +189,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Wed, 05 Dec 2018 12:12:20 GMT"
+      "recorded_at": "Tue, 11 Dec 2018 09:51:19 GMT"
     }
   ],
   "recorded_with": "VCR 4.0.0"

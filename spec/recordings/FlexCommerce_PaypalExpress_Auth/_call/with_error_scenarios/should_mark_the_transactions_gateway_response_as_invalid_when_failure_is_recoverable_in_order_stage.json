@@ -42,7 +42,7 @@
             "max-age=0, must-revalidate"
           ],
           "Etag": [
-            "W/\"2a36a4732749e177cde3bb15e70bef06\""
+            "W/\"5586830955cecc6246d4b9198975a95b\""
           ],
           "Strict-Transport-Security": [
             "max-age=15552000; includeSubDomains"
@@ -54,7 +54,7 @@
             "bytes"
           ],
           "Date": [
-            "Wed, 05 Dec 2018 12:12:20 GMT"
+            "Tue, 11 Dec 2018 09:51:19 GMT"
           ],
           "Connection": [
             "keep-alive"
@@ -93,7 +93,7 @@
         },
         "http_version": null
       },
-      "recorded_at": "Wed, 05 Dec 2018 12:12:20 GMT"
+      "recorded_at": "Tue, 11 Dec 2018 09:51:19 GMT"
     }
   ],
   "recorded_with": "VCR 4.0.0"
