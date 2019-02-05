@@ -31,7 +31,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
     ].join(',').freeze
 
     let(:uuid) { SecureRandom.uuid }
-    
+
     let(:global_product) do
       to_clean.global_product ||= FlexCommerce::Product.create!(title: "Title for product 1 for variant #{uuid}",
                                                                 reference: "reference for product 1 for variant #{uuid}",
@@ -56,12 +56,12 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
       to_clean.line_items ||= FlexCommerce::LineItem.create(item_id: global_variant.id, unit_quantity: 2, item_type: 'Variant', cart_id: cart_id)
     end
 
-    let(:shipping_address) do 
+    let(:shipping_address) do
       to_clean.shipping_address ||= FlexCommerce::Address.create(first_name: 'First Name', last_name: 'Last name', address_line_1: 'Address line 1', city: 'Leeds', country: 'GB', postcode: 'LS10 1QN')
     end
 
     subject { described_class.new(cart: cart, success_url: success_url, cancel_url: cancel_url, ip_address: ip_address, callback_url: callback_url, allow_shipping_change: allow_shipping_change, use_mobile_payments: use_mobile_payments) }
-    
+
     context "normal flow" do
 
       let(:redirect_url) { "https://some.paypal.url.com" }
@@ -254,7 +254,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
             to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference:"testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: 'Test Shipping Method', total: '5.00')
           end
           let(:cart) do
-            cart ||= FlexCommerce::Cart.find(line_items.container_id) 
+            cart ||= FlexCommerce::Cart.find(line_items.container_id)
             cart.update(shipping_method_id: shipping_method.id, shipping_address_id: shipping_address.id)
             cart
           end
