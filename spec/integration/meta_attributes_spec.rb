@@ -11,8 +11,8 @@ RSpec.describe "url encoding on any model" do
   let(:subject_class) do
     MetaAttributableClass ||= Class.new(FlexCommerceApi::ApiBase) do; end
   end
-
-  before(:each) do
+   
+  before(:each) do 
     stub_request(:get, /\/meta_attributable_classes\/slug:my_slug\.json_api$/).to_return do |req|
       { body: example_data.to_json, headers: default_headers, status: 200 }
     end
@@ -20,17 +20,17 @@ RSpec.describe "url encoding on any model" do
 
   context 'with meta data' do
     let!(:example_data) do
-      {
+      { 
         data: {
-          id: "1",
-          type: "meta_attributable_class",
+          id: "1", 
+          type: "meta_attributable_class", 
           attributes: {
-            meta_attributes: { foo: { value: "bar", data_type: "text" } }
-          }
-        }
+            meta_attributes: { foo: { value: "bar", data_type: "text" } } 
+          } 
+        } 
       }
     end
-
+   
     let(:result) { subject_class.find("slug:my_slug") }
 
     it 'allows get by meta attribute method' do
