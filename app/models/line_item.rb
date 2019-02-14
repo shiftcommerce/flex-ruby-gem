@@ -25,10 +25,16 @@ module FlexCommerce
     # @TODO Document other popular methods that we will support
 
     has_one :item
-    belongs_to :cart, class_name: "::FlexCommerce::Cart"
+    belongs_to :container
 
     # note: only embedded in order responses, not carts
     has_many :line_item_discounts, class_name: "::FlexCommerce::LineItemDiscount"
+
+    class << self
+      def _prefix_path
+        ""
+      end
+    end
 
     # This allows us to set the `path` parameter automatically from the provided
     # cart_id or container_id
