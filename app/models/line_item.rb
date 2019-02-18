@@ -27,16 +27,8 @@ module FlexCommerce
     has_one :item
     belongs_to :cart, class_name: "::FlexCommerce::Cart"
 
+
     # note: only embedded in order responses, not carts
     has_many :line_item_discounts, class_name: "::FlexCommerce::LineItemDiscount"
-
-    # This allows us to set the `path` parameter automatically from the provided
-    # cart_id or container_id
-    def self.path(params = nil, *args)
-      cart_id = params["cart_id"] || params["container_id"]
-      params["path"] = { "cart_id" => cart_id } if cart_id
-
-      super
-    end
   end
 end
