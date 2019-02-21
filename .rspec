@@ -1,3 +1,4 @@
 --color
 --tag ~server
---exclude-pattern  spec/{e2e,lib}/**/* 
+--exclude-pattern  spec/{e2e,lib}/**/*
+--format documentation

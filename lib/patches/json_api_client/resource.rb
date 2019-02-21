@@ -1,6 +1,5 @@
 require "json_api_client/version"
-
-if ["1.1.1", "1.5.3"].include?(JsonApiClient::VERSION)
+if ["1.1.1"].include?(JsonApiClient::VERSION)
   require "json_api_client/resource"
   module JsonApiClient
     class Resource
@@ -12,8 +11,15 @@ if ["1.1.1", "1.5.3"].include?(JsonApiClient::VERSION)
         else
           self.class.requestor.create(self)
         end
+
         if last_result_set.has_errors?
-          fill_errors
+          last_result_set.errors.each do |error|
+            if error.source_parameter
+              errors.add(error.source_parameter, error.title || error.detail)
+            else
+              errors.add(:base, error.title || error.detail)
+            end
+          end
           false
         else
           self.errors.clear if self.errors
@@ -37,7 +43,8 @@ else
     Please check these two PRs:
       * https://github.com/chingor13/json_api_client/pull/238 (This was released in version 1.5.0)
       * https://github.com/JsonApiClient/json_api_client/pull/285 (This hasn't yet been released at the time of writing this)
-     If both have been merged into the gem version you are using, remove this file (#{__FILE__}).
+
+    If both have been merged into the gem version you are using, remove this file (#{__FILE__}).
     If not, add the current version to the allowed array at the top of this file.
   )
 end
