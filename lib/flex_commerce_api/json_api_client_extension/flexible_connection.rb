@@ -10,7 +10,6 @@ module FlexCommerceApi
         add_json_api_extension = options.fetch(:add_json_api_extension, true)
         authenticate = options.fetch(:authenticate, true)
         include_previewed = options.fetch :include_previewed, false
-
         @faraday = Faraday.new(site) do |builder|
           builder.request :json
           builder.use JsonApiClientExtension::SaveRequestBodyMiddleware
@@ -43,7 +42,6 @@ module FlexCommerceApi
       end
 
       private
-
       def cache_options(options)
         {
           # treats the cache like a client, not a proxy
@@ -56,7 +54,6 @@ module FlexCommerceApi
           logger: FlexCommerceApi.logger
         }.merge(options.fetch(:http_cache, {}))
       end
-
     end
   end
 end
