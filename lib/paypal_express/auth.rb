@@ -76,7 +76,7 @@ module FlexCommerce
       end
 
       def no_of_retires
-        FlexCommerceApi.config.paypal_connection_errors_no_of_retires
+        FlexCommerceApi.config.paypal_connection_errors_no_of_retries
       end
     end
   end
