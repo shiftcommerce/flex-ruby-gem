@@ -61,7 +61,7 @@ module FlexCommerce
       end
 
       def do_express_checkout_payment
-        Retry.call(rescue_errors: ::ActiveMerchant::ConnectionError) {
+        Retry.call(no_of_retries: no_of_retires, rescue_errors: ::ActiveMerchant::ConnectionError) {
           ::NewRelic::Agent.increment_metric('Custom/Paypal/Do_Express_Checkout_Payment') if defined?(NewRelic::Agent)
           gateway.order(convert_amount(cart.total), token: token, payer_id: payer_id, currency: DEFAULT_CURRENCY)
         }
@@ -69,10 +69,14 @@ module FlexCommerce
 
 
       def do_authorization(response)
-        Retry.call(rescue_errors: ::ActiveMerchant::ConnectionError) {
+        Retry.call(no_of_retries: no_of_retires, rescue_errors: ::ActiveMerchant::ConnectionError) {
           ::NewRelic::Agent.increment_metric('Custom/Paypal/Do_Auhtorization') if defined?(NewRelic::Agent)
           gateway.authorize_transaction(response.params["transaction_id"], convert_amount(cart.total), transaction_entity: "Order", currency: DEFAULT_CURRENCY, payer_id: payer_id)
         }
+      end
+
+      def no_of_retires
+        FlexCommerceApi.config.paypal_connection_errors_no_of_retires
       end
     end
   end
