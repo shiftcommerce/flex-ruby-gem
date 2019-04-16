@@ -8,8 +8,8 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
   context "paypal" do
 
      # Mock active merchant
-     let(:active_merchant_gateway_class) { class_double("ActiveMerchant::Billing::PaypalExpressGateway").as_stubbed_const }
-     let(:active_merchant_gateway) { instance_spy("ActiveMerchant::Billing::PaypalExpressGateway") }
+    let(:active_merchant_gateway_class) { class_double("ActiveMerchant::Billing::PaypalExpressGateway").as_stubbed_const }
+    let(:active_merchant_gateway) { instance_spy("ActiveMerchant::Billing::PaypalExpressGateway") }
 
     # Inputs to the service
     let(:success_url) { "http://success.com" }
