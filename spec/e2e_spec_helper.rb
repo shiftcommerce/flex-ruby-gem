@@ -16,7 +16,7 @@ FlexCommerceApi.config do |config|
   config.paypal_login = ENV.fetch("PAYPAL_LOGIN")
   config.paypal_password = ENV.fetch("PAYPAL_PASSWORD")
   config.paypal_signature = ENV.fetch("PAYPAL_SIGNATURE")
-  config.order_test_mode = ENV.fetch("ORDER_TEST_MODE", true)
+  config.order_test_mode = ENV.fetch("ORDER_TEST_MODE", "true")
 
   config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
 end

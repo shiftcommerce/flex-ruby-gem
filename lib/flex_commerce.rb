@@ -90,4 +90,5 @@ module FlexCommerce
   autoload :ParamToShql, File.join(gem_root, "app", "services", "param_to_shql")
   autoload :SurrogateKeys, File.join(gem_root, "app", "services", "surrogate_keys")
   autoload :PaypalExpress, File.join(gem_root, "lib", "paypal_express")
+  autoload :Retry, File.join(gem_root, "lib", "retry")
 end
