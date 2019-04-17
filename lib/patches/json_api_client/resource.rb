@@ -1,5 +1,5 @@
 require "json_api_client/version"
-if ["1.1.1", "1.5.3", "1.8.0"].include?(JsonApiClient::VERSION)
+if ["1.1.1", "1.5.3"].include?(JsonApiClient::VERSION)
   require "json_api_client/resource"
   module JsonApiClient
     class Resource
