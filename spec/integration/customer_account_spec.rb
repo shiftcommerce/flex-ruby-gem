@@ -325,6 +325,7 @@ RSpec.describe FlexCommerce::CustomerAccount do
         end
       end
       it "should provide a paginatable object for the orders results" do
+        puts FlexCommerceApi::BaseResource.paginator
         requests = []
         stub_request(:get, "https://in.elastic.io/hooks/somerandomhook").with(query: hash_including(shopatron_customer_id: "12345", page: {size: "20", number: "2"})).to_return do |request|
           requests << request
