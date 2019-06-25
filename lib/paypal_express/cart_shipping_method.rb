@@ -8,7 +8,7 @@ module FlexCommerce
     # Used to decorate shipping methods based on Promotions
     class CartShippingMethod < SimpleDelegator
 
-      ZERO = BigDecimal.new(0)
+      ZERO = BigDecimal(0)
 
       def initialize(shipping_method, free)
         super(shipping_method)
