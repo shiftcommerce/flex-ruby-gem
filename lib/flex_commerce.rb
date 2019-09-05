@@ -9,6 +9,7 @@ module FlexCommerce
     autoload :DeallocateOrder, File.join(FlexCommerce.gem_root, "app", "models", "v2", "deallocate_order")
     autoload :LineItem, File.join(FlexCommerce.gem_root, "app", "models", "v2", "line_item")
     autoload :Order, File.join(FlexCommerce.gem_root, "app", "models", "v2", "order")
+    autoload :UnallocateOrder, File.join(FlexCommerce.gem_root, "app", "models", "v2", "unallocate_order")
   end
 
   # V1 Models
