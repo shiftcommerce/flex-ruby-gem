@@ -5,6 +5,6 @@ FactoryBot.define do
     description { Faker::Lorem.sentence }
     sku { Faker::Code.ean }
     reference { Faker::Lorem.words(3).join("-") }
-    stock_level 100
+    stock_level { 100 }
   end
 end
