@@ -1,3 +1,3 @@
 module FlexCommerceApi
-  VERSION = '0.6.57'
+  VERSION = '0.7'
 end
