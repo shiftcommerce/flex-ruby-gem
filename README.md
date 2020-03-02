@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-The gem provides many models in the FlexCommerce namespace.  The example below is a rails controller
+The gem provides many models in the FlexCommerce namespace. The example below is a rails controller
 accessing a list of products.
 
 ```ruby
@@ -31,7 +31,6 @@ class ProductsController < ApplicationController
     @products = FlexCommerce::Product.paginate(params[:page])
   end
 end
-
 ```
 
 To any rails developer this will look familiar.
@@ -39,6 +38,42 @@ To any rails developer this will look familiar.
 However, we do not force you to use rails.  We appreciate that there are many frameworks out there
 and whilst rails is an excellent tool, for smaller projects you may want to look at others such
 as sinatra etc...
+
+
+### Client IP address tracing in Rails apps
+
+
+Add the request store gem to your Gemfile and install
+
+```ruby
+gem "request-store"
+```
+
+```sh
+bundle install
+```
+
+```ruby
+# application_controller.rb
+class ApplicationController
+  before_action :set_request_ip
+
+  private
+
+  def set_request_ip
+    RequestStore[:request_ip] = request.ip
+  end
+end
+```
+
+Configure the API client to pick up set value
+
+```ruby
+FlexCommerceApi.config do |config|
+  config.forwarded_for = ->{ RequestStore[:request_ip] }
+end
+```
+
 
 
 ## Development
