@@ -1,13 +1,13 @@
 version: '2.1'
 jobs:
-  ruby-2.7:
+  ruby-27:
     docker: 
       - image: circleci/ruby:2.7.0
     steps:
       - checkout
       - run: bundle install
       - run: bundle exec rspec
-  ruby-2.5:
+  ruby-25:
     docker: 
       - image: circleci/ruby:2.5.3
     steps:
