@@ -19,7 +19,7 @@ jobs:
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec rspec
-  standardrb:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: standardrb
