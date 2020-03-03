@@ -1,13 +1,28 @@
-name: Standard
+name: ci
 
 on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: [ '2.5', '2.7' ]
     steps:
     - uses: actions/checkout@v2
-    - name: standardrb
-      uses: amoeba/standardrb-action@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Set up Ruby ${{matrix.ruby}}
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: ${{matrix.ruby}}
+    - name: Build and test
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bundle exec rspec
+  standardrb:
+    runs-on: ubuntu-latest
+    steps:
+      - name: standardrb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: amoeba/standardrb-action@v2
