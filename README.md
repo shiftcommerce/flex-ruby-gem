@@ -61,7 +61,7 @@ class ApplicationController
   private
 
   def set_request_ip
-    RequestStore[:request_ip] = request.ip
+    RequestStore[:request_ip] = request.remote_ip
   end
 end
 ```
