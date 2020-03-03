@@ -1,9 +1,25 @@
 version: '2.1'
+
 jobs:
-  build:
+  build-ruby-27:
     docker: 
       - image: circleci/ruby:2.7.0
     steps:
       - checkout
       - run: bundle install
       - run: bundle exec rspec
+  build-ruby-25:
+    docker: 
+      - image: circleci/ruby:2.5.3
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec rspec
+
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-ruby-27
+      - build-ruby-25
