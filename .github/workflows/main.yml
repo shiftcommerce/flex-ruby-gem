@@ -1,0 +1,11 @@
+name: Standard
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: StandardRB Action
+      uses: andrewmcodes/standardrb-action@v0.0.2
