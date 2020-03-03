@@ -9,6 +9,5 @@ module FlexCommerce
   #
   class Refund < FlexCommerceApi::ApiBase
     belongs_to :order
-
   end
 end

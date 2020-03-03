@@ -12,14 +12,16 @@ FactoryBot.define do
     status "500"
     title "Something went wrong"
     detail "Something went wrong because something else caused it to go wrong"
-    meta { {
+    meta {
+      {
         stack_trace: [
-            "/full/path/to/file_1.rb:587 method()",
-            "/full/path/to/file_2.rb:588 method()",
-            "/full/path/to/file_3.rb:589 method()",
-            "/full/path/to/file_4.rb:590 method()",
-            "/full/path/to/file_5.rb:591 method()"
+          "/full/path/to/file_1.rb:587 method()",
+          "/full/path/to/file_2.rb:588 method()",
+          "/full/path/to/file_3.rb:589 method()",
+          "/full/path/to/file_4.rb:590 method()",
+          "/full/path/to/file_5.rb:591 method()"
         ]
-    } }
+      }
+    }
   end
 end

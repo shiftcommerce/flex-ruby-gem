@@ -49,7 +49,7 @@ module FlexCommerce
 
     # @TODO Document other popular methods that we will support
     self.query_builder = ::FlexCommerceApi::JsonApiClientExtension::Builder
-    
+
     class << self
       def_delegators :_new_scope, :temp_search
       def path(params, *args)

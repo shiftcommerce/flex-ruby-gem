@@ -1,4 +1,4 @@
-require_relative 'transaction'
+require_relative "transaction"
 
 module FlexCommerce
   module PaypalExpress

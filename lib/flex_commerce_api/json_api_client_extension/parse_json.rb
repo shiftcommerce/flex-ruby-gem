@@ -11,7 +11,7 @@ module FlexCommerceApi
           {
             extra: {
               body: environment.body
-            }  
+            }
           }
         end
         raise

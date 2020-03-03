@@ -17,6 +17,5 @@ module FlexCommerce
   #
   #
   class RemoteAddress < FlexCommerceApi::ApiBase
-
   end
 end

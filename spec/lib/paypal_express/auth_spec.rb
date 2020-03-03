@@ -4,11 +4,11 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
   include ActiveSupport::NumberHelper
   include_context "context store"
   include_context "housekeeping"
-  
+
   let(:token) { "fake-token" }
   let(:payer_id) { "fake-payer-id" }
   let(:cart) { build_stubbed(:cart, total: 100) }
-  let(:transaction) { 
+  let(:transaction) {
     to_clean.transaction = FlexCommerce::PaymentTransaction.create(
       cart_id: cart.id,
       gateway_response: {
@@ -17,7 +17,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
       },
       amount: cart.total,
       status: "success",
-      transaction_type: 'authorisation',
+      transaction_type: "authorisation",
       currency: "GBP",
       payment_gateway_reference: "paypal_reference"
     )
@@ -28,7 +28,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
     cart.billing_address.freeze
     cart.freeze
   end
-  
+
   subject { described_class.new(cart: cart, token: token, payer_id: payer_id, payment_transaction: transaction) }
 
   shared_context "mocked active merchant" do |expect_login: true, test_mode: true|
@@ -38,7 +38,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
     let!(:active_connection_error) { class_double("ActiveMerchant::ConnectionError").as_stubbed_const }
 
     before(:each) do
-      expect(active_merchant_gateway_class).to receive(:new).with(test: true, login: ENV['PAYPAL_LOGIN'], password: ENV['PAYPAL_PASSWORD'], signature: ENV['PAYPAL_SIGNATURE']).and_return active_merchant_gateway if expect_login
+      expect(active_merchant_gateway_class).to receive(:new).with(test: true, login: ENV["PAYPAL_LOGIN"], password: ENV["PAYPAL_PASSWORD"], signature: ENV["PAYPAL_SIGNATURE"]).and_return active_merchant_gateway if expect_login
     end
     let(:order_response) do
       instance_double "ActiveMerchant::Billing::PaypalExpressResponse", "order_response", params: order_response_params, success?: true
@@ -51,7 +51,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
         "token" => token,
         "Token" => token,
         "transaction_id" => transaction_id,
-        "transaction_type" => "express-checkout",
+        "transaction_type" => "express-checkout"
       }
     end
     let(:authorize_order_response_params) do
@@ -59,7 +59,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
         "token" => token,
         "Token" => token,
         "transaction_id" => auth_transaction_id,
-        "transaction_type" => "express-checkout",
+        "transaction_type" => "express-checkout"
       }
     end
 
@@ -80,12 +80,11 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
         response = subject.call
         expect(response.gateway_response).to include(transaction_id: transaction_id, authorization_id: auth_transaction_id)
       end
-
     end
 
     context "happy path in production" do
       include_context "mocked active merchant", test_mode: false
-      
+
       before(:each) do
         expect(active_merchant_gateway).to receive(:order).with(convert_amount(cart.total), token: token, payer_id: payer_id, currency: "GBP").and_return order_response
         expect(active_merchant_gateway).to receive(:authorize_transaction).with(transaction_id, convert_amount(cart.total), transaction_entity: "Order", payer_id: payer_id, currency: "GBP").and_return authorize_order_response
@@ -99,7 +98,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Auth, vcr: true, paypal: true do
 
     context "with error scenarios" do
       include_context "mocked active merchant"
-      
+
       it "should mark the transactions gateway_response as invalid when failure is recoverable in order stage" do
         order_response = instance_double "ActiveMerchant::Billing::PaypalExpressGateway", "order_response", params: {"error_codes" => "10410", "message" => "Invalid token", "ack" => "Failure", "Ack" => "Failure"}, success?: false
         expect(active_merchant_gateway).to receive(:order).with(convert_amount(cart.total), token: token, payer_id: payer_id, currency: "GBP").and_return order_response

@@ -9,7 +9,7 @@ RSpec.describe FlexCommerce::V2::CreateOrder, focus: true do
   include_context "global context", api_version: "v2"
 
   context "creating a test order" do
-    let(:write_headers) { { "Accept" => "application/vnd.api+json", "Content-Type" => "application/vnd.api+json" } }
+    let(:write_headers) { {"Accept" => "application/vnd.api+json", "Content-Type" => "application/vnd.api+json"} }
 
     describe "when config order test mode is false" do
       before :each do
@@ -18,9 +18,9 @@ RSpec.describe FlexCommerce::V2::CreateOrder, focus: true do
         stub_request(:post, "#{api_root}/create_order.json_api").with(headers: write_headers).to_return do |request|
           expect(Oj.load(request.body).with_indifferent_access).not_to include(data: hash_including(attributes: hash_including(test: true)))
           {
-              body: {data: {attributes: {test: false}}}.to_json,
-              status: 201,
-              headers: write_headers
+            body: {data: {attributes: {test: false}}}.to_json,
+            status: 201,
+            headers: write_headers
           }
         end
       end

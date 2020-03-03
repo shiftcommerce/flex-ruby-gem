@@ -22,11 +22,17 @@ RSpec.shared_context "housekeeping" do
   end
 
   def clean_up_resource(resource)
-    if resource.respond_to?(:destroy) 
-      resource.destroy rescue nil if resource.persisted?
+    if resource.respond_to?(:destroy)
+      if resource.persisted?
+        begin
+          resource.destroy
+        rescue
+          nil
+        end
+      end
     end
-    
-    if resource.type == 'promotions'
+
+    if resource.type == "promotions"
       resource.archive
       resource.destroy
     end
@@ -34,7 +40,7 @@ RSpec.shared_context "housekeeping" do
 
   # Clean up time - delete stuff in the reverse order to give us more chance of success
   after(:context) do
-    to_clean.to_h.values.reverse.each do |resource|
+    to_clean.to_h.values.reverse_each do |resource|
       if resource.is_a?(Array)
         resource.each do |r|
           clean_up_resource(r)

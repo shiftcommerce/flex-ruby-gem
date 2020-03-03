@@ -14,7 +14,7 @@
 # @param [String|Symbol] primary_key (defaults to "id") The primary key used to generate the URL for an individual resource
 FactoryBot.define do
   factory :json_api_resource_list, parent: :json_api_top_singular_resource do
-    meta { { type: pluralized_type, page_count: page_count, total_entries: quantity } }
+    meta { {type: pluralized_type, page_count: page_count, total_entries: quantity} }
     links { {} }
     data { [] }
     errors { [] }
@@ -32,18 +32,15 @@ FactoryBot.define do
       quantity = evaluator.quantity % evaluator.page_size
       quantity = evaluator.page_size if quantity == 0
       list.data = build_list(:json_api_resource, quantity, build_resource: evaluator.type.to_sym, base_path: evaluator.base_path, primary_key: evaluator.primary_key)
-      list.links.merge! "self": build(:json_api_resource_link,
-                                      href: "#{evaluator.base_path}/#{evaluator.pluralized_type}.json_api?page[number]=#{evaluator.page}",
-                                      meta: { page_number: evaluator.page }
-                                     )
-      list.links.merge! "first": build(:json_api_resource_link,
-                                       href: "#{evaluator.base_path}/#{evaluator.pluralized_type}.json_api?page[number]=1",
-                                       meta: { page_number: 1 }
-                                      )
+      list.links[:self] = build(:json_api_resource_link,
+        href: "#{evaluator.base_path}/#{evaluator.pluralized_type}.json_api?page[number]=#{evaluator.page}",
+        meta: {page_number: evaluator.page})
+      list.links[:first] = build(:json_api_resource_link,
+        href: "#{evaluator.base_path}/#{evaluator.pluralized_type}.json_api?page[number]=1",
+        meta: {page_number: 1})
       list.links.merge! "last": build(:json_api_resource_link,
-                                      href: "#{evaluator.base_path}/#{evaluator.pluralized_type}.json_api?page[number]=#{evaluator.page_count}",
-                                      meta: { page_number: evaluator.page_count }
-                                     )
+        href: "#{evaluator.base_path}/#{evaluator.pluralized_type}.json_api?page[number]=#{evaluator.page_count}",
+        meta: {page_number: evaluator.page_count})
     end
   end
 end

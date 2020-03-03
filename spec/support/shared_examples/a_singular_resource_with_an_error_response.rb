@@ -14,28 +14,28 @@ RSpec.shared_examples_for("a singular resource with an error response") do
     let(:singular_resource) { build(:error_exception) }
     let(:response_status) { 500 }
     it "should throw an internal server exception" do
-      expect {subject}.to raise_exception(::FlexCommerceApi::Error::InternalServer)
+      expect { subject }.to raise_exception(::FlexCommerceApi::Error::InternalServer)
     end
   end
   context "with an exception with an unknown meaning" do
     let(:singular_resource) { build(:error_exception) }
     let(:response_status) { 600 }
     it "should throw an unexpected status exception" do
-      expect {subject}.to raise_exception(::FlexCommerceApi::Error::UnexpectedStatus)
+      expect { subject }.to raise_exception(::FlexCommerceApi::Error::UnexpectedStatus)
     end
   end
   context "with a not found exception (404)" do
     let(:singular_resource) { build(:error_exception) }
     let(:response_status) { 404 }
     it "should throw a not found exception" do
-      expect {subject}.to raise_exception(::FlexCommerceApi::Error::NotFound)
+      expect { subject }.to raise_exception(::FlexCommerceApi::Error::NotFound)
     end
   end
   context "with an access denied exception (403)" do
     let(:singular_resource) { build(:error_exception) }
     let(:response_status) { 403 }
     it "should throw a not found exception" do
-      expect {subject}.to raise_exception(::FlexCommerceApi::Error::AccessDenied)
+      expect { subject }.to raise_exception(::FlexCommerceApi::Error::AccessDenied)
     end
   end
 end

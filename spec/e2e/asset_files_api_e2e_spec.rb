@@ -26,12 +26,11 @@ RSpec.describe "Asset Files API end to end spec", vcr: true do
     it "should persist when valid attributes are used" do
       http_request_tracker.clear
       model.create! name: "name for Test Asset File #{uuid}",
-                                    reference: "reference_for_test_asset_file_#{uuid}",
-                                    asset_file: "data:image/png;base64,#{Base64.encode64(File.read(asset_file_fixture_file))}",
-                                    asset_folder_id: asset_folder.id
+                    reference: "reference_for_test_asset_file_#{uuid}",
+                    asset_file: "data:image/png;base64,#{Base64.encode64(File.read(asset_file_fixture_file))}",
+                    asset_folder_id: asset_folder.id
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/asset_file.json")
     end
   end
-
 end

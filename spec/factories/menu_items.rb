@@ -1,7 +1,7 @@
 FactoryBot.define do
   klass = Struct.new(:title)
   factory :menu_item, class: klass do
-    title       { Faker::Lorem.sentence }
+    title { Faker::Lorem.sentence }
     association :menu
   end
   factory :menu_items_from_fixture, class: JsonStruct do

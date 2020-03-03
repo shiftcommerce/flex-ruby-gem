@@ -11,6 +11,5 @@ module FlexCommerceApi
         end
       end
     end
-
   end
 end

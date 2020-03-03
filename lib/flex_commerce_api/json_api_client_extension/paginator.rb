@@ -5,7 +5,6 @@ module FlexCommerceApi
     # the custom things that are required by the flex platform.
     # This class is private and should not be used by end users
     class Paginator < ::JsonApiClient::Paginating::Paginator
-
       def current_page
         params.fetch("page[number]", 1).to_i
       end
@@ -18,9 +17,7 @@ module FlexCommerceApi
         result_set.meta.total_entries
       end
 
-
       protected
-
     end
   end
 end

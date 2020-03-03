@@ -1,4 +1,4 @@
-require 'json_api_client/included_data'
+require "json_api_client/included_data"
 
 module FlexCommerceApi
   module JsonApiClientExtension
@@ -19,7 +19,7 @@ module FlexCommerceApi
       def root_record_for(link_def)
         @result_set.find do |resource|
           resource.attributes["type"] == link_def["type"] &&
-          resource.attributes["id"] == link_def["id"]
+            resource.attributes["id"] == link_def["id"]
         end
       end
     end

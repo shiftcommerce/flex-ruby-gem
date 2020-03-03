@@ -17,7 +17,6 @@ module FlexCommerce
   #   FlexCommerce::LineItem.create container: cart, item: variant, unit_quantity: 3 #creates and returns a new line item ready for use
   #
   class LineItem < FlexCommerceApi::ApiBase
-
     # @method item
     # The item (either a variant or a bundle)
     # @return [FlexCommerce::Variant|FlexCommerce::Bundle]
@@ -26,7 +25,6 @@ module FlexCommerce
 
     has_one :item
     belongs_to :cart, class_name: "::FlexCommerce::Cart"
-
 
     # note: only embedded in order responses, not carts
     has_many :line_item_discounts, class_name: "::FlexCommerce::LineItemDiscount"

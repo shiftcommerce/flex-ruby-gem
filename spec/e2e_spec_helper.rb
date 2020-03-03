@@ -1,4 +1,4 @@
-require 'dotenv'
+require "dotenv"
 Dotenv.load
 require "spec_helper"
 require "flex_commerce_api"

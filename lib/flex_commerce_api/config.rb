@@ -33,8 +33,8 @@ module FlexCommerceApi
     def initialize
       self.order_test_mode = false
       self.http_cache = {}
-      self.open_timeout = ENV.fetch('SHIFT_OPEN_TIMEOUT', 2).to_i
-      self.timeout = ENV.fetch('SHIFT_TIMEOUT', 15).to_i
+      self.open_timeout = ENV.fetch("SHIFT_OPEN_TIMEOUT", 2).to_i
+      self.timeout = ENV.fetch("SHIFT_TIMEOUT", 15).to_i
     end
 
     # The api base URL
@@ -50,6 +50,5 @@ module FlexCommerceApi
     def reconfigure_all!
       FlexCommerceApi::BaseResource.reconfigure_all if FlexCommerceApi.const_defined? "ApiBase"
     end
-
   end
 end

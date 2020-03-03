@@ -6,7 +6,6 @@ module FlexCommerceApi
         @response_env = response_env
         @request_env = request_env
       end
-
     end
   end
 end

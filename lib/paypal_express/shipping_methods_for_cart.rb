@@ -2,10 +2,9 @@
 module FlexCommerce
   module PaypalExpress
     # @class ShippingMethodsForCart
-    # 
+    #
     # This deals with free shipping promotions and updates the shipping methods accordingly
     class ShippingMethodsForCart
-
       include Enumerable
 
       def initialize(cart:, shipping_methods:)
@@ -15,9 +14,9 @@ module FlexCommerce
       end
 
       def call
-        free_shipping_method_ids = [ ]
-        shipping_promotions.reverse.each do |promotion|
-          # See if promotion is having a shipping method, 
+        free_shipping_method_ids = []
+        shipping_promotions.reverse_each do |promotion|
+          # See if promotion is having a shipping method,
           # and also see if that cart total is eligible for promotion
           if promotion.shipping_methods && can_apply_promotion_to_cart?(promotion: promotion)
             free_shipping_method_ids << promotion.shipping_methods.map(&:id)
@@ -40,7 +39,6 @@ module FlexCommerce
       def can_apply_promotion_to_cart?(promotion:)
         (cart.sub_total - cart.total_discount) >= promotion.minimum_cart_total&.to_i
       end
-
     end
   end
 end

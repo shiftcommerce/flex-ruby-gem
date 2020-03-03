@@ -6,8 +6,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
   include_context "housekeeping"
 
   context "paypal" do
-
-     # Mock active merchant
+    # Mock active merchant
     let(:active_merchant_gateway_class) { class_double("ActiveMerchant::Billing::PaypalExpressGateway").as_stubbed_const }
     let(:active_merchant_gateway) { instance_spy("ActiveMerchant::Billing::PaypalExpressGateway") }
 
@@ -16,7 +15,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
     let(:cancel_url) { "http://failure.com" }
     let(:callback_url) { "http://irrelevant.com" }
     let(:ip_address) { "127.0.0.1" }
-    let(:use_mobile_payments)  { false }
+    let(:use_mobile_payments) { false }
     let(:allow_shipping_change) { true }
 
     # Prepare cart data
@@ -28,7 +27,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
       "shipping_address",
       "billing_address",
       "available_shipping_promotions.shipping_methods"
-    ].join(',').freeze
+    ].join(",").freeze
 
     let(:uuid) { SecureRandom.uuid }
 
@@ -40,12 +39,12 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
 
     let(:global_variant) do
       to_clean.global_variant ||= FlexCommerce::Variant.create(title: "Title for Test Variant #{uuid}",
-        description: "Description for Test Variant #{uuid}",
-        reference: "reference_for_test_variant_#{uuid}",
-        price: 5.50,
-        price_includes_taxes: false,
-        sku: "sku_for_test_variant_#{uuid}",
-        product_id: global_product.id).freeze
+                                                               description: "Description for Test Variant #{uuid}",
+                                                               reference: "reference_for_test_variant_#{uuid}",
+                                                               price: 5.50,
+                                                               price_includes_taxes: false,
+                                                               sku: "sku_for_test_variant_#{uuid}",
+                                                               product_id: global_product.id).freeze
     end
 
     let(:cart_id) do
@@ -53,27 +52,24 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
     end
 
     let(:line_items) do
-      to_clean.line_items ||= FlexCommerce::LineItem.create(item_id: global_variant.id, unit_quantity: 2, item_type: 'Variant', cart_id: cart_id)
+      to_clean.line_items ||= FlexCommerce::LineItem.create(item_id: global_variant.id, unit_quantity: 2, item_type: "Variant", cart_id: cart_id)
     end
 
     let(:shipping_address) do
-      to_clean.shipping_address ||= FlexCommerce::Address.create(first_name: 'First Name', last_name: 'Last name', address_line_1: 'Address line 1', city: 'Leeds', country: 'GB', postcode: 'LS10 1QN')
+      to_clean.shipping_address ||= FlexCommerce::Address.create(first_name: "First Name", last_name: "Last name", address_line_1: "Address line 1", city: "Leeds", country: "GB", postcode: "LS10 1QN")
     end
 
     subject { described_class.new(cart: cart, success_url: success_url, cancel_url: cancel_url, ip_address: ip_address, callback_url: callback_url, allow_shipping_change: allow_shipping_change, use_mobile_payments: use_mobile_payments) }
 
     context "normal flow" do
-
       let(:redirect_url) { "https://some.paypal.url.com" }
       let(:paypal_token) { "paypal_token" }
       let(:positive_paypal_response) { instance_double("ActiveMerchant::Billing::PaypalExpressResponse", success?: true, token: paypal_token) }
 
-
       shared_examples_for "any paypal setup" do
-
         it "should communicate with the paypal gem and on success set redirect_url on the setup" do
           expect(active_merchant_gateway).to receive(:setup_order).and_return positive_paypal_response
-          expect(active_merchant_gateway).to receive(:redirect_url_for).with(paypal_token, { mobile: use_mobile_payments }).and_return redirect_url
+          expect(active_merchant_gateway).to receive(:redirect_url_for).with(paypal_token, {mobile: use_mobile_payments}).and_return redirect_url
           response = subject.call
           expect(response.errors).to be_nil
           expect(response.redirect_url).to eq(redirect_url)
@@ -81,21 +77,20 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
 
         it "should set the setup_type to redirect" do
           expect(active_merchant_gateway).to receive(:setup_order).and_return positive_paypal_response
-          expect(active_merchant_gateway).to receive(:redirect_url_for).with(paypal_token, { mobile: use_mobile_payments }).and_return redirect_url
+          expect(active_merchant_gateway).to receive(:redirect_url_for).with(paypal_token, {mobile: use_mobile_payments}).and_return redirect_url
           response = subject.call
           expect(response.errors).to be_nil
           expect(response.setup_type).to eq("redirect")
         end
 
         it "should have the correct items" do
-          expected_items = cart.line_items.map do |li|
+          expected_items = cart.line_items.map { |li|
             hash_including name: li.title,
                            number: li.item.sku,
                            quantity: li.unit_quantity,
                            amount: ((li.total / li.unit_quantity) * 100).round.to_i,
                            description: li.title
-
-          end
+          }
 
           expect(active_merchant_gateway).to receive(:setup_order) do |total, params|
             expect(total).to eql((cart.total * 100).round.to_i)
@@ -108,7 +103,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
         end
 
         it "should send a total which matches the sum of the line items" do
-            expect(active_merchant_gateway).to receive(:setup_order) do |total, params|
+          expect(active_merchant_gateway).to receive(:setup_order) do |total, params|
             handling = params.fetch(:handling, 0)
             shipping = params.fetch(:shipping, 0)
             tax = params.fetch(:tax, 0)
@@ -153,7 +148,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
 
         it "should have the shipping options set with the default equal to the shipping unless the shipping is zero" do
           expect(active_merchant_gateway).to receive(:setup_order) do |total, params|
-            expect(params[:shipping_options].select {|so| so[:default]}).to contain_exactly(hash_including(amount: params[:shipping]))
+            expect(params[:shipping_options].select { |so| so[:default] }).to contain_exactly(hash_including(amount: params[:shipping]))
             positive_paypal_response
           end
           response = subject.call
@@ -163,7 +158,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
         it "should have the shipping options with at least 1 default when the callback is used" do
           expect(active_merchant_gateway).to receive(:setup_order) do |total, params|
             next unless params.key?(:callback_url)
-            default_shipping = params[:shipping_options].select {|so| so[:default]}
+            default_shipping = params[:shipping_options].select { |so| so[:default] }
             expect(default_shipping).to be_present
             positive_paypal_response
           end
@@ -186,7 +181,7 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
         it "should have its total equal to the sum of subtotal, shipping, tax and handling" do
           expect(active_merchant_gateway).to receive(:setup_order) do |total, params|
             expect(total).to eql((cart.total * 100).round.to_i)
-            error_msg = "Mismatch in totals - cart.total is #{cart.total} - params are #{params.slice(:subtotal, :ahipping, :tax, :handling).to_json} variant prices are #{cart.line_items.map {|li| li.item.price.to_s}}, line item prices are #{cart.line_items.to_a.map {|li| li.total.to_s}}, total discount is #{cart.total_discount}, shipping_total is #{cart.shipping_total}"
+            error_msg = "Mismatch in totals - cart.total is #{cart.total} - params are #{params.slice(:subtotal, :ahipping, :tax, :handling).to_json} variant prices are #{cart.line_items.map { |li| li.item.price.to_s }}, line item prices are #{cart.line_items.to_a.map { |li| li.total.to_s }}, total discount is #{cart.total_discount}, shipping_total is #{cart.shipping_total}"
             expect(total).to eql(params[:subtotal] + params[:shipping] + params[:tax] + params[:handling]), error_msg
             positive_paypal_response
           end
@@ -247,11 +242,11 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
 
       context "in test mode" do
         before(:each) do
-          expect(active_merchant_gateway_class).to receive(:new).with(test: true, login: ENV['PAYPAL_LOGIN'], password: ENV['PAYPAL_PASSWORD'], signature: ENV['PAYPAL_SIGNATURE']).and_return active_merchant_gateway
+          expect(active_merchant_gateway_class).to receive(:new).with(test: true, login: ENV["PAYPAL_LOGIN"], password: ENV["PAYPAL_PASSWORD"], signature: ENV["PAYPAL_SIGNATURE"]).and_return active_merchant_gateway
         end
         context "with a cart ready for checkout standard" do
           let(:shipping_method) do
-            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference:"testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: 'Test Shipping Method', total: '5.00')
+            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference: "testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: "Test Shipping Method", total: "5.00")
           end
           let(:cart) do
             cart ||= FlexCommerce::Cart.find(line_items.container_id)
@@ -275,12 +270,12 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
 
         context "with a cart ready for 'Click & Collect' checkout" do
           let!(:shipping_method) do
-            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference:"testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: 'Test Shipping Method', total: '5.00')
+            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference: "testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: "Test Shipping Method", total: "5.00")
           end
           let(:cart) do
             cart = FlexCommerce::Cart.find(line_items.container_id)
             cart.update(shipping_method_id: shipping_method.id)
-            cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime('%Q')}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
+            cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime("%Q")}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
             cart
           end
           it_should_behave_like "a paypal setup that does not allow shipping change"
@@ -288,12 +283,12 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
 
         context "with a cart ready for mobile checkout" do
           let!(:shipping_method) do
-            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference:"testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: 'Test Shipping Method', total: '5.00')
+            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference: "testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: "Test Shipping Method", total: "5.00")
           end
           let(:cart) do
             cart = FlexCommerce::Cart.find(line_items.container_id)
             cart.update(shipping_method_id: shipping_method.id, shipping_address_id: shipping_address.id)
-            cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime('%Q')}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
+            cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime("%Q")}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
             cart
           end
           let(:use_mobile_payments) { true }
@@ -305,16 +300,16 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
       context "in production mode" do
         before(:each) do
           allow_any_instance_of(FlexCommerce::PaypalExpress::Api).to receive(:test_mode).and_return(false)
-          expect(active_merchant_gateway_class).to receive(:new).with(test: false, login: ENV['PAYPAL_LOGIN'], password: ENV['PAYPAL_PASSWORD'], signature: ENV['PAYPAL_SIGNATURE']).and_return active_merchant_gateway
+          expect(active_merchant_gateway_class).to receive(:new).with(test: false, login: ENV["PAYPAL_LOGIN"], password: ENV["PAYPAL_PASSWORD"], signature: ENV["PAYPAL_SIGNATURE"]).and_return active_merchant_gateway
         end
         context "with a cart ready for checkout standard" do
           let!(:shipping_method) do
-            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference:"testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: 'Test Shipping Method', total: '5.00')
+            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference: "testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: "Test Shipping Method", total: "5.00")
           end
           let(:cart) do
             cart = FlexCommerce::Cart.find(line_items.container_id)
             cart.update(shipping_method_id: shipping_method.id, shipping_address_id: shipping_address.id)
-            cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime('%Q')}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
+            cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime("%Q")}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
             cart
           end
           it_should_behave_like "any paypal setup"
@@ -323,13 +318,13 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
 
         context "with a cart ready for 'Click & Collect' checkout" do
           let!(:shipping_method) do
-            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference:"testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: 'Test Shipping Method', total: '5.00')
+            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference: "testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: "Test Shipping Method", total: "5.00")
           end
 
           let(:cart) do
             cart = FlexCommerce::Cart.find(line_items.container_id)
             cart.update(shipping_method_id: shipping_method.id)
-            cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime('%Q')}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
+            cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime("%Q")}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
             cart
           end
           it_should_behave_like "a paypal setup that does not allow shipping change"
@@ -337,13 +332,13 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
 
         context "with a cart ready for mobile checkout" do
           let!(:shipping_method) do
-            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference:"testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: 'Test Shipping Method', total: '5.00')
+            to_clean.shipping_method ||= FlexCommerce::ShippingMethod.create(reference: "testing_shipping_#{uuid}", sku: "test_shipping_#{uuid}", label: "Test Shipping Method", total: "5.00")
           end
 
           let(:cart) do
             cart = FlexCommerce::Cart.find(line_items.container_id)
             cart.update(shipping_method_id: shipping_method.id, shipping_address_id: shipping_address.id)
-            cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime('%Q')}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
+            cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime("%Q")}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
             cart
           end
           let(:use_mobile_payments) { true }
@@ -351,14 +346,13 @@ RSpec.describe FlexCommerce::PaypalExpress::Setup, vcr: true, paypal: true do
           it_should_behave_like "a paypal setup with shipping address"
         end
       end
-
     end
 
     context "unhappy flow" do
       context "with a cart with an invalid shipping_method_id" do
         let(:cart) do
           cart = FlexCommerce::Cart.find(line_items.container_id)
-          cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime('%Q')}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
+          cart = FlexCommerce::Cart.with_params(version: "#{DateTime.now.strftime("%Q")}#{rand(100)}").includes(API_CART_INCLUDES).find(cart.id).first
           cart.shipping_method_id = -1
           cart
         end

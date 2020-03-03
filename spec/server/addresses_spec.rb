@@ -20,8 +20,18 @@ describe "Server Addresses Spec", :server do
     end
     after(:context) do
       setup_for_api!
-      created_resource.destroy rescue nil unless created_resource.nil?
-      customer_account.destroy rescue nil
+      unless created_resource.nil?
+        begin
+          created_resource.destroy
+        rescue
+          nil
+        end
+      end
+      begin
+        customer_account.destroy
+      rescue
+        nil
+      end
       teardown_for_api!
     end
     context "create" do
@@ -53,13 +63,12 @@ describe "Server Addresses Spec", :server do
           expect(found_resource.customer_account).to be_a(FlexCommerce::CustomerAccount)
         end
       end
-
     end
     context "update" do
       let(:resource_to_update) { test_class.find(created_resource.id) }
       let(:updated_resource) { test_class.find(created_resource.id) }
       it "should persist a change to the resource" do
-        new_attrs = { first_name: "#{resource_to_update.first_name} - renamed" }
+        new_attrs = {first_name: "#{resource_to_update.first_name} - renamed"}
         resource_to_update.update_attributes new_attrs
         expect(updated_resource.first_name).to eql new_attrs[:first_name]
       end
@@ -68,7 +77,6 @@ describe "Server Addresses Spec", :server do
       it "should destroy without erroring" do
         created_resource.destroy
       end
-
     end
     context "read again" do
       context "#all" do
@@ -79,7 +87,7 @@ describe "Server Addresses Spec", :server do
       end
       context "#find" do
         it "should not find the resource" do
-          expect {test_class.find(original_created_resource_id)}.to raise_exception FlexCommerceApi::Error::NotFound
+          expect { test_class.find(original_created_resource_id) }.to raise_exception FlexCommerceApi::Error::NotFound
         end
       end
     end

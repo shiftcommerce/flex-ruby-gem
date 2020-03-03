@@ -16,7 +16,7 @@ RSpec::Matchers.define :include_in_any_page do |*matchers|
           matches << matcher
         end
       end
-      @to_match.delete_if {|m| matches.include?(m)}
+      @to_match.delete_if { |m| matches.include?(m) }
       next_page = builder.send(:pagination_params)[:page][:number] + 1
       results = builder.page(next_page).find
     end
@@ -28,5 +28,4 @@ RSpec::Matchers.define :include_in_any_page do |*matchers|
     failed_matchers = @to_match.map(&:description)
     (messages + failed_matchers).join("\n")
   end
-
 end

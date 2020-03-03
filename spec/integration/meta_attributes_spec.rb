@@ -9,23 +9,23 @@ RSpec.describe "url encoding on any model" do
   include_context "global context"
 
   let(:subject_class) do
-    MetaAttributableClass ||= Class.new(FlexCommerceApi::ApiBase) do; end
+    MetaAttributableClass ||= Class.new(FlexCommerceApi::ApiBase) { ; }
   end
 
   before(:each) do
     stub_request(:get, /\/meta_attributable_classes\/slug:my_slug\.json_api$/).to_return do |req|
-      { body: example_data.to_json, headers: default_headers, status: 200 }
+      {body: example_data.to_json, headers: default_headers, status: 200}
     end
   end
 
-  context 'with meta data' do
+  context "with meta data" do
     let!(:example_data) do
       {
         data: {
           id: "1",
           type: "meta_attributable_class",
           attributes: {
-            meta_attributes: { foo: { value: "bar", data_type: "text" } }
+            meta_attributes: {foo: {value: "bar", data_type: "text"}}
           }
         }
       }
@@ -33,22 +33,22 @@ RSpec.describe "url encoding on any model" do
 
     let(:result) { subject_class.find("slug:my_slug") }
 
-    it 'allows get by meta attribute method' do
+    it "allows get by meta attribute method" do
       expect(result.meta_attribute(:foo)).to eq "bar"
     end
 
-    it 'does not allow get by direct reference to attribute' do
+    it "does not allow get by direct reference to attribute" do
       expect(result.foo).to eq nil
     end
 
-    context 'with meta data of type related-products' do
+    context "with meta data of type related-products" do
       let!(:example_data) do
         {
           data: {
             id: "1",
             type: "meta_attributable_class",
             attributes: {
-              meta_attributes: { related_products: { value: [1], data_type: "related-products" } }
+              meta_attributes: {related_products: {value: [1], data_type: "related-products"}}
             },
             relationships: {
               related_products: {
@@ -75,23 +75,23 @@ RSpec.describe "url encoding on any model" do
 
       let(:result) { subject_class.find("slug:my_slug") }
 
-      it 'allows get by meta attribute method' do
+      it "allows get by meta attribute method" do
         expect(result.meta_attribute(:related_products).map(&:id)).to eq ["1"]
       end
 
-      it 'does allows get by direct reference to attribute' do
+      it "does allows get by direct reference to attribute" do
         expect(result.meta_attribute(:related_products).map(&:id)).to eq ["1"]
       end
     end
 
-    context 'with meta data of type related-files' do
+    context "with meta data of type related-files" do
       let!(:example_data) do
         {
           data: {
             id: "1",
             type: "meta_attributable_class",
             attributes: {
-                meta_attributes: { related_files: { value: [1], data_type: "related-files" } }
+              meta_attributes: {related_files: {value: [1], data_type: "related-files"}}
             },
             relationships: {
               related_files: {
@@ -118,15 +118,15 @@ RSpec.describe "url encoding on any model" do
 
       let(:result) { subject_class.find("slug:my_slug") }
 
-      it 'allows get by meta attribute method' do
+      it "allows get by meta attribute method" do
         expect(result.meta_attribute(:related_files).map(&:id)).to eq ["1"]
       end
 
-      it 'does allows get by direct reference to attribute' do
+      it "does allows get by direct reference to attribute" do
         expect(result.meta_attribute(:related_files).map(&:id)).to eq ["1"]
       end
 
-      it 'returns nil for non-existent  attribute' do
+      it "returns nil for non-existent  attribute" do
         expect(result.meta_attribute(:related_filesssss)).to be_nil
       end
     end

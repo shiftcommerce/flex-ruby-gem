@@ -47,7 +47,6 @@ module FlexCommerce
     property :reference, type: :string
     property :password, type: :string
 
-
     def self.authenticate(attributes = {})
       FlexCommerce::CustomerAccountAuthentication.create(attributes).customer_account
     rescue ::FlexCommerceApi::Error::NotFound
@@ -90,7 +89,7 @@ module FlexCommerce
     end
 
     def create_note(attributes = {})
-      ::FlexCommerce::Note.create(attributes.merge(attached_to_id: self.id, attached_to_type: self.class.name.demodulize))
+      ::FlexCommerce::Note.create(attributes.merge(attached_to_id: id, attached_to_type: self.class.name.demodulize))
     end
   end
 end

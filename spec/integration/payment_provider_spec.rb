@@ -16,7 +16,7 @@ RSpec.describe FlexCommerce::PaymentProvider do
     let(:expected_list_quantity) { 2 }
     let(:current_page) { nil }
     before :each do
-      stub_request(:get, "#{api_root}/payment_providers.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
+      stub_request(:get, "#{api_root}/payment_providers.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
     end
     subject { subject_class.all }
     it_should_behave_like "a collection of anything"
@@ -34,5 +34,4 @@ RSpec.describe FlexCommerce::PaymentProvider do
       end
     end
   end
-
 end

@@ -17,7 +17,13 @@ describe "Server Categories Spec", :server do
     end
     after(:context) do
       setup_for_api!
-      created_resource.destroy rescue nil unless created_resource.nil?
+      unless created_resource.nil?
+        begin
+          created_resource.destroy
+        rescue
+          nil
+        end
+      end
       teardown_for_api!
     end
     context "create" do
@@ -39,13 +45,12 @@ describe "Server Categories Spec", :server do
           expect(found_resource.id).to eql(created_resource.id)
         end
       end
-
     end
     context "update" do
       let(:resource_to_update) { test_class.where(category_tree_id: "reference:web").find(created_resource.id).first }
       let(:updated_resource) { test_class.where(category_tree_id: "reference:web").find(created_resource.id).first }
       it "should persist a change to the resource" do
-        new_attrs = { title: "#{resource_to_update.title} - renamed" }
+        new_attrs = {title: "#{resource_to_update.title} - renamed"}
         resource_to_update.update_attributes new_attrs
         expect(updated_resource.title).to eql new_attrs[:title]
       end
@@ -54,7 +59,6 @@ describe "Server Categories Spec", :server do
       it "should destroy without erroring" do
         created_resource.destroy
       end
-
     end
     context "read again" do
       context "#all" do
@@ -65,7 +69,7 @@ describe "Server Categories Spec", :server do
       end
       context "#find" do
         it "should not find the resource" do
-          expect {test_class.where(category_tree_id: "reference:web").find(original_created_resource_id)}.to raise_exception FlexCommerceApi::Error::NotFound
+          expect { test_class.where(category_tree_id: "reference:web").find(original_created_resource_id) }.to raise_exception FlexCommerceApi::Error::NotFound
         end
       end
     end
@@ -77,9 +81,9 @@ describe "Server Categories Spec", :server do
       before(:context) do
         setup_for_api!
         page_size = 3
-        collection = page_size.times.map do
+        collection = page_size.times.map {
           test_class.create! attributes_for(:category)
-        end
+        }
       end
       after(:context) do
         setup_for_api!
@@ -100,9 +104,7 @@ describe "Server Categories Spec", :server do
             expect(found_resources.length).to eql ((found_resources.total_count - 1) % page_size) + 1
           end
         end
-
       end
-
     end
   end
 end

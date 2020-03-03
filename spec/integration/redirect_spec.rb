@@ -11,12 +11,12 @@ RSpec.describe FlexCommerce::Redirect do
   describe ".find_by_resource" do
     it "should expect a path parameter" do
       expect {
-        subject_class.find_by_path()
+        subject_class.find_by_path
       }.to raise_error(ArgumentError)
     end
 
     it "should load a single Redirect when passing valid params" do
-      stub_request(:get, /redirects.json_api/).with(headers: { Accept: 'application/vnd.api+json' }, query: hash_including(filter: anything)).to_return({
+      stub_request(:get, /redirects.json_api/).with(headers: {Accept: "application/vnd.api+json"}, query: hash_including(filter: anything)).to_return({
         body: File.read("./spec/fixtures/redirects/multiple.json"),
         status: 200,
         headers: default_headers

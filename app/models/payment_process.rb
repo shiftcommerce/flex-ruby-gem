@@ -8,6 +8,5 @@ module FlexCommerce
   #
   #
   class PaymentProcess < FlexCommerceApi::ApiBase
-
   end
 end

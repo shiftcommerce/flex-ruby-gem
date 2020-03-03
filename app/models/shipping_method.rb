@@ -17,10 +17,8 @@ module FlexCommerce
   #
   #
   class ShippingMethod < FlexCommerceApi::ApiBase
-
     # @method all
     # Returns all order shipping methods
     # @return [FlexCommerce::OrderShippingMethod[]] An array of order shipping methods or an empty array
-
   end
 end

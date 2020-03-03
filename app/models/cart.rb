@@ -64,7 +64,7 @@ module FlexCommerce
     # Merges another cart into this one using the API
     # @param [FlexCommerce::Cart] other_cart The cart to merge from
     def merge!(other_cart)
-      self.last_result_set = self.class.requestor.custom("merge", { request_method: :patch }, data: {type: "carts", attributes: { from_cart_id: other_cart.id, to_cart_id: id } } )
+      self.last_result_set = self.class.requestor.custom("merge", {request_method: :patch}, data: {type: "carts", attributes: {from_cart_id: other_cart.id, to_cart_id: id}})
       mark_as_persisted!
       if updated = last_result_set.first
         self.attributes = updated.attributes
@@ -118,19 +118,16 @@ module FlexCommerce
       if shipping_methods.any? { |sm| sm.is_a?(FlexCommerce::RemoteShippingMethod) }
         shipping_method_references = shipping_methods.map(&:reference)
         # We are filtering in memory here as there will never be many shipping methods and they will almost certainly be in the cache anyway
-        FlexCommerce::ShippingMethod.all.select { |shipping_method| shipping_method_references.include?(shipping_method.reference)}
+        FlexCommerce::ShippingMethod.all.select { |shipping_method| shipping_method_references.include?(shipping_method.reference) }
       else
         shipping_methods
       end
     end
-
 
     private
 
     def stock_levels
       StockLevel.where(skus: line_items.map { |li| li.item.sku }.join(",")).all
     end
-
-
   end
 end

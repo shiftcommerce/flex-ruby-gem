@@ -22,21 +22,20 @@ RSpec.describe "Markdown Prices API end to end spec", vcr: true do
     context_store.uuid = uuid = SecureRandom.uuid
     context_store.foreign_resources = OpenStruct.new
     context_store.foreign_resources.product = FlexCommerce::Product.create! title: "Title for product 1 for variant 1 for markdown price #{context_store.uuid}",
-                                                                              reference: "reference for product 1 for variant 1 for markdown price #{context_store.uuid}",
-                                                                              content_type: "markdown"
+                                                                            reference: "reference for product 1 for variant 1 for markdown price #{context_store.uuid}",
+                                                                            content_type: "markdown"
     context_store.foreign_resources.variant = FlexCommerce::Variant.create title: "Title for Test Variant 1 for markdown price #{uuid}",
-                                                           description: "Description for Test Variant 1 for markdown price #{uuid}",
-                                                           reference: "reference_for_test_variant_1_for_markdown_price_#{uuid}",
-                                                           price: 5.50,
-                                                           price_includes_taxes: false,
-                                                           sku: "sku_for_test_variant_1_for_markdown_price#{uuid}",
-                                                           product_id: context_store.foreign_resources.product.id
-
+                                                                           description: "Description for Test Variant 1 for markdown price #{uuid}",
+                                                                           reference: "reference_for_test_variant_1_for_markdown_price_#{uuid}",
+                                                                           price: 5.50,
+                                                                           price_includes_taxes: false,
+                                                                           sku: "sku_for_test_variant_1_for_markdown_price#{uuid}",
+                                                                           product_id: context_store.foreign_resources.product.id
   end
   # Clean up time - delete stuff in the reverse order to give us more chance of success
   after(:context) do
     context_store.created_resource.destroy unless context_store.created_resource.nil? || !context_store.created_resource.persisted?
-    context_store.foreign_resources.to_h.values.reverse.each do |resource|
+    context_store.foreign_resources.to_h.values.reverse_each do |resource|
       resource.destroy if resource.persisted?
     end
   end
@@ -49,5 +48,4 @@ RSpec.describe "Markdown Prices API end to end spec", vcr: true do
                                                                variant_id: context_store.foreign_resources.variant.id
     end
   end
-
 end

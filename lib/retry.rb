@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-module Retry
 
+module Retry
   DEFAULT_MAX_NO_OF_RETRIES = 2
   DEFAULT_RESCUE_ERRORS = StandardError
 
@@ -9,7 +9,7 @@ module Retry
     begin
       blk.call
     rescue rescue_errors => ex
-      total_attempts += 1 
+      total_attempts += 1
       retry if total_attempts < no_of_retries
     ensure
       if total_attempts == no_of_retries

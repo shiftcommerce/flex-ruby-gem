@@ -12,9 +12,9 @@ RSpec.describe FlexCommerce::Taxonomy do
     context "with Authorisation" do
       it "should return the taxonomy" do
         # Arrange
-        stub_request(:get, "#{api_root}/taxonomies/1.json_api").
-          with(headers: { "Accept" => "application/vnd.api+json" }).
-          to_return(body: build(:taxonomy_from_fixture).to_json, status: response_status, headers: default_headers)
+        stub_request(:get, "#{api_root}/taxonomies/1.json_api")
+          .with(headers: {"Accept" => "application/vnd.api+json"})
+          .to_return(body: build(:taxonomy_from_fixture).to_json, status: response_status, headers: default_headers)
         # Act
         record = described_class.find(1)
         # Assert
@@ -28,9 +28,9 @@ RSpec.describe FlexCommerce::Taxonomy do
     context "without Authorisation" do
       it "should raise an AccessDenied exception" do
         # Arrange
-        stub_request(:get, "#{api_root}/taxonomies/1.json_api").
-          with(headers: { "Accept" => "application/vnd.api+json" }).
-          to_return(body: '', status: 403, headers: nil)
+        stub_request(:get, "#{api_root}/taxonomies/1.json_api")
+          .with(headers: {"Accept" => "application/vnd.api+json"})
+          .to_return(body: "", status: 403, headers: nil)
 
         # Act & Assert
         expect { described_class.find(1) }.to raise_exception(::FlexCommerceApi::Error::AccessDenied)
@@ -43,10 +43,10 @@ RSpec.describe FlexCommerce::Taxonomy do
       it "should destroy the record" do
         # Arrange
         resource = build(:taxonomy, id: 1)
-        stub_request(:delete, "#{api_root}/taxonomies/1.json_api").
-          with(headers: { "Accept" => "application/vnd.api+json" }).
-          to_return(status: 204, headers: default_headers)
-          
+        stub_request(:delete, "#{api_root}/taxonomies/1.json_api")
+          .with(headers: {"Accept" => "application/vnd.api+json"})
+          .to_return(status: 204, headers: default_headers)
+
         # Assert
         expect(resource.destroy).to eq(true)
       end
@@ -56,9 +56,9 @@ RSpec.describe FlexCommerce::Taxonomy do
       it "should raise an AccessDenied exception" do
         # Arrange
         resource = build(:taxonomy, id: 1)
-        stub_request(:delete, "#{api_root}/taxonomies/1.json_api").
-          with(headers: { "Accept" => "application/vnd.api+json" }).
-          to_return(body: '', status: 403, headers: nil)
+        stub_request(:delete, "#{api_root}/taxonomies/1.json_api")
+          .with(headers: {"Accept" => "application/vnd.api+json"})
+          .to_return(body: "", status: 403, headers: nil)
         # Act & Assert
         expect { resource.destroy }.to raise_exception(::FlexCommerceApi::Error::AccessDenied)
       end

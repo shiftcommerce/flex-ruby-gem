@@ -13,9 +13,9 @@ RSpec.describe FlexCommerce::Import do
   context "with fixture files from flex" do
     context "working with a single import_entry tree" do
       let(:singular_resource) { build(:import_from_fixture) }
-      
+
       before :each do
-        stub_request(:get, "#{api_root}/imports/1.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
+        stub_request(:get, "#{api_root}/imports/1.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
       end
 
       subject { subject_class.find(1) }
@@ -28,10 +28,9 @@ RSpec.describe FlexCommerce::Import do
       end
 
       context "using the import entries association" do
-
         before :each do
-          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.import_entries.links.related}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: multiple_import_entry_resources.to_h.to_json, status: response_status, headers: default_headers
-          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.import_entries.links.related}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: multiple_import_entry_resources.to_h.to_json, status: response_status, headers: default_headers
+          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.import_entries.links.related}").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: multiple_import_entry_resources.to_h.to_json, status: response_status, headers: default_headers
+          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.import_entries.links.related}.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: multiple_import_entry_resources.to_h.to_json, status: response_status, headers: default_headers
         end
 
         let(:multiple_import_entry_resources) { build(:import_entries_from_fixture) }
@@ -68,7 +67,7 @@ RSpec.describe FlexCommerce::Import do
       subject { subject_class.all }
 
       before :each do
-        stub_request(:get, "#{api_root}/imports.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
+        stub_request(:get, "#{api_root}/imports.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
       end
 
       it_should_behave_like "a collection of anything"

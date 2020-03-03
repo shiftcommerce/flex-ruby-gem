@@ -19,20 +19,19 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
     File.expand_path("../support_e2e/fixtures/asset_file.png", File.dirname(__FILE__))
   end
 
-
   context "#create" do
     let(:uuid) { SecureRandom.uuid }
     it "should persist when valid attributes are used" do
-      subject = keep_tidy do
+      subject = keep_tidy {
         FlexCommerce::AssetFolder.create! reference: "reference for asset folder #{uuid}",
                                           name: "name for asset folder #{uuid}"
-      end
+      }
       expect(subject.errors).to be_empty
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/asset_folder.json")
     end
     it "should persist when valid attributes with a nested asset file are used" do
-      created_resource = keep_tidy do
+      created_resource = keep_tidy {
         FlexCommerce::AssetFolder.create! reference: "reference for asset folder #{uuid}",
                                           name: "name for asset folder #{uuid}",
                                           asset_files_resources: [
@@ -40,7 +39,7 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
                                                                         reference: "reference_for_asset_file_for_asset_folder_#{uuid}",
                                                                         asset_file: "data:image/png;base64,#{Base64.encode64(File.read(asset_file_fixture_file))}")
                                           ]
-      end
+      }
       expect(created_resource.errors).to be_empty
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/asset_folder.json")
@@ -49,14 +48,14 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
     end
 
     it "should persist when valid attributes with a nested sub folder is used" do
-      created_resource = keep_tidy do
+      created_resource = keep_tidy {
         FlexCommerce::AssetFolder.create! reference: "reference for asset folder #{uuid}",
                                           name: "name for asset folder #{uuid}",
                                           sub_folders_resources: [
                                             model.new(reference: "reference for sub folder for asset folder #{uuid}",
                                                       name: "name for sub folder for asset folder #{uuid}")
                                           ]
-      end
+      }
       expect(created_resource.errors).to be_empty
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/asset_folder.json")
@@ -68,7 +67,6 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
   context "#read collection" do
     let(:uuid) { SecureRandom.uuid }
     context "with caching", caching: true do
-
     end
   end
   context "#read member" do
@@ -168,24 +166,16 @@ RSpec.describe "Asset folders API end to end spec", vcr: true do
         expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
         expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/asset_folder.json")
       end
-
-
     end
     context "with caching", caching: true do
-
     end
-
-
   end
 
   context "#update" do
     let(:uuid) { SecureRandom.uuid }
-
   end
 
   context "#delete" do
     let(:uuid) { SecureRandom.uuid }
-
   end
-
 end

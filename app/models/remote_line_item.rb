@@ -6,6 +6,5 @@ module FlexCommerce
   # This model provides access to the flex commerce remote order's line_items.
   #
   class RemoteLineItem < FlexCommerceApi::ApiBase
-
   end
 end

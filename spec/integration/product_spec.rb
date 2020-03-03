@@ -24,7 +24,7 @@ RSpec.describe FlexCommerce::Product do
       subject.each_with_index do |p, idx|
         resource_list.data[idx].tap do |resource_identifier|
           expect(p.id).to eql(resource_identifier.id)
-          expect(p.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(resource_identifier.attributes.as_json)
+          expect(p.attributes.as_json.reject { |k| %w[id type links meta relationships].include?(k) }).to eql(resource_identifier.attributes.as_json)
         end
       end
     end
@@ -52,9 +52,9 @@ RSpec.describe FlexCommerce::Product do
       let(:collection_url) { "#{api_root}/products" }
       let!(:stub) do
         if current_page.present?
-          stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }, query: { page: { number: current_page }}).to_return body: resource_list.to_json, status: response_status, headers: default_headers
+          stub_request(:get, stubbed_url).with(headers: {"Accept" => "application/vnd.api+json"}, query: {page: {number: current_page}}).to_return body: resource_list.to_json, status: response_status, headers: default_headers
         else
-          stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: response_status, headers: default_headers
+          stub_request(:get, stubbed_url).with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource_list.to_json, status: response_status, headers: default_headers
         end
       end
       # The subject for all examples - using pagination as this is expected normally
@@ -70,7 +70,7 @@ RSpec.describe FlexCommerce::Product do
       #  than the paginated version.
       let(:stubbed_url) do
         URI.parse(current_page.present? ? "#{collection_url}/pages/#{current_page}.json_api" : "#{collection_url}.json_api").tap do |u|
-          u.query = { filter: search_criteria }.to_query
+          u.query = {filter: search_criteria}.to_query
         end.to_s
       end
 
@@ -88,9 +88,9 @@ RSpec.describe FlexCommerce::Product do
       # Easy access to the collection URL
       let(:collection_url) { "#{api_root}/products/search" }
       let(:quantity) { 50 }
-      let(:search_criteria) { { query: "Shirt", fields: "description,reference,slug" } }
+      let(:search_criteria) { {query: "Shirt", fields: "description,reference,slug"} }
       let!(:stub) do
-        stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: response_status, headers: default_headers
+        stub_request(:get, stubbed_url).with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource_list.to_json, status: response_status, headers: default_headers
       end
 
       it_should_behave_like "a collection of anything"
@@ -99,7 +99,7 @@ RSpec.describe FlexCommerce::Product do
       let(:expected_list_quantity) { 25 }
       let(:stubbed_url) { "#{api_root}/category_trees/slug:tree_slug/categories/slug:category_slug/products.json_api" }
       let!(:stub) do
-        stub_request(:get, stubbed_url).with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_json, status: response_status, headers: default_headers
+        stub_request(:get, stubbed_url).with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource_list.to_json, status: response_status, headers: default_headers
       end
       subject { subject_class.where({category_tree_id: "slug:tree_slug", category_id: "slug:category_slug"}).all }
       it_should_behave_like "a collection of anything"
@@ -113,7 +113,7 @@ RSpec.describe FlexCommerce::Product do
     let(:expected_list_quantity) { 10 }
     let(:current_page) { nil }
     before :each do
-      stub_request(:get, "#{api_root}/products.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
+      stub_request(:get, "#{api_root}/products.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
     end
     subject { subject_class.paginate(page: current_page).all }
     it_should_behave_like "a collection of anything"
@@ -135,15 +135,17 @@ RSpec.describe FlexCommerce::Product do
   context "using a single resource" do
     let(:variants_count) { 5 }
     let(:variant_resources) { build_list(:json_api_resource, variants_count, build_resource: :variant) }
-    let(:variant_relationship) { { variants: {
-        data: variant_resources.map { |vr| { type: "variants", id: vr.id }}
-    } } }
+    let(:variant_relationship) {
+      {variants: {
+        data: variant_resources.map { |vr| {type: "variants", id: vr.id} }
+      }}
+    }
     let(:variant_class) { FlexCommerce::Variant }
     let(:resource_identifier) { build(:json_api_resource, build_resource: :product, relationships: variant_relationship, base_path: base_path, primary_key: :slug) }
     let(:singular_resource) { build(:json_api_top_singular_resource, data: resource_identifier, included: variant_resources) }
     let(:primary_key) { :slug }
     before :each do
-      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
+      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: singular_resource.to_json, status: response_status, headers: default_headers
     end
     context "finding a single resource" do
       it_should_behave_like "a singular resource"
@@ -151,7 +153,7 @@ RSpec.describe FlexCommerce::Product do
         subject { subject_class.find(resource_identifier.attributes.send(primary_key)) }
         it_should_behave_like "a singular resource with an error response"
         it "should return an object with the correct attributes when find is called" do
-          expect(subject.attributes.as_json.reject { |k| %w(id type links meta variants relationships).include?(k) }).to eql(resource_identifier.attributes.as_json.reject { |k| %w(variants).include?(k) })
+          expect(subject.attributes.as_json.reject { |k| %w[id type links meta variants relationships].include?(k) }).to eql(resource_identifier.attributes.as_json.reject { |k| %w[variants].include?(k) })
           expect(subject.type).to eql "products"
         end
       end
@@ -165,7 +167,7 @@ RSpec.describe FlexCommerce::Product do
               mocked_variant = variant_resources[idx].attributes
               expect(v).to be_a(variant_class)
               expect(v.type).to eql "variants"
-              expect(v.attributes.as_json.reject { |k| %w(id type links meta relationships).include?(k) }).to eql(mocked_variant.as_json)
+              expect(v.attributes.as_json.reject { |k| %w[id type links meta relationships].include?(k) }).to eql(mocked_variant.as_json)
             end
           end
         end
@@ -180,11 +182,11 @@ RSpec.describe FlexCommerce::Product do
     let(:variant_class) { FlexCommerce::Variant }
     let(:variant_resources) do
       resource_identifier.relationships.variants.data.map do |ri|
-        singular_resource.included.detect {|r| r.id == ri.id && r.type == ri.type}
+        singular_resource.included.detect { |r| r.id == ri.id && r.type == ri.type }
       end
     end
     before :each do
-      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: 200, headers: default_headers
+      stub_request(:get, "#{api_root}/products/#{resource_identifier.attributes.slug}.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: singular_resource.to_h.to_json, status: 200, headers: default_headers
     end
     it_should_behave_like "a singular resource"
     context "with subject set" do

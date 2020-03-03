@@ -8,23 +8,23 @@ RSpec.describe FlexCommerce::SearchSuggestion do
   let(:subject_class) { FlexCommerce::SearchSuggestion }
   context "creating" do
     let(:search_suggestion_attributes) { attributes_for(:search_suggestion) }
-    let(:expected_headers) { { "Accept" => "application/vnd.api+json" } }
+    let(:expected_headers) { {"Accept" => "application/vnd.api+json"} }
     let(:search_suggestion_response) do
       {
-          data: [
-              {
-                  type: "search_suggestions",
-                  attributes: {
-                      text: "dog blanket"
-                  }
-              },
-              {
-                  type: "search_suggestions",
-                  attributes: {
-                      text: "dog guard"
-                  }
-              }
-          ]
+        data: [
+          {
+            type: "search_suggestions",
+            attributes: {
+              text: "dog blanket"
+            }
+          },
+          {
+            type: "search_suggestions",
+            attributes: {
+              text: "dog guard"
+            }
+          }
+        ]
       }
     end
     let!(:stub) { stub_request(:get, "#{api_root}/search_suggestions.json_api").with(query: {filter: {field: "title", scope: "product", query: "dog"}}, headers: expected_headers).to_return body: search_suggestion_response.to_json, status: response_status, headers: default_headers }
@@ -36,8 +36,5 @@ RSpec.describe FlexCommerce::SearchSuggestion do
       expect(search_suggestions.first.text).to eql "dog blanket"
       expect(search_suggestions.last.text).to eql "dog guard"
     end
-
   end
-
-
 end

@@ -1,5 +1,5 @@
-require 'vcr'
-require 'oj'
+require "vcr"
+require "oj"
 module OjSerializer
   class << self
     # The file extension to use for this serializer.
@@ -15,7 +15,11 @@ module OjSerializer
     # @return [String] the JSON string
     def serialize(hash)
       hash["http_interactions"].map! do |i|
-        i["response"]["body"]["decoded"] = Oj.load(i["response"]["body"]["string"]) rescue Oj::ParseError
+        i["response"]["body"]["decoded"] = begin
+                                             Oj.load(i["response"]["body"]["string"])
+                                           rescue
+                                             Oj::ParseError
+                                           end
         i
       end
       JSON.pretty_generate(hash)
@@ -32,8 +36,8 @@ module OjSerializer
 end
 VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = true
-  c.default_cassette_options = { :record => :all, :erb => false, :serialize_with => :oj }
-  c.cassette_library_dir = 'spec/recordings'
+  c.default_cassette_options = {record: :all, erb: false, serialize_with: :oj}
+  c.cassette_library_dir = "spec/recordings"
   c.hook_into :webmock
   c.configure_rspec_metadata!
   c.cassette_serializers[:oj] = OjSerializer

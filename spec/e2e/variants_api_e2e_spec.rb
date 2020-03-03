@@ -103,7 +103,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
 
       it "should create the resource with a markdown price" do
         resource = model.includes("markdown_prices").find(subject.id).first
-        expect(resource.markdown_prices).to include(an_object_having_attributes price: 1.10)
+        expect(resource.markdown_prices).to include(an_object_having_attributes(price: 1.10))
       end
     end
 
@@ -143,7 +143,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
       it "should create the resource with an asset file" do
         aggregate_failures "validating resource has the asset file added" do
           resource = model.includes("asset_files").find(subject.id).first
-          expect(resource.asset_files).to include(an_object_having_attributes reference: asset_file.reference)
+          expect(resource.asset_files).to include(an_object_having_attributes(reference: asset_file.reference))
           keep_tidy { resource.asset_files.first } if resource.asset_files.first.present?
         end
       end
@@ -191,8 +191,8 @@ RSpec.describe "Variants API end to end spec", vcr: true do
         model.find(created_resource.id)
         model.find(created_resource.id)
         # @TODO Work out what these headers should contain when going via fastly
-        expect(http_request_tracker.first[:response].headers.keys).to include 'Surrogate-Key'
-        expect(http_request_tracker[1][:response].headers.keys).to include 'Surrogate-Key'
+        expect(http_request_tracker.first[:response].headers.keys).to include "Surrogate-Key"
+        expect(http_request_tracker[1][:response].headers.keys).to include "Surrogate-Key"
       end
     end
 
@@ -336,7 +336,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
 
     it "should not persist changes and have errors when invalid attributes are used" do
       aggregate_failures do
-        expect(subject.update_attributes sku: nil).to be false
+        expect(subject.update_attributes(sku: nil)).to be false
         expect(subject.errors).to be_present
       end
     end
@@ -345,7 +345,6 @@ RSpec.describe "Variants API end to end spec", vcr: true do
       result = subject.update_attributes subject.attributes.except("id", "type")
       expect(result).to be true
       expect(subject.errors).to be_empty
-
     end
 
     it "should not make any changes when updated with mirrored attributes" do
@@ -353,7 +352,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
       data["data"] = data["data"].except("relationships", "links", "meta")
       url = "#{model.site}/#{found.links.self}"
       result = model.connection.run(:patch, found.links.self, data.to_json)
-      expect(true).to eql false #TODO Test the status code and re fetch to ensure no changes
+      expect(true).to eql false # TODO Test the status code and re fetch to ensure no changes
     end
 
     context "product relationship" do
@@ -383,7 +382,7 @@ RSpec.describe "Variants API end to end spec", vcr: true do
         result = subject.update_attributes(markdown_prices_resources: [FlexCommerce::MarkdownPrice.new(price: 1.10, start_at: 2.days.ago, end_at: 10.days.since)])
         expect(result).to be_truthy
         resource = model.includes("markdown_prices").find(created_resource.id).first
-        expect(resource.markdown_prices).to include(an_object_having_attributes price: 1.10)
+        expect(resource.markdown_prices).to include(an_object_having_attributes(price: 1.10))
       end
       it "should persist additions to the relationship" do
         # This is not possible as the markdown price cannot exist without a variant id
@@ -406,5 +405,4 @@ RSpec.describe "Variants API end to end spec", vcr: true do
   context "#delete" do
     it "should delete"
   end
-
 end

@@ -4,7 +4,6 @@ module FlexCommerce
     module Process
       # @class ResponseParser
       class ResponseParser
-
         def initialize(response:, shipping_method_model:)
           self.response = response
           self.shipping_method_model = shipping_method_model
@@ -13,7 +12,7 @@ module FlexCommerce
         # @TODO: Need to validate the paypal response, to ensure it is
         #        returning all the attribute values as expected
         # Related ticket: https://github.com/shiftcommerce/flex-ruby-gem/issues/152
-        # 
+        #
         def call
           {
             shipping_method_id: get_shipping_method_details,
@@ -28,41 +27,39 @@ module FlexCommerce
         private
 
         # @method get_shipping_method_details
-        # 
+        #
         # Currently, Paypal will only return the shipping_option_name param
         # which contains the shipping method label. Using this, we need to find
         # the shipping method id and return it.
-        # @TODO: Incase of its missing, currently we are returning nil value. But ideally 
+        # @TODO: Incase of its missing, currently we are returning nil value. But ideally
         # we have to log this error, just to ensure it is not platform issue.
-        #  
+        #
         def get_shipping_method_details
           if response.params["shipping_option_name"]
             shipping_option_name = response.params["shipping_option_name"]
             shipping_method = find_shipping_method(shipping_option_name)
             raise "Shipping method #{response.params["shipping_option_name"]} not found\n\nExact response from paypal were: \n#{response.to_json}" unless shipping_method
             shipping_method.id
-          else
-            nil
           end
         end
 
         # @!visibility private
-        # 
+        #
         # Currently Paypal is returning only shipping method label.
-        # And we cannot query for shipping method by using the label, so 
+        # And we cannot query for shipping method by using the label, so
         # We are fetching all the shipping methods and filtering them by label
-        # 
+        #
         def find_shipping_method(shipping_option_name)
           all_shipping_methods = shipping_method_model.all
           sm = all_shipping_methods.select { |sm| sm.label == shipping_option_name }.first
-          sm ||= all_shipping_methods.select{ |sm| sm.label == de_dup_shipping_option_name(shipping_option_name) }.first
+          sm ||= all_shipping_methods.select { |sm| sm.label == de_dup_shipping_option_name(shipping_option_name) }.first
           sm
         end
 
         # @!visibility private
-        # 
+        #
         # COPIED this comments from flex-platform code
-        # 
+        #
         # This is temporary but will do no harm if left in
         # When paypal calls the "callback url" to get the list of shipping options
         # then, the user clicks on "buy" - the resulting shipping method name is duplicated
@@ -86,38 +83,38 @@ module FlexCommerce
         end
 
         # @method get_shipping_address_attributes
-        # 
+        #
         # Paypal will return shipping address in PaymentDetails.ShipToAddress Object
-        # 
+        #
         def get_shipping_address_attributes
           convert_address(response.params["PaymentDetails"]["ShipToAddress"])
         end
 
         # @method get_billing_address_attributes
-        # 
+        #
         # Paypal will return shipping address in PayerInfo.Address Object
-        # 
+        #
         def get_billing_address_attributes
           convert_address(response.params["PayerInfo"]["Address"])
         end
 
         # @method get_billing_address_attributes
-        # 
+        #
         # Paypal will return shipping address in PayerInfo.Payer Object
-        # 
+        #
         def get_email_address
           response.params["PayerInfo"]["Payer"]
         end
 
         # @!visibility private
-        # 
+        #
         def convert_address(paypal_address)
           mapping = address_direct_mapping
           name_words = paypal_address["Name"].split(" ")
           attrs = {
-              "first_name" => name_words.shift,
-              "last_name" => name_words.pop || "",
-              "middle_names" => name_words.join(" ")
+            "first_name" => name_words.shift,
+            "last_name" => name_words.pop || "",
+            "middle_names" => name_words.join(" ")
           }
           paypal_address.inject(attrs) do |acc, (field, value)|
             if mapping.key?(field)
@@ -129,7 +126,7 @@ module FlexCommerce
         end
 
         # @!visibility private
-        # 
+        #
         def address_direct_mapping
           {
             "Street1" => "address_line_1",

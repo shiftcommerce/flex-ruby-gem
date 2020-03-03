@@ -8,6 +8,5 @@ module FlexCommerce
   #
   #
   class PaymentAddressVerification < FlexCommerceApi::ApiBase
-
   end
 end

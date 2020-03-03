@@ -4,7 +4,7 @@ FactoryBot.define do
     primary_key "slug"
     after(:build) do |instance|
       instance.data.each do |ri|
-        ri.relationships.merge(variants: { data: [] })
+        ri.relationships.merge(variants: {data: []})
       end
     end
   end

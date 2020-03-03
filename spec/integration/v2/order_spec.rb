@@ -23,7 +23,7 @@ RSpec.describe FlexCommerce::V2::Order do
       end
 
       subject { subject_class.find(1) }
-      
+
       it_should_behave_like "a singular resource with an error response"
 
       it "should return the correct top level object" do

@@ -18,39 +18,37 @@ RSpec.describe "Products API end to end spec", vcr: true do
   let(:global_asset_folder) do
     uuid = SecureRandom.uuid
     to_clean.global_asset_folder ||= FlexCommerce::AssetFolder.create! name: "asset folder for Test Variant #{uuid}",
-                                                              reference: "reference_for_asset_folder_1_for_variant_#{uuid}"
+                                                                       reference: "reference_for_asset_folder_1_for_variant_#{uuid}"
   end
-
 
   context "#create" do
     let(:uuid) { SecureRandom.uuid }
     let(:asset_folder) { global_asset_folder }
     it "should persist when valid attributes are used" do
-      subject = keep_tidy do
+      subject = keep_tidy {
         FlexCommerce::Product.create! title: "Title for product  #{uuid}",
                                       reference: "reference for product #{uuid}",
                                       content_type: "markdown"
-      end
+      }
       expect(subject.errors).to be_empty
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/product.json")
     end
 
     it "should persist when valid attributes with nested variants are used" do
-      created_resource = keep_tidy do
+      created_resource = keep_tidy {
         FlexCommerce::Product.create! title: "Title for product #{uuid}",
                                       reference: "reference for for product #{uuid}",
                                       content_type: "markdown",
                                       variants_resources: [
-                                          FlexCommerce::Variant.new(title: "Title for variant for product #{uuid}",
-                                                                    description: "Description for variant for product #{uuid}",
-                                                                    reference: "reference_for_variant_for_product_#{uuid}",
-                                                                    sku: "sku_for_variant_for_product_#{uuid}",
-                                                                    price: 5.50,
-                                                                    price_includes_taxes: true)
+                                        FlexCommerce::Variant.new(title: "Title for variant for product #{uuid}",
+                                                                  description: "Description for variant for product #{uuid}",
+                                                                  reference: "reference_for_variant_for_product_#{uuid}",
+                                                                  sku: "sku_for_variant_for_product_#{uuid}",
+                                                                  price: 5.50,
+                                                                  price_includes_taxes: true)
                                       ]
-
-      end
+      }
       aggregate_failures "validating created resource and fetching back" do
         subject = FlexCommerce::Product.includes("variants").find(created_resource.id).first
         expect(created_resource.errors).to be_empty
@@ -61,17 +59,17 @@ RSpec.describe "Products API end to end spec", vcr: true do
     end
 
     it "should persist when valid attributes with nested asset files are used" do
-      created_resource = keep_tidy do
+      created_resource = keep_tidy {
         FlexCommerce::Product.create! title: "Title for product #{uuid}",
                                       reference: "reference for for product #{uuid}",
                                       content_type: "markdown",
                                       asset_files_resources: [
-                                          FlexCommerce::AssetFile.new(name: "name for asset file for product #{uuid}",
-                                                                      reference: "reference_for_asset_file_for_product_#{uuid}",
-                                                                      asset_file: "data:image/png;base64,#{Base64.encode64(File.read(asset_file_fixture_file))}",
-                                                                      asset_folder_id: asset_folder.id)
+                                        FlexCommerce::AssetFile.new(name: "name for asset file for product #{uuid}",
+                                                                    reference: "reference_for_asset_file_for_product_#{uuid}",
+                                                                    asset_file: "data:image/png;base64,#{Base64.encode64(File.read(asset_file_fixture_file))}",
+                                                                    asset_folder_id: asset_folder.id)
                                       ]
-      end
+      }
       aggregate_failures "validating created resource and fetching back" do
         http_request_tracker.clear
         subject = FlexCommerce::Product.includes("asset_files").find(created_resource.id).first
@@ -83,14 +81,14 @@ RSpec.describe "Products API end to end spec", vcr: true do
     end
 
     it "should persist when valid attributes with nested template definition are used" do
-      created_resource = keep_tidy do
+      created_resource = keep_tidy {
         FlexCommerce::Product.create! title: "Title for product #{uuid}",
                                       reference: "reference for for product #{uuid}",
                                       content_type: "markdown",
                                       template_definition_resource: FlexCommerce::TemplateDefinition.new(reference: "reference_for_template_definition_for_product_#{uuid}",
                                                                                                          label: "Label for template definition for product #{uuid}",
                                                                                                          data_type: "Product")
-      end
+      }
       aggregate_failures "validating created resource and fetching back" do
         subject = FlexCommerce::Product.includes("template_definition").find(created_resource.id).first
         expect(created_resource.errors).to be_empty
@@ -99,7 +97,6 @@ RSpec.describe "Products API end to end spec", vcr: true do
         expect(subject.template_definition).to have_attributes reference: "reference_for_template_definition_for_product_#{uuid}"
       end
     end
-
   end
 
   context "#read collection" do
@@ -143,15 +140,11 @@ RSpec.describe "Products API end to end spec", vcr: true do
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("jsonapi/schema.json")
       expect(http_request_tracker.first[:response]).to be_valid_json_for_schema("shift/v1/documents/member/product.json")
     end
-
   end
 
   context "#update" do
-
   end
 
   context "#delete" do
-
   end
-
 end

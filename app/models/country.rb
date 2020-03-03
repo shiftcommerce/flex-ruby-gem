@@ -6,6 +6,5 @@ module FlexCommerce
   #
   #
   class Country < FlexCommerceApi::ApiBase
-
   end
 end

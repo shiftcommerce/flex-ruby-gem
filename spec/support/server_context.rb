@@ -1,4 +1,4 @@
-require 'dotenv'
+require "dotenv"
 Dotenv.load
 
 RSpec.shared_context "server context" do
@@ -12,6 +12,7 @@ RSpec.shared_context "server context" do
     end
     WebMock.allow_net_connect!
   end
+
   def teardown_for_api!
     WebMock.disable_net_connect!
   end
@@ -21,9 +22,7 @@ RSpec.shared_context "server context" do
   after(:each) do
     teardown_for_api!
   end
-
 end
 
 RSpec.shared_context "server crud context" do
-
 end

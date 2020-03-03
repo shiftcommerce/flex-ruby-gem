@@ -5,8 +5,9 @@ module FlexCommerceApi
       def initialize(uri)
         @uri = uri
       end
+
       def message
-        "Couldn't find resource at: #{uri.to_s}"
+        "Couldn't find resource at: #{uri}"
       end
     end
   end

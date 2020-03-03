@@ -15,7 +15,7 @@ RSpec.describe FlexCommerce::Report do
       let(:expected_list_quantity) { 25 }
       subject { subject_class.all }
       before :each do
-        stub_request(:get, "#{api_root}/reports.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
+        stub_request(:get, "#{api_root}/reports.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
       end
       it_should_behave_like "a collection of anything"
       it_should_behave_like "a collection of resources with an error response"

@@ -24,8 +24,8 @@ module FlexCommerceApi
   # Base class for all flex commerce models
   #
   class BaseResource < JsonApiClient::Resource
-    PRIVATE_ATTRIBUTES = %w(id type relationships links meta)
-    RELATED_META_RESOURCES = %w(related-categories related-static_pages related-resources related-files related-products)
+    PRIVATE_ATTRIBUTES = %w[id type relationships links meta]
+    RELATED_META_RESOURCES = %w[related-categories related-static_pages related-resources related-files related-products]
 
     # set the api base url in an abstract base class
     self.paginator = JsonApiClientExtension::Paginator
@@ -51,7 +51,7 @@ module FlexCommerceApi
 
       # @method find_all
       # Finds many resources, always returning an array, even if 1 result
-      alias_method :find_all, :find
+      alias find_all find
 
       # @method find
       # @param [String] spec The spec of what to find
@@ -89,19 +89,19 @@ module FlexCommerceApi
         Thread.current[:shift_surrogate_keys] = []
         yield
         Thread.current[:shift_surrogate_keys].uniq!
-        results = Thread.current[:shift_surrogate_keys].join(' ')
+        results = Thread.current[:shift_surrogate_keys].join(" ")
         Thread.current[:shift_surrogate_keys] = nil
         results
       end
 
       def reconfigure_all options = {}
-        self.subclasses.each do |sub|
+        subclasses.each do |sub|
           sub.reconfigure_api_base options
         end
       end
 
       def reconfigure_api_base options = {}
-        self.subclasses.each do |sub|
+        subclasses.each do |sub|
           sub.reconfigure options
         end
         reconfigure options
@@ -115,7 +115,7 @@ module FlexCommerceApi
           timeout: FlexCommerceApi.config.timeout,
           open_timeout: FlexCommerceApi.config.open_timeout
         }
-        self.connection_options.delete(:include_previewed)
+        connection_options.delete(:include_previewed)
         self.connection_options = connection_options.merge(base_options).merge(options)
         reload_connection_if_required
       end
@@ -163,19 +163,17 @@ module FlexCommerceApi
     end
 
     def meta_attribute(key)
-      begin
-        return self.send(key) if RELATED_META_RESOURCES.include?(attributes[:meta_attributes][key][:data_type])
-        attributes[:meta_attributes][key][:value]
-      rescue NoMethodError
-        nil
-      end
+      return send(key) if RELATED_META_RESOURCES.include?(attributes[:meta_attributes][key][:data_type])
+      attributes[:meta_attributes][key][:value]
+    rescue NoMethodError
+      nil
     end
 
     def method_missing(method, *args)
-      if relationships and relationships.has_attribute?(method)
+      if relationships&.has_attribute?(method)
         super
       else
-        has_attribute?(method) || method.to_s=~(/=$/) || method.to_s=~/!$/ ? super : nil
+        has_attribute?(method) || method.to_s =~ /=$/ || method.to_s =~ /!$/ ? super : nil
       end
     end
 
@@ -227,27 +225,24 @@ module FlexCommerceApi
       raise "#{relationship} is not defined in #{self.class.name}" unless association
       if relationship_definitions["links"] && url = relationship_definitions["links"]["related"]
         url = URI.parse(url)
-        site = url.clone.tap { |u|
+        site = url.clone.tap do |u|
           u.path = ""
           u.query = nil
           u.fragment = nil
-        }.to_s
-        path = url.clone.tap { |u|
+        end.to_s
+        path = url.clone.tap do |u|
           u.scheme = nil
           u.host = nil
           u.port = nil
           u.userinfo = nil
-        }.to_s
+        end.to_s
         connection = if site.empty?
-                       self.class.connection
-                     else
-                       FlexCommerceApi::JsonApiClientExtension::FlexibleConnection.new(self.class.connection_options.merge(site: site, add_json_api_extension: false, authenticate: false))
-                     end
+          self.class.connection
+        else
+          FlexCommerceApi::JsonApiClientExtension::FlexibleConnection.new(self.class.connection_options.merge(site: site, add_json_api_extension: false, authenticate: false))
+        end
         FlexCommerceApi::JsonApiClientExtension::RemoteBuilder.new(association.association_class, path: path, connection: connection)
       end
-
     end
-
-
   end
 end

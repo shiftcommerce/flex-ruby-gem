@@ -14,8 +14,8 @@ RSpec.shared_context "global context" do |api_version: "v1"|
       u.password = FlexCommerceApi.config.flex_api_key
     end.to_s
   end
-  let(:default_headers) { { "Content-Type": "application/json" } }
-  let(:default_request_headers) { { "Accept" => "application/vnd.api+json", "Content-Type": "application/vnd.api+json" } }
+  let(:default_headers) { {"Content-Type": "application/json"} }
+  let(:default_request_headers) { {"Accept" => "application/vnd.api+json", :"Content-Type" => "application/vnd.api+json"} }
   let(:page_size) { 25 }
   let(:base_path) { URI.parse(api_root).path }
   let(:response_status) { 200 }

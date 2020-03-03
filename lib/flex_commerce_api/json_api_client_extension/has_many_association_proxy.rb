@@ -18,7 +18,7 @@ module FlexCommerceApi
       # @return The resource found or nil if not found
       def find(pk)
         method = primary_key
-        real_instance.detect {|i| i.send(method) == pk}
+        real_instance.detect { |i| i.send(method) == pk }
       end
 
       # Creates a new associated item - if the option "inverse_of" is specified, then
@@ -47,7 +47,7 @@ module FlexCommerceApi
       private
 
       def association
-        container_instance.class.associations.detect {|a| a.attr_name == association_name.to_sym}
+        container_instance.class.associations.detect { |a| a.attr_name == association_name.to_sym }
       end
 
       def primary_key

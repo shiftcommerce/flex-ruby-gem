@@ -89,38 +89,38 @@ RSpec.describe "Shopping Cart" do
           let(:available_shipping_methods_relationship) { singular_resource.data.relationships.available_shipping_methods }
           let(:remote_shipping_methods_data) do
             {data: [
-                {
-                    type: "remote_shipping_methods",
-                    id: "remoteid1",
-                    attributes: {
-                        reference: "REFERENCE_1"
-                    }
-                },
-                {
-                    type: "remote_shipping_methods",
-                    id: "remoteid2",
-                    attributes: {
-                        reference: "REFERENCE_2"
-                    }
+              {
+                type: "remote_shipping_methods",
+                id: "remoteid1",
+                attributes: {
+                  reference: "REFERENCE_1"
                 }
+              },
+              {
+                type: "remote_shipping_methods",
+                id: "remoteid2",
+                attributes: {
+                  reference: "REFERENCE_2"
+                }
+              }
             ]}
           end
           let(:shipping_methods_data) do
             {data: [
-                {
-                    type: :shipping_methods,
-                    id: "1",
-                    attributes: {
-                        reference: "REFERENCE_1"
-                    }
-                },
-                {
-                    type: :shipping_methods,
-                    id: "2",
-                    attributes: {
-                        reference: "REFERENCE_2"
-                    }
+              {
+                type: :shipping_methods,
+                id: "1",
+                attributes: {
+                  reference: "REFERENCE_1"
                 }
+              },
+              {
+                type: :shipping_methods,
+                id: "2",
+                attributes: {
+                  reference: "REFERENCE_2"
+                }
+              }
             ]}
           end
           it "should return the shipping methods untouched if they are not remote" do
@@ -132,7 +132,6 @@ RSpec.describe "Shopping Cart" do
             stub_request(:get, "#{api_root}/shipping_methods.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: shipping_methods_data.to_json, status: 200, headers: default_headers
             a = subject.available_shipping_methods.to_a
             expect(a).to contain_exactly an_object_having_attributes(type: "shipping_methods", reference: "REFERENCE_1"), an_object_having_attributes(type: "shipping_methods", reference: "REFERENCE_2")
-
           end
         end
         context "using the line items association" do
@@ -176,10 +175,9 @@ RSpec.describe "Shopping Cart" do
             end
           end
           it "should allow you to retrieve the product from a line item's item" do
-
             stub_request(:get, /#{api_root}\/products\/\d+\.json_api/)
-                .with(headers: {"Accept" => "application/vnd.api+json"})
-                .to_return body: build(:product_from_fixture).to_json, status: 200, headers: default_headers
+              .with(headers: {"Accept" => "application/vnd.api+json"})
+              .to_return body: build(:product_from_fixture).to_json, status: 200, headers: default_headers
 
             subject.line_items.each do |line_item|
               line_item.item.tap do |item|
@@ -219,24 +217,26 @@ RSpec.describe "Shopping Cart" do
         context "using the validate_stock! method" do
           let!(:stub) { stub_request(:get, "#{api_root}/stock_levels.json_api").with(headers: {"Accept" => "application/vnd.api+json"}, query: {filter: {skus: "742207266-0-1,742207266-0-2"}}).to_return body: stock_level_list.to_json, status: response_status, headers: default_headers }
           context "with no stock" do
-            let(:stock_level_list) { {
+            let(:stock_level_list) {
+              {
                 data: [
-                    {
-                        id: "742207266-0-1",
-                        type: "stock_levels",
-                        attributes: {
-                            stock_available: 0
-                        }
-                    },
-                    {
-                        id: "742207266-0-2",
-                        type: "stock_levels",
-                        attributes: {
-                            stock_available: 10
-                        }
+                  {
+                    id: "742207266-0-1",
+                    type: "stock_levels",
+                    attributes: {
+                      stock_available: 0
                     }
+                  },
+                  {
+                    id: "742207266-0-2",
+                    type: "stock_levels",
+                    attributes: {
+                      stock_available: 10
+                    }
+                  }
                 ]
-            } }
+              }
+            }
             it "should mark any line items that are out of stock" do
               subject.validate_stock!
               expect(subject.line_items[0].errors[:unit_quantity]).to include "Out of stock"
@@ -244,29 +244,30 @@ RSpec.describe "Shopping Cart" do
 
             it "should return an object with the line_item id and current unit_quantity" do
               stock_errors_object = subject.validate_stock!
-              expect(stock_errors_object["742207266-0-1"]).to eq({ line_item_quantity: 3, stock_level: 0, message: "Out of stock" })
+              expect(stock_errors_object["742207266-0-1"]).to eq({line_item_quantity: 3, stock_level: 0, message: "Out of stock"})
             end
-
           end
           context "with not enough stock" do
-            let(:stock_level_list) { {
+            let(:stock_level_list) {
+              {
                 data: [
-                    {
-                        id: "742207266-0-1",
-                        type: "stock_levels",
-                        attributes: {
-                            stock_available: 1
-                        }
-                    },
-                    {
-                        id: "742207266-0-2",
-                        type: "stock_levels",
-                        attributes: {
-                            stock_available: 10
-                        }
+                  {
+                    id: "742207266-0-1",
+                    type: "stock_levels",
+                    attributes: {
+                      stock_available: 1
                     }
+                  },
+                  {
+                    id: "742207266-0-2",
+                    type: "stock_levels",
+                    attributes: {
+                      stock_available: 10
+                    }
+                  }
                 ]
-            } }
+              }
+            }
             it "should mark any line items that are out of stock" do
               subject.validate_stock!
               expect(subject.line_items[0].errors[:unit_quantity]).to include "Only 1 in stock"
@@ -274,10 +275,9 @@ RSpec.describe "Shopping Cart" do
 
             it "should return an object with the line_item id and current unit_quantity" do
               stock_errors_object = subject.validate_stock!
-              expect(stock_errors_object["742207266-0-1"]).to eq({ line_item_quantity: 3, stock_level: 1, message: "Only 1 in stock" })
+              expect(stock_errors_object["742207266-0-1"]).to eq({line_item_quantity: 3, stock_level: 1, message: "Only 1 in stock"})
             end
           end
-
         end
       end
     end
@@ -309,7 +309,6 @@ RSpec.describe "Shopping Cart" do
         expect(subject.shipping_method).to be_a(shipping_method_class)
         expect(subject.shipping_method.attributes.to_h.except("id", "type")).to eql shipping_method_resource.attributes.to_h.stringify_keys
       end
-
     end
   end
 end

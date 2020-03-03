@@ -21,7 +21,7 @@ RSpec.describe FlexCommerce::Address do
         subject { subject_class.where(customer_account_id: customer_account.id).all }
         before :each do
           stub_request(:get, "#{api_root}/customer_accounts/#{customer_account.id}.json_api").with(headers: default_request_headers).to_return body: customer_account_document.to_json, status: response_status, headers: default_headers
-          stub_request(:get, "#{api_root}/customer_accounts/#{customer_account.id}/addresses.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
+          stub_request(:get, "#{api_root}/customer_accounts/#{customer_account.id}/addresses.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
         end
         it_should_behave_like "a collection of anything"
         it_should_behave_like "a collection of resources with an error response"
@@ -29,7 +29,7 @@ RSpec.describe FlexCommerce::Address do
       context "creating a new address with a customer account id" do
         let(:resource) { build(:address_from_fixture) }
         before(:each) do
-          stub_request(:post, "#{api_root}/customer_accounts/#{customer_account.id}/addresses.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource.to_h.to_json, status: response_status, headers: default_headers
+          stub_request(:post, "#{api_root}/customer_accounts/#{customer_account.id}/addresses.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource.to_h.to_json, status: response_status, headers: default_headers
         end
         subject { subject_class.create({name: "Anything", customer_account_id: customer_account.id}) }
         it "should return with the resource" do
@@ -48,12 +48,11 @@ RSpec.describe FlexCommerce::Address do
         let(:expected_list_quantity) { 10 }
         subject { subject_class.all }
         before :each do
-          stub_request(:get, "#{api_root}/addresses.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
+          stub_request(:get, "#{api_root}/addresses.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
         end
         it_should_behave_like "a collection of anything"
         it_should_behave_like "a collection of resources with an error response"
       end
     end
-
   end
 end

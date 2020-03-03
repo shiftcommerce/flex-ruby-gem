@@ -9,7 +9,7 @@ RSpec.describe FlexCommerce::V2::DeallocateOrder do
   include_context "global context", api_version: "v2"
 
   context "deallocating an order" do
-    let(:write_headers) { { "Accept" => "application/vnd.api+json", "Content-Type" => "application/vnd.api+json" } }
+    let(:write_headers) { {"Accept" => "application/vnd.api+json", "Content-Type" => "application/vnd.api+json"} }
 
     describe "when deallocating an order" do
       before :each do
@@ -26,17 +26,17 @@ RSpec.describe FlexCommerce::V2::DeallocateOrder do
 
         stub_request(:post, "#{api_root}/deallocate_order.json_api").with(headers: write_headers, body: request_body).to_return do |request|
           {
-              status: 201,
-              headers: write_headers,
-              body: {
-                data: {
-                  id: "1",
-                  type: "deallocate_order",
-                  attributes: {
-                    order_id: 1
-                  }
+            status: 201,
+            headers: write_headers,
+            body: {
+              data: {
+                id: "1",
+                type: "deallocate_order",
+                attributes: {
+                  order_id: 1
                 }
-              }.to_json
+              }
+            }.to_json
           }
         end
       end

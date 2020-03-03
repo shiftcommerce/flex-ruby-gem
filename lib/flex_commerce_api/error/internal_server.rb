@@ -22,7 +22,7 @@ module FlexCommerceApi
         {
           extra: {
             body: response_env[:body]
-          }  
+          }
         }
       end
 

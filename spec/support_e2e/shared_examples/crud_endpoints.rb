@@ -32,9 +32,8 @@ RSpec.shared_examples_for "crud endpoints" do
       expect(subject).to all(be_a model)
     end
     it "should contain the created instance somewhere" do
-      expect(subject.find {|instance| instance.id == cache[:created_subject].id}).to be_truthy
+      expect(subject.find { |instance| instance.id == cache[:created_subject].id }).to be_truthy
     end
-
   end
   context "#show" do
     subject { cache[:show_subject] ||= model.find(cache[:created_subject].id) }
@@ -44,7 +43,6 @@ RSpec.shared_examples_for "crud endpoints" do
     it "should have the correct attributes" do
       expect(subject).to have_attributes cache[:create_attributes]
     end
-
   end
   context "#update" do
     let(:original_subject) { cache[:show_subject] }
@@ -63,8 +61,7 @@ RSpec.shared_examples_for "crud endpoints" do
     it "should remove the created instance" do
       original_id = cache[:created_subject].id
       cache[:created_subject].destroy
-      expect {model.find(original_id)}.to raise_exception FlexCommerceApi::Error::NotFound
+      expect { model.find(original_id) }.to raise_exception FlexCommerceApi::Error::NotFound
     end
-
   end
 end

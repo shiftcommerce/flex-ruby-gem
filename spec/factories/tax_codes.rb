@@ -4,10 +4,10 @@ FactoryBot.define do
   factory :tax_code, class: ::FlexCommerce::TaxCode do
     sequence(:code) { |n| "Code#{n}suffix" }
 
-    starts_at   { Time.current }
-    ends_at     { 1.days.from_now }
-    country     "GB"
-    rate        0.1
+    starts_at { Time.current }
+    ends_at { 1.days.from_now }
+    country "GB"
+    rate 0.1
   end
 
   factory :tax_codes_from_fixture, class: JsonStruct do
@@ -23,5 +23,4 @@ FactoryBot.define do
       send(key, value)
     end
   end
-
 end

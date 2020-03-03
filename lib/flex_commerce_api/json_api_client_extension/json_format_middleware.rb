@@ -11,7 +11,7 @@ module FlexCommerceApi
       #
       def call(env)
         env.url.tap do |url|
-          url.path << ".json_api" unless url.path=~/\.json_api$/
+          url.path << ".json_api" unless /\.json_api$/.match?(url.path)
         end
         @app.call(env)
       end

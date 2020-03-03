@@ -14,7 +14,7 @@ RSpec.describe FlexCommerce::BundleGroup do
     context "working with a single bundle group" do
       let(:singular_resource) { build(:bundle_group_from_fixture) }
       before :each do
-        stub_request(:get, "#{api_root}/bundles/1/bundle_groups/1.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
+        stub_request(:get, "#{api_root}/bundles/1/bundle_groups/1.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
       end
       subject { subject_class.where(bundle_id: 1).find(1).first }
       it_should_behave_like "a singular resource with an error response"
@@ -32,7 +32,7 @@ RSpec.describe FlexCommerce::BundleGroup do
       let(:expected_list_quantity) { 10 }
       subject { subject_class.where(bundle_id: 1).all }
       before :each do
-        stub_request(:get, "#{api_root}/bundles/1/bundle_groups.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
+        stub_request(:get, "#{api_root}/bundles/1/bundle_groups.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
       end
       it_should_behave_like "a collection of anything"
       it_should_behave_like "a collection of resources with an error response"

@@ -10,6 +10,5 @@ module FlexCommerce
   #
   #
   class PaymentProvider < FlexCommerceApi::ApiBase
-
   end
 end

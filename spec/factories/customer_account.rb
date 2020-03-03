@@ -12,7 +12,6 @@ FactoryBot.define do
       obj.each_pair do |key, value|
         instance.send("#{key}=", value)
       end
-
     end
   end
 end

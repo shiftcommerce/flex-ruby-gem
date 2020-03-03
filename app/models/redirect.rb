@@ -6,8 +6,7 @@ module FlexCommerce
   # This model provides access to the flex commerce redirect
   #
   class Redirect < FlexCommerceApi::ApiBase
-
-    def self.find_by_path(source_path: )
+    def self.find_by_path(source_path:)
       where(source_path: source_path).first
     end
   end

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe FlexCommerceApi::JsonApiClientExtension::ParseJson do
   # Global context for all specs - defines things you dont see defined in here
@@ -13,19 +13,19 @@ describe FlexCommerceApi::JsonApiClientExtension::ParseJson do
         body: {"key": "some_random_value"}.to_json,
         status: response_status,
         headers: default_headers
-    )
+      )
 
     allow(JSON).to receive(:parse)
       .and_raise(
         JSON::ParserError,
         "quoted string not terminated at line 1, column 13937 [parse.c:337]"
-    )
+      )
 
-    expect{ FlexCommerce::Address.find(1) }.to raise_error do |error|
+    expect { FlexCommerce::Address.find(1) }.to raise_error do |error|
       expect(error).to be_a(JSON::ParserError)
       expect(error.raven_context).to eq({
         extra: {
-          body: {"key": "some_random_value"}.to_json,
+          body: {"key": "some_random_value"}.to_json
         }
       })
     end

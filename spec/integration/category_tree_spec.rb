@@ -14,7 +14,7 @@ RSpec.describe FlexCommerce::CategoryTree do
     context "working with a single category tree" do
       let(:singular_resource) { build(:category_tree_from_fixture) }
       before :each do
-        stub_request(:get, "#{api_root}/category_trees/test-category-tree.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
+        stub_request(:get, "#{api_root}/category_trees/test-category-tree.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: singular_resource.to_h.to_json, status: response_status, headers: default_headers
       end
       subject { subject_class.find("test-category-tree") }
       it_should_behave_like "a singular resource with an error response"
@@ -25,8 +25,8 @@ RSpec.describe FlexCommerce::CategoryTree do
       end
       context "using the categories association" do
         before :each do
-          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.categories.links.related}").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: multiple_category_resources.to_h.to_json, status: response_status, headers: default_headers
-          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.categories.links.related}.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: multiple_category_resources.to_h.to_json, status: response_status, headers: default_headers
+          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.categories.links.related}").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: multiple_category_resources.to_h.to_json, status: response_status, headers: default_headers
+          stub_request(:get, "#{flex_root}#{singular_resource.data.relationships.categories.links.related}.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: multiple_category_resources.to_h.to_json, status: response_status, headers: default_headers
         end
         let(:multiple_category_resources) { build(:categories_from_fixture) }
         it "should return a list of categories" do
@@ -58,11 +58,10 @@ RSpec.describe FlexCommerce::CategoryTree do
       let(:expected_list_quantity) { 2 }
       subject { subject_class.all }
       before :each do
-        stub_request(:get, "#{api_root}/category_trees.json_api").with(headers: { "Accept" => "application/vnd.api+json" }).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
+        stub_request(:get, "#{api_root}/category_trees.json_api").with(headers: {"Accept" => "application/vnd.api+json"}).to_return body: resource_list.to_h.to_json, status: response_status, headers: default_headers
       end
       it_should_behave_like "a collection of anything"
       it_should_behave_like "a collection of resources with an error response"
-
     end
   end
 end

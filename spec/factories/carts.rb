@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :cart, class: JsonStruct do
-
   end
 
   factory :cart_from_fixture, class: JsonStruct do

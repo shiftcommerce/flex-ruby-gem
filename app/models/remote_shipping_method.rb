@@ -6,7 +6,5 @@ module FlexCommerce
   #
   #
   class RemoteShippingMethod < FlexCommerceApi::ApiBase
-
-
   end
 end

@@ -69,7 +69,7 @@ module FlexCommerce
     class << self
       def_delegators :_new_scope, :temp_search
       def path(params, *args)
-        if params[:filter] && params[:filter].key?(:category_id) && params[:filter].key?(:category_tree_id)
+        if params[:filter]&.key?(:category_id) && params[:filter]&.key?(:category_tree_id)
           category_tree_id = params[:filter].delete(:category_tree_id)
           category_id = params[:filter].delete(:category_id)
           params.delete(:filter) if params[:filter].empty?
@@ -92,7 +92,6 @@ module FlexCommerce
     def add_asset_files(asset_files)
       self.class.requestor.custom("relationships/asset_files", {request_method: :post}, {id: id, data: asset_files.map(&:as_relation)})
     end
-
 
     # End of relationship accessors
   end

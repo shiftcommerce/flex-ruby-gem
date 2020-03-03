@@ -33,7 +33,8 @@ module FlexCommerce
           test: test_mode,
           login: paypal_login,
           password: paypal_password,
-          signature: paypal_signature)
+          signature: paypal_signature
+        )
       end
 
       def is_user_error?(response)
@@ -53,7 +54,7 @@ module FlexCommerce
       end
 
       def verify_credentials
-        unless paypal_login.present? && paypal_password.present? && paypal_signature.present? then
+        unless paypal_login.present? && paypal_password.present? && paypal_signature.present?
           raise "Please ensure all Paypal Credentails are set in your env file."
         end
       end
@@ -80,7 +81,6 @@ module FlexCommerce
       def convert_amount(amount)
         (amount * 100.0).round.to_i
       end
-
     end
   end
 end

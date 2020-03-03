@@ -12,9 +12,11 @@ module FlexCommerceApi
       config.reconfigure_all! if block_given?
     end
   end
+
   def self.gem_root
     File.expand_path("../", __dir__)
   end
+
   def self.logger
     FlexCommerceApi::Config.instance.logger
   end

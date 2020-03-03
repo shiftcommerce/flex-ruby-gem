@@ -9,27 +9,26 @@ RSpec.describe "Addresses API end to end spec", vcr: true do
     http_request_tracker.clear
   end
   after(:context) do
-    context_store.created_resource.destroy unless context_store.created_resource.nil?
+    context_store.created_resource&.destroy
     FlexCommerce::CustomerAccount.includes("").find(context_store.created_customer_account_id).first.destroy unless context_store.created_customer_account_id.nil?
   end
   context "#create" do
     it "should persist when valid attributes are used" do |example|
       subject = model.create first_name: "First",
-                   middle_names: "middle",
-                   last_name: "last",
-                   address_line_1: "Address line 1",
-                   address_line_2: "Address line 2",
-                   address_line_3: "Address line 3",
-                   city: "City",
-                   state: "State",
-                   postcode: "Postcode",
-                   country: "UK",
-                   customer_account_id: created_customer_account_id
+                             middle_names: "middle",
+                             last_name: "last",
+                             address_line_1: "Address line 1",
+                             address_line_2: "Address line 2",
+                             address_line_3: "Address line 3",
+                             city: "City",
+                             state: "State",
+                             postcode: "Postcode",
+                             country: "UK",
+                             customer_account_id: created_customer_account_id
       expect(subject).to be_persisted
       context_store.created_resource = subject
       expect(http_request_tracker.first[:response]).to match_response_schema("jsonapi/schema")
       expect(http_request_tracker.first[:response]).to match_response_schema("shift/v1/documents/member/address")
-
     end
   end
   context "#show" do
@@ -43,19 +42,13 @@ RSpec.describe "Addresses API end to end spec", vcr: true do
         expect(subject.id).to eql created_id
       end
     end
-
   end
   context "#index" do
-
-
   end
   context "#archive" do
-
   end
   context "#unarchive" do
-
   end
   context "#destroy" do
-
   end
 end

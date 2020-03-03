@@ -1,4 +1,4 @@
-require 'paypal_express/api'
+require "paypal_express/api"
 
 # @module FlexCommerce::PaypalExpress::Process
 module FlexCommerce
@@ -9,9 +9,9 @@ module FlexCommerce
         include ::FlexCommerce::PaypalExpress::Api
 
         DEFAULT_DESCRIPTION = "Shift Commerce Order".freeze
-        
+
         # @initialize
-        # 
+        #
         # @param {FlexCommerce::PaymentProviderSetup} payment_provider_setup
         # @param {FlexCommerce::Cart} cart
         # @param {Paypal Gateway} [gateway_class = ::ActiveMerchant::Billing::PaypalExpressGateway]
@@ -23,8 +23,8 @@ module FlexCommerce
         # @param {FlexCommerce::ShippingMethod} shipping_method_model = FlexCommerce::ShippingMethod
         # @param {boolean} [use_mobile_payments = false]
         # @param {String} [description]
-        # 
-        def initialize(cart:,success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false, description:)
+        #
+        def initialize(cart:, success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false, description:)
           self.cart = cart
           self.allow_shipping_change = allow_shipping_change
           self.success_url = success_url
@@ -87,16 +87,16 @@ module FlexCommerce
 
         def ui_callback_params
           return {} unless allow_shipping_change && shipping_methods.count > 0
-          { 
+          {
             callback_url: callback_url,
             callback_timeout: 6,
             callback_version: 95,
-            max_amount: convert_amount((cart.total * 1.2) + shipping_methods.last.total + shipping_methods.last.tax) 
+            max_amount: convert_amount((cart.total * 1.2) + shipping_methods.last.total + shipping_methods.last.tax)
           }
         end
 
         # @method shipping_methods
-        # 
+        #
         # @returns shipping methods with promotions applied
         def shipping_methods
           @shipping_methods ||= ShippingMethodsForCart.new(cart: cart, shipping_methods: shipping_method_model.all).call.sort_by(&:total)
@@ -107,10 +107,10 @@ module FlexCommerce
         end
 
         def shipping_options_params
-          return { shipping_options: [] } if !allow_shipping_change || shipping_method.nil?
+          return {shipping_options: []} if !allow_shipping_change || shipping_method.nil?
           shipping_method_id = shipping_method.id
           {
-              shipping_options: shipping_methods.map {|sm| {name: sm.label, amount: convert_amount(sm.total), default: sm.id == shipping_method_id, label: "#{sm.description}#{sm.id}"}}
+            shipping_options: shipping_methods.map { |sm| {name: sm.label, amount: convert_amount(sm.total), default: sm.id == shipping_method_id, label: "#{sm.description}#{sm.id}"} }
           }
         end
 

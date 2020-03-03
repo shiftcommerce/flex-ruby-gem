@@ -13,6 +13,5 @@ module FlexCommerce
   #
   class Coupon < FlexCommerceApi::ApiBase
     belongs_to :cart, class_name: "FlexCommerce::Cart"
-
   end
 end

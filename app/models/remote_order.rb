@@ -9,7 +9,5 @@ module FlexCommerce
   #
   #
   class RemoteOrder < FlexCommerceApi::ApiBase
-
   end
-
 end
