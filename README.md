@@ -12,11 +12,15 @@ gem 'flex-commerce-api'
 
 And then execute:
 
-    $ bundle
+```
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install flex-commerce-api
+```
+$ gem install flex-commerce-api
+```
 
 ## Usage
 
@@ -37,11 +41,9 @@ To any rails developer this will look familiar.
 
 However, we do not force you to use rails.  We appreciate that there are many frameworks out there
 and whilst rails is an excellent tool, for smaller projects you may want to look at others such
-as sinatra etc...
-
+as Sinatra etc...
 
 ### Client IP address tracing in Rails apps
-
 
 Add the request store gem to your Gemfile and install
 
@@ -73,8 +75,6 @@ FlexCommerceApi.config do |config|
   config.forwarded_for = ->{ RequestStore[:request_ip] }
 end
 ```
-
-
 
 ## Development
 
