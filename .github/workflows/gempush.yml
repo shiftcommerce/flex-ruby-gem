@@ -5,12 +5,7 @@ on:
     branches:
       - master
     paths:
-      - "lib/version.rb"
-  push:
-    branches:
-      - master
-    paths:
-      - "lib/version.rb"
+      - "lib/flex_commerce_api/version.rb"
 
 jobs:
   build:
