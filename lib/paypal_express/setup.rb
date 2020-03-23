@@ -44,9 +44,6 @@ module FlexCommerce
 
       def call
         validate_shipping_method
-        puts '#' * 80
-        puts "Gift card amount: #{gift_card_amount}"
-        puts '#' * 80
         total_amount = cart.total - gift_card_amount
         response = gateway.setup_order(convert_amount(total_amount), paypal_params)
         # If paypal setup went fine, redirect to the paypal page
