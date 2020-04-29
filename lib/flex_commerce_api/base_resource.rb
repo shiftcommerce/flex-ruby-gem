@@ -10,6 +10,7 @@ require "flex_commerce_api/json_api_client_extension/status_middleware"
 require "flex_commerce_api/json_api_client_extension/json_format_middleware"
 require "flex_commerce_api/json_api_client_extension/previewed_request_middleware"
 require "flex_commerce_api/json_api_client_extension/capture_surrogate_keys_middleware"
+require "flex_commerce_api/json_api_client_extension/forwarded_for_middleware"
 require "flex_commerce_api/json_api_client_extension/has_many_association_proxy"
 require "flex_commerce_api/json_api_client_extension/builder"
 require "flex_commerce_api/json_api_client_extension/flexible_connection"
@@ -17,6 +18,9 @@ require "flex_commerce_api/json_api_client_extension/parsers/parser"
 require "flex_commerce_api/json_api_client_extension/remote_builder"
 
 module FlexCommerceApi
+  JsonApiClientExtension::Paginator.page_param = "number"
+  JsonApiClientExtension::Paginator.per_page_param = "size"
+
   #
   # Base class for all flex commerce models
   #

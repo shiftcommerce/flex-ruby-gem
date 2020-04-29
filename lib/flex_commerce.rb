@@ -82,6 +82,7 @@ module FlexCommerce
   autoload :TemplateComponent, File.join(gem_root, "app", "models", "template_component")
   autoload :TemplateDefinition, File.join(gem_root, "app", "models", "template_definition")
   autoload :TemplateSection, File.join(gem_root, "app", "models", "template_section")
+  autoload :UnallocateOrder, File.join(gem_root, "app", "models", "unallocate_order")
   autoload :User, File.join(gem_root, "app", "models", "user")
   autoload :UserProfile, File.join(gem_root, "app", "models", "user_profile")
   autoload :Variant, File.join(gem_root, "app", "models", "variant")
