@@ -73,7 +73,7 @@ module FlexCommerce
 
       # @mthod items
       #
-      # @returns both line items and discounts
+      # @returns both line items and discounts and gift cards
       def items
         normal_items + discount_items + gift_cards
       end
