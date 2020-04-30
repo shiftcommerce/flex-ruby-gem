@@ -8,6 +8,8 @@ module FlexCommerce
     # This class is used while setting up the paypal for FE
     # It deals with line items total, sub total, tax calculations and
     # Also deals with discounted line items and discounts inorder to send to paypal
+    # If gift card was used to pay partial amount and subsequently
+    # gift card amount was passed, it subtracts gift card amount from total 
     #
     class GenerateSummary
       include ::FlexCommerce::PaypalExpress::Api
