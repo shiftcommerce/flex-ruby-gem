@@ -5,10 +5,11 @@ RSpec.describe FlexCommerce::PaypalExpress::GenerateSummary, paypal: true do
     (amt * 100).to_i
   end
   context "without tax" do
-    subject { described_class.new(cart: cart) }
     shared_examples_for "a summary from a cart with tax ignored" do
       it "should have the correct subtotal" do
-        expect(subject.call).to include subtotal: convert_amount(line_items.sum(&:total))
+        # gift card amount is deducted from subtotal if gift card used
+        subtotal = line_items.sum(&:total) - gift_card_amount
+        expect(subject.call).to include subtotal: convert_amount(subtotal)
       end
       it "should have zero tax" do
         expect(subject.call).to include tax: 0
@@ -20,6 +21,7 @@ RSpec.describe FlexCommerce::PaypalExpress::GenerateSummary, paypal: true do
         expect(subject.call).to include shipping: convert_amount(shipping_total)
       end
     end
+
     shared_examples_for "paypal items" do
       it "should have the correct items - amount and quantity" do
         expect(paypal_items).to match_array(line_items.map { |li| hash_including(amount: convert_amount(li.unit_price), quantity: li.unit_quantity) })
@@ -34,17 +36,34 @@ RSpec.describe FlexCommerce::PaypalExpress::GenerateSummary, paypal: true do
         expect(paypal_items).to match_array(line_items.map { |li| hash_including(number: li.item.sku) })
       end
     end
+
+    shared_examples_for "non discounted line items" do
+      let(:gift_card_amount) { BigDecimal(0) }
+      subject { described_class.new(cart: cart, gift_card_amount: gift_card_amount) }
+      let(:paypal_items) { subject.call[:items] }
+      include_examples "paypal items"
+    end
+
     shared_examples_for "discounted line items" do
+      let(:gift_card_amount) { BigDecimal(0) }
+      subject { described_class.new(cart: cart, gift_card_amount: gift_card_amount) }
       let(:paypal_items) { subject.call[:items][0...-1] }
       include_examples "paypal items"
       it "should have the last item as special discount item" do
         expect(subject.call).to include(items: array_including(hash_including(amount: convert_amount(BigDecimal(0) - cart.total_discount))))
       end
     end
-    shared_examples_for "non discounted line items" do
-      let(:paypal_items) { subject.call[:items] }
+
+    shared_examples_for "line items partially paid with gift cards" do
+      let(:gift_card_amount) { BigDecimal(10) }
+      subject { described_class.new(cart: cart, gift_card_amount: gift_card_amount) }
+      let(:paypal_items) { subject.call[:items][0...-1] }
       include_examples "paypal items"
+      it "should have the last item as gift card item" do
+        expect(subject.call).to include(items: array_including(hash_including(amount: convert_amount(BigDecimal(0) - gift_card_amount))))
+      end
     end
+
     context "with no shipping" do
       let(:shipping_total) { BigDecimal(0) }
       context "with no discounts" do
@@ -56,6 +75,17 @@ RSpec.describe FlexCommerce::PaypalExpress::GenerateSummary, paypal: true do
         include_examples "a summary from a cart with tax ignored"
         include_examples "non discounted line items"
       end
+
+      context "with gift card" do
+        let(:cart) { double(:cart, free_shipping: false, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
+        let(:line_item_discount) { BigDecimal(0) }
+        let(:item) { 5.times.map { |n| double(:variant, sku: "sku_#{n}") } }
+        let(:line_items) { 5.times.map { |n| double(:line_item, unit_price: BigDecimal(1.67, 12), item: item[n], unit_quantity: 3, total: BigDecimal(5.01, 12), title: "Line item #{n}", tax: BigDecimal(0)) } }
+
+        include_examples "a summary from a cart with tax ignored"
+        include_examples "line items partially paid with gift cards"
+      end
+
       context "with line item discounts" do
         let(:cart) { double(:cart, free_shipping: false, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
         let(:line_item_discount) { BigDecimal(0.79, 12) }
@@ -65,6 +95,7 @@ RSpec.describe FlexCommerce::PaypalExpress::GenerateSummary, paypal: true do
         include_examples "discounted line items"
       end
     end
+
     context "with shipping" do
       let(:shipping_total) { BigDecimal(3.99, 12) }
       context "with no discounts" do
@@ -75,6 +106,16 @@ RSpec.describe FlexCommerce::PaypalExpress::GenerateSummary, paypal: true do
         include_examples "a summary from a cart with tax ignored"
         include_examples "non discounted line items"
       end
+
+      context "with gift card" do
+        let(:cart) { double(:cart, free_shipping: false, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
+        let(:line_item_discount) { BigDecimal(0) }
+        let(:item) { 5.times.map { |n| double(:variant, sku: "sku_#{n}") } }
+        let(:line_items) { 5.times.map { |n| double(:line_ttem, unit_price: BigDecimal(1.67, 12), item: item[n], unit_quantity: 3, total: BigDecimal(5.01, 12), title: "Line item #{n}", tax: BigDecimal(0)) } }
+        include_examples "a summary from a cart with tax ignored"
+        include_examples "line items partially paid with gift cards"
+      end
+
       context "with line item discounts" do
         let(:cart) { double(:cart, free_shipping: false, line_items: line_items, shipping_total: shipping_total, total: line_items.sum(&:total) + shipping_total, total_discount: line_item_discount * line_items.length) }
         let(:line_item_discount) { BigDecimal(0.79, 12) }

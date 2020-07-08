@@ -9,9 +9,9 @@ module FlexCommerce
         include ::FlexCommerce::PaypalExpress::Api
 
         DEFAULT_DESCRIPTION = "Shift Commerce Order".freeze
-        
+
         # @initialize
-        # 
+        #
         # @param {FlexCommerce::PaymentProviderSetup} payment_provider_setup
         # @param {FlexCommerce::Cart} cart
         # @param {Paypal Gateway} [gateway_class = ::ActiveMerchant::Billing::PaypalExpressGateway]
@@ -23,8 +23,9 @@ module FlexCommerce
         # @param {FlexCommerce::ShippingMethod} shipping_method_model = FlexCommerce::ShippingMethod
         # @param {boolean} [use_mobile_payments = false]
         # @param {String} [description]
-        # 
-        def initialize(cart:,success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false, description:)
+        # @param {BigDecimal} [gift_card_amount]
+        #
+        def initialize(cart:,success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false, description:, gift_card_amount: nil)
           self.cart = cart
           self.allow_shipping_change = allow_shipping_change
           self.success_url = success_url
@@ -34,6 +35,7 @@ module FlexCommerce
           self.shipping_method_model = shipping_method_model
           self.use_mobile_payments = use_mobile_payments
           self.description = description
+          self.gift_card_amount = gift_card_amount
         end
 
         def call
@@ -44,7 +46,7 @@ module FlexCommerce
             .merge(shipping_options_params)
         end
 
-        attr_accessor :description, :cart, :success_url, :cancel_url, :ip_address, :allow_shipping_change, :callback_url, :shipping_method_model, :use_mobile_payments
+        attr_accessor :description, :cart, :success_url, :cancel_url, :ip_address, :allow_shipping_change, :callback_url, :shipping_method_model, :use_mobile_payments, :gift_card_amount
 
         private
 
@@ -87,16 +89,16 @@ module FlexCommerce
 
         def ui_callback_params
           return {} unless allow_shipping_change && shipping_methods.count > 0
-          { 
+          {
             callback_url: callback_url,
             callback_timeout: 6,
             callback_version: 95,
-            max_amount: convert_amount((cart.total * 1.2) + shipping_methods.last.total + shipping_methods.last.tax) 
+            max_amount: convert_amount((cart.total * 1.2) + shipping_methods.last.total + shipping_methods.last.tax)
           }
         end
 
         # @method shipping_methods
-        # 
+        #
         # @returns shipping methods with promotions applied
         def shipping_methods
           @shipping_methods ||= ShippingMethodsForCart.new(cart: cart, shipping_methods: shipping_method_model.all).call.sort_by(&:total)
@@ -115,7 +117,7 @@ module FlexCommerce
         end
 
         def summary
-          @summary ||= GenerateSummary.new(cart: cart).call
+          @summary ||= GenerateSummary.new(cart: cart, gift_card_amount: gift_card_amount).call
         end
       end
     end
