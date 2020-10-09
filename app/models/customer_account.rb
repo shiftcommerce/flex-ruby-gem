@@ -54,22 +54,22 @@ module FlexCommerce
       nil
     end
 
-    def self.find_by_email(email)
-      requestor.custom("email:#{URI.encode_www_form_component(email)}", {request_method: :get}, {}).first
+    def self.find_by_email(email, options = {})
+      requestor.custom("email:#{URI.encode_www_form_component(email)}", {request_method: :get}, options).first
     rescue ::FlexCommerceApi::Error::NotFound
       nil
     end
 
-    def self.find_by_reference(reference)
-      requestor.custom("reference:#{reference}", {request_method: :get}, {}).first
+    def self.find_by_reference(reference, options = {})
+      requestor.custom("reference:#{reference}", {request_method: :get}, options).first
     rescue ::FlexCommerceApi::Error::NotFound
       nil
     end
 
     # Find customer account by password reset token provided in email's link
     # Used in reset password scenario
-    def self.find_by_token(token)
-      requestor.custom("token:#{token}", {request_method: :get}, {}).first
+    def self.find_by_token(token, options = {})
+      requestor.custom("token:#{token}", {request_method: :get}, options).first
     rescue ::FlexCommerceApi::Error::NotFound
       nil
     end
