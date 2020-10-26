@@ -128,9 +128,7 @@ module FlexCommerce
     private
 
     def stock_levels
-      StockLevel.where(skus: line_items.map { |li| li.item.sku }.join(",")).all
+      StockLevel.with_params(fields: {stock_levels: "stock_available"}).where(skus: line_items.map { |li| li.item.sku }.join(",")).all
     end
-
-
   end
 end
