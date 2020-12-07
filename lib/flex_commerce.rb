@@ -32,6 +32,7 @@ module FlexCommerce
   autoload :DataAttribute, File.join(gem_root, "app", "models", "data_attribute")
   autoload :DataStoreRecord, File.join(gem_root, "app", "models", "data_store_record")
   autoload :DataStoreType, File.join(gem_root, "app", "models", "data_store_type")
+  autoload :DeallocateOrder, File.join(gem_root, "app", "models", "deallocate_order")
   autoload :DiscountSummary, File.join(gem_root, "app", "models", "discount_summary")
   autoload :Email, File.join(gem_root, "app", "models", "email")
   autoload :EwisOptIn, File.join(gem_root, "app", "models", "ewis_opt_in")
