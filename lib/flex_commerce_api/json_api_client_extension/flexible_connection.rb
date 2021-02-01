@@ -1,4 +1,4 @@
-require 'faraday-http-cache'
+require "faraday-http-cache"
 
 module FlexCommerceApi
   module JsonApiClientExtension
@@ -10,9 +10,10 @@ module FlexCommerceApi
         add_json_api_extension = options.fetch(:add_json_api_extension, true)
         authenticate = options.fetch(:authenticate, true)
         include_previewed = options.fetch :include_previewed, false
-        @faraday = Faraday.new(site) do |builder|
+        @faraday = Faraday.new(site) { |builder|
           builder.request :json
           builder.use JsonApiClientExtension::SaveRequestBodyMiddleware
+          builder.use JsonApiClientExtension::ForwardedForMiddleware
           builder.use JsonApiClientExtension::JsonFormatMiddleware if add_json_api_extension
           builder.use JsonApiClientExtension::PreviewedRequestMiddleware if include_previewed
           builder.use JsonApiClient::Middleware::JsonRequest
@@ -29,7 +30,7 @@ module FlexCommerceApi
           builder.adapter *adapter_options
           builder.options[:open_timeout] = options.fetch(:open_timeout)
           builder.options[:timeout] = options.fetch(:timeout)
-        end
+        }
         faraday.basic_auth(ApiBase.username, ApiBase.password) if authenticate
 
         yield(self) if block_given?
@@ -42,6 +43,7 @@ module FlexCommerceApi
       end
 
       private
+
       def cache_options(options)
         {
           # treats the cache like a client, not a proxy
