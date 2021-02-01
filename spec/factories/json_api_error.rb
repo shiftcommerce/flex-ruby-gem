@@ -9,9 +9,9 @@
 # @param [Hash] meta A meta object containing non-standard meta-information about the error.
 FactoryBot.define do
   factory :json_api_error, class: JsonStruct do
-    status "500"
-    title "Something went wrong"
-    detail "Something went wrong because something else caused it to go wrong"
+    status { "500" }
+    title { "Something went wrong" }
+    detail { "Something went wrong because something else caused it to go wrong" }
     meta { {
         stack_trace: [
             "/full/path/to/file_1.rb:587 method()",

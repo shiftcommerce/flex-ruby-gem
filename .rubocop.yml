@@ -464,7 +464,7 @@ Style/TrivialAccessors:
   - to_str
   - to_s
   - to_sym
-Style/VariableName:
+Naming/VariableName:
   Description: Use the configured style when naming variables.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#snake-case-symbols-methods-vars
   Enabled: true

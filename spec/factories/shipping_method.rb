@@ -4,6 +4,6 @@ FactoryBot.define do
     sequence(:price) { |idx| idx * 1.50 }
     sequence(:reference) { |idx| "shipping_method_#{idx}" }
     sequence(:description) { |idx| "Shipping Method #{idx}" }
-    tax 1.00
+    tax { 1.00 }
   end
 end
