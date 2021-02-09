@@ -3,25 +3,31 @@ module FlexCommerceApi
     class Requestor < ::JsonApiClient::Query::Requestor
       # expects a record
       def create(record)
-        request(:post, klass.path(record.attributes, record), {
-                         data: record.as_json_api
-                     })
+        request(
+          :post,
+          klass.path(record.attributes, record),
+          body: { data: record.as_json_api },
+          params: record.request_params.to_params
+        )
       end
 
       def update(record)
-        request(:patch, resource_path(record.attributes, record), {
-                          data: record.as_json_api
-                      })
+        request(
+          :patch,
+          resource_path(record.attributes, record),
+          body: { data: record.as_json_api },
+          params: record.request_params.to_params
+        )
       end
 
       def get(params = {})
         path = resource_path(params)
         params.delete(klass.primary_key)
-        request(:get, path, params)
+        request(:get, path, params: params)
       end
 
       def destroy(record)
-        request(:delete, resource_path(record.attributes, record), {})
+        request(:delete, resource_path(record.attributes, record))
       end
 
       protected
