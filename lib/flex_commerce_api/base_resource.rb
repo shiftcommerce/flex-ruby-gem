@@ -246,9 +246,6 @@ module FlexCommerceApi
                      end
         FlexCommerceApi::JsonApiClientExtension::RemoteBuilder.new(association.association_class, path: path, connection: connection)
       end
-
     end
-
-
   end
 end

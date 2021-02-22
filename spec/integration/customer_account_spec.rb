@@ -191,7 +191,7 @@ RSpec.describe FlexCommerce::CustomerAccount do
           it "should return password_recovery resource with errors" do
             expect(subject).to be_kind_of(::FlexCommerce::PasswordRecovery)
             expect(subject.errors).to be_present
-            expect(subject.errors.first.full_message).to include(error_message)
+            expect(subject.errors.full_messages).to include(error_message)
           end
         end
       end
@@ -241,7 +241,7 @@ RSpec.describe FlexCommerce::CustomerAccount do
           it "should return password_recovery resource with errors" do
             expect(subject).to be_kind_of(::FlexCommerce::PasswordRecovery)
             expect(subject.errors).to be_present
-            expect(subject.errors.first.full_message).to include(error_message)
+            expect(subject.errors.full_messages).to include(error_message)
           end
         end
       end
