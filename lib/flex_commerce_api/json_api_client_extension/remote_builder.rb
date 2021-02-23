@@ -1,10 +1,10 @@
 module FlexCommerceApi
   module JsonApiClientExtension
     class RemoteBuilder < ::JsonApiClient::Query::Builder
-      def initialize(klass, **keyword_arguments)
-        super(klass)
-        @connection = keyword_arguments[:connection]
-        @path = keyword_arguments[:path]
+      def initialize(klass, **options)
+        super(klass, **options)
+        @connection = options[:connection]
+        @path = options[:path]
       end
 
       def find(args = {})

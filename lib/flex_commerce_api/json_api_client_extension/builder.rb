@@ -8,7 +8,7 @@ module FlexCommerceApi
 
       def temp_search(options = {})
         @temp_search_criteria = options
-        self
+        _new_scope
       end
 
       def find(args = {})
