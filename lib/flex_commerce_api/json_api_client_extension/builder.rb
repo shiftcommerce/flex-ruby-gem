@@ -2,7 +2,7 @@ module FlexCommerceApi
   module JsonApiClientExtension
     class Builder < ::JsonApiClient::Query::Builder
       def initialize(klass, opts = {})
-        super
+        super(klass, opts)
         @temp_search_criteria = opts.fetch(:temp_search_criteria, nil)
       end
 
