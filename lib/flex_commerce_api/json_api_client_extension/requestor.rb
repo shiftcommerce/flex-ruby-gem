@@ -3,21 +3,17 @@ module FlexCommerceApi
     class Requestor < ::JsonApiClient::Query::Requestor
       # expects a record
       def create(record)
-        request(
-          :post,
-          klass.path(record.attributes, record),
-          body: { data: record.as_json_api },
-          params: record.request_params.to_params
-        )
+        request(:post, klass.path(record.attributes), {
+            body: { data: record.as_json_api },
+            params: record.request_params&.to_params
+        })
       end
 
       def update(record)
-        request(
-          :patch,
-          resource_path(record.attributes, record),
-          body: { data: record.as_json_api },
-          params: record.request_params.to_params
-        )
+        request(:patch, resource_path(record.attributes), {
+            body: { data: record.as_json_api },
+            params: record.request_params&.to_params
+        })
       end
 
       def get(params = {})
