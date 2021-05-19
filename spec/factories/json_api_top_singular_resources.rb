@@ -9,7 +9,7 @@ FactoryBot.define do
   klass = Struct.new(:data, :meta, :errors, :links, :included)
   factory :json_api_top_singular_resource, class: klass do
     meta { {} }
-    errors []
+    errors { [] }
     links { {} }
     included { [] }
   end

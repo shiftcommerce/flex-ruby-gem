@@ -6,7 +6,7 @@
 FactoryBot.define do
   klass = Struct.new(:href, :meta)
   factory :json_api_resource_link, class: klass do
-    href "/test_account/v1/resource_type/pages/1"
+    href { "/test_account/v1/resource_type/pages/1" }
     meta { {} }
   end
 end

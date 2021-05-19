@@ -5,7 +5,7 @@ FactoryBot.define do
   end
   factory :customer_account_from_fixture, class: JsonStruct do
     transient do
-      api_root "http://api.dummydomain/v1"
+      api_root { "http://api.dummydomain/v1" }
     end
     after(:build) do |instance, evaluator|
       obj = JsonStruct.new(JSON.parse(JsonErb.render_from_hash(File.read("spec/fixtures/customer_accounts/singular.json.erb"), api_root: evaluator.api_root)))

@@ -11,8 +11,8 @@ FactoryBot.define do
     state            { Faker::Address.state }
     postcode         { Faker::Address.postcode }
     country          { Faker::Address.country }
-    preferred_billing false
-    preferred_shipping false
+    preferred_billing { false }
+    preferred_shipping { false }
 
   end
   factory :addresses_from_fixture, class: JsonStruct do

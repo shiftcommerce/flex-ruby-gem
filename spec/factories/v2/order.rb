@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :v2_order_from_fixture, class: JsonStruct do
     transient do
-      api_root "http://api.dummydomain/v2"
+      api_root { "http://api.dummydomain/v2" }
     end
 
     after(:build) do |instance, evaluator|

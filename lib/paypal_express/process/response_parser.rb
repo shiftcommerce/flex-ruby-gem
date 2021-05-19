@@ -19,7 +19,8 @@ module FlexCommerce
             shipping_method_id: get_shipping_method_details,
             email: get_email_address,
             shipping_address_attributes: get_shipping_address_attributes,
-            billing_address_attributes: get_billing_address_attributes
+            billing_address_attributes: get_billing_address_attributes,
+            payment_details: response.params["PaymentDetails"]
           }
         end
 

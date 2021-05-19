@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :order, class: JsonStruct do
-    test false
+    test { false }
   end
 
   factory :order_from_fixture, class: JsonStruct do
     transient do
-      api_root "http://api.dummydomain/v1"
+      api_root { "http://api.dummydomain/v1" }
     end
 
     after(:build) do |instance, evaluator|

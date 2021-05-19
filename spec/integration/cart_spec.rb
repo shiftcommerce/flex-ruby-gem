@@ -217,7 +217,7 @@ RSpec.describe "Shopping Cart" do
           end
         end
         context "using the validate_stock! method" do
-          let!(:stub) { stub_request(:get, "#{api_root}/stock_levels.json_api").with(headers: {"Accept" => "application/vnd.api+json"}, query: {filter: {skus: "742207266-0-1,742207266-0-2"}}).to_return body: stock_level_list.to_json, status: response_status, headers: default_headers }
+          let!(:stub) { stub_request(:get, "#{api_root}/stock_levels.json_api").with(headers: {"Accept" => "application/vnd.api+json"}, query: {fields: {stock_levels: "stock_available"}, filter: {skus: "742207266-0-1,742207266-0-2"}}).to_return body: stock_level_list.to_json, status: response_status, headers: default_headers }
           context "with no stock" do
             let(:stock_level_list) { {
                 data: [

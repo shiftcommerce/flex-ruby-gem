@@ -4,14 +4,14 @@ require_relative 'api'
 module FlexCommerce
   module PaypalExpress
     # @class Setup
-    # 
+    #
     # This is the main class, which talks to ActiveMerchant gem to initiate a transaction using Paypal
     class Setup
       include ::FlexCommerce::PaypalExpress::Api
-      
+
 
       # @initialize
-      # 
+      #
       # @param {FlexCommerce::PaymentProviderSetup} payment_provider_setup
       # @param {FlexCommerce::Cart} cart
       # @param {Paypal Gateway} [gateway_class = ::ActiveMerchant::Billing::PaypalExpressGateway]
@@ -23,12 +23,12 @@ module FlexCommerce
       # @param {FlexCommerce::ShippingMethod} shipping_method_model = FlexCommerce::ShippingMethod
       # @param {boolean} [use_mobile_payments = false]
       # @param {String} [description = nil]
-      # 
+      #
       # @note:
       # For `::ActiveMerchant::Billing::PaypalExpressGateway` to work
       # rails-site should include active merchant gem. Ideally this gem should be included in the gemspec.
       # But as we are using custom gem, which is not published to ruby gems, there is no way of including it within this gem dependency
-      def initialize(cart:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false, description: nil)
+      def initialize(cart:, gateway_class: ::ActiveMerchant::Billing::PaypalExpressGateway, success_url:, cancel_url:, ip_address:, allow_shipping_change: true, callback_url:, shipping_method_model: FlexCommerce::ShippingMethod, use_mobile_payments: false, description: nil, gift_card_amount: BigDecimal(0))
         self.gateway_class = gateway_class
         self.cart = cart
         self.allow_shipping_change = allow_shipping_change
@@ -39,12 +39,13 @@ module FlexCommerce
         self.shipping_method_model = shipping_method_model
         self.use_mobile_payments = use_mobile_payments
         self.description = description
+        self.gift_card_amount = gift_card_amount
       end
 
       def call
         validate_shipping_method
-        
-        response = gateway.setup_order(convert_amount(cart.total), paypal_params)
+        total_amount = cart.total - gift_card_amount
+        response = gateway.setup_order(convert_amount(total_amount), paypal_params)
         # If paypal setup went fine, redirect to the paypal page
         if response.success?
           PaypalSetup.new(setup_type:  "redirect", redirect_url: gateway.redirect_url_for(response.token, mobile: use_mobile_payments))
@@ -59,7 +60,7 @@ module FlexCommerce
 
       private
 
-      attr_accessor :description, :cart, :gateway_class, :success_url, :cancel_url, :ip_address, :allow_shipping_change, :callback_url, :shipping_method_model, :use_mobile_payments
+      attr_accessor :description, :cart, :gateway_class, :success_url, :cancel_url, :ip_address, :allow_shipping_change, :callback_url, :shipping_method_model, :use_mobile_payments, :gift_card_amount
 
       def paypal_params
         Process::PaypalParams.new(
@@ -71,12 +72,13 @@ module FlexCommerce
           callback_url: callback_url,
           shipping_method_model: shipping_method_model,
           use_mobile_payments: use_mobile_payments,
-          description: description
+          description: description,
+          gift_card_amount: gift_card_amount
         ).call
       end
 
       # @method shipping_methods
-      # 
+      #
       # @returns shipping methods with promotions applied
       def shipping_methods
         @shipping_methods ||= ShippingMethodsForCart.new(cart: cart, shipping_methods: shipping_method_model.all).call.sort_by(&:total)

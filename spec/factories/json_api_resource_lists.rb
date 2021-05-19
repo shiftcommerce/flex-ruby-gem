@@ -19,14 +19,14 @@ FactoryBot.define do
     data { [] }
     errors { [] }
     transient do
-      quantity 1
-      page_size 25
-      page 1
-      base_path "/test_account/v1"
+      quantity { 1 }
+      page_size { 25 }
+      page { 1 }
+      base_path { "/test_account/v1" }
       page_count { (quantity / page_size.to_f).ceil.to_i }
-      type ""
+      type { "" }
       pluralized_type { type.to_s.pluralize }
-      primary_key "id"
+      primary_key { "id" }
     end
     after(:build) do |list, evaluator|
       quantity = evaluator.quantity % evaluator.page_size

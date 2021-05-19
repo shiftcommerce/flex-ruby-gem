@@ -8,6 +8,6 @@ FactoryBot.define do
   end
 
   factory :bundle_list, parent: :json_api_resource_list do
-    type "bundle"
+    type { "bundle" }
   end
 end

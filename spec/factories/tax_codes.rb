@@ -6,8 +6,8 @@ FactoryBot.define do
 
     starts_at   { Time.current }
     ends_at     { 1.days.from_now }
-    country     "GB"
-    rate        0.1
+    country     { "GB" }
+    rate        { 0.1 }
   end
 
   factory :tax_codes_from_fixture, class: JsonStruct do

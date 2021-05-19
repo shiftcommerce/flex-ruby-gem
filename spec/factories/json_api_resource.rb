@@ -25,13 +25,13 @@ FactoryBot.define do
   klass = Struct.new(:id, :type, :attributes, :links, :relationships)
   factory :json_api_resource, class: klass do
     transient do
-      build_resource nil
-      base_path "/test_account/v1"
-      primary_key "id"
+      build_resource { nil }
+      base_path { "/test_account/v1" }
+      primary_key { "id" }
     end
     relationships { {} }
     sequence(:id) { |idx| idx.to_s }
-    type "Unknown"
+    type { "Unknown" }
     links { {} }
     after(:build) do |ri, evaluator|
       if evaluator.build_resource.present?

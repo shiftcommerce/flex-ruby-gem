@@ -5,13 +5,13 @@ FactoryBot.define do
     token_expired { [true, false].sample}
 
     factory :password_recovery_with_valid_token do
-      token_present true
-      token_expired false
+      token_present { true }
+      token_expired { false }
     end
 
     factory :password_recovery_with_used_token do
-      token_present false
-      token_expired true
+      token_present { false }
+      token_expired { true }
     end
   end
 end

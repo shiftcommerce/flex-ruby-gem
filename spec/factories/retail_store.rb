@@ -6,6 +6,6 @@ FactoryBot.define do
     slug { "#{Faker::Number.number(10)}-#{Time.now.nsec}" }
     latitude { BigDecimal("-1.#{rand(100..998)}") }
     longitude { BigDecimal("53.#{rand(100..998)}") }
-    address "Great George St,\nLeeds,\nLS1 3BB"
+    address { "Great George St,\nLeeds,\nLS1 3BB" }
   end
 end

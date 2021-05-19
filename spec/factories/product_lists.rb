@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :product_list, parent: :json_api_resource_list do
-    type "product"
-    primary_key "slug"
+    type { "product" }
+    primary_key { "slug" }
     after(:build) do |instance|
       instance.data.each do |ri|
         ri.relationships.merge(variants: { data: [] })
