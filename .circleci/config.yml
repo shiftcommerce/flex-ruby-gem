@@ -2,7 +2,7 @@ version: '2.1'
 
 jobs:
   build-ruby-27:
-    docker: 
+    docker:
       - image: circleci/ruby:2.7.0
     steps:
       - checkout
@@ -17,9 +17,9 @@ jobs:
           paths:
             - vendor/bundle
       - run: bundle exec rspec
-      
+
   build-ruby-25:
-    docker: 
+    docker:
       - image: circleci/ruby:2.5.3
     steps:
       - checkout
@@ -28,7 +28,7 @@ jobs:
             - rubygems-25-cache-{{ .Branch }}-{{ checksum "Gemfile" }}-{{ checksum "flex-commerce-api.gemspec" }}
             - rubygems-25-cache-{{ .Branch }}
             - rubygems-25-cache
-      - run: gem install bundler -v "~> 1.17"
+      - run: gem install bundler -v "~> 2.1"
       - run: bundle install --path vendor/bundle
       - save_cache:
           key: rubygems-25-cache-{{ .Branch }}-{{ checksum "Gemfile" }}-{{ checksum "flex-commerce-api.gemspec" }}

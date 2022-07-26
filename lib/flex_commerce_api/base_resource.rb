@@ -33,6 +33,7 @@ module FlexCommerceApi
     self.requestor_class = JsonApiClientExtension::Requestor
     self.connection_class = ::FlexCommerceApi::JsonApiClientExtension::FlexibleConnection
     self.parser = ::FlexCommerceApi::JsonApiClientExtension::Parsers::Parser
+    self.keep_request_params = true
 
     class << self
       def create!(*args)
@@ -246,9 +247,6 @@ module FlexCommerceApi
                      end
         FlexCommerceApi::JsonApiClientExtension::RemoteBuilder.new(association.association_class, path: path, connection: connection)
       end
-
     end
-
-
   end
 end

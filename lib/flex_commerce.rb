@@ -12,6 +12,18 @@ module FlexCommerce
     autoload :UnallocateOrder, File.join(FlexCommerce.gem_root, "app", "models", "v2", "unallocate_order")
   end
 
+  # OMS
+  module OMS
+    autoload :BillingAddress, File.join(FlexCommerce.gem_root, "app", "models", "oms", "billing_address")
+    autoload :CustomerOrder, File.join(FlexCommerce.gem_root, "app", "models", "oms", "customer_order")
+    autoload :Customer, File.join(FlexCommerce.gem_root, "app", "models", "oms", "customer")
+    autoload :Discount, File.join(FlexCommerce.gem_root, "app", "models", "oms", "discount")
+    autoload :LineItem, File.join(FlexCommerce.gem_root, "app", "models", "oms", "line_item")
+    autoload :Payment, File.join(FlexCommerce.gem_root, "app", "models", "oms", "payment")
+    autoload :ShippingAddress, File.join(FlexCommerce.gem_root, "app", "models", "oms", "shipping_address")
+    autoload :ShippingMethod, File.join(FlexCommerce.gem_root, "app", "models", "oms", "shipping_method")
+  end
+
   # V1 Models
   autoload :Address, File.join(gem_root, "app", "models", "address")
   autoload :AssetFile, File.join(gem_root, "app", "models", "asset_file")
@@ -54,6 +66,7 @@ module FlexCommerce
   autoload :PaymentProvider, File.join(gem_root, "app", "models", "payment_provider")
   autoload :PaymentProviderSetup, File.join(gem_root, "app", "models", "payment_provider_setup")
   autoload :PaymentTransaction, File.join(gem_root, "app", "models", "payment_transaction")
+  autoload :PriceEntry, File.join(gem_root, "app", "models", "price_entry")
   autoload :Product, File.join(gem_root, "app", "models", "product")
   autoload :ProductAssetFile, File.join(gem_root, "app", "models", "product_asset_file")
   autoload :Promotion, File.join(gem_root, "app", "models", "promotion")
